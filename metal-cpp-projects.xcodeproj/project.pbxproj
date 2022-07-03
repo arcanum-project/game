@@ -26,6 +26,8 @@
 		9F831531286FEC4200B6FCDF /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
 		9F831538286FEEDA00B6FCDF /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831536286FEEDA00B6FCDF /* Renderer.cpp */; };
 		9F83153F287009B800B6FCDF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F83153E287009B800B6FCDF /* QuartzCore.framework */; };
+		9F8315412870FC3400B6FCDF /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F8315402870FC3400B6FCDF /* Shaders.metal */; };
+		9F831544287142DC00B6FCDF /* VertexDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */; };
 		9FABA033286FBF1000B5630A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABA032286FBF1000B5630A /* AppDelegate.m */; };
 		9FABA036286FBF1000B5630A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABA035286FBF1000B5630A /* ViewController.m */; };
 		9FABA038286FBF1400B5630A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FABA037286FBF1400B5630A /* Assets.xcassets */; };
@@ -51,6 +53,9 @@
 		9F831536286FEEDA00B6FCDF /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		9F831537286FEEDA00B6FCDF /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
 		9F83153E287009B800B6FCDF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9F8315402870FC3400B6FCDF /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexDescriptor.cpp; sourceTree = "<group>"; };
+		9F831543287142DC00B6FCDF /* VertexDescriptor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexDescriptor.hpp; sourceTree = "<group>"; };
 		9FABA02F286FBF1000B5630A /* triangle-with-animation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "triangle-with-animation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FABA032286FBF1000B5630A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9FABA035286FBF1000B5630A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -117,6 +122,8 @@
 				9F831532286FED8500B6FCDF /* RendererDelegateAdapter.h */,
 				9F831536286FEEDA00B6FCDF /* Renderer.cpp */,
 				9F831537286FEEDA00B6FCDF /* Renderer.hpp */,
+				9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */,
+				9F831543287142DC00B6FCDF /* VertexDescriptor.hpp */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -130,6 +137,7 @@
 				9FABA039286FBF1400B5630A /* Main.storyboard */,
 				9FABA03C286FBF1400B5630A /* main.m */,
 				9FABA03E286FBF1400B5630A /* triangle_with_animation.entitlements */,
+				9F8315402870FC3400B6FCDF /* Shaders.metal */,
 			);
 			path = "triangle-with-animation";
 			sourceTree = "<group>";
@@ -207,7 +215,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F8315412870FC3400B6FCDF /* Shaders.metal in Sources */,
 				9F831538286FEEDA00B6FCDF /* Renderer.cpp in Sources */,
+				9F831544287142DC00B6FCDF /* VertexDescriptor.cpp in Sources */,
 				9F831531286FEC4200B6FCDF /* RendererDelegateAdapter.mm in Sources */,
 				9FABA03D286FBF1400B5630A /* main.m in Sources */,
 				9FABA036286FBF1000B5630A /* ViewController.m in Sources */,
@@ -378,7 +388,10 @@
 				DEVELOPMENT_TEAM = H2VL2PJ39X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "/opt/metal/metal-cpp";
+				HEADER_SEARCH_PATHS = (
+					"/opt/metal/metal-cpp",
+					/opt/glm,
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -405,7 +418,10 @@
 				DEVELOPMENT_TEAM = H2VL2PJ39X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "/opt/metal/metal-cpp";
+				HEADER_SEARCH_PATHS = (
+					"/opt/metal/metal-cpp",
+					/opt/glm,
+				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

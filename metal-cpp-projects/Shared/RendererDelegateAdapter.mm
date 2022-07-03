@@ -28,7 +28,7 @@
 }
 
 - (void)drawInMTKView:(nonnull MTKView *)view {
-  _pRenderer->draw((__bridge CA::MetalDrawable *)view.currentDrawable);
+  _pRenderer->drawFrame((__bridge CA::MetalDrawable *)view.currentDrawable);
 }
 
 - (void)mtkView:(nonnull MTKView *)view drawableSizeWillChange:(CGSize)size {
