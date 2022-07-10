@@ -5,6 +5,8 @@
 //  Created by Dmitrii Belousov on 7/2/22.
 //
 
+#pragma once
+
 #include "Metal/Metal.hpp"
 #include "glm/vec3.hpp"
 

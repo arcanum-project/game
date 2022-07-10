@@ -7,6 +7,8 @@
 
 #import "RendererDelegateAdapter.h"
 #import "Renderer.hpp"
+#import "Math.hpp"
+#import "Uniforms.hpp"
 
 @implementation RendererDelegateAdapter
 {
@@ -32,7 +34,9 @@
 }
 
 - (void)mtkView:(nonnull MTKView *)view drawableSizeWillChange:(CGSize)size {
-  // no-op
+  float_t aspect = view.bounds.size.height / view.bounds.size.width;
+  glm::mat4x4 projectionMat = Math::getInstance().perspective(70, 0.1, 100, aspect);
+  Uniforms::getInstance().setProjectionMatrix(projectionMat);
 }
 
 @end

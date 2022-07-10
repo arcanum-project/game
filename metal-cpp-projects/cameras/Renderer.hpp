@@ -1,12 +1,21 @@
 //
 //  Renderer.hpp
-//  triangle-with-animation
+//  cameras
 //
-//  Created by Dmitrii Belousov on 7/1/22.
+//  Created by Dmitrii Belousov on 7/3/22.
 //
+
+#pragma once
 
 #include "Metal/Metal.hpp"
 #include <QuartzCore/CAMetalDrawable.hpp>
+#include "VertexDescriptor.hpp"
+#include <array>
+#include "glm/vec3.hpp"
+#include "Uniforms.hpp"
+#include "Math.hpp"
+#include "Transformable.hpp"
+#include "Model.hpp"
 
 class Renderer
 {
@@ -19,6 +28,8 @@ class Renderer
 	MTL::Device * const _pDevice;
 	MTL::CommandQueue * const _pCommandQueue;
 	MTL::RenderPipelineState * _pPSO;
+	float_t _angle;
+	Model * const _pModel;
+	
 	void buildShaders();
-	float _timer;
 };

@@ -1,8 +1,8 @@
 //
 //  Renderer.cpp
-//  triangle-with-animation
+//  cameras
 //
-//  Created by Dmitrii Belousov on 7/1/22.
+//  Created by Dmitrii Belousov on 7/3/22.
 //
 
 #define NS_PRIVATE_IMPLEMENTATION
@@ -10,79 +10,25 @@
 #define MTL_PRIVATE_IMPLEMENTATION
 
 #include "Renderer.hpp"
-#include "VertexDescriptor.hpp"
-#include <array>
-#include "glm/vec3.hpp"
-
-#pragma region Quad {
-
-struct Quad
-{
-  std::array<glm::vec3, 6> vertices =
-  {
-	glm::vec3(-1, 1, 0),
-	glm::vec3(1, -1, 0),
-	glm::vec3(-1, -1, 0),
-	glm::vec3(1, 1, 0)
-  };
-  
-  std::array<uint16_t, 6> indices =
-  {
-	0, 1, 2,
-	0, 3, 1
-  };
-  
-  std::array<glm::vec3, 4> colors =
-  {
-	glm::vec3(1, 0, 0),
-	glm::vec3(0, 1, 0),
-	glm::vec3(0, 0, 1),
-	glm::vec3(1, 1, 0)
-  };
-  
-  MTL::Buffer * pVertexBuffer;
-  MTL::Buffer * pIndexBuffer;
-  MTL::Buffer * pColorBuffer;
-  
-  Quad(MTL::Device * const pDevice, float scale)
-  {
-	for(auto & vertex : vertices)
-	{
-	  // Scale triangles so that they dont fit entire screen
-	  vertex.x *= scale;
-	  vertex.y *= scale;
-	};
-
-	pVertexBuffer = pDevice->newBuffer(&vertices, vertices.size() * sizeof(glm::vec3), MTL::ResourceStorageModeManaged);
-	pIndexBuffer = pDevice->newBuffer(&indices, indices.size() * sizeof(uint16_t), MTL::ResourceStorageModeManaged);
-	pColorBuffer = pDevice->newBuffer(&colors, colors.size() * sizeof(glm::vec3), MTL::ResourceStorageModeManaged);
-  };
-  
-  ~Quad()
-  {
-	pVertexBuffer->release();
-	pIndexBuffer->release();
-	pColorBuffer->release();
-  }
-};
-
-#pragma endregion Quad }
 
 #pragma region Renderer {
 
 Renderer::Renderer(MTL::Device * const _pDevice)
-: _pDevice(_pDevice),
+: _pDevice(_pDevice->retain()),
   _pCommandQueue(_pDevice->newCommandQueue()),
   _pPSO(nullptr),
-  _timer(0)
+  _angle(0.f),
+  _pModel(new Model(_pDevice))
 {
   buildShaders();
 }
 
 Renderer::~Renderer()
 {
-  _pCommandQueue->release();
+  delete _pModel;
   _pPSO->release();
+  _pCommandQueue->release();
+  _pDevice->release();
 }
 
 void Renderer::buildShaders()
@@ -117,23 +63,24 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable)
   MTL::RenderPassDescriptor * pRpd = MTL::RenderPassDescriptor::alloc()->init();
   pRpd->colorAttachments()->object(0)->setTexture(pDrawable->texture());
   pRpd->colorAttachments()->object(0)->setLoadAction(MTL::LoadActionClear);
-  pRpd->colorAttachments()->object(0)->setClearColor(MTL::ClearColor::Make(0.0, 0.0, 0.0, 1.0));
+  pRpd->colorAttachments()->object(0)->setClearColor(MTL::ClearColor::Make(0.0, 0.5, 0.5, 1.0));
   
   MTL::RenderCommandEncoder * pEnc = pCmdBuf->renderCommandEncoder(pRpd);
-  // TODO creating quad every frame is suboptimal
-  Quad * pQuad = new Quad(_pDevice, 0.8);
-  _timer += 0.015;
-  float_t currentTime = sinf(_timer);
-  pEnc->setVertexBytes(&currentTime, sizeof(float_t), 11);
   pEnc->setRenderPipelineState(_pPSO);
-  pEnc->setVertexBuffer(pQuad->pVertexBuffer, 0, 0);
-  pEnc->setVertexBuffer(pQuad->pColorBuffer, 0, 1);
-  pEnc->drawIndexedPrimitives(MTL::PrimitiveTypeTriangle, pQuad->indices.size(), MTL::IndexTypeUInt16, pQuad->pIndexBuffer, 0);
+  pEnc->setVertexBuffer(_pModel->pVertexBuffer, 0, 0);
+  pEnc->setVertexBuffer(_pModel->pColorBuffer, 0, 1);
+  Uniforms & uf = Uniforms::getInstance();
+  uf.setViewMatrix(glm::inverse(Math::getInstance().translation(0, 0, -2)));
+  _angle += .005f;
+  _pModel->setRotation(glm::vec3(0, sin(_angle), 0));
+  uf.setModelMatrix(_pModel->getModelMatrix());
+  pEnc->setVertexBytes(&uf, sizeof(Uniforms), 11);
+  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
+  pEnc->drawIndexedPrimitives(MTL::PrimitiveTypeTriangle, _pModel->indices.size(), MTL::IndexTypeUInt16, _pModel->pIndexBuffer, 0);
   pEnc->endEncoding();
   pCmdBuf->presentDrawable(pDrawable);
   pCmdBuf->commit();
   
-  delete pQuad;
   pRpd->release();
 }
 

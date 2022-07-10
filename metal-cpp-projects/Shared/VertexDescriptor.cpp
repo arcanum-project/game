@@ -19,6 +19,7 @@ const MTL::VertexDescriptor * const VertexDescriptor::getDefaultLayout() const
 };
 
 VertexDescriptor::VertexDescriptor()
+: _default()
 {
   //  Default layout
   _default = MTL::VertexDescriptor::alloc()->init();

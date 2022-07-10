@@ -5,6 +5,8 @@
 //  Created by Dmitrii Belousov on 7/1/22.
 //
 
+#pragma once
+
 #import "MetalKit/MTKView.h"
 
 @interface RendererDelegateAdapter : NSObject<MTKViewDelegate>
