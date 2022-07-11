@@ -29,14 +29,22 @@ class ObjModelImporter : public ModelImporter
 	inline const std::string absolutePath(const char * resourceName, const char * resourceType) const
 	{
 	  // Based on: https://stackoverflow.com/questions/2220098/using-iphone-resources-in-a-c-file
-	  CFURLRef resourceUrl = CFBundleCopyResourceURL(CFBundleGetMainBundle(),
-													 CFStringCreateWithCString(CFAllocatorGetDefault(), resourceName, CFStringBuiltInEncodings(kCFStringEncodingUTF8)),
-													 CFStringCreateWithCString(CFAllocatorGetDefault(), resourceType, CFStringBuiltInEncodings(kCFStringEncodingUTF8)),
+	  CFBundleRef bundleRef = CFBundleGetMainBundle();
+	  CFAllocatorRef allocatorRef = CFAllocatorGetDefault();
+	  CFStringRef resourceNameRef = CFStringCreateWithCString(allocatorRef, resourceName, CFStringBuiltInEncodings(kCFStringEncodingUTF8));
+	  CFStringRef resourceTypeRef = CFStringCreateWithCString(allocatorRef, resourceType, CFStringBuiltInEncodings(kCFStringEncodingUTF8));
+	  CFURLRef resourceUrlRef = CFBundleCopyResourceURL(bundleRef,
+													 resourceNameRef,
+													 resourceTypeRef,
 													 NULL);
 	  char resourcePath[PATH_MAX];
-	  CFURLGetFileSystemRepresentation(resourceUrl, true,
+	  CFURLGetFileSystemRepresentation(resourceUrlRef, true,
 									   (uint8_t *)resourcePath, PATH_MAX);
-	  CFRelease(resourceUrl);
+	  CFRelease(resourceUrlRef);
+	  CFRelease(resourceTypeRef);
+	  CFRelease(resourceNameRef);
+	  CFRelease(allocatorRef);
+	  CFRelease(bundleRef);
 	  
 	  return std::string(resourcePath);
 	}
