@@ -18,6 +18,7 @@ class ObjModelImporter : public ModelImporter
 	 @param resourceType - file extension (default is obj)
 	 */
 	Model * const import(const char * resourceName, const char * resourceType = "obj") const override;
+	~ObjModelImporter(){};
   
   private:
 	/**
