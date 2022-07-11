@@ -13,37 +13,7 @@ Transformable::Transformable()
   _scale(1)
 { }
 
-inline const glm::vec3 & Transformable::getPosition() const
-{
-  return _position;
-}
-
-inline void Transformable::setPosition(const glm::vec3 & position)
-{
-  _position = position;
-}
-
-inline const glm::vec3 & Transformable::getRotation() const
-{
-  return _rotation;
-}
-
-inline void Transformable::setRotation(const glm::vec3 & rotation)
-{
-  _rotation = rotation;
-}
-
-inline const float_t & Transformable::getScale() const
-{
-  return _scale;
-}
-
-inline void Transformable::setScale(const float_t & scale)
-{
-  _scale = scale;
-}
-
-inline const glm::mat4x4 Transformable::getModelMatrix() const
+const glm::mat4x4 Transformable::getModelMatrix() const
 {
   const Math & m = Math::getInstance();
   glm::mat4x4 trMat = m.translation(_position);

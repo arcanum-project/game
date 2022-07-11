@@ -16,12 +16,12 @@ class Transformable
 	Transformable();
 	
 	// Methods
-	const glm::vec3 & getPosition() const;
-	void setPosition(const glm::vec3 & position);
-	const glm::vec3 & getRotation() const;
-	void setRotation(const glm::vec3 & rotation);
-	const float_t & getScale() const;
-	void setScale(const float_t & scale);
+	inline const glm::vec3 & getPosition() const { return _position; }
+	inline void setPosition(const glm::vec3 & position) { _position = position; }
+	inline const glm::vec3 & getRotation() const { return _rotation; }
+	inline void setRotation(const glm::vec3 & rotation) { _rotation = rotation; }
+	inline const float_t & getScale() const { return _scale; }
+	inline void setScale(const float_t & scale) { _scale = scale; }
   
 	const glm::mat4x4 getModelMatrix() const;
   

@@ -20,7 +20,7 @@ class VertexDescriptor
 	VertexDescriptor(VertexDescriptor const &) = delete;
 	void operator=(VertexDescriptor const &) = delete;
 	
-	const MTL::VertexDescriptor * const getDefaultLayout() const;
+	inline const MTL::VertexDescriptor * const getDefaultLayout() const { return _default; }
   
   private:
 	MTL::VertexDescriptor * _default;

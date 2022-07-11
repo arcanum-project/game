@@ -13,11 +13,6 @@ const VertexDescriptor & VertexDescriptor::getInstance()
   return pInstance;
 };
 
-inline const MTL::VertexDescriptor * const VertexDescriptor::getDefaultLayout() const
-{
-  return _default;
-};
-
 VertexDescriptor::VertexDescriptor()
 : _default()
 {

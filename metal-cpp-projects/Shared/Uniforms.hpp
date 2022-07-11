@@ -18,13 +18,12 @@ class Uniforms
 	Uniforms(Uniforms const &) = delete;
 	void operator=(Uniforms const &) = delete;
   
-	const glm::mat4x4 & getModelMatrix() const;
-	void setModelMatrix(const glm::mat4x4 & mMat);
-	const glm::mat4x4 & getViewMatrix() const;
-	void setViewMatrix(const glm::mat4x4 & vMat);
-	const glm::mat4x4 & getProjectionMatrix() const;
-	void setProjectionMatrix(const glm::mat4x4 & pMat);
-  
+	inline const glm::mat4x4 & getModelMatrix() const { return  _modelMatrix; }
+	inline void setModelMatrix(const glm::mat4x4 & mMat) { _modelMatrix = mMat; }
+	inline const glm::mat4x4 & getViewMatrix() const { return _viewMatrix; }
+	inline void setViewMatrix(const glm::mat4x4 & vMat) { _viewMatrix = vMat; }
+	inline const glm::mat4x4 & getProjectionMatrix() const { return _projectionMatrix; }
+	inline void setProjectionMatrix(const glm::mat4x4 & pMat) { _projectionMatrix = pMat; }
   
   private:
 	glm::mat4x4 _modelMatrix;
