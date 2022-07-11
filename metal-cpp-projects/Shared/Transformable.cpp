@@ -50,5 +50,4 @@ const glm::mat4x4 Transformable::getModelMatrix() const
   glm::mat4x4 rotMat = m.rotation(_rotation);
   glm::mat4x4 scaleMat = m.scaling(_scale);
   return trMat * rotMat * scaleMat;
-  
 }
