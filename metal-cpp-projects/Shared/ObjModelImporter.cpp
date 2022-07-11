@@ -14,8 +14,9 @@
 Model * const ObjModelImporter::import(const char * resourceName, const char * resourceType) const
 {
   std::string line;
+  std::ifstream file;
   try {
-	std::ifstream file(absolutePath(resourceName, resourceType), std::ifstream::in);
+	file.open(absolutePath(resourceName, resourceType), std::ifstream::in);
 	if (file.is_open())
 	{
 	  while (std::getline(file, line))
@@ -23,8 +24,12 @@ Model * const ObjModelImporter::import(const char * resourceName, const char * r
 		std::cout << line << std::endl;
 	  }
 	}
+	file.close();
   } catch (std::system_error & e) {
-	std::cerr << e.code().message() <<  std::endl;
+	if (file.is_open())
+	  file.close();
+	std::cerr << e.code().message() << std::endl;
+	throw;
   }
   
   return new Model(std::vector<std::array<glm::vec3, 2>>(), std::vector<uint16_t>(), nullptr);
