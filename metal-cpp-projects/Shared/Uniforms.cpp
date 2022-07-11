@@ -19,32 +19,32 @@ Uniforms::Uniforms()
   _projectionMatrix()
 { };
 
-const glm::mat4x4 & Uniforms::getModelMatrix() const
+inline const glm::mat4x4 & Uniforms::getModelMatrix() const
 {
   return _modelMatrix;
 };
 
-void Uniforms::setModelMatrix(const glm::mat4x4 & mMat)
+inline void Uniforms::setModelMatrix(const glm::mat4x4 & mMat)
 {
   _modelMatrix = mMat;
 };
 
-const glm::mat4x4 & Uniforms::getViewMatrix() const
+inline const glm::mat4x4 & Uniforms::getViewMatrix() const
 {
   return _viewMatrix;
 };
 
-void Uniforms::setViewMatrix(const glm::mat4x4 & vMat)
+inline void Uniforms::setViewMatrix(const glm::mat4x4 & vMat)
 {
   _viewMatrix = vMat;
 };
 
-const glm::mat4x4 & Uniforms::getProjectionMatrix() const
+inline const glm::mat4x4 & Uniforms::getProjectionMatrix() const
 {
   return _projectionMatrix;
 };
 
-void Uniforms::setProjectionMatrix(const glm::mat4x4 & pMat)
+inline void Uniforms::setProjectionMatrix(const glm::mat4x4 & pMat)
 {
   _projectionMatrix = pMat;
 };

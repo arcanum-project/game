@@ -25,12 +25,12 @@ Math::Math()
   )
 { }
 
-const glm::mat4x4 Math::identity() const
+inline const glm::mat4x4 Math::identity() const
 {
   return _identity;
 }
 
-const glm::mat4x4 Math::translation(const float_t & trX, const float_t & trY, const float_t & trZ) const
+inline const glm::mat4x4 Math::translation(const float_t & trX, const float_t & trY, const float_t & trZ) const
 {
   glm::mat4x4 mat = _identity;
   mat[3].x = trX;
@@ -39,7 +39,7 @@ const glm::mat4x4 Math::translation(const float_t & trX, const float_t & trY, co
   return mat;
 }
 
-const glm::mat4x4 Math::translation(const glm::vec3 & tr) const
+inline const glm::mat4x4 Math::translation(const glm::vec3 & tr) const
 {
   glm::mat4x4 mat = _identity;
   mat[3].x = tr.x;
@@ -48,7 +48,7 @@ const glm::mat4x4 Math::translation(const glm::vec3 & tr) const
   return mat;
 }
 
-const glm::mat4x4 Math::scaling(const float_t & scaleX, const float_t & scaleY, const float_t & scaleZ) const
+inline const glm::mat4x4 Math::scaling(const float_t & scaleX, const float_t & scaleY, const float_t & scaleZ) const
 {
   glm::mat4x4 mat = _identity;
   mat[0].x = scaleX;
@@ -57,14 +57,14 @@ const glm::mat4x4 Math::scaling(const float_t & scaleX, const float_t & scaleY, 
   return mat;
 }
 
-const glm::mat4x4 Math::scaling(const float_t & scale) const
+inline const glm::mat4x4 Math::scaling(const float_t & scale) const
 {
   glm::mat4x4 mat = _identity;
   mat[3].w = 1 / scale;
   return mat;
 }
 
-const glm::mat4x4 Math::rotationX(const float_t & angleDegrees) const
+inline const glm::mat4x4 Math::rotationX(const float_t & angleDegrees) const
 {
 //  float_t angleRad = glm::radians(angleDegrees);
   const float_t angleRad = angleDegrees;
@@ -76,7 +76,7 @@ const glm::mat4x4 Math::rotationX(const float_t & angleDegrees) const
   return mat;
 }
 
-const glm::mat4x4 Math::rotationY(const float_t & angleDegrees) const
+inline const glm::mat4x4 Math::rotationY(const float_t & angleDegrees) const
 {
 //  float_t angleRad = glm::radians(angleDegrees);
   const float_t angleRad = angleDegrees;
@@ -88,7 +88,7 @@ const glm::mat4x4 Math::rotationY(const float_t & angleDegrees) const
   return mat;
 }
 
-const glm::mat4x4 Math::rotationZ(const float_t & angleDegrees) const
+inline const glm::mat4x4 Math::rotationZ(const float_t & angleDegrees) const
 {
 //  float_t angleRad = glm::radians(angleDegrees);
   const float_t angleRad = angleDegrees;
@@ -100,17 +100,17 @@ const glm::mat4x4 Math::rotationZ(const float_t & angleDegrees) const
   return mat;
 }
 
-const glm::mat4x4 Math::rotation(const float_t & angleDegrees) const
+inline const glm::mat4x4 Math::rotation(const float_t & angleDegrees) const
 {
   return rotationX(angleDegrees) * rotationY(angleDegrees) * rotationZ(angleDegrees);
 }
 
-const glm::mat4x4 Math::rotation(const glm::vec3 & rotationDegrees) const
+inline const glm::mat4x4 Math::rotation(const glm::vec3 & rotationDegrees) const
 {
   return rotationX(rotationDegrees.x) * rotationY(rotationDegrees.y) * rotationZ(rotationDegrees.z);
 }
 
-const glm::mat4x4 Math::perspective(const float_t & fovDegrees, const float_t & near, const float_t & far, const float_t & aspect) const
+inline const glm::mat4x4 Math::perspective(const float_t & fovDegrees, const float_t & near, const float_t & far, const float_t & aspect) const
 {
   float_t fovRad = glm::radians(fovDegrees);
   glm::mat4x4 mat = _identity;
