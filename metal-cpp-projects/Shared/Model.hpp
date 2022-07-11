@@ -19,9 +19,9 @@ class Model : public Transformable
 	Model(const std::vector<std::array<glm::vec3, 2>> & vertexData, const std::vector<uint16_t> & indices, MTL::Device * const pDevice);
 	~Model();
 	
-	const std::vector<uint16_t> & getIndices() const;
-	const MTL::Buffer * const getVertexBuffer() const;
-	const MTL::Buffer * const getIndexBuffer() const;
+	inline const std::vector<uint16_t> & getIndices() const { return _indices; }
+	inline const MTL::Buffer * const getVertexBuffer() const { return _pVertexBuffer; }
+	inline const MTL::Buffer * const getIndexBuffer() const { return _pIndexBuffer; }
   
   private:
 	const std::vector<std::array<glm::vec3, 2>> _vertexData;

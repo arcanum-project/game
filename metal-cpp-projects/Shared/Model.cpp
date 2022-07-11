@@ -19,17 +19,3 @@ Model::~Model()
   _pIndexBuffer->release();
   _pVertexBuffer->release();
 }
-
-inline const std::vector<uint16_t> & Model::getIndices() const
-{
-  return _indices;
-}
-
-inline const MTL::Buffer * const Model::getVertexBuffer() const
-{
-  return _pVertexBuffer;
-}
-inline const MTL::Buffer * const Model::getIndexBuffer() const
-{
-  return _pIndexBuffer;
-}
