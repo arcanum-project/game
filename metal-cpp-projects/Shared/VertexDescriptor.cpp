@@ -32,9 +32,9 @@ VertexDescriptor::VertexDescriptor()
   _default->layouts()->object(0)->setStride(offset);
   
   // Color
-  _default->attributes()->object(1)->setFormat(MTL::VertexFormatFloat3);
-  _default->attributes()->object(1)->setOffset(0);
-  _default->attributes()->object(1)->setBufferIndex(1);
+  _default->attributes()->object(2)->setFormat(MTL::VertexFormatFloat3);
+  _default->attributes()->object(2)->setOffset(0);
+  _default->attributes()->object(2)->setBufferIndex(1);
   _default->layouts()->object(1)->setStride(sizeof(glm::vec3));
 };
 
