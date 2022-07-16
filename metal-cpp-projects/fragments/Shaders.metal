@@ -19,14 +19,13 @@ struct Uniforms
 struct VertexIn
 {
   float4 position [[attribute(0)]];
-  float4 color [[attribute(1)]];
+  float3 normal [[attribute(2)]];
 };
 
 struct VertexOut
 {
   float4 position [[position]];
-  float4 color;
-  float pointSize [[point_size]];
+  float3 normal;
 };
 
 vertex VertexOut vertex_main(
@@ -37,13 +36,12 @@ vertex VertexOut vertex_main(
   VertexOut out
   {
 	.position = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * in.position,
-	.color = in.color,
-	.pointSize = 30
+	.normal = in.normal
   };
   return out;
 }
 
 fragment float4 fragment_main(VertexOut in [[stage_in]])
 {
-  return in.color;
+  return float4(in.normal, 1);
 }

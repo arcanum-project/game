@@ -17,22 +17,22 @@ Renderer::Renderer(MTL::Device * const _pDevice)
 : _pDevice(_pDevice->retain()),
   _pCommandQueue(_pDevice->newCommandQueue()),
   _pPSO(nullptr),
+  _pDepthStencilState(nullptr),
   _angle(0.f),
-  _pModel(ObjModelImporter().import("train", "obj"))
-{
-  buildShaders();
+  _pModel(ObjModelImporter().import(_pDevice, "train", "obj")) {
+	buildShaders();
+	buildDepthStencilState();
 }
 
-Renderer::~Renderer()
-{
+Renderer::~Renderer() {
   delete _pModel;
+  _pDepthStencilState->release();
   _pPSO->release();
   _pCommandQueue->release();
   _pDevice->release();
 }
 
-void Renderer::buildShaders()
-{
+void Renderer::buildShaders() {
   MTL::Library * pLib = _pDevice->newDefaultLibrary();
   
   MTL::Function * pVertexFn = pLib->newFunction(NS::String::string("vertex_main", NS::UTF8StringEncoding));
@@ -40,6 +40,7 @@ void Renderer::buildShaders()
   
   MTL::RenderPipelineDescriptor * pDesc = MTL::RenderPipelineDescriptor::alloc()->init();
   pDesc->colorAttachments()->object(0)->setPixelFormat(MTL::PixelFormatBGRA8Unorm);
+  pDesc->setDepthAttachmentPixelFormat(MTL::PixelFormatDepth32Float);
   pDesc->setVertexFunction(pVertexFn);
   pDesc->setFragmentFunction(pFragmentFn);
   pDesc->setVertexDescriptor(VertexDescriptor::getInstance().getDefaultLayout());
@@ -56,8 +57,15 @@ void Renderer::buildShaders()
   pLib->release();
 }
 
-void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable)
-{
+void Renderer::buildDepthStencilState() {
+  MTL::DepthStencilDescriptor * pDepthStencilDesc = MTL::DepthStencilDescriptor::alloc()->init();
+  pDepthStencilDesc->setDepthCompareFunction(MTL::CompareFunctionLess);
+  pDepthStencilDesc->setDepthWriteEnabled(true);
+  _pDepthStencilState = _pDevice->newDepthStencilState(pDepthStencilDesc);
+  pDepthStencilDesc->release();
+}
+
+void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::Texture * const pDepthTexture) {
   MTL::CommandBuffer * pCmdBuf = _pCommandQueue->commandBuffer();
   
   MTL::RenderPassDescriptor * pRpd = MTL::RenderPassDescriptor::alloc()->init();
@@ -65,22 +73,27 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable)
   pRpd->colorAttachments()->object(0)->setLoadAction(MTL::LoadActionClear);
   pRpd->colorAttachments()->object(0)->setClearColor(MTL::ClearColor::Make(0.0, 0.5, 0.5, 1.0));
   
+  MTL::RenderPassDepthAttachmentDescriptor * pRenderPassDepthAttachmentDesc = MTL::RenderPassDepthAttachmentDescriptor::alloc()->init();
+  pRenderPassDepthAttachmentDesc->setTexture(pDepthTexture);
+  pRpd->setDepthAttachment(pRenderPassDepthAttachmentDesc);
+  
   MTL::RenderCommandEncoder * pEnc = pCmdBuf->renderCommandEncoder(pRpd);
   pEnc->setRenderPipelineState(_pPSO);
+  pEnc->setDepthStencilState(_pDepthStencilState);
   pEnc->setVertexBuffer(_pModel->getVertexBuffer(), 0, 0);
-//  pEnc->setVertexBuffer(_pModel->pColorBuffer, 0, 1);
   Uniforms & uf = Uniforms::getInstance();
-  uf.setViewMatrix(glm::inverse(Math::getInstance().translation(0, 0, -2)));
+  uf.setViewMatrix(glm::inverse(Math::getInstance().translation(0, 0.5, -2)));
   _angle += .005f;
   _pModel->setRotation(glm::vec3(0, sin(_angle), 0));
   uf.setModelMatrix(_pModel->getModelMatrix());
   pEnc->setVertexBytes(&uf, sizeof(Uniforms), 11);
-  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
+//  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
   pEnc->drawIndexedPrimitives(MTL::PrimitiveTypeTriangle, _pModel->getIndices().size(), MTL::IndexTypeUInt16, _pModel->getIndexBuffer(), 0);
   pEnc->endEncoding();
   pCmdBuf->presentDrawable(pDrawable);
   pCmdBuf->commit();
   
+  pRenderPassDepthAttachmentDesc->release();
   pRpd->release();
 }
 

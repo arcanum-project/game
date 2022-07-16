@@ -6,7 +6,7 @@
 //
 
 #import "RendererDelegateAdapter.h"
-#import "Renderer.hpp"
+#import "../fragments/Renderer.hpp"
 #import "Math.hpp"
 #import "Uniforms.hpp"
 
@@ -30,7 +30,7 @@
 }
 
 - (void)drawInMTKView:(nonnull MTKView *)view {
-  _pRenderer->drawFrame((__bridge CA::MetalDrawable *)view.currentDrawable);
+  _pRenderer->drawFrame((__bridge CA::MetalDrawable const *)view.currentDrawable, (__bridge MTL::Texture const *)view.depthStencilTexture);
 }
 
 - (void)mtkView:(nonnull MTKView *)view drawableSizeWillChange:(CGSize)size {

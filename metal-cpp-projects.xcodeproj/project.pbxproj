@@ -33,7 +33,6 @@
 		9F12D14528722A60006306F6 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821528720AFF006D21B2 /* Metal.framework */; };
 		9F12D14628722A65006306F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821728720B03006D21B2 /* QuartzCore.framework */; };
 		9F12D14928722AB7006306F6 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D14728722AB7006306F6 /* Renderer.cpp */; };
-		9F12D14A28722ABB006306F6 /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
 		9F12D14B28722ABE006306F6 /* VertexDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */; };
 		9F12D14D28722AFD006306F6 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D14C28722AFD006306F6 /* Shaders.metal */; };
 		9F12D1542872472C006306F6 /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1522872472C006306F6 /* Math.cpp */; };
@@ -64,7 +63,8 @@
 		9F12D1FA287B6F41006306F6 /* ObjModelImporter.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1F9287B6F41006306F6 /* ObjModelImporter.hpp */; };
 		9F12D206287BC9B9006306F6 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F12D1FC287B8AFB006306F6 /* train.obj */; };
 		9F12D208287BCA93006306F6 /* ObjModelImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */; };
-		9F831531286FEC4200B6FCDF /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
+		9F45C19428825D8D00592FD6 /* one_cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9F45C19228825D8D00592FD6 /* one_cube.mtl */; };
+		9F45C19528825D8D00592FD6 /* one_cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F45C19328825D8D00592FD6 /* one_cube.obj */; };
 		9F831538286FEEDA00B6FCDF /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831536286FEEDA00B6FCDF /* Renderer.cpp */; };
 		9F8315412870FC3400B6FCDF /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F8315402870FC3400B6FCDF /* Shaders.metal */; };
 		9F831544287142DC00B6FCDF /* VertexDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */; };
@@ -75,11 +75,13 @@
 		9F831558287208A500B6FCDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F831557287208A500B6FCDF /* Assets.xcassets */; };
 		9F83155B287208A500B6FCDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F831559287208A500B6FCDF /* LaunchScreen.storyboard */; };
 		9F83155E287208A500B6FCDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F83155D287208A500B6FCDF /* main.m */; };
+		9FA003FC28814B510053D16A /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
+		9FA003FD28814B520053D16A /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
+		9FA003FE28814B530053D16A /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
 		9FAB821428720AF9006D21B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821328720AF9006D21B2 /* Foundation.framework */; };
 		9FAB821628720AFF006D21B2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821528720AFF006D21B2 /* Metal.framework */; };
 		9FAB821828720B03006D21B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821728720B03006D21B2 /* QuartzCore.framework */; };
 		9FAB821B28720B20006D21B2 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAB821928720B20006D21B2 /* Renderer.cpp */; };
-		9FAB821C28720BE3006D21B2 /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
 		9FAB821D28720BF5006D21B2 /* VertexDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */; };
 		9FABA033286FBF1000B5630A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABA032286FBF1000B5630A /* AppDelegate.m */; };
 		9FABA036286FBF1000B5630A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABA035286FBF1000B5630A /* ViewController.m */; };
@@ -145,6 +147,9 @@
 		9F12D1FC287B8AFB006306F6 /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.obj; sourceTree = "<group>"; };
 		9F12D201287B9086006306F6 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjModelImporter.cpp; sourceTree = "<group>"; };
+		9F45C19228825D8D00592FD6 /* one_cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube.mtl; sourceTree = "<group>"; };
+		9F45C19328825D8D00592FD6 /* one_cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube.obj; sourceTree = "<group>"; };
+		9F6A3DEE287E70A400F09F1C /* VertexData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexData.hpp; sourceTree = "<group>"; };
 		9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RendererDelegateAdapter.mm; sourceTree = "<group>"; };
 		9F831532286FED8500B6FCDF /* RendererDelegateAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RendererDelegateAdapter.h; sourceTree = "<group>"; };
 		9F831536286FEEDA00B6FCDF /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
@@ -266,6 +271,8 @@
 		9F12D1EF287B4927006306F6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9F45C19228825D8D00592FD6 /* one_cube.mtl */,
+				9F45C19328825D8D00592FD6 /* one_cube.obj */,
 				9F12D201287B9086006306F6 /* test.txt */,
 				9F12D1FB287B8AFB006306F6 /* train.mtl */,
 				9F12D1FC287B8AFB006306F6 /* train.obj */,
@@ -354,6 +361,7 @@
 				9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */,
 				9F12D1F6287B6975006306F6 /* Model.cpp */,
 				9F12D1F7287B6975006306F6 /* Model.hpp */,
+				9F6A3DEE287E70A400F09F1C /* VertexData.hpp */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -509,8 +517,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F12D206287BC9B9006306F6 /* train.obj in Resources */,
+				9F45C19528825D8D00592FD6 /* one_cube.obj in Resources */,
 				9F12D1DB287B4694006306F6 /* LaunchScreen.storyboard in Resources */,
 				9F12D1D8287B4694006306F6 /* Assets.xcassets in Resources */,
+				9F45C19428825D8D00592FD6 /* one_cube.mtl in Resources */,
 				9F12D1D6287B4693006306F6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,12 +555,12 @@
 				9F12D1542872472C006306F6 /* Math.cpp in Sources */,
 				9F12D14D28722AFD006306F6 /* Shaders.metal in Sources */,
 				9F12D135287229F3006306F6 /* ViewController.m in Sources */,
-				9F12D14A28722ABB006306F6 /* RendererDelegateAdapter.mm in Sources */,
 				9F12D14B28722ABE006306F6 /* VertexDescriptor.cpp in Sources */,
 				9F12D14928722AB7006306F6 /* Renderer.cpp in Sources */,
 				9F12D158287259A8006306F6 /* Uniforms.cpp in Sources */,
 				9F12D12F287229F3006306F6 /* AppDelegate.m in Sources */,
 				9F12D140287229F4006306F6 /* main.m in Sources */,
+				9FA003FC28814B510053D16A /* RendererDelegateAdapter.mm in Sources */,
 				9F12D132287229F3006306F6 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,7 +593,7 @@
 				9F12D1C0287A8031006306F6 /* Math.cpp in Sources */,
 				9F12D12628720D1F006306F6 /* Shaders.metal in Sources */,
 				9F831553287208A400B6FCDF /* ViewController.m in Sources */,
-				9FAB821C28720BE3006D21B2 /* RendererDelegateAdapter.mm in Sources */,
+				9FA003FD28814B520053D16A /* RendererDelegateAdapter.mm in Sources */,
 				9FAB821D28720BF5006D21B2 /* VertexDescriptor.cpp in Sources */,
 				9FAB821B28720B20006D21B2 /* Renderer.cpp in Sources */,
 				9F12D1C1287A8035006306F6 /* Uniforms.cpp in Sources */,
@@ -602,9 +612,9 @@
 				9F8315412870FC3400B6FCDF /* Shaders.metal in Sources */,
 				9F831538286FEEDA00B6FCDF /* Renderer.cpp in Sources */,
 				9F831544287142DC00B6FCDF /* VertexDescriptor.cpp in Sources */,
-				9F831531286FEC4200B6FCDF /* RendererDelegateAdapter.mm in Sources */,
 				9FABA03D286FBF1400B5630A /* main.m in Sources */,
 				9FABA036286FBF1000B5630A /* ViewController.m in Sources */,
+				9FA003FE28814B530053D16A /* RendererDelegateAdapter.mm in Sources */,
 				9FABA033286FBF1000B5630A /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -761,6 +771,7 @@
 				HEADER_SEARCH_PATHS = (
 					"/opt/metal/metal-cpp",
 					/opt/glm,
+					/opt/homebrew/Cellar/boost/1.79.0/include,
 				);
 				INFOPLIST_FILE = "metal-cpp-projects/fragments/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -772,6 +783,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/boost/1.79.0/lib,
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dbelousov.fragments;
@@ -795,6 +810,7 @@
 				HEADER_SEARCH_PATHS = (
 					"/opt/metal/metal-cpp",
 					/opt/glm,
+					/opt/homebrew/Cellar/boost/1.79.0/include,
 				);
 				INFOPLIST_FILE = "metal-cpp-projects/fragments/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -806,6 +822,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/boost/1.79.0/lib,
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dbelousov.fragments;
@@ -955,6 +975,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/glm,
+					/opt/homebrew/Cellar/boost/1.79.0/include,
+					"/opt/metal/metal-cpp",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1008,6 +1033,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/glm,
+					/opt/homebrew/Cellar/boost/1.79.0/include,
+					"/opt/metal/metal-cpp",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

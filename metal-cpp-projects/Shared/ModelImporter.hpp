@@ -13,5 +13,5 @@ class ModelImporter
 {
 public:
   virtual ~ModelImporter(){};
-  virtual Model * const import(const char * resourceName, const char * resourceType) const = 0;
+  virtual Model * const import(void * const pDevice, const char * resourceName, const char * resourceType) const = 0;
 };

@@ -7,12 +7,13 @@
 
 #include "Model.hpp"
 
-Model::Model(const std::vector<std::array<glm::vec3, 2>> & vertexData, const std::vector<uint16_t> & indices, MTL::Device * const pDevice)
+Model::Model(const std::vector<VertexData> vertexData, const std::vector<uint16_t> indices, void * const pDevice)
 : _vertexData(vertexData),
   _indices(indices),
-  _pVertexBuffer(pDevice->newBuffer(_vertexData.data(), _vertexData.size() * sizeof(std::array<glm::vec3, 2>), MTL::ResourceStorageModeShared)),
-  _pIndexBuffer(pDevice->newBuffer(_indices.data(), indices.size() * sizeof(uint16_t), MTL::ResourceStorageModeShared))
-{ }
+  _pVertexBuffer(reinterpret_cast<MTL::Device * const>(pDevice)->newBuffer(_vertexData.data(), _vertexData.size() * sizeof(VertexData), MTL::ResourceStorageModeShared)),
+  _pIndexBuffer(reinterpret_cast<MTL::Device * const>(pDevice)->newBuffer(_indices.data(), _indices.size() * sizeof(uint16_t), MTL::ResourceStorageModeShared)) {
+	assert(pDevice != nullptr);
+  }
 
 Model::~Model()
 {
