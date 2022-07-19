@@ -59,27 +59,23 @@ class ObjModelImporter : public ModelImporter
 	// Based on: https://stackoverflow.com/questions/14265581/parse-split-a-string-in-c-using-string-delimiter-standard-c
 	inline void processNonFace(std::string & line, std::vector<glm::vec3> & vertices, std::vector<glm::vec2> & textures, std::vector<glm::vec3> & normals, bool isTexture, bool isVertex) const {
 	  const std::string delimiter = " ";
+	  // We need this to read last piece of the data in the string.
+	  // We parse the string by finding delimiter and reading the data before it.
+	  line.append(delimiter);
 	  size_t pos = 0;
 	  std::string token {};
 
 	  glm::vec3 vector {};
-	  short iterationInd = 1;
+	  uint8_t iterationInd = 1;
 	  while ((pos = line.find(delimiter)) != std::string::npos) {
 		token = line.substr(0, pos);
 		vector.x = iterationInd == 1 ? boost::lexical_cast<float_t>(token) : vector.x;
 		vector.y = iterationInd == 2 ? boost::lexical_cast<float_t>(token) : vector.y;
+		vector.z = iterationInd == 3 && !isTexture ? boost::lexical_cast<float_t>(token) : 0;
 		// Move to the next data item inside the string
 		line.erase(0, pos + delimiter.length());
 		++iterationInd;
 	  }
-	  // There are no more delimiters in the line, but the last data item should still be there
-	  if (line.length() > 0) {
-		if (!isTexture)
-		  vector.z = boost::lexical_cast<float_t>(line);
-		else
-		  vector.y = boost::lexical_cast<float_t>(line);
-	  } else
-		throw std::runtime_error("Missing Z-coordinate for a vertex or normal");
 	  
 	  if (isVertex)
 		vertices.push_back(vector);
@@ -92,24 +88,19 @@ class ObjModelImporter : public ModelImporter
 	inline void processFace(std::string & line, std::vector<VertexData> & vertexData, std::vector<uint16_t> & indices, std::unordered_map<std::string, uint16_t> & vertexToIndex, std::vector<glm::vec3> & vertices, std::vector<glm::vec2> & textures, std::vector<glm::vec3> & normals) const {
 	  // Delimiter between vertices inside the face
 	  const std::string faceDelimiter = " ";
+	  line.append(faceDelimiter);
 	  size_t facePos = 0;
 	  std::string faceToken {};
 	  
 	  uint8_t iterationIndex = 1;
 	  while ((facePos = line.find(faceDelimiter)) != std::string::npos) {
-		if (iterationIndex > 2)
+		if (iterationIndex > 3)
 		  // Means that .obj file has rectangular faces
 		  throw std::runtime_error("Non-triangular faces are not currently supported.");
 		faceToken = line.substr(0, facePos);
 		processFaceVertex(faceToken, vertexData, indices, vertexToIndex, vertices, textures, normals);
 		line.erase(0, facePos + faceDelimiter.length());
 		++iterationIndex;
-	  }
-	  // There are no more delimiters in the line, but the last vertex data should still be there
-	  if (line.length() > 0) {
-		processFaceVertex(line, vertexData, indices, vertexToIndex, vertices, textures, normals);
-	  } else {
-		throw std::runtime_error("Expected to be left with the last vertex in a face.");
 	  }
 	}
   
@@ -119,6 +110,7 @@ class ObjModelImporter : public ModelImporter
 	std::string vertexToIndexKey = line;
 	
 	const std::string vertexDelimiter = "/";
+	line.append(vertexDelimiter);
 	size_t vertexPos = 0;
 	std::string vertexToken {};
 	
@@ -136,17 +128,15 @@ class ObjModelImporter : public ModelImporter
 	  } else if (iterationIndex == 2) {
 		const glm::vec2 texture = textures.at(boost::lexical_cast<float_t>(vertexToken) - 1);
 		vd.texture = texture;
+	  } else if (iterationIndex == 3) {
+		const glm::vec3 normal = normals.at(boost::lexical_cast<float_t>(vertexToken) - 1);
+		vd.normal = normal;
+	  } else {
+		throw std::runtime_error("Expected a vertex to only have 3 attributes");
 	  }
 	  
 	  line.erase(0, vertexPos + vertexDelimiter.length());
 	  ++iterationIndex;
-	}
-	// There are no more delimiters in the line, but the last data item should still be there
-	if (line.length() > 0) {
-	  const glm::vec3 normal = normals.at(boost::lexical_cast<float_t>(line) - 1);
-	  vd.normal = normal;
-	} else {
-	  throw std::runtime_error("Expected to be left with only a normal index.");
 	}
 	
 	std::unordered_map<std::string,uint16_t>::const_iterator indexedVertex = vertexToIndex.find(vertexToIndexKey);

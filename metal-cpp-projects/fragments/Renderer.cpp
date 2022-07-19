@@ -82,7 +82,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   pEnc->setDepthStencilState(_pDepthStencilState);
   pEnc->setVertexBuffer(_pModel->getVertexBuffer(), 0, 0);
   Uniforms & uf = Uniforms::getInstance();
-  uf.setViewMatrix(glm::inverse(Math::getInstance().translation(0, 0.5, -2)));
+  uf.setViewMatrix(glm::inverse(Math::getInstance().translation(0, 0.5, -2.5)));
   _angle += .005f;
   _pModel->setRotation(glm::vec3(0, sin(_angle), 0));
   uf.setModelMatrix(_pModel->getModelMatrix());

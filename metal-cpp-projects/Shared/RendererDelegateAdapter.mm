@@ -34,7 +34,7 @@
 }
 
 - (void)mtkView:(nonnull MTKView *)view drawableSizeWillChange:(CGSize)size {
-  float_t aspect = view.bounds.size.height / view.bounds.size.width;
+  float_t aspect = view.bounds.size.width / view.bounds.size.height;
   glm::mat4x4 projectionMat = Math::getInstance().perspective(70, 0.1, 100, aspect);
   Uniforms::getInstance().setProjectionMatrix(projectionMat);
 }
