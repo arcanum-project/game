@@ -13,6 +13,7 @@
 #include <boost/lexical_cast.hpp>
 #include "VertexData.hpp"
 #include <vector>
+#include <unordered_map>
 
 class ObjModelImporter : public ModelImporter
 {
@@ -88,7 +89,7 @@ class ObjModelImporter : public ModelImporter
 		normals.push_back(vector);
 	}
   
-	inline void processFace(std::string & line, std::vector<VertexData> & vertexData, std::vector<uint16_t> & indices, uint16_t & currentIndex, std::vector<glm::vec3> & vertices, std::vector<glm::vec2> & textures, std::vector<glm::vec3> & normals) const {
+	inline void processFace(std::string & line, std::vector<VertexData> & vertexData, std::vector<uint16_t> & indices, std::unordered_map<std::string, uint16_t> & vertexToIndex, std::vector<glm::vec3> & vertices, std::vector<glm::vec2> & textures, std::vector<glm::vec3> & normals) const {
 	  // Delimiter between vertices inside the face
 	  const std::string faceDelimiter = " ";
 	  size_t facePos = 0;
@@ -100,21 +101,22 @@ class ObjModelImporter : public ModelImporter
 		  // Means that .obj file has rectangular faces
 		  throw std::runtime_error("Non-triangular faces are not currently supported.");
 		faceToken = line.substr(0, facePos);
-		processFaceVertex(faceToken, vertexData, indices, vertices, textures, normals);
+		processFaceVertex(faceToken, vertexData, indices, vertexToIndex, vertices, textures, normals);
 		line.erase(0, facePos + faceDelimiter.length());
 		++iterationIndex;
 	  }
 	  // There are no more delimiters in the line, but the last vertex data should still be there
 	  if (line.length() > 0) {
-		processFaceVertex(line, vertexData, indices, vertices, textures, normals);
+		processFaceVertex(line, vertexData, indices, vertexToIndex, vertices, textures, normals);
 	  } else {
 		throw std::runtime_error("Expected to be left with the last vertex in a face.");
 	  }
 	}
   
-  inline void processFaceVertex(std::string & line, std::vector<VertexData> & vertexData, std::vector<uint16_t> & indices, std::vector<glm::vec3> & vertices, std::vector<glm::vec2> & textures, std::vector<glm::vec3> & normals) const {
+  inline void processFaceVertex(std::string & line, std::vector<VertexData> & vertexData, std::vector<uint16_t> & indices, std::unordered_map<std::string, uint16_t> & vertexToIndex, std::vector<glm::vec3> & vertices, std::vector<glm::vec2> & textures, std::vector<glm::vec3> & normals) const {
 	VertexData vd = VertexData();
 	uint16_t vertexIndex = 0;
+	std::string vertexToIndexKey = line;
 	
 	const std::string vertexDelimiter = "/";
 	size_t vertexPos = 0;
@@ -147,7 +149,17 @@ class ObjModelImporter : public ModelImporter
 	  throw std::runtime_error("Expected to be left with only a normal index.");
 	}
 	
-	vertexData[vertexIndex] = vd;
-	indices.push_back(vertexIndex);
+	std::unordered_map<std::string,uint16_t>::const_iterator indexedVertex = vertexToIndex.find(vertexToIndexKey);
+	if (indexedVertex != vertexToIndex.end()) {
+	  indices.push_back(indexedVertex->second);
+	} else {
+	  vertexData.push_back(vd);
+	  indices.push_back(vertexData.size() - 1);
+	  vertexToIndex.insert(std::make_pair(vertexToIndexKey, vertexData.size() - 1));
+	}
+  }
+  
+  inline void indexVertex(std::unordered_map<char *, uint16_t> &vertexDescriptorToIndex, const glm::vec3 &vertex) const {
+	
   }
 };
