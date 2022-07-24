@@ -13,7 +13,7 @@ class Renderer
   public:
 	Renderer(MTL::Device * const _pDevice);
 	~Renderer();
-	void drawFrame(const CA::MetalDrawable * const pDrawable);
+	void drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::Texture * const pDepthTexture);
 
   private:
 	MTL::Device * const _pDevice;

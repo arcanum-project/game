@@ -34,6 +34,7 @@ VertexDescriptor::VertexDescriptor()
   _default->attributes()->object(2)->setOffset(offset);
   _default->attributes()->object(2)->setBufferIndex(0);
   offset += sizeof(float_t) * 3;
+  
   _default->layouts()->object(0)->setStride(offset);
 };
 

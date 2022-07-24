@@ -1068,6 +1068,7 @@
 				HEADER_SEARCH_PATHS = (
 					"/opt/metal/metal-cpp",
 					/opt/glm,
+					/opt/homebrew/Cellar/boost/1.79.0/include,
 				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -1098,6 +1099,7 @@
 				HEADER_SEARCH_PATHS = (
 					"/opt/metal/metal-cpp",
 					/opt/glm,
+					/opt/homebrew/Cellar/boost/1.79.0/include,
 				);
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;

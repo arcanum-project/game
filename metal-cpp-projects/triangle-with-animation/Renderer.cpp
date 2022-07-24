@@ -110,7 +110,7 @@ void Renderer::buildShaders()
   pLib->release();
 }
 
-void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable)
+void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::Texture * const pDepthTexture)
 {
   MTL::CommandBuffer * pCmdBuf = _pCommandQueue->commandBuffer();
   
