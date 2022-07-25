@@ -9,7 +9,6 @@
 #include "ObjModelImporter.hpp"
 #include "IsometricCamera.hpp"
 #include "glm/vec3.hpp"
-#include "glm/gtc/constants.hpp"
 
 GameScene::GameScene(MTL::Device * const pDevice)
 : _pDevice(pDevice),
