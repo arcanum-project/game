@@ -6,6 +6,7 @@
 //
 
 #include "VertexDescriptor.hpp"
+#include "Constants.hpp"
 
 const VertexDescriptor & VertexDescriptor::getInstance()
 {
@@ -20,19 +21,19 @@ VertexDescriptor::VertexDescriptor()
   _default = MTL::VertexDescriptor::alloc()->init();
   
   // Position
-  _default->attributes()->object(0)->setFormat(MTL::VertexFormatFloat3);
-  _default->attributes()->object(0)->setOffset(0);
-  _default->attributes()->object(0)->setBufferIndex(0);
+  _default->attributes()->object(Attributes::VertexCoordinates)->setFormat(MTL::VertexFormatFloat3);
+  _default->attributes()->object(Attributes::VertexCoordinates)->setOffset(0);
+  _default->attributes()->object(Attributes::VertexCoordinates)->setBufferIndex(BufferIndices::VertexBuffer);
   size_t offset = sizeof(float_t) * 3;
   // Texture
-  _default->attributes()->object(1)->setFormat(MTL::VertexFormatFloat2);
-  _default->attributes()->object(1)->setOffset(offset);
-  _default->attributes()->object(1)->setBufferIndex(0);
+  _default->attributes()->object(Attributes::TextureCoordinates)->setFormat(MTL::VertexFormatFloat2);
+  _default->attributes()->object(Attributes::TextureCoordinates)->setOffset(offset);
+  _default->attributes()->object(Attributes::TextureCoordinates)->setBufferIndex(BufferIndices::VertexBuffer);
   offset += sizeof(float_t) * 2;
   // Normal
-  _default->attributes()->object(2)->setFormat(MTL::VertexFormatFloat3);
-  _default->attributes()->object(2)->setOffset(offset);
-  _default->attributes()->object(2)->setBufferIndex(0);
+  _default->attributes()->object(Attributes::NormalCoordinates)->setFormat(MTL::VertexFormatFloat3);
+  _default->attributes()->object(Attributes::NormalCoordinates)->setOffset(offset);
+  _default->attributes()->object(Attributes::NormalCoordinates)->setBufferIndex(BufferIndices::VertexBuffer);
   offset += sizeof(float_t) * 3;
   
   _default->layouts()->object(0)->setStride(offset);

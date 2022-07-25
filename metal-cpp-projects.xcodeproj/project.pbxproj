@@ -232,6 +232,7 @@
 		9FABA03A286FBF1400B5630A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9FABA03C286FBF1400B5630A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9FABA03E286FBF1400B5630A /* triangle_with_animation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = triangle_with_animation.entitlements; sourceTree = "<group>"; };
+		9FD2BB37288F1D0E00D3E983 /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -464,6 +465,7 @@
 				9F3F67CD288DE3290057DE5F /* GameScene.hpp */,
 				9F3F67D0288DE46B0057DE5F /* IsometricCamera.hpp */,
 				9F3F67D2288E05480057DE5F /* IsometricCamera.cpp */,
+				9FD2BB37288F1D0E00D3E983 /* Constants.hpp */,
 			);
 			path = Shared;
 			sourceTree = "<group>";

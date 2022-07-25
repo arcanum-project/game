@@ -7,6 +7,7 @@
 
 #include "Model.hpp"
 #include "Uniforms.hpp"
+#include "Constants.hpp"
 
 Model::Model(const std::vector<VertexData> vertexData, const std::vector<uint16_t> indices, void * const pDevice)
 : _vertexData(vertexData),
@@ -25,9 +26,9 @@ Model::~Model()
 void Model::render(MTL::RenderCommandEncoder * const renderEncoder) const {
   Uniforms & uf = Uniforms::getInstance();
   uf.setModelMatrix(modelMatrix());
-  renderEncoder->setVertexBytes(&uf, sizeof(Uniforms), 11);
+  renderEncoder->setVertexBytes(&uf, sizeof(Uniforms), BufferIndices::UniformsBuffer);
   
-  renderEncoder->setVertexBuffer(getVertexBuffer(), 0, 0);
+  renderEncoder->setVertexBuffer(getVertexBuffer(), 0, BufferIndices::VertexBuffer);
   
   renderEncoder->drawIndexedPrimitives(MTL::PrimitiveTypeTriangle, getIndices().size(), MTL::IndexTypeUInt16, getIndexBuffer(), 0);
 }

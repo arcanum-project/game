@@ -16,10 +16,19 @@ struct Uniforms
   float4x4 projectionMatrix;
 };
 
+enum BufferIndices {
+  UniformsBuffer = 11
+};
+  
+enum Attributes {
+  VertexCoordinates = 0,
+  NormalCoordinates = 2
+};
+
 struct VertexIn
 {
-  float4 position [[attribute(0)]];
-  float3 normal [[attribute(2)]];
+  float4 position [[attribute(Attributes::VertexCoordinates)]];
+  float3 normal [[attribute(Attributes::NormalCoordinates)]];
 };
 
 struct VertexOut
@@ -30,7 +39,7 @@ struct VertexOut
 
 vertex VertexOut vertex_main(
 							 VertexIn in [[stage_in]],
-							 constant Uniforms &uniforms [[buffer(11)]]
+							 constant Uniforms &uniforms [[buffer(BufferIndices::UniformsBuffer)]]
 							 )
 {
   VertexOut out
