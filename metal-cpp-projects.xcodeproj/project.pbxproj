@@ -65,6 +65,28 @@
 		9F12D208287BCA93006306F6 /* ObjModelImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */; };
 		9F3F67832885D8370057DE5F /* one_cube_quad_faces.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67812885D8370057DE5F /* one_cube_quad_faces.mtl */; };
 		9F3F67842885D8370057DE5F /* one_cube_quad_faces.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67822885D8370057DE5F /* one_cube_quad_faces.obj */; };
+		9F3F67A8288DDBD60057DE5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67A7288DDBD60057DE5F /* AppDelegate.m */; };
+		9F3F67AB288DDBD60057DE5F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67AA288DDBD60057DE5F /* SceneDelegate.m */; };
+		9F3F67AE288DDBD60057DE5F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67AD288DDBD60057DE5F /* ViewController.m */; };
+		9F3F67B1288DDBD60057DE5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67AF288DDBD60057DE5F /* Main.storyboard */; };
+		9F3F67B3288DDBD70057DE5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67B2288DDBD70057DE5F /* Assets.xcassets */; };
+		9F3F67B6288DDBD70057DE5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67B4288DDBD70057DE5F /* LaunchScreen.storyboard */; };
+		9F3F67B9288DDBD70057DE5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67B8288DDBD70057DE5F /* main.m */; };
+		9F3F67BD288DDC310057DE5F /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821528720AFF006D21B2 /* Metal.framework */; };
+		9F3F67BE288DDC390057DE5F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821328720AF9006D21B2 /* Foundation.framework */; };
+		9F3F67BF288DDC410057DE5F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821728720B03006D21B2 /* QuartzCore.framework */; };
+		9F3F67C0288DDC570057DE5F /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
+		9F3F67C1288DDC6D0057DE5F /* Uniforms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D157287257C8006306F6 /* Uniforms.cpp */; };
+		9F3F67C2288DDC6D0057DE5F /* VertexDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */; };
+		9F3F67C3288DDC6D0057DE5F /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1522872472C006306F6 /* Math.cpp */; };
+		9F3F67C4288DDC6D0057DE5F /* ObjModelImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */; };
+		9F3F67C5288DDC6D0057DE5F /* Transformable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1B9287A2C1E006306F6 /* Transformable.cpp */; };
+		9F3F67C6288DDC6D0057DE5F /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1F6287B6975006306F6 /* Model.cpp */; };
+		9F3F67CB288DE2A30057DE5F /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67CA288DE2A30057DE5F /* Camera.cpp */; };
+		9F3F67CE288DE3290057DE5F /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67CC288DE3290057DE5F /* GameScene.cpp */; };
+		9F3F67D3288E05480057DE5F /* IsometricCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D2288E05480057DE5F /* IsometricCamera.cpp */; };
+		9F3F67D9288E2FD90057DE5F /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D7288E2FD90057DE5F /* Renderer.cpp */; };
+		9F3F67DB288E308F0057DE5F /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67DA288E308F0057DE5F /* Shaders.metal */; };
 		9F45C19428825D8D00592FD6 /* one_cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9F45C19228825D8D00592FD6 /* one_cube.mtl */; };
 		9F45C19528825D8D00592FD6 /* one_cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F45C19328825D8D00592FD6 /* one_cube.obj */; };
 		9F831538286FEEDA00B6FCDF /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831536286FEEDA00B6FCDF /* Renderer.cpp */; };
@@ -90,6 +112,8 @@
 		9FABA038286FBF1400B5630A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FABA037286FBF1400B5630A /* Assets.xcassets */; };
 		9FABA03B286FBF1400B5630A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FABA039286FBF1400B5630A /* Main.storyboard */; };
 		9FABA03D286FBF1400B5630A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABA03C286FBF1400B5630A /* main.m */; };
+		9FD2BB34288E3C9800D3E983 /* train.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67D6288E29310057DE5F /* train.mtl */; };
+		9FD2BB35288E3C9800D3E983 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67D5288E29310057DE5F /* train.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +175,29 @@
 		9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjModelImporter.cpp; sourceTree = "<group>"; };
 		9F3F67812885D8370057DE5F /* one_cube_quad_faces.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube_quad_faces.mtl; sourceTree = "<group>"; };
 		9F3F67822885D8370057DE5F /* one_cube_quad_faces.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube_quad_faces.obj; sourceTree = "<group>"; };
+		9F3F67A4288DDBD60057DE5F /* moving-isometric-camera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moving-isometric-camera.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F3F67A6288DDBD60057DE5F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9F3F67A7288DDBD60057DE5F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9F3F67A9288DDBD60057DE5F /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		9F3F67AA288DDBD60057DE5F /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		9F3F67AC288DDBD60057DE5F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9F3F67AD288DDBD60057DE5F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9F3F67B0288DDBD60057DE5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9F3F67B2288DDBD70057DE5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F3F67B5288DDBD70057DE5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9F3F67B7288DDBD70057DE5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F3F67B8288DDBD70057DE5F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9F3F67C8288DDD4B0057DE5F /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
+		9F3F67CA288DE2A30057DE5F /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		9F3F67CC288DE3290057DE5F /* GameScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
+		9F3F67CD288DE3290057DE5F /* GameScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameScene.hpp; sourceTree = "<group>"; };
+		9F3F67D0288DE46B0057DE5F /* IsometricCamera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IsometricCamera.hpp; sourceTree = "<group>"; };
+		9F3F67D2288E05480057DE5F /* IsometricCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IsometricCamera.cpp; sourceTree = "<group>"; };
+		9F3F67D5288E29310057DE5F /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.obj; sourceTree = "<group>"; };
+		9F3F67D6288E29310057DE5F /* train.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.mtl; sourceTree = "<group>"; };
+		9F3F67D7288E2FD90057DE5F /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
+		9F3F67D8288E2FD90057DE5F /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
+		9F3F67DA288E308F0057DE5F /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		9F45C19228825D8D00592FD6 /* one_cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube.mtl; sourceTree = "<group>"; };
 		9F45C19328825D8D00592FD6 /* one_cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube.obj; sourceTree = "<group>"; };
 		9F6A3DEE287E70A400F09F1C /* VertexData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexData.hpp; sourceTree = "<group>"; };
@@ -205,6 +252,16 @@
 				9F12D1E8287B47B7006306F6 /* Metal.framework in Frameworks */,
 				9F12D1E7287B47B1006306F6 /* Foundation.framework in Frameworks */,
 				9F12D1E9287B47BB006306F6 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F3F67A1288DDBD60057DE5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F3F67BD288DDC310057DE5F /* Metal.framework in Frameworks */,
+				9F3F67BE288DDC390057DE5F /* Foundation.framework in Frameworks */,
+				9F3F67BF288DDC410057DE5F /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +343,37 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		9F3F67A5288DDBD60057DE5F /* moving-isometric-camera */ = {
+			isa = PBXGroup;
+			children = (
+				9F3F67D4288E28F40057DE5F /* Resources */,
+				9F3F67A6288DDBD60057DE5F /* AppDelegate.h */,
+				9F3F67A7288DDBD60057DE5F /* AppDelegate.m */,
+				9F3F67A9288DDBD60057DE5F /* SceneDelegate.h */,
+				9F3F67AA288DDBD60057DE5F /* SceneDelegate.m */,
+				9F3F67AC288DDBD60057DE5F /* ViewController.h */,
+				9F3F67AD288DDBD60057DE5F /* ViewController.m */,
+				9F3F67AF288DDBD60057DE5F /* Main.storyboard */,
+				9F3F67B2288DDBD70057DE5F /* Assets.xcassets */,
+				9F3F67B4288DDBD70057DE5F /* LaunchScreen.storyboard */,
+				9F3F67B7288DDBD70057DE5F /* Info.plist */,
+				9F3F67B8288DDBD70057DE5F /* main.m */,
+				9F3F67D7288E2FD90057DE5F /* Renderer.cpp */,
+				9F3F67D8288E2FD90057DE5F /* Renderer.hpp */,
+				9F3F67DA288E308F0057DE5F /* Shaders.metal */,
+			);
+			path = "moving-isometric-camera";
+			sourceTree = "<group>";
+		};
+		9F3F67D4288E28F40057DE5F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9F3F67D6288E29310057DE5F /* train.mtl */,
+				9F3F67D5288E29310057DE5F /* train.obj */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		9F831529286FEA7A00B6FCDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +421,7 @@
 				9F831549287208A400B6FCDF /* 2d-transformations.app */,
 				9F12D12B287229F3006306F6 /* cameras.app */,
 				9F12D1C9287B4693006306F6 /* fragments.app */,
+				9F3F67A4288DDBD60057DE5F /* moving-isometric-camera.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -344,6 +433,7 @@
 				9F83154A287208A400B6FCDF /* 2d-transformations */,
 				9F12D12C287229F3006306F6 /* cameras */,
 				9F12D1CA287B4693006306F6 /* fragments */,
+				9F3F67A5288DDBD60057DE5F /* moving-isometric-camera */,
 				9FABA029286C06FE00B5630A /* Shared */,
 			);
 			path = "metal-cpp-projects";
@@ -368,6 +458,12 @@
 				9F12D1F6287B6975006306F6 /* Model.cpp */,
 				9F12D1F7287B6975006306F6 /* Model.hpp */,
 				9F6A3DEE287E70A400F09F1C /* VertexData.hpp */,
+				9F3F67C8288DDD4B0057DE5F /* Camera.hpp */,
+				9F3F67CA288DE2A30057DE5F /* Camera.cpp */,
+				9F3F67CC288DE3290057DE5F /* GameScene.cpp */,
+				9F3F67CD288DE3290057DE5F /* GameScene.hpp */,
+				9F3F67D0288DE46B0057DE5F /* IsometricCamera.hpp */,
+				9F3F67D2288E05480057DE5F /* IsometricCamera.cpp */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -425,6 +521,23 @@
 			productReference = 9F12D1C9287B4693006306F6 /* fragments.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9F3F67A3288DDBD60057DE5F /* moving-isometric-camera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F3F67BA288DDBD70057DE5F /* Build configuration list for PBXNativeTarget "moving-isometric-camera" */;
+			buildPhases = (
+				9F3F67A0288DDBD60057DE5F /* Sources */,
+				9F3F67A1288DDBD60057DE5F /* Frameworks */,
+				9F3F67A2288DDBD60057DE5F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "moving-isometric-camera";
+			productName = "moving-isometric-camera";
+			productReference = 9F3F67A4288DDBD60057DE5F /* moving-isometric-camera.app */;
+			productType = "com.apple.product-type.application";
+		};
 		9F831548287208A400B6FCDF /* 2d-transformations */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F83155F287208A500B6FCDF /* Build configuration list for PBXNativeTarget "2d-transformations" */;
@@ -474,6 +587,9 @@
 					9F12D1C8287B4693006306F6 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
+					9F3F67A3288DDBD60057DE5F = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
 					9F831523286FC83500B6FCDF = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -503,6 +619,7 @@
 				9F831548287208A400B6FCDF /* 2d-transformations */,
 				9F12D12A287229F3006306F6 /* cameras */,
 				9F12D1C8287B4693006306F6 /* fragments */,
+				9F3F67A3288DDBD60057DE5F /* moving-isometric-camera */,
 			);
 		};
 /* End PBXProject section */
@@ -530,6 +647,18 @@
 				9F12D1D8287B4694006306F6 /* Assets.xcassets in Resources */,
 				9F45C19428825D8D00592FD6 /* one_cube.mtl in Resources */,
 				9F12D1D6287B4693006306F6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F3F67A2288DDBD60057DE5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FD2BB34288E3C9800D3E983 /* train.mtl in Resources */,
+				9FD2BB35288E3C9800D3E983 /* train.obj in Resources */,
+				9F3F67B6288DDBD70057DE5F /* LaunchScreen.storyboard in Resources */,
+				9F3F67B3288DDBD70057DE5F /* Assets.xcassets in Resources */,
+				9F3F67B1288DDBD60057DE5F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +720,29 @@
 				9F12D1EE287B48A6006306F6 /* Shaders.metal in Sources */,
 				9F12D1E6287B473F006306F6 /* Transformable.cpp in Sources */,
 				9F12D1D0287B4693006306F6 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F3F67A0288DDBD60057DE5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F3F67C4288DDC6D0057DE5F /* ObjModelImporter.cpp in Sources */,
+				9F3F67C1288DDC6D0057DE5F /* Uniforms.cpp in Sources */,
+				9F3F67AE288DDBD60057DE5F /* ViewController.m in Sources */,
+				9F3F67C2288DDC6D0057DE5F /* VertexDescriptor.cpp in Sources */,
+				9F3F67CB288DE2A30057DE5F /* Camera.cpp in Sources */,
+				9F3F67C3288DDC6D0057DE5F /* Math.cpp in Sources */,
+				9F3F67D9288E2FD90057DE5F /* Renderer.cpp in Sources */,
+				9F3F67CE288DE3290057DE5F /* GameScene.cpp in Sources */,
+				9F3F67DB288E308F0057DE5F /* Shaders.metal in Sources */,
+				9F3F67A8288DDBD60057DE5F /* AppDelegate.m in Sources */,
+				9F3F67C6288DDC6D0057DE5F /* Model.cpp in Sources */,
+				9F3F67B9288DDBD70057DE5F /* main.m in Sources */,
+				9F3F67D3288E05480057DE5F /* IsometricCamera.cpp in Sources */,
+				9F3F67C0288DDC570057DE5F /* RendererDelegateAdapter.mm in Sources */,
+				9F3F67C5288DDC6D0057DE5F /* Transformable.cpp in Sources */,
+				9F3F67AB288DDBD60057DE5F /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,6 +818,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				9F12D1DA287B4694006306F6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9F3F67AF288DDBD60057DE5F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F3F67B0288DDBD60057DE5F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9F3F67B4288DDBD70057DE5F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F3F67B5288DDBD70057DE5F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -837,6 +1005,67 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dbelousov.fragments;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9F3F67BB288DDBD70057DE5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H2VL2PJ39X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "metal-cpp-projects/moving-isometric-camera/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.moving-isometric-camera";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9F3F67BC288DDBD70057DE5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H2VL2PJ39X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "metal-cpp-projects/moving-isometric-camera/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.moving-isometric-camera";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1132,6 +1361,15 @@
 			buildConfigurations = (
 				9F12D1E0287B4694006306F6 /* Debug */,
 				9F12D1E1287B4694006306F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F3F67BA288DDBD70057DE5F /* Build configuration list for PBXNativeTarget "moving-isometric-camera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F3F67BB288DDBD70057DE5F /* Debug */,
+				9F3F67BC288DDBD70057DE5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -85,7 +85,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   uf.setViewMatrix(glm::inverse(Math::getInstance().translation(0, 0.5, -2.5)));
   _angle += .005f;
   _pModel->setRotation(glm::vec3(0, sin(_angle), 0));
-  uf.setModelMatrix(_pModel->getModelMatrix());
+  uf.setModelMatrix(_pModel->modelMatrix());
   pEnc->setVertexBytes(&uf, sizeof(Uniforms), 11);
 //  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
   pEnc->drawIndexedPrimitives(MTL::PrimitiveTypeTriangle, _pModel->getIndices().size(), MTL::IndexTypeUInt16, _pModel->getIndexBuffer(), 0);

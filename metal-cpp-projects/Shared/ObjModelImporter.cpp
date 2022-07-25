@@ -47,8 +47,8 @@ Model * const ObjModelImporter::import(void * const pDevice, const char * resour
 		  }
 		}
 	  }
+	  file.close();
 	}
-	file.close();
   } catch (std::system_error & e) {
 	if (file.is_open())
 	  file.close();

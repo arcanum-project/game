@@ -15,18 +15,19 @@
 
 class Model : public Transformable
 {
-  public:
-	Model(const std::vector<VertexData> vertexData, const std::vector<uint16_t> indices, void * const pDevice);
-	~Model();
-	
-	inline const std::vector<uint16_t> & getIndices() const { return _indices; }
-	inline const MTL::Buffer * const getVertexBuffer() const { return _pVertexBuffer; }
-	inline const MTL::Buffer * const getIndexBuffer() const { return _pIndexBuffer; }
+public:
+  Model(const std::vector<VertexData> vertexData, const std::vector<uint16_t> indices, void * const pDevice);
+  ~Model();
   
-  private:
-	const std::vector<VertexData> _vertexData;
-	const std::vector<uint16_t> _indices;
-	
-	MTL::Buffer * const _pVertexBuffer;
-	MTL::Buffer * const _pIndexBuffer;
+  inline const std::vector<uint16_t> & getIndices() const { return _indices; }
+  inline const MTL::Buffer * const getVertexBuffer() const { return _pVertexBuffer; }
+  inline const MTL::Buffer * const getIndexBuffer() const { return _pIndexBuffer; }
+  void render(MTL::RenderCommandEncoder * const) const;
+
+private:
+  const std::vector<VertexData> _vertexData;
+  const std::vector<uint16_t> _indices;
+  
+  MTL::Buffer * const _pVertexBuffer;
+  MTL::Buffer * const _pIndexBuffer;
 };

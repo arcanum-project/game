@@ -6,9 +6,7 @@
 //
 
 #import "RendererDelegateAdapter.h"
-#import "../fragments/Renderer.hpp"
-#import "Math.hpp"
-#import "Uniforms.hpp"
+#import "../moving-isometric-camera/Renderer.hpp"
 
 @implementation RendererDelegateAdapter
 {
@@ -34,9 +32,7 @@
 }
 
 - (void)mtkView:(nonnull MTKView *)view drawableSizeWillChange:(CGSize)size {
-  float_t aspect = view.bounds.size.width / view.bounds.size.height;
-  const glm::mat4x4 projectionMat = Math::getInstance().perspective(70, 0.1, 100, aspect);
-  Uniforms::getInstance().setProjectionMatrix(projectionMat);
+  _pRenderer->drawableSizeWillChange(size.width, size.height);
 }
 
 @end

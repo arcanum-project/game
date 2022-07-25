@@ -13,7 +13,9 @@ Transformable::Transformable()
   _scale(1)
 { }
 
-const glm::mat4x4 Transformable::getModelMatrix() const
+Transformable::~Transformable() { }
+
+const glm::mat4x4 Transformable::modelMatrix() const
 {
   const Math & m = Math::getInstance();
   glm::mat4x4 trMat = m.translation(_position);
