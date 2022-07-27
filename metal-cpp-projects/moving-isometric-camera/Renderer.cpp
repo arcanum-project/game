@@ -84,12 +84,10 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   Uniforms & uf = Uniforms::getInstance();
   uf.setViewMatrix(_pGameScene->pCamera()->viewMatrix());
   uf.setProjectionMatrix(_pGameScene->pCamera()->projectionMatrix());
+  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
   for (const Model * const pModel : _pGameScene->models()) {
 	pModel->render(pEnc);
   }
-//  _angle += .005f;
-//  _pModel->setRotation(glm::vec3(0, sin(_angle), 0));
-//  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
   pEnc->endEncoding();
   pCmdBuf->presentDrawable(pDrawable);
   pCmdBuf->commit();

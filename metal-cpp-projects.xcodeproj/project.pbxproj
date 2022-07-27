@@ -114,6 +114,8 @@
 		9FABA03D286FBF1400B5630A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABA03C286FBF1400B5630A /* main.m */; };
 		9FD2BB34288E3C9800D3E983 /* train.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67D6288E29310057DE5F /* train.mtl */; };
 		9FD2BB35288E3C9800D3E983 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67D5288E29310057DE5F /* train.obj */; };
+		9FD2BB392890E7C200D3E983 /* grid.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2BB382890E7B700D3E983 /* grid.obj */; };
+		9FD2BB3B2890F18100D3E983 /* TouchableMTKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -233,6 +235,8 @@
 		9FABA03C286FBF1400B5630A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9FABA03E286FBF1400B5630A /* triangle_with_animation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = triangle_with_animation.entitlements; sourceTree = "<group>"; };
 		9FD2BB37288F1D0E00D3E983 /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
+		9FD2BB382890E7B700D3E983 /* grid.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grid.obj; sourceTree = "<group>"; };
+		9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchableMTKView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +358,7 @@
 				9F3F67AA288DDBD60057DE5F /* SceneDelegate.m */,
 				9F3F67AC288DDBD60057DE5F /* ViewController.h */,
 				9F3F67AD288DDBD60057DE5F /* ViewController.m */,
+				9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */,
 				9F3F67AF288DDBD60057DE5F /* Main.storyboard */,
 				9F3F67B2288DDBD70057DE5F /* Assets.xcassets */,
 				9F3F67B4288DDBD70057DE5F /* LaunchScreen.storyboard */,
@@ -369,6 +374,7 @@
 		9F3F67D4288E28F40057DE5F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9FD2BB382890E7B700D3E983 /* grid.obj */,
 				9F3F67D6288E29310057DE5F /* train.mtl */,
 				9F3F67D5288E29310057DE5F /* train.obj */,
 			);
@@ -656,6 +662,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FD2BB392890E7C200D3E983 /* grid.obj in Resources */,
 				9FD2BB34288E3C9800D3E983 /* train.mtl in Resources */,
 				9FD2BB35288E3C9800D3E983 /* train.obj in Resources */,
 				9F3F67B6288DDBD70057DE5F /* LaunchScreen.storyboard in Resources */,
@@ -732,6 +739,7 @@
 				9F3F67C4288DDC6D0057DE5F /* ObjModelImporter.cpp in Sources */,
 				9F3F67C1288DDC6D0057DE5F /* Uniforms.cpp in Sources */,
 				9F3F67AE288DDBD60057DE5F /* ViewController.m in Sources */,
+				9FD2BB3B2890F18100D3E983 /* TouchableMTKView.m in Sources */,
 				9F3F67C2288DDC6D0057DE5F /* VertexDescriptor.cpp in Sources */,
 				9F3F67CB288DE2A30057DE5F /* Camera.cpp in Sources */,
 				9F3F67C3288DDC6D0057DE5F /* Math.cpp in Sources */,

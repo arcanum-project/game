@@ -43,7 +43,7 @@ Model * const ObjModelImporter::import(void * const pDevice, const char * resour
 		  } else if (token.compare("f") == 0) {
 			processFace(line, vertexData, indices, vertexToIndex, vertices, textures, normals);
 		  } else {
-			std::cout << "Unexpected data type in .obj file: " + token << std::endl;
+			std::cout << "Skipping unknown line classifier in .obj file: " + token << std::endl;
 		  }
 		}
 	  }

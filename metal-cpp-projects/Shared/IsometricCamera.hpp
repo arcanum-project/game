@@ -18,7 +18,7 @@ public:
   
   inline const glm::mat4x4 viewMatrix() override {
 	const Math & m = Math::getInstance();
-	return m.translation(position()) * glm::inverse(m.rotationYXZ(rotation())) * m.scaling(scale());
+	return glm::inverse(m.translation(position())) * glm::inverse(m.rotationYXZ(rotation())) * m.scaling(scale());
   }
   inline const glm::mat4x4 projectionMatrix() override { return Math::getInstance().isometric(_drawableWidth, _drawableHeight, _near, _far); }
   inline void update(const float_t & drawableWidth, const float_t & drawableHeight) override {
