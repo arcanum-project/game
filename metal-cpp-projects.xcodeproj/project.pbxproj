@@ -116,6 +116,7 @@
 		9FD2BB35288E3C9800D3E983 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67D5288E29310057DE5F /* train.obj */; };
 		9FD2BB392890E7C200D3E983 /* grid.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2BB382890E7B700D3E983 /* grid.obj */; };
 		9FD2BB3B2890F18100D3E983 /* TouchableMTKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */; };
+		9FD2BB3F28936ACC00D3E983 /* tile.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2BB3E28936AAE00D3E983 /* tile.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +238,9 @@
 		9FD2BB37288F1D0E00D3E983 /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
 		9FD2BB382890E7B700D3E983 /* grid.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grid.obj; sourceTree = "<group>"; };
 		9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchableMTKView.m; sourceTree = "<group>"; };
+		9FD2BB3C28931FB400D3E983 /* WodBse0d_0.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = WodBse0d_0.bmp; sourceTree = "<group>"; };
+		9FD2BB3D28931FB400D3E983 /* WodBse0d.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WodBse0d.ini; sourceTree = "<group>"; };
+		9FD2BB3E28936AAE00D3E983 /* tile.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tile.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +378,9 @@
 		9F3F67D4288E28F40057DE5F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9FD2BB3E28936AAE00D3E983 /* tile.obj */,
+				9FD2BB3C28931FB400D3E983 /* WodBse0d_0.bmp */,
+				9FD2BB3D28931FB400D3E983 /* WodBse0d.ini */,
 				9FD2BB382890E7B700D3E983 /* grid.obj */,
 				9F3F67D6288E29310057DE5F /* train.mtl */,
 				9F3F67D5288E29310057DE5F /* train.obj */,
@@ -662,6 +669,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FD2BB3F28936ACC00D3E983 /* tile.obj in Resources */,
 				9FD2BB392890E7C200D3E983 /* grid.obj in Resources */,
 				9FD2BB34288E3C9800D3E983 /* train.mtl in Resources */,
 				9FD2BB35288E3C9800D3E983 /* train.obj in Resources */,

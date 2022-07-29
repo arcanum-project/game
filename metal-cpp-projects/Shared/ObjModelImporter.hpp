@@ -148,8 +148,4 @@ class ObjModelImporter : public ModelImporter
 	  vertexToIndex.insert(std::make_pair(vertexToIndexKey, vertexData.size() - 1));
 	}
   }
-  
-  inline void indexVertex(std::unordered_map<char *, uint16_t> &vertexDescriptorToIndex, const glm::vec3 &vertex) const {
-	
-  }
 };
