@@ -10,6 +10,7 @@
 #define MTL_PRIVATE_IMPLEMENTATION
 
 #include "Renderer.hpp"
+#include "Constants.hpp"
 
 #pragma region Renderer {
 
@@ -19,7 +20,9 @@ Renderer::Renderer(MTL::Device * const _pDevice)
   _pPSO(nullptr),
   _pDepthStencilState(nullptr),
   _angle(0.f),
-  _pGameScene(new GameScene(_pDevice)) {
+  _pGameScene(new GameScene(_pDevice)),
+  _frame(0u),
+  _semaphore(dispatch_semaphore_create(RenderingConstants::MaxBuffersInFlight)) {
 	buildShaders();
 	buildDepthStencilState();
 }
@@ -67,6 +70,12 @@ void Renderer::buildDepthStencilState() {
 
 void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::Texture * const pDepthTexture) {
   MTL::CommandBuffer * pCmdBuf = _pCommandQueue->commandBuffer();
+  // We are reusing same buffers for passing tile instances data to GPU. Therefore we must lock to ensure that buffers are only used when GPU is done with them.
+  // Check this article for more: https://crimild.wordpress.com/2016/05/19/praise-the-metal-part-1-rendering-a-single-frame/
+  dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
+  pCmdBuf->addCompletedHandler(^void(MTL::CommandBuffer * pCmdBuf) {
+	dispatch_semaphore_signal(this->_semaphore);
+  });
   
   MTL::RenderPassDescriptor * pRpd = MTL::RenderPassDescriptor::alloc()->init();
   pRpd->colorAttachments()->object(0)->setTexture(pDrawable->texture());
@@ -85,8 +94,9 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   uf.setViewMatrix(_pGameScene->pCamera()->viewMatrix());
   uf.setProjectionMatrix(_pGameScene->pCamera()->projectionMatrix());
   pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
-  for (const Model * const pModel : _pGameScene->models()) {
-	pModel->render(pEnc);
+  _frame = (_frame + 1) % RenderingConstants::MaxBuffersInFlight;
+  for (const std::shared_ptr<const Model> & pModel : _pGameScene->models()) {
+	pModel->render(pEnc, _frame);
   }
   pEnc->endEncoding();
   pCmdBuf->presentDrawable(pDrawable);

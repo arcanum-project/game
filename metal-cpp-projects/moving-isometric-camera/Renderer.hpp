@@ -34,6 +34,8 @@ private:
   MTL::DepthStencilState * _pDepthStencilState;
   float_t _angle;
   GameScene * const _pGameScene;
+  uint16_t _frame;
+  dispatch_semaphore_t _semaphore;
 	
   void buildShaders();
   void buildDepthStencilState();

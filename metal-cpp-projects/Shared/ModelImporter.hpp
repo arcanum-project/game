@@ -7,11 +7,26 @@
 
 #pragma once
 
-#include "Model.hpp"
+#include <stdio.h>
+#include <vector>
+#include <memory>
+
+#include "VertexData.hpp"
+
+struct ImportedModelData {
+  ImportedModelData(const std::vector<VertexData> vData, const std::vector<uint16_t> i)
+  : vertexData(vData),
+	indices(i)
+  {};
+  
+  const std::vector<VertexData> vertexData;
+  const std::vector<uint16_t> indices;
+  
+};
 
 class ModelImporter
 {
 public:
   virtual ~ModelImporter(){};
-  virtual Model * const import(void * const pDevice, const char * resourceName, const char * resourceType) const = 0;
+  virtual const std::unique_ptr<const ImportedModelData> import(const char * resourceName, const char * resourceType) const = 0;
 };

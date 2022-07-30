@@ -19,4 +19,10 @@ typedef enum {
   UniformsBuffer = 11,
 } BufferIndices;
 
+typedef enum {
+  MaxBuffersInFlight = 3,
+  NumOfTilesPerSector = 9,
+  NumOfTilesPerRow = 3
+} RenderingConstants;
+
 #endif /* Constants_h */

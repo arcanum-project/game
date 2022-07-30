@@ -36,15 +36,21 @@ struct VertexOut
   float4 position [[position]];
   float3 normal;
 };
+  
+struct InstanceData {
+  float4x4 instanceTransform;
+};
 
 vertex VertexOut vertex_main(
 							 VertexIn in [[stage_in]],
-							 constant Uniforms &uniforms [[buffer(BufferIndices::UniformsBuffer)]]
+							 constant Uniforms &uniforms [[buffer(BufferIndices::UniformsBuffer)]],
+							 device const InstanceData * instanceData [[buffer(1)]],
+							 uint instanceId [[instance_id]]
 							 )
 {
   VertexOut out
   {
-	.position = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * in.position,
+	.position = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * instanceData[instanceId].instanceTransform * in.position,
 	.normal = in.normal
   };
   return out;

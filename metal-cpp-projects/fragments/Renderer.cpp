@@ -80,7 +80,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   MTL::RenderCommandEncoder * pEnc = pCmdBuf->renderCommandEncoder(pRpd);
   pEnc->setRenderPipelineState(_pPSO);
   pEnc->setDepthStencilState(_pDepthStencilState);
-  pEnc->setVertexBuffer(_pModel->getVertexBuffer(), 0, 0);
+  pEnc->setVertexBuffer(_pModel->vertexBuffer(), 0, 0);
   Uniforms & uf = Uniforms::getInstance();
   uf.setViewMatrix(glm::inverse(Math::getInstance().translation(0, 0.5, -2.5)));
   _angle += .005f;
@@ -88,7 +88,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   uf.setModelMatrix(_pModel->modelMatrix());
   pEnc->setVertexBytes(&uf, sizeof(Uniforms), 11);
 //  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
-  pEnc->drawIndexedPrimitives(MTL::PrimitiveTypeTriangle, _pModel->getIndices().size(), MTL::IndexTypeUInt16, _pModel->getIndexBuffer(), 0);
+  pEnc->drawIndexedPrimitives(MTL::PrimitiveTypeTriangle, _pModel->indices().size(), MTL::IndexTypeUInt16, _pModel->indexBuffer(), 0);
   pEnc->endEncoding();
   pCmdBuf->presentDrawable(pDrawable);
   pCmdBuf->commit();

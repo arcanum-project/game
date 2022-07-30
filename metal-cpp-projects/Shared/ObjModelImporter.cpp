@@ -10,7 +10,7 @@
 #include <fstream>
 #include <stdio.h>
 
-Model * const ObjModelImporter::import(void * const pDevice, const char * resourceName, const char * resourceType) const {
+const std::unique_ptr<const ImportedModelData> ObjModelImporter::import(const char * resourceName, const char * resourceType) const {
   std::vector<VertexData> vertexData {};
   std::vector<uint16_t> indices {};
   std::unordered_map<std::string, uint16_t> vertexToIndex {};
@@ -56,5 +56,5 @@ Model * const ObjModelImporter::import(void * const pDevice, const char * resour
 	throw;
   }
 
-  return new Model(vertexData, indices, pDevice);
+  return std::make_unique<const ImportedModelData>(vertexData, indices);
 }
