@@ -22,7 +22,8 @@ Renderer::Renderer(MTL::Device * const _pDevice)
   _angle(0.f),
   _pGameScene(new GameScene(_pDevice)),
   _frame(0u),
-  _semaphore(dispatch_semaphore_create(RenderingConstants::MaxBuffersInFlight)) {
+  _semaphore(dispatch_semaphore_create(RenderingConstants::MaxBuffersInFlight)),
+  _lastTimeSeconds(std::chrono::system_clock::now()) {
 	buildShaders();
 	buildDepthStencilState();
 }
@@ -90,11 +91,17 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   pEnc->setRenderPipelineState(_pPSO);
   pEnc->setDepthStencilState(_pDepthStencilState);
   
+  const std::chrono::time_point<std::chrono::system_clock> currentTimeSeconds = std::chrono::system_clock::now();
+  const std::chrono::duration<float_t> deltaTime = currentTimeSeconds - _lastTimeSeconds;
+  _lastTimeSeconds = currentTimeSeconds;
+  _pGameScene->update(deltaTime.count());
+  
   Uniforms & uf = Uniforms::getInstance();
   uf.setViewMatrix(_pGameScene->pCamera()->viewMatrix());
   uf.setProjectionMatrix(_pGameScene->pCamera()->projectionMatrix());
   pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
   _frame = (_frame + 1) % RenderingConstants::MaxBuffersInFlight;
+  
   for (const std::shared_ptr<const Model> & pModel : _pGameScene->models()) {
 	pModel->render(pEnc, _frame);
   }
@@ -107,7 +114,10 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
 }
 
 void Renderer::drawableSizeWillChange(const float_t & drawableWidth, const float_t & drawableHeight) {
-  _pGameScene->update(drawableWidth, drawableHeight);
+  Uniforms & uf = Uniforms::getInstance();
+  uf.setDrawableWidth(drawableWidth);
+  uf.setDrawableHeight(drawableHeight);
+  _pGameScene->update(uf.drawableWidth(), uf.drawableHeight());
 }
 
 #pragma endregion Renderer }

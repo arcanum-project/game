@@ -11,8 +11,9 @@
 #include <stdio.h>
 #include "Camera.hpp"
 #include "Math.hpp"
+#include "Movement.hpp"
 
-class IsometricCamera : public Camera {
+class IsometricCamera : public Camera, public Movement {
 public:
   IsometricCamera();
   
@@ -25,7 +26,9 @@ public:
 	_drawableWidth = drawableWidth;
 	_drawableHeight = drawableHeight;
   }
-  inline void update(const float_t & deltaTime) override { /* TODO */ };
+  inline void update(const float_t & deltaTime) override {
+	updateInput(deltaTime);
+  }
 
 private:
   float_t _drawableWidth;

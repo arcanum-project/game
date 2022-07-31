@@ -10,9 +10,11 @@
 
 #include "Metal/Metal.hpp"
 #include <QuartzCore/CAMetalDrawable.hpp>
-#include "VertexDescriptor.hpp"
 #include <array>
 #include "glm/vec3.hpp"
+#include <chrono>
+
+#include "VertexDescriptor.hpp"
 #include "Uniforms.hpp"
 #include "Math.hpp"
 #include "Transformable.hpp"
@@ -36,6 +38,7 @@ private:
   GameScene * const _pGameScene;
   uint16_t _frame;
   dispatch_semaphore_t _semaphore;
+  std::chrono::time_point<std::chrono::system_clock> _lastTimeSeconds;
 	
   void buildShaders();
   void buildDepthStencilState();

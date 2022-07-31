@@ -37,5 +37,4 @@
   _pView.delegate = _pRendererDelegateAdapter;
 }
 
-
 @end

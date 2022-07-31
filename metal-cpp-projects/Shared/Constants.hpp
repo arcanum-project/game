@@ -21,8 +21,8 @@ typedef enum {
 
 typedef enum {
   MaxBuffersInFlight = 3,
-  NumOfTilesPerSector = 9,
-  NumOfTilesPerRow = 3
+  NumOfTilesPerSector = 4096,
+  NumOfTilesPerRow = 64
 } RenderingConstants;
 
 #endif /* Constants_h */

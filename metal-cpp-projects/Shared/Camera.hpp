@@ -12,7 +12,7 @@
 #include "Transformable.hpp"
 #include "glm/mat4x4.hpp"
 
-class Camera : public Transformable {
+class Camera : virtual public Transformable {
 public:
   virtual ~Camera() = 0;
   

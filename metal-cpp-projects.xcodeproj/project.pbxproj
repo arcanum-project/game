@@ -89,6 +89,8 @@
 		9F3F67DB288E308F0057DE5F /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67DA288E308F0057DE5F /* Shaders.metal */; };
 		9F45C19428825D8D00592FD6 /* one_cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9F45C19228825D8D00592FD6 /* one_cube.mtl */; };
 		9F45C19528825D8D00592FD6 /* one_cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F45C19328825D8D00592FD6 /* one_cube.obj */; };
+		9F4D58122895AD5400FF18D4 /* InputControllerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */; };
+		9F4D58152895AFB200FF18D4 /* Movement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58142895AFB200FF18D4 /* Movement.cpp */; };
 		9F831538286FEEDA00B6FCDF /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831536286FEEDA00B6FCDF /* Renderer.cpp */; };
 		9F8315412870FC3400B6FCDF /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F8315402870FC3400B6FCDF /* Shaders.metal */; };
 		9F831544287142DC00B6FCDF /* VertexDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */; };
@@ -203,6 +205,11 @@
 		9F3F67DA288E308F0057DE5F /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		9F45C19228825D8D00592FD6 /* one_cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube.mtl; sourceTree = "<group>"; };
 		9F45C19328825D8D00592FD6 /* one_cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube.obj; sourceTree = "<group>"; };
+		9F4D58102895AC6100FF18D4 /* InputControllerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputControllerAdapter.h; sourceTree = "<group>"; };
+		9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = InputControllerAdapter.mm; sourceTree = "<group>"; };
+		9F4D58132895AF8000FF18D4 /* Movement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Movement.hpp; sourceTree = "<group>"; };
+		9F4D58142895AFB200FF18D4 /* Movement.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Movement.cpp; sourceTree = "<group>"; };
+		9F4D58162895D3FF00FF18D4 /* InputControllerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputControllerBridge.h; sourceTree = "<group>"; };
 		9F6A3DEE287E70A400F09F1C /* VertexData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexData.hpp; sourceTree = "<group>"; };
 		9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RendererDelegateAdapter.mm; sourceTree = "<group>"; };
 		9F831532286FED8500B6FCDF /* RendererDelegateAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RendererDelegateAdapter.h; sourceTree = "<group>"; };
@@ -479,6 +486,11 @@
 				9F3F67D0288DE46B0057DE5F /* IsometricCamera.hpp */,
 				9F3F67D2288E05480057DE5F /* IsometricCamera.cpp */,
 				9FD2BB37288F1D0E00D3E983 /* Constants.hpp */,
+				9F4D58162895D3FF00FF18D4 /* InputControllerBridge.h */,
+				9F4D58102895AC6100FF18D4 /* InputControllerAdapter.h */,
+				9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */,
+				9F4D58132895AF8000FF18D4 /* Movement.hpp */,
+				9F4D58142895AFB200FF18D4 /* Movement.cpp */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -744,6 +756,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F4D58122895AD5400FF18D4 /* InputControllerAdapter.mm in Sources */,
+				9F4D58152895AFB200FF18D4 /* Movement.cpp in Sources */,
 				9F3F67C4288DDC6D0057DE5F /* ObjModelImporter.cpp in Sources */,
 				9F3F67C1288DDC6D0057DE5F /* Uniforms.cpp in Sources */,
 				9F3F67AE288DDBD60057DE5F /* ViewController.m in Sources */,
@@ -1045,8 +1059,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeLeft;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationLandscapeLeft;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1075,8 +1090,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeLeft;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationLandscapeLeft;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -16,5 +16,7 @@ Uniforms & Uniforms::getInstance()
 Uniforms::Uniforms()
 : _modelMatrix(),
   _viewMatrix(),
-  _projectionMatrix()
+  _projectionMatrix(),
+  _drawableWidth(1.0f),
+  _drawableHeight(1.0f)
 { };
