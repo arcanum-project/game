@@ -17,6 +17,7 @@ struct Uniforms
 };
 
 enum BufferIndices {
+  InstanceDataBuffer = 1,
   UniformsBuffer = 11
 };
   
@@ -44,7 +45,7 @@ struct InstanceData {
 vertex VertexOut vertex_main(
 							 VertexIn in [[stage_in]],
 							 constant Uniforms &uniforms [[buffer(BufferIndices::UniformsBuffer)]],
-							 device const InstanceData * instanceData [[buffer(1)]],
+							 device const InstanceData * instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
 							 uint instanceId [[instance_id]]
 							 )
 {

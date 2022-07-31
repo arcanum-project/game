@@ -46,9 +46,9 @@ public:
 	renderEncoder->setVertexBytes(&uf, sizeof(Uniforms), BufferIndices::UniformsBuffer);
 	
 	renderEncoder->setVertexBuffer(vertexBuffer(), 0, BufferIndices::VertexBuffer);
-	renderEncoder->setVertexBuffer(pInstanceDataBuffer, 0, 1);
+	renderEncoder->setVertexBuffer(pInstanceDataBuffer, 0, BufferIndices::InstanceDataBuffer);
 	
-	_instanceCount > 0
+	_instanceCount > 1
 	? renderEncoder->drawIndexedPrimitives(MTL::PrimitiveTypeTriangle, indices().size(), MTL::IndexTypeUInt16, indexBuffer(), 0, _instanceCount)
 	: renderEncoder->drawIndexedPrimitives(MTL::PrimitiveTypeTriangle, indices().size(), MTL::IndexTypeUInt16, indexBuffer(), 0);
   }

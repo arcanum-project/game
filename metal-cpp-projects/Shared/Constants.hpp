@@ -16,7 +16,8 @@ typedef enum {
 
 typedef enum {
   VertexBuffer = 0,
-  UniformsBuffer = 11,
+  InstanceDataBuffer = 1,
+  UniformsBuffer = 11
 } BufferIndices;
 
 typedef enum {
