@@ -7,7 +7,6 @@
 
 #include <vector>
 #include <unordered_map>
-#include <CoreFoundation/CFBundle.h>
 #include <string>
 #include "glm/vec2.hpp"
 #include "glm/vec3.hpp"
@@ -26,33 +25,6 @@ public:
   ~ObjModelImporter(){};
 
 private:
-  /**
-   Get path to a resource inside the app's bundle by using C APIs from CoreFoundation.
-   @param resourceName - file name
-   @param resourceType - file extension
-   */
-  inline const std::string absolutePath(const char * resourceName, const char * resourceType) const {
-	// Based on: https://stackoverflow.com/questions/2220098/using-iphone-resources-in-a-c-file
-	CFBundleRef bundleRef = CFBundleGetMainBundle();
-	CFAllocatorRef allocatorRef = CFAllocatorGetDefault();
-	CFStringRef resourceNameRef = CFStringCreateWithCString(allocatorRef, resourceName, CFStringBuiltInEncodings(kCFStringEncodingUTF8));
-	CFStringRef resourceTypeRef = CFStringCreateWithCString(allocatorRef, resourceType, CFStringBuiltInEncodings(kCFStringEncodingUTF8));
-	CFURLRef resourceUrlRef = CFBundleCopyResourceURL(bundleRef,
-												   resourceNameRef,
-												   resourceTypeRef,
-												   NULL);
-	char resourcePath[PATH_MAX];
-	CFURLGetFileSystemRepresentation(resourceUrlRef, true,
-									 (uint8_t *)resourcePath, PATH_MAX);
-	CFRelease(resourceUrlRef);
-	CFRelease(resourceTypeRef);
-	CFRelease(resourceNameRef);
-	CFRelease(allocatorRef);
-	CFRelease(bundleRef);
-	
-	return std::string(resourcePath);
-  }
-
   // Based on: https://stackoverflow.com/questions/14265581/parse-split-a-string-in-c-using-string-delimiter-standard-c
   inline void processNonFace(std::string & line, std::vector<glm::vec3> & vertices, std::vector<glm::vec2> & textures, std::vector<glm::vec3> & normals, bool isTexture, bool isVertex) const {
 	const std::string delimiter = " ";

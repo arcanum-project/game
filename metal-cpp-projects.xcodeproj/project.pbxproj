@@ -242,6 +242,7 @@
 		9FABA03A286FBF1400B5630A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9FABA03C286FBF1400B5630A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9FABA03E286FBF1400B5630A /* triangle_with_animation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = triangle_with_animation.entitlements; sourceTree = "<group>"; };
+		9FB1A3CB28974055006E27A9 /* ResourceBundle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourceBundle.hpp; sourceTree = "<group>"; };
 		9FD2BB37288F1D0E00D3E983 /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
 		9FD2BB382890E7B700D3E983 /* grid.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grid.obj; sourceTree = "<group>"; };
 		9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchableMTKView.m; sourceTree = "<group>"; };
@@ -463,6 +464,7 @@
 		9FABA029286C06FE00B5630A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				9FB1A3CA28973FFB006E27A9 /* Common */,
 				9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */,
 				9F831532286FED8500B6FCDF /* RendererDelegateAdapter.h */,
 				9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */,
@@ -509,6 +511,14 @@
 				9F8315402870FC3400B6FCDF /* Shaders.metal */,
 			);
 			path = "triangle-with-animation";
+			sourceTree = "<group>";
+		};
+		9FB1A3CA28973FFB006E27A9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				9FB1A3CB28974055006E27A9 /* ResourceBundle.hpp */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -5,10 +5,12 @@
 //  Created by Dmitrii Belousov on 7/10/22.
 //
 
-#include "ObjModelImporter.hpp"
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
+
+#include "ObjModelImporter.hpp"
+#include "Common/ResourceBundle.hpp"
 
 const std::unique_ptr<const ImportedModelData> ObjModelImporter::import(const char * resourceName, const char * resourceType) const {
   std::vector<VertexData> vertexData {};
@@ -18,7 +20,7 @@ const std::unique_ptr<const ImportedModelData> ObjModelImporter::import(const ch
   std::string line;
   std::ifstream file;
   try {
-	file.open(absolutePath(resourceName, resourceType), std::ifstream::in);
+	file.open(ResourceBundle::absolutePath(resourceName, resourceType), std::ifstream::in);
 	if (file.is_open()) {
 	  std::vector<glm::vec3> vertices {};
 	  std::vector<glm::vec2> textures {};
