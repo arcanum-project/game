@@ -31,10 +31,20 @@ public:
 	char resourcePath[PATH_MAX];
 	CFURLGetFileSystemRepresentation(resourceUrlRef, true,
 									 (uint8_t *)resourcePath, PATH_MAX);
+	// Clean up memory
+	CFRetain(resourceUrlRef);
 	CFRelease(resourceUrlRef);
+	
+	CFRetain(resourceTypeRef);
 	CFRelease(resourceTypeRef);
+	
+	CFRetain(resourceNameRef);
 	CFRelease(resourceNameRef);
+	
+	CFRetain(allocatorRef);
 	CFRelease(allocatorRef);
+	
+	CFRetain(bundleRef);
 	CFRelease(bundleRef);
 	
 	return std::string(resourcePath);

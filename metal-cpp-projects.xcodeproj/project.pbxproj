@@ -114,6 +114,10 @@
 		9FABA038286FBF1400B5630A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FABA037286FBF1400B5630A /* Assets.xcassets */; };
 		9FABA03B286FBF1400B5630A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FABA039286FBF1400B5630A /* Main.storyboard */; };
 		9FABA03D286FBF1400B5630A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABA03C286FBF1400B5630A /* main.m */; };
+		9FB1A3CE289743CA006E27A9 /* BMPImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1A3CC289743CA006E27A9 /* BMPImporter.cpp */; };
+		9FB1A3D2289B7A42006E27A9 /* TextureController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */; };
+		9FB1A3D7289C49FD006E27A9 /* tiletexture.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9FB1A3D6289C49D8006E27A9 /* tiletexture.bmp */; };
+		9FB1A3D9289CE20F006E27A9 /* tile-adjusted-uv.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9FB1A3D8289CE1F8006E27A9 /* tile-adjusted-uv.obj */; };
 		9FD2BB34288E3C9800D3E983 /* train.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67D6288E29310057DE5F /* train.mtl */; };
 		9FD2BB35288E3C9800D3E983 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67D5288E29310057DE5F /* train.obj */; };
 		9FD2BB392890E7C200D3E983 /* grid.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2BB382890E7B700D3E983 /* grid.obj */; };
@@ -243,10 +247,16 @@
 		9FABA03C286FBF1400B5630A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9FABA03E286FBF1400B5630A /* triangle_with_animation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = triangle_with_animation.entitlements; sourceTree = "<group>"; };
 		9FB1A3CB28974055006E27A9 /* ResourceBundle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourceBundle.hpp; sourceTree = "<group>"; };
+		9FB1A3CC289743CA006E27A9 /* BMPImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BMPImporter.cpp; sourceTree = "<group>"; };
+		9FB1A3CD289743CA006E27A9 /* BMPImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BMPImporter.hpp; sourceTree = "<group>"; };
+		9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextureController.cpp; sourceTree = "<group>"; };
+		9FB1A3D1289B7A42006E27A9 /* TextureController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TextureController.hpp; sourceTree = "<group>"; };
+		9FB1A3D3289B811B006E27A9 /* PixelData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PixelData.hpp; sourceTree = "<group>"; };
+		9FB1A3D6289C49D8006E27A9 /* tiletexture.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = tiletexture.bmp; sourceTree = "<group>"; };
+		9FB1A3D8289CE1F8006E27A9 /* tile-adjusted-uv.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "tile-adjusted-uv.obj"; sourceTree = "<group>"; };
 		9FD2BB37288F1D0E00D3E983 /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
 		9FD2BB382890E7B700D3E983 /* grid.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grid.obj; sourceTree = "<group>"; };
 		9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchableMTKView.m; sourceTree = "<group>"; };
-		9FD2BB3C28931FB400D3E983 /* WodBse0d_0.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = WodBse0d_0.bmp; sourceTree = "<group>"; };
 		9FD2BB3D28931FB400D3E983 /* WodBse0d.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WodBse0d.ini; sourceTree = "<group>"; };
 		9FD2BB3E28936AAE00D3E983 /* tile.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tile.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -386,8 +396,9 @@
 		9F3F67D4288E28F40057DE5F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9FB1A3D8289CE1F8006E27A9 /* tile-adjusted-uv.obj */,
+				9FB1A3D6289C49D8006E27A9 /* tiletexture.bmp */,
 				9FD2BB3E28936AAE00D3E983 /* tile.obj */,
-				9FD2BB3C28931FB400D3E983 /* WodBse0d_0.bmp */,
 				9FD2BB3D28931FB400D3E983 /* WodBse0d.ini */,
 				9FD2BB382890E7B700D3E983 /* grid.obj */,
 				9F3F67D6288E29310057DE5F /* train.mtl */,
@@ -493,6 +504,11 @@
 				9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */,
 				9F4D58132895AF8000FF18D4 /* Movement.hpp */,
 				9F4D58142895AFB200FF18D4 /* Movement.cpp */,
+				9FB1A3CC289743CA006E27A9 /* BMPImporter.cpp */,
+				9FB1A3CD289743CA006E27A9 /* BMPImporter.hpp */,
+				9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */,
+				9FB1A3D1289B7A42006E27A9 /* TextureController.hpp */,
+				9FB1A3D3289B811B006E27A9 /* PixelData.hpp */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -691,6 +707,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FB1A3D9289CE20F006E27A9 /* tile-adjusted-uv.obj in Resources */,
+				9FB1A3D7289C49FD006E27A9 /* tiletexture.bmp in Resources */,
 				9FD2BB3F28936ACC00D3E983 /* tile.obj in Resources */,
 				9FD2BB392890E7C200D3E983 /* grid.obj in Resources */,
 				9FD2BB34288E3C9800D3E983 /* train.mtl in Resources */,
@@ -772,9 +790,11 @@
 				9F3F67C1288DDC6D0057DE5F /* Uniforms.cpp in Sources */,
 				9F3F67AE288DDBD60057DE5F /* ViewController.m in Sources */,
 				9FD2BB3B2890F18100D3E983 /* TouchableMTKView.m in Sources */,
+				9FB1A3D2289B7A42006E27A9 /* TextureController.cpp in Sources */,
 				9F3F67C2288DDC6D0057DE5F /* VertexDescriptor.cpp in Sources */,
 				9F3F67CB288DE2A30057DE5F /* Camera.cpp in Sources */,
 				9F3F67C3288DDC6D0057DE5F /* Math.cpp in Sources */,
+				9FB1A3CE289743CA006E27A9 /* BMPImporter.cpp in Sources */,
 				9F3F67D9288E2FD90057DE5F /* Renderer.cpp in Sources */,
 				9F3F67CE288DE3290057DE5F /* GameScene.cpp in Sources */,
 				9F3F67DB288E308F0057DE5F /* Shaders.metal in Sources */,

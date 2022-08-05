@@ -17,24 +17,28 @@ struct Uniforms
 };
 
 enum BufferIndices {
+  TextureBuffer = 0,
   InstanceDataBuffer = 1,
   UniformsBuffer = 11
 };
   
 enum Attributes {
   VertexCoordinates = 0,
+  TextureCoordinates = 1,
   NormalCoordinates = 2
 };
 
 struct VertexIn
 {
   float4 position [[attribute(Attributes::VertexCoordinates)]];
+  float2 texture [[attribute(Attributes::TextureCoordinates)]];
   float3 normal [[attribute(Attributes::NormalCoordinates)]];
 };
 
 struct VertexOut
 {
   float4 position [[position]];
+  float2 texture;
   float3 normal;
 };
   
@@ -44,20 +48,23 @@ struct InstanceData {
 
 vertex VertexOut vertex_main(
 							 VertexIn in [[stage_in]],
-							 constant Uniforms &uniforms [[buffer(BufferIndices::UniformsBuffer)]],
+							 constant Uniforms & uniforms [[buffer(BufferIndices::UniformsBuffer)]],
 							 device const InstanceData * instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
 							 uint instanceId [[instance_id]]
-							 )
-{
-  VertexOut out
-  {
+							 ) {
+  VertexOut out {
 	.position = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * instanceData[instanceId].instanceTransform * in.position,
+	.texture = in.texture,
 	.normal = in.normal
   };
   return out;
 }
 
-fragment float4 fragment_main(VertexOut in [[stage_in]])
-{
-  return float4(in.normal, 1);
+fragment float4 fragment_main(VertexOut in [[stage_in]],
+							  texture2d<half, access::sample> colorTexture [[texture(BufferIndices::TextureBuffer)]]) {
+  constexpr sampler textureSampler;
+
+  // Sample the texture to obtain a color
+  const half4 colorSample = colorTexture.sample(textureSampler, in.texture);
+  return float4(colorSample);
 }

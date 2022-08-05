@@ -25,5 +25,5 @@ GameScene::GameScene(MTL::Device * const pDevice)
 
 const std::shared_ptr<const Model> GameScene::importTile(MTL::Device * const pDevice) {
   const std::unique_ptr<const ImportedModelData> imported = ObjModelImporter().import("tile", "obj");
-  return std::make_shared<Model>(imported->vertexData, imported->indices, pDevice, RenderingConstants::NumOfTilesPerSector, RenderingConstants::MaxBuffersInFlight);
+  return std::make_shared<const Model>(imported->vertexData, imported->indices, pDevice, RenderingConstants::NumOfTilesPerSector, RenderingConstants::MaxBuffersInFlight, "tiletexture", "bmp");
 }

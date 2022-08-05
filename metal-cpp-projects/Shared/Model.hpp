@@ -23,7 +23,7 @@ struct InstanceData {
 class Model : public Transformable
 {
 public:
-  Model(const std::vector<VertexData> vertexData, const std::vector<uint16_t> indices, MTL::Device * const pDevice, const uint16_t instanceCount, const uint16_t maxBuffersInFlight);
+  Model(const std::vector<VertexData> vertexData, const std::vector<uint16_t> indices, MTL::Device * const pDevice, const uint16_t instanceCount, const uint16_t maxBuffersInFlight, const char * textureImgName, const char * textureImgType);
   ~Model();
   
   inline const std::vector<uint16_t> & indices() const { return _indices; }
@@ -47,6 +47,8 @@ public:
 	
 	renderEncoder->setVertexBuffer(vertexBuffer(), 0, BufferIndices::VertexBuffer);
 	renderEncoder->setVertexBuffer(pInstanceDataBuffer, 0, BufferIndices::InstanceDataBuffer);
+
+	renderEncoder->setFragmentTexture(_pTexture, BufferIndices::TextureBuffer);
 	
 	_instanceCount > 1
 	? renderEncoder->drawIndexedPrimitives(MTL::PrimitiveTypeTriangle, indices().size(), MTL::IndexTypeUInt16, indexBuffer(), 0, _instanceCount)
@@ -54,6 +56,7 @@ public:
   }
 
 private:
+  MTL::Device * const _pDevice;
   const std::vector<VertexData> _vertexData;
   const std::vector<uint16_t> _indices;
   const uint16_t _instanceCount;
@@ -61,4 +64,5 @@ private:
   MTL::Buffer * const _pVertexBuffer;
   MTL::Buffer * const _pIndexBuffer;
   std::vector<MTL::Buffer *> _pInstanceDataBuffer;
+  MTL::Texture * const _pTexture;
 };

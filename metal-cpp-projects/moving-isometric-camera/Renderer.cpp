@@ -99,7 +99,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   Uniforms & uf = Uniforms::getInstance();
   uf.setViewMatrix(_pGameScene->pCamera()->viewMatrix());
   uf.setProjectionMatrix(_pGameScene->pCamera()->projectionMatrix());
-  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
+//  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
   _frame = (_frame + 1) % RenderingConstants::MaxBuffersInFlight;
   
   for (const std::shared_ptr<const Model> & pModel : _pGameScene->models()) {
