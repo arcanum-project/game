@@ -81,7 +81,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   MTL::RenderPassDescriptor * pRpd = MTL::RenderPassDescriptor::alloc()->init();
   pRpd->colorAttachments()->object(0)->setTexture(pDrawable->texture());
   pRpd->colorAttachments()->object(0)->setLoadAction(MTL::LoadActionClear);
-  pRpd->colorAttachments()->object(0)->setClearColor(MTL::ClearColor::Make(0.0, 0.5, 0.5, 1.0));
+  pRpd->colorAttachments()->object(0)->setClearColor(MTL::ClearColor::Make(0.0f, 0.0f, 1.0f, 1.0));
   
   MTL::RenderPassDepthAttachmentDescriptor * pRenderPassDepthAttachmentDesc = MTL::RenderPassDepthAttachmentDescriptor::alloc()->init();
   pRenderPassDepthAttachmentDesc->setTexture(pDepthTexture);

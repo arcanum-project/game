@@ -67,4 +67,5 @@ fragment float4 fragment_main(VertexOut in [[stage_in]],
   // Sample the texture to obtain a color
   const half4 colorSample = colorTexture.sample(textureSampler, in.texture);
   return float4(colorSample);
+//  return float4(in.normal, 1);
 }
