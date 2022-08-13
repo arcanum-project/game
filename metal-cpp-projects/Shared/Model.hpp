@@ -15,6 +15,7 @@
 #include "VertexData.hpp"
 #include "Uniforms.hpp"
 #include "Constants.hpp"
+#include "MemoryAlignment.hpp"
 
 struct InstanceData {
   glm::mat4x4 instanceTransform;
@@ -43,7 +44,10 @@ public:
 	
 	Uniforms & uf = Uniforms::getInstance();
 	uf.setModelMatrix(modelMatrix());
-	renderEncoder->setVertexBytes(&uf, sizeof(Uniforms), BufferIndices::UniformsBuffer);
+	renderEncoder->setVertexBytes(&uf,
+								  // Based on: https://stackoverflow.com/questions/54930382/is-the-glm-math-library-compatible-with-apples-metal-shading-language
+								  MemoryAlignment::roundUpToNextMultipleOf16(sizeof(Uniforms)),
+								  BufferIndices::UniformsBuffer);
 	
 	renderEncoder->setVertexBuffer(vertexBuffer(), 0, BufferIndices::VertexBuffer);
 	renderEncoder->setVertexBuffer(pInstanceDataBuffer, 0, BufferIndices::InstanceDataBuffer);

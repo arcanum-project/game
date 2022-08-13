@@ -50,8 +50,8 @@ vertex VertexOut vertex_main(
 							 VertexIn in [[stage_in]],
 							 constant Uniforms & uniforms [[buffer(BufferIndices::UniformsBuffer)]],
 							 device const InstanceData * instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
-							 uint instanceId [[instance_id]]
-							 ) {
+							 uint instanceId [[instance_id]])
+{
   VertexOut out {
 	.position = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * instanceData[instanceId].instanceTransform * in.position,
 	.texture = in.texture,

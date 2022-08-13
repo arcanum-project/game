@@ -258,6 +258,7 @@
 		9FB1A3D8289CE1F8006E27A9 /* tile-adjusted-uv.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "tile-adjusted-uv.obj"; sourceTree = "<group>"; };
 		9FB1A3DA289D9842006E27A9 /* tile-adjusted-uv-2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "tile-adjusted-uv-2.obj"; sourceTree = "<group>"; };
 		9FB1A3DC289E1F37006E27A9 /* GrsBse0a_0.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = GrsBse0a_0.bmp; sourceTree = "<group>"; };
+		9FB1E3C628A6133F006E27A9 /* MemoryAlignment.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MemoryAlignment.hpp; sourceTree = "<group>"; };
 		9FD2BB37288F1D0E00D3E983 /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
 		9FD2BB382890E7B700D3E983 /* grid.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grid.obj; sourceTree = "<group>"; };
 		9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchableMTKView.m; sourceTree = "<group>"; };
@@ -539,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				9FB1A3CB28974055006E27A9 /* ResourceBundle.hpp */,
+				9FB1E3C628A6133F006E27A9 /* MemoryAlignment.hpp */,
 			);
 			path = Common;
 			sourceTree = "<group>";
