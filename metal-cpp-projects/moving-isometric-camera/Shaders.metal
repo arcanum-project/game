@@ -53,7 +53,7 @@ vertex VertexOut vertex_main(
 							 uint instanceId [[instance_id]])
 {
   float4 tileCenter = instanceData[instanceId].instanceTransform[3];
-  const float4 projectedTileCenterPosition = uniforms.projectionMatrix * uniforms.viewMatrix * tileCenter;
+  const float4 projectedTileCenterPosition = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * tileCenter;
   const float2 boundingRadius = float2(1.0f, 1.0f);
   // We divide by w to convert clip coordinates to actual NDC coordinates. Normally this will be done for us under the hood, but here we need to do it ourselves to check for visibility
   const bool isOutsideRightBounds = (projectedTileCenterPosition.x + boundingRadius.x) / projectedTileCenterPosition.w > 1.0f ? true : false;

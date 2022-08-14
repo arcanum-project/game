@@ -115,7 +115,7 @@ public:
   }
   
   /**
-   Convert X, Y coordinates from screen space to clip space (aka NDC).
+   Convert X, Y coordinates from screen space to clip space.
    */
   inline const glm::vec3 screenToClip(const float_t & x, const float_t & y, const float_t & screenWidth, const float_t & screenHeight) const {
 	glm::vec4 vec = glm::vec4(x, y, .0f, 1.0f);
