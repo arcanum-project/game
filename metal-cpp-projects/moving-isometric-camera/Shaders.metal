@@ -52,6 +52,17 @@ vertex VertexOut vertex_main(
 							 device const InstanceData * instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
 							 uint instanceId [[instance_id]])
 {
+  float4 tileCenter = instanceData[instanceId].instanceTransform[3];
+  const float4 projectedTileCenterPosition = uniforms.projectionMatrix * uniforms.viewMatrix * tileCenter;
+  const float2 boundingRadius = float2(1.0f, 1.0f);
+  const bool isOutsideRightBounds = (projectedTileCenterPosition.x + boundingRadius.x) / projectedTileCenterPosition.w > 1.0f ? true : false;
+  const bool isOutsideLeftBounds = (projectedTileCenterPosition.x - boundingRadius.x) / projectedTileCenterPosition.w < -1.0f ? true : false;
+  const bool isOutsideLowerBounds = (projectedTileCenterPosition.y - boundingRadius.y) / projectedTileCenterPosition.w < -1.0f ? true : false;
+  const bool isOutsideUpperBounds = (projectedTileCenterPosition.y + boundingRadius.y) / projectedTileCenterPosition.w > 1.0f ? true : false;
+  bool isVisible = true;
+  if (isOutsideLeftBounds || isOutsideRightBounds || isOutsideLowerBounds || isOutsideUpperBounds) {
+	isVisible = false;
+  }
   VertexOut out {
 	.position = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * instanceData[instanceId].instanceTransform * in.position,
 	.texture = in.texture,

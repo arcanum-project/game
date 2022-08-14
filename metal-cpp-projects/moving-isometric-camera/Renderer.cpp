@@ -48,6 +48,7 @@ void Renderer::buildShaders() {
   pDesc->setVertexFunction(pVertexFn);
   pDesc->setFragmentFunction(pFragmentFn);
   pDesc->setVertexDescriptor(VertexDescriptor::getInstance().getDefaultLayout());
+//  pDesc->setSupportIndirectCommandBuffers(true);
   NS::Error* pError = nullptr;
   _pPSO = _pDevice->newRenderPipelineState(pDesc, &pError);
   if (!_pPSO)
