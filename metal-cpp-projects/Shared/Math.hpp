@@ -115,16 +115,17 @@ public:
   }
   
   /**
-   Convert X, Y coordinates from screen space to clip space.
+   Convert X, Y coordinates from screen space to NDC space.
+   Based on: https://stackoverflow.com/questions/54827687/normalized-device-coordinate-metal-coming-from-opengl
    */
-  inline const glm::vec3 screenToClip(const float_t & x, const float_t & y, const float_t & screenWidth, const float_t & screenHeight) const {
+  inline const glm::vec3 screenToNDC(const float_t & x, const float_t & y, const float_t & screenWidth, const float_t & screenHeight) const {
 	glm::vec4 vec = glm::vec4(x, y, .0f, 1.0f);
 	const float_t scaleX = 2.0f / screenWidth;
 	const float_t scaleY = -2.0f / screenHeight;
 	const glm::mat4x4 scaleMat = glm::mat4x4({ scaleX, .0f, .0f, .0f }, { .0f, scaleY, .0f, .0f }, { .0f, .0f, .0f, .0f }, { -1.0f, 1.0f, .0f, .0f });
-	glm::vec3 clipped = glm::vec3(scaleMat * vec);
-	clipped.z = .0f;
-	return clipped;
+	glm::vec3 ndc = glm::vec3(scaleMat * vec);
+	ndc.z = .0f;
+	return ndc;
   }
 
 private:

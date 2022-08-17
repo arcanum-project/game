@@ -27,7 +27,7 @@ public:
 	const float_t y = yCoordinate();
 	// Start moving if we actually clicked somewhere
 	if (x == _defaultCoordinateVal || y == _defaultCoordinateVal) {
-	  if (_clippedOffsetX != _defaultCoordinateVal || _clippedOffsetY != _defaultCoordinateVal)
+	  if (_ndcOffsetX != _defaultCoordinateVal || _ndcOffsetY != _defaultCoordinateVal)
 		moveCameraInSameDirection(adjustedDeltaTime);
 	} else {
 	  moveCameraInNewDirection(adjustedDeltaTime, x, y);
@@ -36,12 +36,12 @@ public:
 
 private:
   const float_t _defaultCoordinateVal;
-  float_t _clippedOffsetX;
-  float_t _clippedOffsetY;
+  float_t _ndcOffsetX;
+  float_t _ndcOffsetY;
   
   inline void moveCameraInSameDirection(const float_t & adjustedDeltaTime) {
-	const float_t moveByX = moveBy(_clippedOffsetX, adjustedDeltaTime);
-	const float_t moveByY = moveBy(_clippedOffsetY, adjustedDeltaTime);
+	const float_t moveByX = moveBy(_ndcOffsetX, adjustedDeltaTime);
+	const float_t moveByY = moveBy(_ndcOffsetY, adjustedDeltaTime);
 	setPosition(position() + glm::vec3(moveByX, moveByY, .0f));
   }
   
@@ -64,9 +64,9 @@ private:
   inline void moveCameraInNewDirection(const float_t & adjustedDeltaTime, const float_t & x, const float_t & y) {
 	const Math & m = Math::getInstance();
 	const Uniforms & uf = Uniforms::getInstance();
-	const glm::vec3 targetClipCoords = m.screenToClip(x, y, uf.drawableWidth(), uf.drawableHeight());
-	_clippedOffsetX = targetClipCoords.x;
-	_clippedOffsetY = targetClipCoords.y;
+	const glm::vec3 targetNDCCoords = m.screenToNDC(x, y, uf.drawableWidth(), uf.drawableHeight());
+	_ndcOffsetX = targetNDCCoords.x;
+	_ndcOffsetY = targetNDCCoords.y;
 	setCoordinates(_defaultCoordinateVal, _defaultCoordinateVal);
 	moveCameraInSameDirection(adjustedDeltaTime);
   }

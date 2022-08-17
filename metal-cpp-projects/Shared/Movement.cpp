@@ -9,8 +9,8 @@
 
 Movement::Movement()
 : _defaultCoordinateVal(.0f),
-  _clippedOffsetX(_defaultCoordinateVal),
-  _clippedOffsetY(_defaultCoordinateVal)
+  _ndcOffsetX(_defaultCoordinateVal),
+  _ndcOffsetY(_defaultCoordinateVal)
 {}
 
 Movement::~Movement() {};

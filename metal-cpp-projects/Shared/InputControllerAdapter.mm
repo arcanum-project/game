@@ -7,7 +7,6 @@
 
 #import "InputControllerAdapter.h"
 #import "InputControllerBridge.h"
-#import "Uniforms.hpp"
 
 @implementation InputControllerAdapter
 
