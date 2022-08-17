@@ -34,6 +34,9 @@ Model::Model(const std::vector<VertexData> vertexData, const std::vector<uint16_
 
 Model::~Model() {
   _pTexture->release();
+  for (MTL::Buffer * const pBuffer : _pUniformsBuffer) {
+	pBuffer->release();
+  }
   for (MTL::Buffer * const pBuffer : _pInstanceDataBuffer) {
 	pBuffer->release();
   }
