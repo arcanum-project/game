@@ -18,7 +18,10 @@ typedef enum {
   VertexBuffer = 0,
   TextureBuffer = 0,
   InstanceDataBuffer = 1,
-  UniformsBuffer = 11
+  IndexBuffer = 2,
+  UniformsBuffer = 11,
+  ICBBuffer = 16,
+  ICBArgumentsBuffer = 17
 } BufferIndices;
 
 typedef enum {

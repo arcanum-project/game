@@ -16,11 +16,20 @@ Model::Model(const std::vector<VertexData> vertexData, const std::vector<uint16_
   _pVertexBuffer(pDevice->newBuffer(_vertexData.data(), _vertexData.size() * sizeof(VertexData), MTL::ResourceStorageModeShared)),
   _pIndexBuffer(pDevice->newBuffer(_indices.data(), _indices.size() * sizeof(uint16_t), MTL::ResourceStorageModeShared)),
   _pInstanceDataBuffer(std::vector<MTL::Buffer *>(maxBuffersInFlight)),
+  _pUniformsBuffer(std::vector<MTL::Buffer *>(maxBuffersInFlight)),
   _pTexture(TextureController::instance(pDevice).makeTexture(textureImgName, textureImgType)) {
 	const size_t instanceDataSize = instanceCount * sizeof(InstanceData);
 	for (size_t i = 0; i < maxBuffersInFlight; i++) {
 	  _pInstanceDataBuffer[i] = pDevice->newBuffer(instanceDataSize, MTL::ResourceStorageModeShared);
 	}
+	
+	const size_t uniformsSize = MemoryAlignment::roundUpToNextMultipleOf16(sizeof(Uniforms));
+	for (size_t i = 0; i < maxBuffersInFlight; i++) {
+	  _pUniformsBuffer[i] = pDevice->newBuffer(uniformsSize, MTL::ResourceStorageModeShared);
+	}
+	
+	_pVertexBuffer->setLabel(NS::String::string("Vertices", NS::UTF8StringEncoding));
+	_pIndexBuffer->setLabel(NS::String::string("Indices", NS::UTF8StringEncoding));
   }
 
 Model::~Model() {

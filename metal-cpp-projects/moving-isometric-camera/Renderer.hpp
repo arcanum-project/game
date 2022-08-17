@@ -34,6 +34,9 @@ private:
   MTL::CommandQueue * const _pCommandQueue;
   MTL::RenderPipelineState * _pPSO;
   MTL::DepthStencilState * _pDepthStencilState;
+  MTL::ComputePipelineState * _pComputePipelineState;
+  MTL::IndirectCommandBuffer * _pIndirectCommandBuffer;
+  MTL::Buffer * _pIcbArgumentBuffer;
   float_t _angle;
   GameScene * const _pGameScene;
   uint16_t _frame;
