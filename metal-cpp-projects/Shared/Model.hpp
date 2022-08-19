@@ -33,6 +33,7 @@ public:
   inline const MTL::Buffer * const indexBuffer() const { return _pIndexBuffer; }
   inline const std::vector<MTL::Buffer *> instanceDataBuffer() const { return _pInstanceDataBuffer; }
   inline const std::vector<MTL::Buffer *> uniformsBuffer() const { return _pUniformsBuffer; }
+  inline const MTL::Texture * const texture() const { return _pTexture; }
   
   inline void render(MTL::ComputeCommandEncoder * const pComputeEncoder, const uint16_t & frame) const {
 	MTL::Buffer * const pInstanceDataBuffer = _pInstanceDataBuffer.at(frame);

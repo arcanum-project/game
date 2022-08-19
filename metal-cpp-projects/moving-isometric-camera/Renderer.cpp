@@ -23,6 +23,8 @@ Renderer::Renderer(MTL::Device * const _pDevice)
   _pIndirectCommandBuffer(nullptr),
   // Argument buffer containing the indirect command buffer encoded in the kernel
   _pIcbArgumentBuffer(nullptr),
+  _pTileVisibilityKernelFn(nullptr),
+  _pModelsBuffer(nullptr),
   _angle(0.f),
   _pGameScene(new GameScene(_pDevice)),
   _frame(0u),
@@ -30,10 +32,13 @@ Renderer::Renderer(MTL::Device * const _pDevice)
   _lastTimeSeconds(std::chrono::system_clock::now()) {
 	buildShaders();
 	buildDepthStencilState();
+	initializeModels();
 }
 
 Renderer::~Renderer() {
   delete _pGameScene;
+  _pModelsBuffer->release();
+  _pTileVisibilityKernelFn->release();
   _pIcbArgumentBuffer->release();
   _pIndirectCommandBuffer->release();
   _pComputePipelineState->release();
@@ -70,9 +75,9 @@ void Renderer::buildShaders() {
   
   // Make compute pipeline
   
-  MTL::Function * const pTileVisibilityKernelFn = pLib->newFunction(NS::String::string("cullTilesAndEncodeCommands", NS::UTF8StringEncoding));
+  _pTileVisibilityKernelFn = pLib->newFunction(NS::String::string("cullTilesAndEncodeCommands", NS::UTF8StringEncoding));
   
-  _pComputePipelineState = _pDevice->newComputePipelineState(pTileVisibilityKernelFn, &pError);
+  _pComputePipelineState = _pDevice->newComputePipelineState(_pTileVisibilityKernelFn, &pError);
   if (!_pComputePipelineState) {
 	__builtin_printf("%s", pError->localizedDescription()->utf8String());
   }
@@ -106,14 +111,13 @@ void Renderer::buildShaders() {
   // Make ICB Argument buffer
   // Argument buffer containing the indirect command buffer encoded in the kernel
   
-  MTL::ArgumentEncoder * const pArgumentEncoder = pTileVisibilityKernelFn->newArgumentEncoder(BufferIndices::ICBBuffer);
+  MTL::ArgumentEncoder * const pArgumentEncoder = _pTileVisibilityKernelFn->newArgumentEncoder(BufferIndices::ICBBuffer);
   _pIcbArgumentBuffer = _pDevice->newBuffer(pArgumentEncoder->encodedLength(), MTL::ResourceStorageModeShared);
   _pIcbArgumentBuffer->setLabel(NS::String::string("ICB Argument Buffer", NS::UTF8StringEncoding));
   pArgumentEncoder->setArgumentBuffer(_pIcbArgumentBuffer, 0);
   pArgumentEncoder->setIndirectCommandBuffer(_pIndirectCommandBuffer, BufferIndices::ICBArgumentsBuffer);
   
   pArgumentEncoder->release();
-  pTileVisibilityKernelFn->release();
   pLib->release();
 }
 
@@ -123,6 +127,15 @@ void Renderer::buildDepthStencilState() {
   pDepthStencilDesc->setDepthWriteEnabled(true);
   _pDepthStencilState = _pDevice->newDepthStencilState(pDepthStencilDesc);
   pDepthStencilDesc->release();
+}
+
+void Renderer::initializeModels() {
+  MTL::ArgumentEncoder * const pArgumentEncoder = _pTileVisibilityKernelFn->newArgumentEncoder(BufferIndices::ModelsBuffer);
+  _pModelsBuffer = _pDevice->newBuffer(pArgumentEncoder->encodedLength(), MTL::ResourceStorageModeShared);
+  pArgumentEncoder->setArgumentBuffer(_pModelsBuffer, 0);
+  pArgumentEncoder->setTexture(_pGameScene->models().at(0)->texture(), 0);
+  
+  pArgumentEncoder->release();
 }
 
 void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::Texture * const pDepthTexture) {
@@ -160,11 +173,13 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
 	pModel->render(pComputeEncoder, _frame);
   }
   pComputeEncoder->setBuffer(_pIcbArgumentBuffer, 0, BufferIndices::ICBBuffer);
+  pComputeEncoder->setBuffer(_pModelsBuffer, 0, BufferIndices::ModelsBuffer);
   // Call useResource on '_indirectCommandBuffer' which indicates to Metal that the kernel will
   // access '_indirectCommandBuffer'.  It is necessary because the app cannot directly set
   // '_indirectCommandBuffer' in 'computeEncoder', but, rather, must pass it to the kernel via
   // an argument buffer which indirectly contains '_indirectCommandBuffer'.
   pComputeEncoder->useResource(_pIndirectCommandBuffer, MTL::ResourceUsageWrite);
+  pComputeEncoder->useResource(_pGameScene->models().at(0)->texture(), MTL::ResourceUsageSample);
   const uint64_t threadExecutionWidth = _pComputePipelineState->threadExecutionWidth();
   pComputeEncoder->dispatchThreads(MTL::Size(RenderingConstants::NumOfTilesPerSector, 1, 1), MTL::Size(threadExecutionWidth, 1, 1));
   pComputeEncoder->endEncoding();
@@ -187,7 +202,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   MTL::RenderCommandEncoder * const pEnc = pCmdBuf->renderCommandEncoder(pRpd);
   pEnc->setRenderPipelineState(_pPSO);
   pEnc->setDepthStencilState(_pDepthStencilState);
-  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
+//  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
   pEnc->executeCommandsInBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingConstants::NumOfTilesPerSector));
   pEnc->endEncoding();
   

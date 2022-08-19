@@ -37,6 +37,8 @@ private:
   MTL::ComputePipelineState * _pComputePipelineState;
   MTL::IndirectCommandBuffer * _pIndirectCommandBuffer;
   MTL::Buffer * _pIcbArgumentBuffer;
+  MTL::Function * _pTileVisibilityKernelFn;
+  MTL::Buffer * _pModelsBuffer;
   float_t _angle;
   GameScene * const _pGameScene;
   uint16_t _frame;
@@ -45,6 +47,7 @@ private:
 	
   void buildShaders();
   void buildDepthStencilState();
+  void initializeModels();
 };
 
 #endif /* Renderer_hpp */
