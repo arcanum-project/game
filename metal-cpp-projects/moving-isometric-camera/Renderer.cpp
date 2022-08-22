@@ -11,6 +11,7 @@
 
 #include "Renderer.hpp"
 #include "Constants.hpp"
+#include "TextureController.hpp"
 
 #pragma region Renderer {
 
@@ -130,10 +131,18 @@ void Renderer::buildDepthStencilState() {
 }
 
 void Renderer::initializeModels() {
+  TextureController & txController = TextureController::instance(_pDevice);
+  txController.makeHeap();
+  txController.moveTexturesToHeap(_pCommandQueue);
+  
   MTL::ArgumentEncoder * const pArgumentEncoder = _pTileVisibilityKernelFn->newArgumentEncoder(BufferIndices::ModelsBuffer);
   _pModelsBuffer = _pDevice->newBuffer(pArgumentEncoder->encodedLength(), MTL::ResourceStorageModeShared);
   pArgumentEncoder->setArgumentBuffer(_pModelsBuffer, 0);
-  pArgumentEncoder->setTexture(_pGameScene->models().at(0)->texture(), 0);
+  pArgumentEncoder->setTextures(txController.textures().data(), NS::Range(0, txController.textures().size()));
+//  for (uint16_t i = 0; i < txController.textures().size(); i++) {
+//	pArgumentEncoder->setTexture(txController.textures().at(i), i);
+//  }
+  pArgumentEncoder->setTexture(txController.textures().at(0), 0);
   
   pArgumentEncoder->release();
 }
@@ -179,7 +188,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   // '_indirectCommandBuffer' in 'computeEncoder', but, rather, must pass it to the kernel via
   // an argument buffer which indirectly contains '_indirectCommandBuffer'.
   pComputeEncoder->useResource(_pIndirectCommandBuffer, MTL::ResourceUsageWrite);
-  pComputeEncoder->useResource(_pGameScene->models().at(0)->texture(), MTL::ResourceUsageSample);
+  pComputeEncoder->useHeap(TextureController::instance(_pDevice).heap());
   const uint64_t threadExecutionWidth = _pComputePipelineState->threadExecutionWidth();
   pComputeEncoder->dispatchThreads(MTL::Size(RenderingConstants::NumOfTilesPerSector, 1, 1), MTL::Size(threadExecutionWidth, 1, 1));
   pComputeEncoder->endEncoding();

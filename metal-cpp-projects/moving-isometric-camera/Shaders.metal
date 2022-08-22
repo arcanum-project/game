@@ -47,14 +47,18 @@ struct VertexOut
   float4 position [[position]];
   float2 texture;
   float3 normal;
+  ushort textureIndex;
 };
   
-struct InstanceData {
+typedef struct {
   float4x4 instanceTransform;
-};
+  ushort textureIndex;
+  // Padding to ensure that size of the struct is the same as we allocated memory for. This is crucial, because these structs are stored in an array
+  char pad[14];
+} InstanceData;
   
 struct ShaderMaterial {
-  texture2d<half, access::sample> baseColorTexture;
+  array<texture2d<half, access::sample>, 4096> baseColorTextures;
 };
   
 kernel void cullTilesAndEncodeCommands(uint tileIndex [[thread_position_in_grid]],
@@ -63,10 +67,15 @@ kernel void cullTilesAndEncodeCommands(uint tileIndex [[thread_position_in_grid]
 									   device const ushort * indices [[buffer(BufferIndices::IndexBuffer)]],
 									   device const InstanceData * instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
 									   device const ICBContainer * pIcbContainer [[buffer(BufferIndices::ICBBuffer)]],
-									   constant ShaderMaterial & material [[buffer(BufferIndices::ModelsBuffer)]]) {
+									   constant ShaderMaterial & material [[buffer(BufferIndices::ModelsBuffer)]]
+									   ) {
   const float4 tileCenter = instanceData[tileIndex].instanceTransform[3];
   const float4 projectedTileCenterPosition = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * tileCenter;
-  const float2 boundingRadius = float2(1.0f, 1.0f);
+  /* if bounding radius = 0, it means we will render only the tiles visible on screen.
+   However, it wil cause us to see tiles appear and disappear as we move camera.
+   To prevent that, we want to render tiles we see on screen and a few more tiles beyond the screen to create the illusion of continuous world
+  */
+  const float2 boundingRadius = float2(-0.8f, -0.8f);
   // We divide by w to convert clip coordinates to actual NDC coordinates. Normally this will be done for us under the hood, but here we need to do it ourselves to check for visibility
   const bool isOutsideRightBounds = (projectedTileCenterPosition.x + boundingRadius.x) / projectedTileCenterPosition.w > 1.0f ? true : false;
   const bool isOutsideLeftBounds = (projectedTileCenterPosition.x - boundingRadius.x) / projectedTileCenterPosition.w < -1.0f ? true : false;
@@ -100,7 +109,8 @@ vertex VertexOut vertex_main(
   VertexOut out {
 	.position = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * instanceData[instanceId].instanceTransform * in.position,
 	.texture = in.texture,
-	.normal = in.normal
+	.normal = in.normal,
+	.textureIndex = instanceData[instanceId].textureIndex
   };
   return out;
 }
@@ -111,7 +121,7 @@ fragment float4 fragment_main(VertexOut in [[stage_in]],
   constexpr sampler textureSampler;
 
   // Sample the texture to obtain a color
-  const half4 colorSample = material.baseColorTexture.sample(textureSampler, in.texture);
+  const half4 colorSample = material.baseColorTextures[in.textureIndex].sample(textureSampler, in.texture);
   return float4(colorSample);
-  //  return float4(in.normal, 1);
+//    return float4(in.normal, 1);
 }

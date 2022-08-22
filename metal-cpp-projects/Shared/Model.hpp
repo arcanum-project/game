@@ -7,10 +7,12 @@
 
 #pragma once
 
-#include "Metal/Metal.hpp"
+#include <Metal/Metal.hpp>
 #include <vector>
-#include "glm/vec3.hpp"
-#include "TargetConditionals.h"
+#include <glm/vec2.hpp>
+#include <TargetConditionals.h>
+#include <unordered_map>
+#include <string>
 
 #include "Transformable.hpp"
 #include "VertexData.hpp"
@@ -20,6 +22,9 @@
 
 struct InstanceData {
   glm::mat4x4 instanceTransform;
+  uint16_t textureIndex;
+  // Padding to ensure that sizeof(InstanceData) returns the size of the struct that we allocated memory for
+  char pad[12];
 };
 
 class Model : public Transformable
@@ -31,17 +36,20 @@ public:
   inline const std::vector<uint16_t> & indices() const { return _indices; }
   inline const MTL::Buffer * const vertexBuffer() const { return _pVertexBuffer; }
   inline const MTL::Buffer * const indexBuffer() const { return _pIndexBuffer; }
-  inline const std::vector<MTL::Buffer *> instanceDataBuffer() const { return _pInstanceDataBuffer; }
-  inline const std::vector<MTL::Buffer *> uniformsBuffer() const { return _pUniformsBuffer; }
-  inline const MTL::Texture * const texture() const { return _pTexture; }
+  inline const std::vector<MTL::Buffer *> instanceDataBuffer() const { return _pInstanceDataBuffers; }
+  inline const std::vector<MTL::Buffer *> uniformsBuffer() const { return _pUniformsBuffers; }
   
   inline void render(MTL::ComputeCommandEncoder * const pComputeEncoder, const uint16_t & frame) const {
-	MTL::Buffer * const pInstanceDataBuffer = _pInstanceDataBuffer.at(frame);
+	MTL::Buffer * const pInstanceDataBuffer = _pInstanceDataBuffers.at(frame);
 	InstanceData * pInstanceData = reinterpret_cast<InstanceData *>(pInstanceDataBuffer->contents());
 	for (size_t i = 0; i < RenderingConstants::NumOfTilesPerSector; ++i) {
 	  const float_t rowOffset = (float_t) (i % (RenderingConstants::NumOfTilesPerSector / RenderingConstants::NumOfTilesPerRow));
 	  const float_t columnOffset = (float_t) (i / (RenderingConstants::NumOfTilesPerSector / RenderingConstants::NumOfTilesPerRow));
 	  pInstanceData[i].instanceTransform = Math::getInstance().translation(rowOffset * 2.0f, 0.0f, columnOffset * 2.0f);
+	  const std::unordered_map<uint16_t, uint16_t>::const_iterator iterator = _instanceIdToTextureIndex.find(i);
+	  if (iterator == _instanceIdToTextureIndex.end())
+		throw std::runtime_error("Texture index not found for instanceId. instanceId = " + std::to_string(i));
+	  pInstanceData[i].textureIndex = iterator->second;
 	}
 #if defined(TARGET_OSX)
 	pInstanceDataBuffer->didModifyRange(NS::Range::Make(0, pInstanceDataBuffer->length()));
@@ -49,7 +57,7 @@ public:
 	
 	Uniforms & uf = Uniforms::getInstance();
 	uf.setModelMatrix(modelMatrix());
-	MTL::Buffer * const pUniformsBuffer = _pUniformsBuffer.at(frame);
+	MTL::Buffer * const pUniformsBuffer = _pUniformsBuffers.at(frame);
 	memcpy(pUniformsBuffer->contents(), & uf, MemoryAlignment::roundUpToNextMultipleOf16(sizeof(Uniforms)));
 #if defined(TARGET_OSX)
 	pUniformsBuffer->didModifyRange(NS::Range(0, pUniformsBuffer->length()));
@@ -74,7 +82,9 @@ private:
   
   MTL::Buffer * const _pVertexBuffer;
   MTL::Buffer * const _pIndexBuffer;
-  std::vector<MTL::Buffer *> _pInstanceDataBuffer;
-  std::vector<MTL::Buffer *> _pUniformsBuffer;
-  MTL::Texture * const _pTexture;
+  std::vector<MTL::Buffer *> _pInstanceDataBuffers;
+  std::vector<MTL::Buffer *> _pUniformsBuffers;
+  std::unordered_map<uint16_t, uint16_t> _instanceIdToTextureIndex;
+  
+  void loadTextures();
 };
