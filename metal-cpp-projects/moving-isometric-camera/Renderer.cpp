@@ -139,9 +139,6 @@ void Renderer::initializeModels() {
   _pModelsBuffer = _pDevice->newBuffer(pArgumentEncoder->encodedLength(), MTL::ResourceStorageModeShared);
   pArgumentEncoder->setArgumentBuffer(_pModelsBuffer, 0);
   pArgumentEncoder->setTextures(txController.textures().data(), NS::Range(0, txController.textures().size()));
-//  for (uint16_t i = 0; i < txController.textures().size(); i++) {
-//	pArgumentEncoder->setTexture(txController.textures().at(i), i);
-//  }
   pArgumentEncoder->setTexture(txController.textures().at(0), 0);
   
   pArgumentEncoder->release();
