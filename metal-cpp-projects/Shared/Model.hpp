@@ -9,7 +9,6 @@
 
 #include <Metal/Metal.hpp>
 #include <vector>
-#include <glm/vec2.hpp>
 #include <TargetConditionals.h>
 #include <unordered_map>
 #include <string>
