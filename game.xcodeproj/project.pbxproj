@@ -2576,6 +2576,8 @@
 		9F13D0AC28BC25E500C11694 /* drtwk24a_0.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = drtwk24a_0.bmp; sourceTree = "<group>"; };
 		9F13D0AE28BC25E500C11694 /* snwice2b_0.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = snwice2b_0.bmp; sourceTree = "<group>"; };
 		9F13D0AF28BC267D00C11694 /* tile.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tile.obj; sourceTree = "<group>"; };
+		9F13D59828BC31C700C11694 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		9F13D59B28BC326E00C11694 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9F3F67A4288DDBD60057DE5F /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F3F67A6288DDBD60057DE5F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9F3F67A7288DDBD60057DE5F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -14001,6 +14003,8 @@
 		9FABA00A286C064300B5630A = {
 			isa = PBXGroup;
 			children = (
+				9F13D59B28BC326E00C11694 /* README.md */,
+				9F13D59828BC31C700C11694 /* LICENSE */,
 				9FABA015286C064300B5630A /* game */,
 				9FABA014286C064300B5630A /* Products */,
 				9F831529286FEA7A00B6FCDF /* Frameworks */,
