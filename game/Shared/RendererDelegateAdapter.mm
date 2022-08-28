@@ -6,7 +6,7 @@
 //
 
 #import "RendererDelegateAdapter.h"
-#import "../moving-isometric-camera/Renderer.hpp"
+#import "Renderer.hpp"
 
 @implementation RendererDelegateAdapter
 {

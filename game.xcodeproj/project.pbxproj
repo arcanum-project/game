@@ -7,62 +7,19 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		9F831523286FC83500B6FCDF /* metal-cpp-projects */ = {
+		9F831523286FC83500B6FCDF /* game */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 9F831524286FC83500B6FCDF /* Build configuration list for PBXAggregateTarget "metal-cpp-projects" */;
+			buildConfigurationList = 9F831524286FC83500B6FCDF /* Build configuration list for PBXAggregateTarget "game" */;
 			buildPhases = (
 			);
 			dependencies = (
-				9F831528286FE9BE00B6FCDF /* PBXTargetDependency */,
 			);
-			name = "metal-cpp-projects";
+			name = game;
 			productName = "metal-cpp-projects";
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		9F12D12628720D1F006306F6 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D12528720D1F006306F6 /* Shaders.metal */; };
-		9F12D12F287229F3006306F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D12E287229F3006306F6 /* AppDelegate.m */; };
-		9F12D132287229F3006306F6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D131287229F3006306F6 /* SceneDelegate.m */; };
-		9F12D135287229F3006306F6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D134287229F3006306F6 /* ViewController.m */; };
-		9F12D138287229F3006306F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F12D136287229F3006306F6 /* Main.storyboard */; };
-		9F12D13A287229F4006306F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F12D139287229F4006306F6 /* Assets.xcassets */; };
-		9F12D13D287229F4006306F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F12D13B287229F4006306F6 /* LaunchScreen.storyboard */; };
-		9F12D140287229F4006306F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D13F287229F4006306F6 /* main.m */; };
-		9F12D14428722A5A006306F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821328720AF9006D21B2 /* Foundation.framework */; };
-		9F12D14528722A60006306F6 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821528720AFF006D21B2 /* Metal.framework */; };
-		9F12D14628722A65006306F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821728720B03006D21B2 /* QuartzCore.framework */; };
-		9F12D14928722AB7006306F6 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D14728722AB7006306F6 /* Renderer.cpp */; };
-		9F12D14B28722ABE006306F6 /* VertexDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */; };
-		9F12D14D28722AFD006306F6 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D14C28722AFD006306F6 /* Shaders.metal */; };
-		9F12D1542872472C006306F6 /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1522872472C006306F6 /* Math.cpp */; };
-		9F12D158287259A8006306F6 /* Uniforms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D157287257C8006306F6 /* Uniforms.cpp */; };
-		9F12D1BB287A2C1E006306F6 /* Transformable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1B9287A2C1E006306F6 /* Transformable.cpp */; };
-		9F12D1C0287A8031006306F6 /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1522872472C006306F6 /* Math.cpp */; };
-		9F12D1C1287A8035006306F6 /* Uniforms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D157287257C8006306F6 /* Uniforms.cpp */; };
-		9F12D1C2287A8041006306F6 /* Uniforms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D157287257C8006306F6 /* Uniforms.cpp */; };
-		9F12D1C3287A8044006306F6 /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1522872472C006306F6 /* Math.cpp */; };
-		9F12D1CD287B4693006306F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1CC287B4693006306F6 /* AppDelegate.m */; };
-		9F12D1D0287B4693006306F6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1CF287B4693006306F6 /* SceneDelegate.m */; };
-		9F12D1D3287B4693006306F6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1D2287B4693006306F6 /* ViewController.m */; };
-		9F12D1D6287B4693006306F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F12D1D4287B4693006306F6 /* Main.storyboard */; };
-		9F12D1D8287B4694006306F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F12D1D7287B4694006306F6 /* Assets.xcassets */; };
-		9F12D1DB287B4694006306F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F12D1D9287B4694006306F6 /* LaunchScreen.storyboard */; };
-		9F12D1DE287B4694006306F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1DD287B4694006306F6 /* main.m */; };
-		9F12D1E2287B4736006306F6 /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
-		9F12D1E3287B473A006306F6 /* VertexDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */; };
-		9F12D1E4287B473F006306F6 /* Uniforms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D157287257C8006306F6 /* Uniforms.cpp */; };
-		9F12D1E5287B473F006306F6 /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1522872472C006306F6 /* Math.cpp */; };
-		9F12D1E6287B473F006306F6 /* Transformable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1B9287A2C1E006306F6 /* Transformable.cpp */; };
-		9F12D1E7287B47B1006306F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821328720AF9006D21B2 /* Foundation.framework */; };
-		9F12D1E8287B47B7006306F6 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821528720AFF006D21B2 /* Metal.framework */; };
-		9F12D1E9287B47BB006306F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821728720B03006D21B2 /* QuartzCore.framework */; };
-		9F12D1EC287B481A006306F6 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1EA287B4819006306F6 /* Renderer.cpp */; };
-		9F12D1EE287B48A6006306F6 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1ED287B48A6006306F6 /* Shaders.metal */; };
-		9F12D1F8287B6975006306F6 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1F6287B6975006306F6 /* Model.cpp */; };
-		9F12D1FA287B6F41006306F6 /* ObjModelImporter.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1F9287B6F41006306F6 /* ObjModelImporter.hpp */; };
-		9F12D206287BC9B9006306F6 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F12D1FC287B8AFB006306F6 /* train.obj */; };
-		9F12D208287BCA93006306F6 /* ObjModelImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */; };
 		9F13C6DD28BBD08300C11694 /* tile-flipped.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F13C6DC28BBD07700C11694 /* tile-flipped.obj */; };
 		9F13D0B028BC269F00C11694 /* drtsw12f_0.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F13C6E028BC25DF00C11694 /* drtsw12f_0.bmp */; };
 		9F13D0B128BC269F00C11694 /* st1bse0h_0.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F13C6E228BC25DF00C11694 /* st1bse0h_0.bmp */; };
@@ -1320,8 +1277,6 @@
 		9F13D59528BC26A100C11694 /* drtwk24a_0.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F13D0AC28BC25E500C11694 /* drtwk24a_0.bmp */; };
 		9F13D59628BC26A100C11694 /* snwice2b_0.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F13D0AE28BC25E500C11694 /* snwice2b_0.bmp */; };
 		9F13D59728BC26AE00C11694 /* tile.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F13D0AF28BC267D00C11694 /* tile.obj */; };
-		9F3F67832885D8370057DE5F /* one_cube_quad_faces.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67812885D8370057DE5F /* one_cube_quad_faces.mtl */; };
-		9F3F67842885D8370057DE5F /* one_cube_quad_faces.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67822885D8370057DE5F /* one_cube_quad_faces.obj */; };
 		9F3F67A8288DDBD60057DE5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67A7288DDBD60057DE5F /* AppDelegate.m */; };
 		9F3F67AB288DDBD60057DE5F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67AA288DDBD60057DE5F /* SceneDelegate.m */; };
 		9F3F67AE288DDBD60057DE5F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67AD288DDBD60057DE5F /* ViewController.m */; };
@@ -1344,95 +1299,25 @@
 		9F3F67D3288E05480057DE5F /* IsometricCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D2288E05480057DE5F /* IsometricCamera.cpp */; };
 		9F3F67D9288E2FD90057DE5F /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D7288E2FD90057DE5F /* Renderer.cpp */; };
 		9F3F67DB288E308F0057DE5F /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67DA288E308F0057DE5F /* Shaders.metal */; };
-		9F45C19428825D8D00592FD6 /* one_cube.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9F45C19228825D8D00592FD6 /* one_cube.mtl */; };
-		9F45C19528825D8D00592FD6 /* one_cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F45C19328825D8D00592FD6 /* one_cube.obj */; };
 		9F4D58122895AD5400FF18D4 /* InputControllerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */; };
 		9F4D58152895AFB200FF18D4 /* Movement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58142895AFB200FF18D4 /* Movement.cpp */; };
-		9F831538286FEEDA00B6FCDF /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831536286FEEDA00B6FCDF /* Renderer.cpp */; };
-		9F8315412870FC3400B6FCDF /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F8315402870FC3400B6FCDF /* Shaders.metal */; };
-		9F831544287142DC00B6FCDF /* VertexDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */; };
-		9F83154D287208A400B6FCDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F83154C287208A400B6FCDF /* AppDelegate.m */; };
-		9F831550287208A400B6FCDF /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F83154F287208A400B6FCDF /* SceneDelegate.m */; };
-		9F831553287208A400B6FCDF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F831552287208A400B6FCDF /* ViewController.m */; };
-		9F831556287208A400B6FCDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F831554287208A400B6FCDF /* Main.storyboard */; };
-		9F831558287208A500B6FCDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F831557287208A500B6FCDF /* Assets.xcassets */; };
-		9F83155B287208A500B6FCDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F831559287208A500B6FCDF /* LaunchScreen.storyboard */; };
-		9F83155E287208A500B6FCDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F83155D287208A500B6FCDF /* main.m */; };
-		9FA003FC28814B510053D16A /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
-		9FA003FD28814B520053D16A /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
-		9FA003FE28814B530053D16A /* RendererDelegateAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */; };
-		9FAB821428720AF9006D21B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821328720AF9006D21B2 /* Foundation.framework */; };
-		9FAB821628720AFF006D21B2 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821528720AFF006D21B2 /* Metal.framework */; };
-		9FAB821828720B03006D21B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAB821728720B03006D21B2 /* QuartzCore.framework */; };
-		9FAB821B28720B20006D21B2 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAB821928720B20006D21B2 /* Renderer.cpp */; };
-		9FAB821D28720BF5006D21B2 /* VertexDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */; };
-		9FABA033286FBF1000B5630A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABA032286FBF1000B5630A /* AppDelegate.m */; };
-		9FABA036286FBF1000B5630A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABA035286FBF1000B5630A /* ViewController.m */; };
-		9FABA038286FBF1400B5630A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FABA037286FBF1400B5630A /* Assets.xcassets */; };
-		9FABA03B286FBF1400B5630A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FABA039286FBF1400B5630A /* Main.storyboard */; };
-		9FABA03D286FBF1400B5630A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABA03C286FBF1400B5630A /* main.m */; };
 		9FB1A3CE289743CA006E27A9 /* BMPImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1A3CC289743CA006E27A9 /* BMPImporter.cpp */; };
 		9FB1A3D2289B7A42006E27A9 /* TextureController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */; };
 		9FD2BB3B2890F18100D3E983 /* TouchableMTKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */; };
 		9FEDB26328B1F05A00287DE9 /* 86570436012 in Resources */ = {isa = PBXBuildFile; fileRef = 9FEDB26228B1F00C00287DE9 /* 86570436012 */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		9F831527286FE9BE00B6FCDF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9FABA00B286C064300B5630A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9FABA02E286FBF1000B5630A;
-			remoteInfo = "triangle-with-animation";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		9F12D12528720D1F006306F6 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
-		9F12D12B287229F3006306F6 /* cameras.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cameras.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F12D12D287229F3006306F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9F12D12E287229F3006306F6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9F12D130287229F3006306F6 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		9F12D131287229F3006306F6 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		9F12D133287229F3006306F6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9F12D134287229F3006306F6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9F12D137287229F3006306F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9F12D139287229F4006306F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9F12D13C287229F4006306F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9F12D13E287229F4006306F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F12D13F287229F4006306F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9F12D14728722AB7006306F6 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
-		9F12D14828722AB7006306F6 /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
-		9F12D14C28722AFD006306F6 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		9F12D1502872447F006306F6 /* Uniforms.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Uniforms.hpp; sourceTree = "<group>"; };
 		9F12D1522872472C006306F6 /* Math.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Math.cpp; sourceTree = "<group>"; };
 		9F12D1532872472C006306F6 /* Math.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Math.hpp; sourceTree = "<group>"; };
 		9F12D157287257C8006306F6 /* Uniforms.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Uniforms.cpp; sourceTree = "<group>"; };
 		9F12D1B9287A2C1E006306F6 /* Transformable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Transformable.cpp; sourceTree = "<group>"; };
 		9F12D1BA287A2C1E006306F6 /* Transformable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Transformable.hpp; sourceTree = "<group>"; };
-		9F12D1BF287A7681006306F6 /* Model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
-		9F12D1C9287B4693006306F6 /* fragments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fragments.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F12D1CB287B4693006306F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9F12D1CC287B4693006306F6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9F12D1CE287B4693006306F6 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		9F12D1CF287B4693006306F6 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		9F12D1D1287B4693006306F6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9F12D1D2287B4693006306F6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9F12D1D5287B4693006306F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9F12D1D7287B4694006306F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9F12D1DA287B4694006306F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9F12D1DC287B4694006306F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F12D1DD287B4694006306F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9F12D1EA287B4819006306F6 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
-		9F12D1EB287B4819006306F6 /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
-		9F12D1ED287B48A6006306F6 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		9F12D1F1287B677D006306F6 /* ModelImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ModelImporter.hpp; sourceTree = "<group>"; };
 		9F12D1F6287B6975006306F6 /* Model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
 		9F12D1F7287B6975006306F6 /* Model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
 		9F12D1F9287B6F41006306F6 /* ObjModelImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjModelImporter.hpp; sourceTree = "<group>"; };
-		9F12D1FB287B8AFB006306F6 /* train.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.mtl; sourceTree = "<group>"; };
-		9F12D1FC287B8AFB006306F6 /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.obj; sourceTree = "<group>"; };
-		9F12D201287B9086006306F6 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjModelImporter.cpp; sourceTree = "<group>"; };
 		9F13C6DC28BBD07700C11694 /* tile-flipped.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "tile-flipped.obj"; sourceTree = "<group>"; };
 		9F13C6E028BC25DF00C11694 /* drtsw12f_0.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = drtsw12f_0.bmp; sourceTree = "<group>"; };
@@ -2691,9 +2576,7 @@
 		9F13D0AC28BC25E500C11694 /* drtwk24a_0.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = drtwk24a_0.bmp; sourceTree = "<group>"; };
 		9F13D0AE28BC25E500C11694 /* snwice2b_0.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = snwice2b_0.bmp; sourceTree = "<group>"; };
 		9F13D0AF28BC267D00C11694 /* tile.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tile.obj; sourceTree = "<group>"; };
-		9F3F67812885D8370057DE5F /* one_cube_quad_faces.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube_quad_faces.mtl; sourceTree = "<group>"; };
-		9F3F67822885D8370057DE5F /* one_cube_quad_faces.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube_quad_faces.obj; sourceTree = "<group>"; };
-		9F3F67A4288DDBD60057DE5F /* moving-isometric-camera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moving-isometric-camera.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F3F67A4288DDBD60057DE5F /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F3F67A6288DDBD60057DE5F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9F3F67A7288DDBD60057DE5F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9F3F67A9288DDBD60057DE5F /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
@@ -2714,8 +2597,6 @@
 		9F3F67D7288E2FD90057DE5F /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		9F3F67D8288E2FD90057DE5F /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
 		9F3F67DA288E308F0057DE5F /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
-		9F45C19228825D8D00592FD6 /* one_cube.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube.mtl; sourceTree = "<group>"; };
-		9F45C19328825D8D00592FD6 /* one_cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = one_cube.obj; sourceTree = "<group>"; };
 		9F4D58102895AC6100FF18D4 /* InputControllerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputControllerAdapter.h; sourceTree = "<group>"; };
 		9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = InputControllerAdapter.mm; sourceTree = "<group>"; };
 		9F4D58132895AF8000FF18D4 /* Movement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Movement.hpp; sourceTree = "<group>"; };
@@ -2724,35 +2605,11 @@
 		9F6A3DEE287E70A400F09F1C /* VertexData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexData.hpp; sourceTree = "<group>"; };
 		9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RendererDelegateAdapter.mm; sourceTree = "<group>"; };
 		9F831532286FED8500B6FCDF /* RendererDelegateAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RendererDelegateAdapter.h; sourceTree = "<group>"; };
-		9F831536286FEEDA00B6FCDF /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
-		9F831537286FEEDA00B6FCDF /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
-		9F8315402870FC3400B6FCDF /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexDescriptor.cpp; sourceTree = "<group>"; };
 		9F831543287142DC00B6FCDF /* VertexDescriptor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexDescriptor.hpp; sourceTree = "<group>"; };
-		9F831549287208A400B6FCDF /* 2d-transformations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "2d-transformations.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F83154B287208A400B6FCDF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9F83154C287208A400B6FCDF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9F83154E287208A400B6FCDF /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		9F83154F287208A400B6FCDF /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		9F831551287208A400B6FCDF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9F831552287208A400B6FCDF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9F831555287208A400B6FCDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9F831557287208A500B6FCDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9F83155A287208A500B6FCDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9F83155C287208A500B6FCDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F83155D287208A500B6FCDF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9FAB821328720AF9006D21B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.5.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		9FAB821528720AFF006D21B2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.5.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
 		9FAB821728720B03006D21B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.5.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		9FAB821928720B20006D21B2 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
-		9FAB821A28720B20006D21B2 /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
-		9FABA02F286FBF1000B5630A /* triangle-with-animation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "triangle-with-animation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FABA032286FBF1000B5630A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9FABA035286FBF1000B5630A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9FABA037286FBF1400B5630A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9FABA03A286FBF1400B5630A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9FABA03C286FBF1400B5630A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9FABA03E286FBF1400B5630A /* triangle_with_animation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = triangle_with_animation.entitlements; sourceTree = "<group>"; };
 		9FB1A3CB28974055006E27A9 /* ResourceBundle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourceBundle.hpp; sourceTree = "<group>"; };
 		9FB1A3CC289743CA006E27A9 /* BMPImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BMPImporter.cpp; sourceTree = "<group>"; };
 		9FB1A3CD289743CA006E27A9 /* BMPImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BMPImporter.hpp; sourceTree = "<group>"; };
@@ -2766,26 +2623,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9F12D128287229F3006306F6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F12D14528722A60006306F6 /* Metal.framework in Frameworks */,
-				9F12D14428722A5A006306F6 /* Foundation.framework in Frameworks */,
-				9F12D14628722A65006306F6 /* QuartzCore.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9F12D1C6287B4693006306F6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F12D1E8287B47B7006306F6 /* Metal.framework in Frameworks */,
-				9F12D1E7287B47B1006306F6 /* Foundation.framework in Frameworks */,
-				9F12D1E9287B47BB006306F6 /* QuartzCore.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9F3F67A1288DDBD60057DE5F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2796,84 +2633,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9F831546287208A400B6FCDF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9FAB821628720AFF006D21B2 /* Metal.framework in Frameworks */,
-				9FAB821428720AF9006D21B2 /* Foundation.framework in Frameworks */,
-				9FAB821828720B03006D21B2 /* QuartzCore.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9FABA02C286FBF1000B5630A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9F12D12C287229F3006306F6 /* cameras */ = {
-			isa = PBXGroup;
-			children = (
-				9F12D12D287229F3006306F6 /* AppDelegate.h */,
-				9F12D12E287229F3006306F6 /* AppDelegate.m */,
-				9F12D130287229F3006306F6 /* SceneDelegate.h */,
-				9F12D131287229F3006306F6 /* SceneDelegate.m */,
-				9F12D133287229F3006306F6 /* ViewController.h */,
-				9F12D134287229F3006306F6 /* ViewController.m */,
-				9F12D136287229F3006306F6 /* Main.storyboard */,
-				9F12D139287229F4006306F6 /* Assets.xcassets */,
-				9F12D13B287229F4006306F6 /* LaunchScreen.storyboard */,
-				9F12D13E287229F4006306F6 /* Info.plist */,
-				9F12D13F287229F4006306F6 /* main.m */,
-				9F12D14728722AB7006306F6 /* Renderer.cpp */,
-				9F12D14828722AB7006306F6 /* Renderer.hpp */,
-				9F12D14C28722AFD006306F6 /* Shaders.metal */,
-				9F12D1BF287A7681006306F6 /* Model.hpp */,
-			);
-			path = cameras;
-			sourceTree = "<group>";
-		};
-		9F12D1CA287B4693006306F6 /* fragments */ = {
-			isa = PBXGroup;
-			children = (
-				9F12D1EF287B4927006306F6 /* Resources */,
-				9F12D1CB287B4693006306F6 /* AppDelegate.h */,
-				9F12D1CC287B4693006306F6 /* AppDelegate.m */,
-				9F12D1CE287B4693006306F6 /* SceneDelegate.h */,
-				9F12D1CF287B4693006306F6 /* SceneDelegate.m */,
-				9F12D1D1287B4693006306F6 /* ViewController.h */,
-				9F12D1D2287B4693006306F6 /* ViewController.m */,
-				9F12D1D4287B4693006306F6 /* Main.storyboard */,
-				9F12D1D7287B4694006306F6 /* Assets.xcassets */,
-				9F12D1D9287B4694006306F6 /* LaunchScreen.storyboard */,
-				9F12D1DC287B4694006306F6 /* Info.plist */,
-				9F12D1DD287B4694006306F6 /* main.m */,
-				9F12D1EA287B4819006306F6 /* Renderer.cpp */,
-				9F12D1EB287B4819006306F6 /* Renderer.hpp */,
-				9F12D1ED287B48A6006306F6 /* Shaders.metal */,
-			);
-			path = fragments;
-			sourceTree = "<group>";
-		};
-		9F12D1EF287B4927006306F6 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				9F3F67812885D8370057DE5F /* one_cube_quad_faces.mtl */,
-				9F3F67822885D8370057DE5F /* one_cube_quad_faces.obj */,
-				9F45C19228825D8D00592FD6 /* one_cube.mtl */,
-				9F45C19328825D8D00592FD6 /* one_cube.obj */,
-				9F12D201287B9086006306F6 /* test.txt */,
-				9F12D1FB287B8AFB006306F6 /* train.mtl */,
-				9F12D1FC287B8AFB006306F6 /* train.obj */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		9F13C6DE28BC25DF00C11694 /* Tiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -14192,7 +13954,7 @@
 			path = snwice2b;
 			sourceTree = "<group>";
 		};
-		9F3F67A5288DDBD60057DE5F /* moving-isometric-camera */ = {
+		9F3F67A5288DDBD60057DE5F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				9F3F67D4288E28F40057DE5F /* Resources */,
@@ -14212,7 +13974,7 @@
 				9F3F67D8288E2FD90057DE5F /* Renderer.hpp */,
 				9F3F67DA288E308F0057DE5F /* Shaders.metal */,
 			);
-			path = "moving-isometric-camera";
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		9F3F67D4288E28F40057DE5F /* Resources */ = {
@@ -14236,31 +13998,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9F83154A287208A400B6FCDF /* 2d-transformations */ = {
-			isa = PBXGroup;
-			children = (
-				9F83154B287208A400B6FCDF /* AppDelegate.h */,
-				9F83154C287208A400B6FCDF /* AppDelegate.m */,
-				9F83154E287208A400B6FCDF /* SceneDelegate.h */,
-				9F83154F287208A400B6FCDF /* SceneDelegate.m */,
-				9F831551287208A400B6FCDF /* ViewController.h */,
-				9F831552287208A400B6FCDF /* ViewController.m */,
-				9F831554287208A400B6FCDF /* Main.storyboard */,
-				9F831557287208A500B6FCDF /* Assets.xcassets */,
-				9F831559287208A500B6FCDF /* LaunchScreen.storyboard */,
-				9F83155C287208A500B6FCDF /* Info.plist */,
-				9F83155D287208A500B6FCDF /* main.m */,
-				9FAB821928720B20006D21B2 /* Renderer.cpp */,
-				9FAB821A28720B20006D21B2 /* Renderer.hpp */,
-				9F12D12528720D1F006306F6 /* Shaders.metal */,
-			);
-			path = "2d-transformations";
-			sourceTree = "<group>";
-		};
 		9FABA00A286C064300B5630A = {
 			isa = PBXGroup;
 			children = (
-				9FABA015286C064300B5630A /* metal-cpp-projects */,
+				9FABA015286C064300B5630A /* game */,
 				9FABA014286C064300B5630A /* Products */,
 				9F831529286FEA7A00B6FCDF /* Frameworks */,
 			);
@@ -14269,26 +14010,18 @@
 		9FABA014286C064300B5630A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9FABA02F286FBF1000B5630A /* triangle-with-animation.app */,
-				9F831549287208A400B6FCDF /* 2d-transformations.app */,
-				9F12D12B287229F3006306F6 /* cameras.app */,
-				9F12D1C9287B4693006306F6 /* fragments.app */,
-				9F3F67A4288DDBD60057DE5F /* moving-isometric-camera.app */,
+				9F3F67A4288DDBD60057DE5F /* iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9FABA015286C064300B5630A /* metal-cpp-projects */ = {
+		9FABA015286C064300B5630A /* game */ = {
 			isa = PBXGroup;
 			children = (
-				9FABA030286FBF1000B5630A /* triangle-with-animation */,
-				9F83154A287208A400B6FCDF /* 2d-transformations */,
-				9F12D12C287229F3006306F6 /* cameras */,
-				9F12D1CA287B4693006306F6 /* fragments */,
-				9F3F67A5288DDBD60057DE5F /* moving-isometric-camera */,
+				9F3F67A5288DDBD60057DE5F /* iOS */,
 				9FABA029286C06FE00B5630A /* Shared */,
 			);
-			path = "metal-cpp-projects";
+			path = game;
 			sourceTree = "<group>";
 		};
 		9FABA029286C06FE00B5630A /* Shared */ = {
@@ -14332,22 +14065,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		9FABA030286FBF1000B5630A /* triangle-with-animation */ = {
-			isa = PBXGroup;
-			children = (
-				9FABA032286FBF1000B5630A /* AppDelegate.m */,
-				9FABA035286FBF1000B5630A /* ViewController.m */,
-				9F831536286FEEDA00B6FCDF /* Renderer.cpp */,
-				9F831537286FEEDA00B6FCDF /* Renderer.hpp */,
-				9FABA037286FBF1400B5630A /* Assets.xcassets */,
-				9FABA039286FBF1400B5630A /* Main.storyboard */,
-				9FABA03C286FBF1400B5630A /* main.m */,
-				9FABA03E286FBF1400B5630A /* triangle_with_animation.entitlements */,
-				9F8315402870FC3400B6FCDF /* Shaders.metal */,
-			);
-			path = "triangle-with-animation";
-			sourceTree = "<group>";
-		};
 		9FB1A3CA28973FFB006E27A9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -14368,43 +14085,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9F12D12A287229F3006306F6 /* cameras */ = {
+		9F3F67A3288DDBD60057DE5F /* iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F12D141287229F4006306F6 /* Build configuration list for PBXNativeTarget "cameras" */;
-			buildPhases = (
-				9F12D127287229F3006306F6 /* Sources */,
-				9F12D128287229F3006306F6 /* Frameworks */,
-				9F12D129287229F3006306F6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = cameras;
-			productName = cameras;
-			productReference = 9F12D12B287229F3006306F6 /* cameras.app */;
-			productType = "com.apple.product-type.application";
-		};
-		9F12D1C8287B4693006306F6 /* fragments */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9F12D1DF287B4694006306F6 /* Build configuration list for PBXNativeTarget "fragments" */;
-			buildPhases = (
-				9F12D1C5287B4693006306F6 /* Sources */,
-				9F12D1C6287B4693006306F6 /* Frameworks */,
-				9F12D1C7287B4693006306F6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = fragments;
-			productName = fragments;
-			productReference = 9F12D1C9287B4693006306F6 /* fragments.app */;
-			productType = "com.apple.product-type.application";
-		};
-		9F3F67A3288DDBD60057DE5F /* moving-isometric-camera */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9F3F67BA288DDBD70057DE5F /* Build configuration list for PBXNativeTarget "moving-isometric-camera" */;
+			buildConfigurationList = 9F3F67BA288DDBD70057DE5F /* Build configuration list for PBXNativeTarget "iOS" */;
 			buildPhases = (
 				9F3F67A0288DDBD60057DE5F /* Sources */,
 				9F3F67A1288DDBD60057DE5F /* Frameworks */,
@@ -14414,43 +14097,9 @@
 			);
 			dependencies = (
 			);
-			name = "moving-isometric-camera";
+			name = iOS;
 			productName = "moving-isometric-camera";
-			productReference = 9F3F67A4288DDBD60057DE5F /* moving-isometric-camera.app */;
-			productType = "com.apple.product-type.application";
-		};
-		9F831548287208A400B6FCDF /* 2d-transformations */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9F83155F287208A500B6FCDF /* Build configuration list for PBXNativeTarget "2d-transformations" */;
-			buildPhases = (
-				9F831545287208A400B6FCDF /* Sources */,
-				9F831546287208A400B6FCDF /* Frameworks */,
-				9F831547287208A400B6FCDF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "2d-transformations";
-			productName = "2d-transformations";
-			productReference = 9F831549287208A400B6FCDF /* 2d-transformations.app */;
-			productType = "com.apple.product-type.application";
-		};
-		9FABA02E286FBF1000B5630A /* triangle-with-animation */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9FABA03F286FBF1400B5630A /* Build configuration list for PBXNativeTarget "triangle-with-animation" */;
-			buildPhases = (
-				9FABA02B286FBF1000B5630A /* Sources */,
-				9FABA02C286FBF1000B5630A /* Frameworks */,
-				9FABA02D286FBF1000B5630A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "triangle-with-animation";
-			productName = "triangle-with-animation";
-			productReference = 9FABA02F286FBF1000B5630A /* triangle-with-animation.app */;
+			productReference = 9F3F67A4288DDBD60057DE5F /* iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -14462,27 +14111,15 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
-					9F12D12A287229F3006306F6 = {
-						CreatedOnToolsVersion = 13.4.1;
-					};
-					9F12D1C8287B4693006306F6 = {
-						CreatedOnToolsVersion = 13.4.1;
-					};
 					9F3F67A3288DDBD60057DE5F = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 					9F831523286FC83500B6FCDF = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
-					9F831548287208A400B6FCDF = {
-						CreatedOnToolsVersion = 13.4.1;
-					};
-					9FABA02E286FBF1000B5630A = {
-						CreatedOnToolsVersion = 13.4.1;
-					};
 				};
 			};
-			buildConfigurationList = 9FABA00E286C064300B5630A /* Build configuration list for PBXProject "metal-cpp-projects" */;
+			buildConfigurationList = 9FABA00E286C064300B5630A /* Build configuration list for PBXProject "game" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -14495,42 +14132,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9FABA02E286FBF1000B5630A /* triangle-with-animation */,
-				9F831523286FC83500B6FCDF /* metal-cpp-projects */,
-				9F831548287208A400B6FCDF /* 2d-transformations */,
-				9F12D12A287229F3006306F6 /* cameras */,
-				9F12D1C8287B4693006306F6 /* fragments */,
-				9F3F67A3288DDBD60057DE5F /* moving-isometric-camera */,
+				9F831523286FC83500B6FCDF /* game */,
+				9F3F67A3288DDBD60057DE5F /* iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9F12D129287229F3006306F6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F12D13D287229F4006306F6 /* LaunchScreen.storyboard in Resources */,
-				9F12D13A287229F4006306F6 /* Assets.xcassets in Resources */,
-				9F12D138287229F3006306F6 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9F12D1C7287B4693006306F6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F3F67832885D8370057DE5F /* one_cube_quad_faces.mtl in Resources */,
-				9F12D206287BC9B9006306F6 /* train.obj in Resources */,
-				9F45C19528825D8D00592FD6 /* one_cube.obj in Resources */,
-				9F3F67842885D8370057DE5F /* one_cube_quad_faces.obj in Resources */,
-				9F12D1DB287B4694006306F6 /* LaunchScreen.storyboard in Resources */,
-				9F12D1D8287B4694006306F6 /* Assets.xcassets in Resources */,
-				9F45C19428825D8D00592FD6 /* one_cube.mtl in Resources */,
-				9F12D1D6287B4693006306F6 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9F3F67A2288DDBD60057DE5F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -15799,67 +15407,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9F831547287208A400B6FCDF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F83155B287208A500B6FCDF /* LaunchScreen.storyboard in Resources */,
-				9F831558287208A500B6FCDF /* Assets.xcassets in Resources */,
-				9F831556287208A400B6FCDF /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9FABA02D286FBF1000B5630A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9FABA038286FBF1400B5630A /* Assets.xcassets in Resources */,
-				9FABA03B286FBF1400B5630A /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9F12D127287229F3006306F6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F12D1BB287A2C1E006306F6 /* Transformable.cpp in Sources */,
-				9F12D1542872472C006306F6 /* Math.cpp in Sources */,
-				9F12D14D28722AFD006306F6 /* Shaders.metal in Sources */,
-				9F12D135287229F3006306F6 /* ViewController.m in Sources */,
-				9F12D14B28722ABE006306F6 /* VertexDescriptor.cpp in Sources */,
-				9F12D14928722AB7006306F6 /* Renderer.cpp in Sources */,
-				9F12D158287259A8006306F6 /* Uniforms.cpp in Sources */,
-				9F12D12F287229F3006306F6 /* AppDelegate.m in Sources */,
-				9F12D140287229F4006306F6 /* main.m in Sources */,
-				9FA003FC28814B510053D16A /* RendererDelegateAdapter.mm in Sources */,
-				9F12D132287229F3006306F6 /* SceneDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9F12D1C5287B4693006306F6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F12D1E3287B473A006306F6 /* VertexDescriptor.cpp in Sources */,
-				9F12D1F8287B6975006306F6 /* Model.cpp in Sources */,
-				9F12D1D3287B4693006306F6 /* ViewController.m in Sources */,
-				9F12D1CD287B4693006306F6 /* AppDelegate.m in Sources */,
-				9F12D1E5287B473F006306F6 /* Math.cpp in Sources */,
-				9F12D1DE287B4694006306F6 /* main.m in Sources */,
-				9F12D1E2287B4736006306F6 /* RendererDelegateAdapter.mm in Sources */,
-				9F12D1EC287B481A006306F6 /* Renderer.cpp in Sources */,
-				9F12D1FA287B6F41006306F6 /* ObjModelImporter.hpp in Sources */,
-				9F12D208287BCA93006306F6 /* ObjModelImporter.cpp in Sources */,
-				9F12D1E4287B473F006306F6 /* Uniforms.cpp in Sources */,
-				9F12D1EE287B48A6006306F6 /* Shaders.metal in Sources */,
-				9F12D1E6287B473F006306F6 /* Transformable.cpp in Sources */,
-				9F12D1D0287B4693006306F6 /* SceneDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9F3F67A0288DDBD60057DE5F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -15888,82 +15438,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9F831545287208A400B6FCDF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F12D1C0287A8031006306F6 /* Math.cpp in Sources */,
-				9F12D12628720D1F006306F6 /* Shaders.metal in Sources */,
-				9F831553287208A400B6FCDF /* ViewController.m in Sources */,
-				9FA003FD28814B520053D16A /* RendererDelegateAdapter.mm in Sources */,
-				9FAB821D28720BF5006D21B2 /* VertexDescriptor.cpp in Sources */,
-				9FAB821B28720B20006D21B2 /* Renderer.cpp in Sources */,
-				9F12D1C1287A8035006306F6 /* Uniforms.cpp in Sources */,
-				9F83154D287208A400B6FCDF /* AppDelegate.m in Sources */,
-				9F83155E287208A500B6FCDF /* main.m in Sources */,
-				9F831550287208A400B6FCDF /* SceneDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9FABA02B286FBF1000B5630A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F12D1C3287A8044006306F6 /* Math.cpp in Sources */,
-				9F12D1C2287A8041006306F6 /* Uniforms.cpp in Sources */,
-				9F8315412870FC3400B6FCDF /* Shaders.metal in Sources */,
-				9F831538286FEEDA00B6FCDF /* Renderer.cpp in Sources */,
-				9F831544287142DC00B6FCDF /* VertexDescriptor.cpp in Sources */,
-				9FABA03D286FBF1400B5630A /* main.m in Sources */,
-				9FABA036286FBF1000B5630A /* ViewController.m in Sources */,
-				9FA003FE28814B530053D16A /* RendererDelegateAdapter.mm in Sources */,
-				9FABA033286FBF1000B5630A /* AppDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		9F831528286FE9BE00B6FCDF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9FABA02E286FBF1000B5630A /* triangle-with-animation */;
-			targetProxy = 9F831527286FE9BE00B6FCDF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		9F12D136287229F3006306F6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F12D137287229F3006306F6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9F12D13B287229F4006306F6 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F12D13C287229F4006306F6 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		9F12D1D4287B4693006306F6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F12D1D5287B4693006306F6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9F12D1D9287B4694006306F6 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F12D1DA287B4694006306F6 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		9F3F67AF288DDBD60057DE5F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -15980,181 +15457,9 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		9F831554287208A400B6FCDF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F831555287208A400B6FCDF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9F831559287208A500B6FCDF /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F83155A287208A500B6FCDF /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		9FABA039286FBF1400B5630A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9FABA03A286FBF1400B5630A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		9F12D142287229F4006306F6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H2VL2PJ39X;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					/opt/glm,
-					"/opt/metal/metal-cpp",
-				);
-				INFOPLIST_FILE = "metal-cpp-projects/cameras/Info.plist";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dbelousov.cameras;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		9F12D143287229F4006306F6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H2VL2PJ39X;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					/opt/glm,
-					"/opt/metal/metal-cpp",
-				);
-				INFOPLIST_FILE = "metal-cpp-projects/cameras/Info.plist";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dbelousov.cameras;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		9F12D1E0287B4694006306F6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H2VL2PJ39X;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"/opt/metal/metal-cpp",
-					/opt/glm,
-					/opt/homebrew/Cellar/boost/1.79.0/include,
-				);
-				INFOPLIST_FILE = "metal-cpp-projects/fragments/Info.plist";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/opt/homebrew/Cellar/boost/1.79.0/lib,
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dbelousov.fragments;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		9F12D1E1287B4694006306F6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H2VL2PJ39X;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"/opt/metal/metal-cpp",
-					/opt/glm,
-					/opt/homebrew/Cellar/boost/1.79.0/include,
-				);
-				INFOPLIST_FILE = "metal-cpp-projects/fragments/Info.plist";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/opt/homebrew/Cellar/boost/1.79.0/lib,
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dbelousov.fragments;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		9F3F67BB288DDBD70057DE5F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -16165,7 +15470,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H2VL2PJ39X;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "metal-cpp-projects/moving-isometric-camera/Info.plist";
+				INFOPLIST_FILE = "${PROJECT_NAME}/${TARGET_NAME}/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -16178,7 +15483,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.moving-isometric-camera";
+				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.${TARGET_NAME}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -16196,7 +15501,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H2VL2PJ39X;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "metal-cpp-projects/moving-isometric-camera/Info.plist";
+				INFOPLIST_FILE = "${PROJECT_NAME}/${TARGET_NAME}/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -16209,7 +15514,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.moving-isometric-camera";
+				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.${TARGET_NAME}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -16233,75 +15538,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H2VL2PJ39X;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		9F831560287208A500B6FCDF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H2VL2PJ39X;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"/opt/metal/metal-cpp",
-					/opt/glm,
-				);
-				INFOPLIST_FILE = "metal-cpp-projects/2d-transformations/Info.plist";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.-d-transformations";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		9F831561287208A500B6FCDF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H2VL2PJ39X;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"/opt/metal/metal-cpp",
-					/opt/glm,
-				);
-				INFOPLIST_FILE = "metal-cpp-projects/2d-transformations/Info.plist";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.-d-transformations";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -16426,90 +15662,10 @@
 			};
 			name = Release;
 		};
-		9FABA040286FBF1400B5630A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "metal-cpp-projects/triangle-with-animation/triangle_with_animation.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H2VL2PJ39X;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"/opt/metal/metal-cpp",
-					/opt/glm,
-					/opt/homebrew/Cellar/boost/1.79.0/include,
-				);
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
-				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.triangle-with-animation";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-			};
-			name = Debug;
-		};
-		9FABA041286FBF1400B5630A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "metal-cpp-projects/triangle-with-animation/triangle_with_animation.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H2VL2PJ39X;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"/opt/metal/metal-cpp",
-					/opt/glm,
-					/opt/homebrew/Cellar/boost/1.79.0/include,
-				);
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
-				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.triangle-with-animation";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9F12D141287229F4006306F6 /* Build configuration list for PBXNativeTarget "cameras" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9F12D142287229F4006306F6 /* Debug */,
-				9F12D143287229F4006306F6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9F12D1DF287B4694006306F6 /* Build configuration list for PBXNativeTarget "fragments" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9F12D1E0287B4694006306F6 /* Debug */,
-				9F12D1E1287B4694006306F6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9F3F67BA288DDBD70057DE5F /* Build configuration list for PBXNativeTarget "moving-isometric-camera" */ = {
+		9F3F67BA288DDBD70057DE5F /* Build configuration list for PBXNativeTarget "iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F3F67BB288DDBD70057DE5F /* Debug */,
@@ -16518,7 +15674,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F831524286FC83500B6FCDF /* Build configuration list for PBXAggregateTarget "metal-cpp-projects" */ = {
+		9F831524286FC83500B6FCDF /* Build configuration list for PBXAggregateTarget "game" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F831525286FC83500B6FCDF /* Debug */,
@@ -16527,29 +15683,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F83155F287208A500B6FCDF /* Build configuration list for PBXNativeTarget "2d-transformations" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9F831560287208A500B6FCDF /* Debug */,
-				9F831561287208A500B6FCDF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9FABA00E286C064300B5630A /* Build configuration list for PBXProject "metal-cpp-projects" */ = {
+		9FABA00E286C064300B5630A /* Build configuration list for PBXProject "game" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9FABA024286C064300B5630A /* Debug */,
 				9FABA025286C064300B5630A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9FABA03F286FBF1400B5630A /* Build configuration list for PBXNativeTarget "triangle-with-animation" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9FABA040286FBF1400B5630A /* Debug */,
-				9FABA041286FBF1400B5630A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
