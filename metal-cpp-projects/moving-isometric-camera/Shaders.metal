@@ -19,6 +19,7 @@ enum BufferIndices {
   VertexBuffer = 0,
   InstanceDataBuffer = 1,
   IndexBuffer = 2,
+  FlippedVertexBuffer = 3,
   ModelsBuffer = 5,
   UniformsBuffer = 11,
   ICBBuffer = 16,
@@ -53,8 +54,9 @@ struct VertexOut
 typedef struct {
   float4x4 instanceTransform;
   ushort textureIndex;
+  bool shouldFlip;
   // Padding to ensure that size of the struct is the same as we allocated memory for. This is crucial, because these structs are stored in an array
-  char pad[14];
+  char pad[13];
 } InstanceData;
   
 struct ShaderMaterial {
@@ -64,6 +66,7 @@ struct ShaderMaterial {
 kernel void cullTilesAndEncodeCommands(uint tileIndex [[thread_position_in_grid]],
 									   constant Uniforms & uniforms [[buffer(BufferIndices::UniformsBuffer)]],
 									   device const void * vertices [[buffer(BufferIndices::VertexBuffer)]],
+									   device const void * flippedVertices [[buffer(BufferIndices::FlippedVertexBuffer)]],
 									   device const ushort * indices [[buffer(BufferIndices::IndexBuffer)]],
 									   device const InstanceData * instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
 									   device const ICBContainer * pIcbContainer [[buffer(BufferIndices::ICBBuffer)]],
@@ -92,7 +95,11 @@ kernel void cullTilesAndEncodeCommands(uint tileIndex [[thread_position_in_grid]
   
   if (isVisible) {
 	cmd.set_vertex_buffer(& uniforms, BufferIndices::UniformsBuffer);
-	cmd.set_vertex_buffer(vertices, BufferIndices::VertexBuffer);
+	if (instanceData[tileIndex].shouldFlip == true)
+	  cmd.set_vertex_buffer(flippedVertices, BufferIndices::VertexBuffer);
+	else
+	  cmd.set_vertex_buffer(vertices, BufferIndices::VertexBuffer);
+	cmd.set_vertex_buffer(flippedVertices, BufferIndices::FlippedVertexBuffer);
 	cmd.set_vertex_buffer(instanceData, BufferIndices::InstanceDataBuffer);
 	cmd.set_fragment_buffer(& material, BufferIndices::ModelsBuffer);
 	cmd.draw_indexed_primitives(primitive_type::triangle, 6, indices, 1, 0, tileIndex);
@@ -118,7 +125,7 @@ vertex VertexOut vertex_main(
 fragment float4 fragment_main(VertexOut in [[stage_in]],
 							  constant ShaderMaterial & material [[buffer(BufferIndices::ModelsBuffer)]]
 							  ) {
-  constexpr sampler textureSampler;
+  constexpr sampler textureSampler(filter::linear, max_anisotropy(8));
 
   // Sample the texture to obtain a color
   const half4 colorSample = material.baseColorTextures[in.textureIndex].sample(textureSampler, in.texture);

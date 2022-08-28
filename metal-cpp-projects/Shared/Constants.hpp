@@ -18,6 +18,7 @@ typedef enum {
   VertexBuffer = 0,
   InstanceDataBuffer = 1,
   IndexBuffer = 2,
+  FlippedVertexBuffer = 3,
   ModelsBuffer = 5,
   UniformsBuffer = 11,
   ICBBuffer = 16,
