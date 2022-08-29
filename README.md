@@ -2,7 +2,7 @@ This is a project to port the game to iOS and macOS devices.
 
 ### Current progress
 
-Rendering terrain of crash sector, demo video:
+Rendering terrain of crash sector, demo:
 
 [![Game running on iOS](https://img.youtube.com/vi/20a8qGrUdn8/hqdefault.jpg)](https://youtu.be/20a8qGrUdn8)
 
