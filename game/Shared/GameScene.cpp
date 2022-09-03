@@ -8,12 +8,13 @@
 #include "glm/vec3.hpp"
 
 #include "GameScene.hpp"
+#include "Tile.hpp"
 #include "IsometricCamera.hpp"
 #include "Constants.hpp"
 
 GameScene::GameScene(MTL::Device * const pDevice)
 : _pDevice(pDevice),
-  _pTile(std::make_shared<const Model>(pDevice, RenderingConstants::NumOfTilesPerSector, RenderingConstants::MaxBuffersInFlight)),
+  _pTile(std::make_shared<const Tile>(pDevice, RenderingConstants::NumOfTilesPerSector, RenderingConstants::MaxBuffersInFlight)),
   _models(std::vector<const std::shared_ptr<const Model>> { _pTile }),
   _pCamera(std::make_unique<IsometricCamera>()) {
 	_pCamera->setScale(0.125f);

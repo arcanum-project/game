@@ -13,6 +13,7 @@
 #include <memory>
 
 #include "Model.hpp"
+#include "Tile.hpp"
 #include "IsometricCamera.hpp"
 #include "Metal/MTLDevice.hpp"
 
@@ -27,7 +28,7 @@ public:
 
 private:
   MTL::Device * const _pDevice;
-  const std::shared_ptr<const Model> _pTile;
+  const std::shared_ptr<const Tile> _pTile;
   const std::vector<const std::shared_ptr<const Model>> _models;
   const std::unique_ptr<Camera> _pCamera;
   

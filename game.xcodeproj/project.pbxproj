@@ -1277,6 +1277,8 @@
 		9F13D59528BC26A100C11694 /* drtwk24a_0.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F13D0AC28BC25E500C11694 /* drtwk24a_0.bmp */; };
 		9F13D59628BC26A100C11694 /* snwice2b_0.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F13D0AE28BC25E500C11694 /* snwice2b_0.bmp */; };
 		9F13D59728BC26AE00C11694 /* tile.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F13D0AF28BC267D00C11694 /* tile.obj */; };
+		9F13D5B428C2DBAF00C11694 /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F13D5B228C2DBAF00C11694 /* Tile.cpp */; };
+		9F13D5BA28C3027100C11694 /* critter.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F13D5B928C3025F00C11694 /* critter.obj */; };
 		9F3F67A8288DDBD60057DE5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67A7288DDBD60057DE5F /* AppDelegate.m */; };
 		9F3F67AB288DDBD60057DE5F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67AA288DDBD60057DE5F /* SceneDelegate.m */; };
 		9F3F67AE288DDBD60057DE5F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67AD288DDBD60057DE5F /* ViewController.m */; };
@@ -2587,6 +2589,9 @@
 		9F13D5AF28C2B0E100C11694 /* efmv1xaa_02.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = efmv1xaa_02.bmp; sourceTree = "<group>"; };
 		9F13D5B028C2B0E100C11694 /* efmv1xaa_03.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = efmv1xaa_03.bmp; sourceTree = "<group>"; };
 		9F13D5B128C2B0E100C11694 /* efmv1xaa.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = efmv1xaa.ini; sourceTree = "<group>"; };
+		9F13D5B228C2DBAF00C11694 /* Tile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tile.cpp; sourceTree = "<group>"; };
+		9F13D5B328C2DBAF00C11694 /* Tile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tile.hpp; sourceTree = "<group>"; };
+		9F13D5B928C3025F00C11694 /* critter.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = critter.obj; sourceTree = "<group>"; };
 		9F3F67A4288DDBD60057DE5F /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F3F67A6288DDBD60057DE5F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9F3F67A7288DDBD60057DE5F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -13989,6 +13994,28 @@
 			path = efmv1xaa;
 			sourceTree = "<group>";
 		};
+		9F13D5B728C2E06800C11694 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F12D1F6287B6975006306F6 /* Model.cpp */,
+				9F12D1F7287B6975006306F6 /* Model.hpp */,
+				9F13D5B328C2DBAF00C11694 /* Tile.hpp */,
+				9F13D5B228C2DBAF00C11694 /* Tile.cpp */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		9F13D5B828C2E07F00C11694 /* ModelImporter */ = {
+			isa = PBXGroup;
+			children = (
+				9F12D1F1287B677D006306F6 /* ModelImporter.hpp */,
+				9F12D1F9287B6F41006306F6 /* ObjModelImporter.hpp */,
+				9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */,
+				9F6A3DEE287E70A400F09F1C /* VertexData.hpp */,
+			);
+			name = ModelImporter;
+			sourceTree = "<group>";
+		};
 		9F3F67A5288DDBD60057DE5F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -14015,6 +14042,7 @@
 		9F3F67D4288E28F40057DE5F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9F13D5B928C3025F00C11694 /* critter.obj */,
 				9F13D5A728C2B0E100C11694 /* Critters */,
 				9F13D0AF28BC267D00C11694 /* tile.obj */,
 				9F13C6DC28BBD07700C11694 /* tile-flipped.obj */,
@@ -14065,6 +14093,8 @@
 		9FABA029286C06FE00B5630A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				9F13D5B828C2E07F00C11694 /* ModelImporter */,
+				9F13D5B728C2E06800C11694 /* Models */,
 				9FB1A3CA28973FFB006E27A9 /* Common */,
 				9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */,
 				9F831532286FED8500B6FCDF /* RendererDelegateAdapter.h */,
@@ -14076,12 +14106,6 @@
 				9F12D1532872472C006306F6 /* Math.hpp */,
 				9F12D1B9287A2C1E006306F6 /* Transformable.cpp */,
 				9F12D1BA287A2C1E006306F6 /* Transformable.hpp */,
-				9F12D1F1287B677D006306F6 /* ModelImporter.hpp */,
-				9F12D1F9287B6F41006306F6 /* ObjModelImporter.hpp */,
-				9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */,
-				9F12D1F6287B6975006306F6 /* Model.cpp */,
-				9F12D1F7287B6975006306F6 /* Model.hpp */,
-				9F6A3DEE287E70A400F09F1C /* VertexData.hpp */,
 				9F3F67C8288DDD4B0057DE5F /* Camera.hpp */,
 				9F3F67CA288DE2A30057DE5F /* Camera.cpp */,
 				9F3F67CC288DE3290057DE5F /* GameScene.cpp */,
@@ -14181,6 +14205,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F13D5BA28C3027100C11694 /* critter.obj in Resources */,
 				9F13D59728BC26AE00C11694 /* tile.obj in Resources */,
 				9F13D0B028BC269F00C11694 /* drtsw12f_0.bmp in Resources */,
 				9F13D0B128BC269F00C11694 /* st1bse0h_0.bmp in Resources */,
@@ -15463,6 +15488,7 @@
 				9F3F67CB288DE2A30057DE5F /* Camera.cpp in Sources */,
 				9F3F67C3288DDC6D0057DE5F /* Math.cpp in Sources */,
 				9FB1A3CE289743CA006E27A9 /* BMPImporter.cpp in Sources */,
+				9F13D5B428C2DBAF00C11694 /* Tile.cpp in Sources */,
 				9F3F67D9288E2FD90057DE5F /* Renderer.cpp in Sources */,
 				9F3F67CE288DE3290057DE5F /* GameScene.cpp in Sources */,
 				9F3F67DB288E308F0057DE5F /* Shaders.metal in Sources */,
