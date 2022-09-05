@@ -59,7 +59,7 @@ fragment float4 critterFragment(VertexOut in [[stage_in]],
   // Since our mesh is larger than actual texture, we need to make areas outside of texture transparent
   if (isUVOutsideXBounds || isUVOutsideYBounds)
 	return float4(0.0f, 0.0f, 0.0f, 0.0f);
-  const half4 color = material.baseColorTextures[textureIndex].sample(textureSampler, adjustedUV.xy);
+  const half4 color = texture.sample(textureSampler, adjustedUV.xy);
   // Below is an ugly way to mask away blue texture background
   return color.r < 0.16f && color.g < 0.16f && color.b > 0.3f ? float4(0.0f, 0.0f, 0.0f, 0.0f) : float4(color);
 }
