@@ -24,12 +24,11 @@ Tile::Tile(MTL::Device * const pDevice, const uint16_t instanceCount, const uint
   _pFlippedVertexBuffer(nullptr),
   _instanceDataBuffers(std::vector<MTL::Buffer *>(maxBuffersInFlight)),
   _instanceIdToData() {
-	const size_t instanceDataSize = instanceCount * MemoryAlignment::roundUpToNextMultipleOf16(sizeof(InstanceData));
+	const size_t instanceDataSize = instanceCount * Alignment::roundUpToNextMultipleOf16(sizeof(InstanceData));
 	for (size_t i = 0; i < maxBuffersInFlight; i++) {
 	  _instanceDataBuffers[i] = pDevice->newBuffer(instanceDataSize, MTL::ResourceStorageModeShared);
 	  NS::String * const pLabel = NS::String::string("InstanceData ", NS::UTF8StringEncoding)->stringByAppendingString(NS::String::string(std::to_string(i).c_str(), NS::UTF8StringEncoding));
 	  _instanceDataBuffers[i]->setLabel(pLabel);
-	  pLabel->release();
 	}
 	
 	populateVertexData();

@@ -17,16 +17,9 @@
 #include "Uniforms.hpp"
 #include "Model.hpp"
 #include "VertexData.hpp"
-#include "Constants.hpp"
-#include "Common/MemoryAlignment.hpp"
-
-struct InstanceData {
-  glm::mat4x4 instanceTransform;
-  uint16_t textureIndex;
-  bool shouldFlip;
-  // Padding to ensure that sizeof(InstanceData) returns the size of the struct that we allocated memory for
-  char pad[11];
-};
+#include "Constants.h"
+#include "Common/Alignment.hpp"
+#include "InstanceData.hpp"
 
 class Tile : public Model
 {
@@ -37,7 +30,7 @@ public:
   inline const MTL::Buffer * const pFlippedVertexBuffer() const { return _pFlippedVertexBuffer; }
   inline const std::vector<MTL::Buffer *> instanceDataBuffers() const { return _instanceDataBuffers; }
   
-  inline void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame) const override {
+  inline void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame) override {
 	MTL::ComputeCommandEncoder * const pComputeEncoder = reinterpret_cast<MTL::ComputeCommandEncoder * const>(pCommandEncoder);
 	MTL::Buffer * const pInstanceDataBuffer = _instanceDataBuffers.at(frame);
 	InstanceData * pInstanceData = reinterpret_cast<InstanceData *>(pInstanceDataBuffer->contents());
@@ -58,7 +51,7 @@ public:
 	Uniforms & uf = Uniforms::getInstance();
 	uf.setModelMatrix(modelMatrix());
 	MTL::Buffer * const pUniformsBuffer = uniformsBuffers().at(frame);
-	memcpy(pUniformsBuffer->contents(), & uf, MemoryAlignment::roundUpToNextMultipleOf16(sizeof(Uniforms)));
+	memcpy(pUniformsBuffer->contents(), & uf, Alignment::roundUpToNextMultipleOf16(sizeof(Uniforms)));
 #if defined(TARGET_OSX)
 	pUniformsBuffer->didModifyRange(NS::Range(0, pUniformsBuffer->length()));
 #endif

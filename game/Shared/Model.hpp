@@ -32,7 +32,7 @@ public:
   virtual void populateVertexData() = 0;
   virtual void loadTextures() = 0;
   
-  virtual void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame) const = 0;
+  virtual void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame) = 0;
 
 private:
   MTL::Device * const _pDevice;

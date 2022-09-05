@@ -1,8 +1,8 @@
 //
 //  Constants.h
-//  metal-cpp-projects
+//  iOS
 //
-//  Created by Dmitrii Belousov on 7/25/22.
+//  Created by Dmitrii Belousov on 9/3/22.
 //
 
 #ifndef Constants_h
@@ -19,7 +19,7 @@ typedef enum {
   InstanceDataBuffer = 1,
   IndexBuffer = 2,
   FlippedVertexBuffer = 3,
-  ModelsBuffer = 5,
+  TextureBuffer = 5,
   UniformsBuffer = 11,
   ICBBuffer = 16,
   ICBArgumentsBuffer = 17

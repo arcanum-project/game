@@ -6,6 +6,7 @@
 //
 
 #include "BMPImporter.hpp"
+#include "Common/Alignment.hpp"
 
 const PixelData BMPImporter::import(const char * resourceName, const char * resourceType) {
   std::ifstream file;
@@ -65,7 +66,8 @@ const PixelData BMPImporter::import(const char * resourceName, const char * reso
 	   Padding = row length % 4
 	   Another thing - rows are actually stored in reverse order - i.e. we will read rows from bottom to top
 	   */
-	  const uint32_t padding = imgWidth % 4;
+//	  const uint64_t padding = next multiple of 4 bytes for imgWidth - imgWidth;
+	  const size_t padding = Alignment::roundUpToNextMultipleOf4(imgWidth) - imgWidth;
 	  uint64_t rowsRead {1};
 	  while (rowsRead <= imgHeight) {
 		uint64_t rowPixelsRead {1};

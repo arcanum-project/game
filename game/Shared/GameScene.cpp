@@ -10,12 +10,13 @@
 #include "GameScene.hpp"
 #include "Tile.hpp"
 #include "IsometricCamera.hpp"
-#include "Constants.hpp"
+#include "Constants.h"
 
 GameScene::GameScene(MTL::Device * const pDevice)
 : _pDevice(pDevice),
-  _pTile(std::make_shared<const Tile>(pDevice, RenderingConstants::NumOfTilesPerSector, RenderingConstants::MaxBuffersInFlight)),
-  _models(std::vector<const std::shared_ptr<const Model>> { _pTile }),
+  _pTile(std::make_shared<Tile>(pDevice, RenderingConstants::NumOfTilesPerSector, RenderingConstants::MaxBuffersInFlight)),
+  _pCharacter(std::make_shared<Character>(pDevice)),
+  _models(std::vector<const std::shared_ptr<Model>> { _pTile }),
   _pCamera(std::make_unique<IsometricCamera>()) {
 	_pCamera->setScale(0.125f);
 	_pCamera->setPosition(glm::vec3(.0f, .0f, -50.0f));

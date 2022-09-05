@@ -32,9 +32,11 @@ public:
 private:
   MTL::Device * const _pDevice;
   MTL::CommandQueue * const _pCommandQueue;
-  MTL::RenderPipelineState * _pPSO;
+  MTL::Library * const _pLib;
+  MTL::RenderPipelineState * _pTilesPSO;
+  MTL::RenderPipelineState * _pCritterPSO;
   MTL::DepthStencilState * _pDepthStencilState;
-  MTL::ComputePipelineState * _pComputePipelineState;
+  MTL::ComputePipelineState * _pTilesComputePSO;
   MTL::IndirectCommandBuffer * _pIndirectCommandBuffer;
   MTL::Buffer * _pIcbArgumentBuffer;
   MTL::Function * _pTileVisibilityKernelFn;
@@ -45,9 +47,10 @@ private:
   dispatch_semaphore_t _semaphore;
   std::chrono::time_point<std::chrono::system_clock> _lastTimeSeconds;
 	
-  void buildShaders();
+  void buildTileShaders();
+  void buildCritterShaders();
   void buildDepthStencilState();
-  void initializeModels();
+  void initializeTextures();
 };
 
 #endif /* Renderer_hpp */

@@ -7,44 +7,23 @@
 
 #include <metal_stdlib>
 #include <metal_matrix>
+
+#include "Constants.h"
+#include "ShaderStructs.h"
+
 using namespace metal;
-
-typedef struct {
-  float4x4 modelMatrix;
-  float4x4 viewMatrix;
-  float4x4 projectionMatrix;
-} Uniforms;
-
-enum BufferIndices {
-  VertexBuffer = 0,
-  InstanceDataBuffer = 1,
-  IndexBuffer = 2,
-  FlippedVertexBuffer = 3,
-  ModelsBuffer = 5,
-  UniformsBuffer = 11,
-  ICBBuffer = 16,
-  ArgumentsBuffer = 17
-};
   
 struct ICBContainer {
-  command_buffer commandBuffer [[id(BufferIndices::ArgumentsBuffer)]];
-};
-  
-enum Attributes {
-  VertexCoordinates = 0,
-  TextureCoordinates = 1,
-  NormalCoordinates = 2
+  command_buffer commandBuffer [[id(BufferIndices::ICBArgumentsBuffer)]];
 };
 
-struct VertexIn
-{
+struct VertexIn {
   float4 position [[attribute(Attributes::VertexCoordinates)]];
   float2 texture [[attribute(Attributes::TextureCoordinates)]];
   float3 normal [[attribute(Attributes::NormalCoordinates)]];
 };
 
-struct VertexOut
-{
+struct VertexOut {
   float4 position [[position]];
   float2 texture;
   float3 normal;
@@ -59,10 +38,6 @@ typedef struct {
   char pad[13];
 } InstanceData;
   
-struct ShaderMaterial {
-  array<texture2d<half, access::sample>, 4096> baseColorTextures;
-};
-  
 kernel void cullTilesAndEncodeCommands(uint tileIndex [[thread_position_in_grid]],
 									   constant Uniforms & uniforms [[buffer(BufferIndices::UniformsBuffer)]],
 									   device const void * vertices [[buffer(BufferIndices::VertexBuffer)]],
@@ -70,7 +45,7 @@ kernel void cullTilesAndEncodeCommands(uint tileIndex [[thread_position_in_grid]
 									   device const ushort * indices [[buffer(BufferIndices::IndexBuffer)]],
 									   device const InstanceData * instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
 									   device const ICBContainer * pIcbContainer [[buffer(BufferIndices::ICBBuffer)]],
-									   constant ShaderMaterial & material [[buffer(BufferIndices::ModelsBuffer)]]
+									   constant ShaderMaterial & material [[buffer(BufferIndices::TextureBuffer)]]
 									   ) {
   const float4 tileCenter = instanceData[tileIndex].instanceTransform[3];
   const float4 projectedTileCenterPosition = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * tileCenter;
@@ -101,12 +76,12 @@ kernel void cullTilesAndEncodeCommands(uint tileIndex [[thread_position_in_grid]
 	  cmd.set_vertex_buffer(vertices, BufferIndices::VertexBuffer);
 	cmd.set_vertex_buffer(flippedVertices, BufferIndices::FlippedVertexBuffer);
 	cmd.set_vertex_buffer(instanceData, BufferIndices::InstanceDataBuffer);
-	cmd.set_fragment_buffer(& material, BufferIndices::ModelsBuffer);
+	cmd.set_fragment_buffer(& material, BufferIndices::TextureBuffer);
 	cmd.draw_indexed_primitives(primitive_type::triangle, 6, indices, 1, 0, tileIndex);
   }
 }
 
-vertex VertexOut vertex_main(
+vertex VertexOut tileVertex(
 							 VertexIn in [[stage_in]],
 							 constant Uniforms & uniforms [[buffer(BufferIndices::UniformsBuffer)]],
 							 device const InstanceData * instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
@@ -122,13 +97,12 @@ vertex VertexOut vertex_main(
   return out;
 }
 
-fragment float4 fragment_main(VertexOut in [[stage_in]],
-							  constant ShaderMaterial & material [[buffer(BufferIndices::ModelsBuffer)]]
+fragment float4 tileFragment(VertexOut in [[stage_in]],
+							  constant ShaderMaterial & material [[buffer(BufferIndices::TextureBuffer)]]
 							  ) {
-  constexpr sampler textureSampler(filter::linear, max_anisotropy(8));
+  constexpr sampler textureSampler(filter::linear, max_anisotropy(16));
 
   // Sample the texture to obtain a color
   const half4 colorSample = material.baseColorTextures[in.textureIndex].sample(textureSampler, in.texture);
   return float4(colorSample);
-//    return float4(in.normal, 1);
 }

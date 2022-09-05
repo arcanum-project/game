@@ -10,17 +10,20 @@
 #define MTL_PRIVATE_IMPLEMENTATION
 
 #include "Renderer.hpp"
-#include "Constants.hpp"
+#include "Constants.h"
 #include "TextureController.hpp"
+#include "Pipelines.hpp"
 
 #pragma region Renderer {
 
 Renderer::Renderer(MTL::Device * const _pDevice)
 : _pDevice(_pDevice->retain()),
   _pCommandQueue(_pDevice->newCommandQueue()),
-  _pPSO(nullptr),
+  _pLib(_pDevice->newDefaultLibrary()),
+  _pTilesPSO(nullptr),
+  _pCritterPSO(nullptr),
   _pDepthStencilState(nullptr),
-  _pComputePipelineState(nullptr),
+  _pTilesComputePSO(nullptr),
   _pIndirectCommandBuffer(nullptr),
   // Argument buffer containing the indirect command buffer encoded in the kernel
   _pIcbArgumentBuffer(nullptr),
@@ -31,9 +34,10 @@ Renderer::Renderer(MTL::Device * const _pDevice)
   _frame(0u),
   _semaphore(dispatch_semaphore_create(RenderingConstants::MaxBuffersInFlight)),
   _lastTimeSeconds(std::chrono::system_clock::now()) {
-	buildShaders();
+	buildTileShaders();
+	buildCritterShaders();
 	buildDepthStencilState();
-	initializeModels();
+	initializeTextures();
 }
 
 Renderer::~Renderer() {
@@ -42,46 +46,25 @@ Renderer::~Renderer() {
   _pTileVisibilityKernelFn->release();
   _pIcbArgumentBuffer->release();
   _pIndirectCommandBuffer->release();
-  _pComputePipelineState->release();
+  _pTilesComputePSO->release();
   _pDepthStencilState->release();
-  _pPSO->release();
+  _pCritterPSO->release();
+  _pTilesPSO->release();
+  _pLib->release();
   _pCommandQueue->release();
   _pDevice->release();
 }
 
-void Renderer::buildShaders() {
-  MTL::Library * pLib = _pDevice->newDefaultLibrary();
+void Renderer::buildTileShaders() {
+  // Make tiles render pipeline
   
-  // Make render pipeline
-  
-  MTL::Function * pVertexFn = pLib->newFunction(NS::String::string("vertex_main", NS::UTF8StringEncoding));
-  MTL::Function * pFragmentFn = pLib->newFunction(NS::String::string("fragment_main", NS::UTF8StringEncoding));
-  
-  MTL::RenderPipelineDescriptor * pDesc = MTL::RenderPipelineDescriptor::alloc()->init();
-  pDesc->colorAttachments()->object(0)->setPixelFormat(MTL::PixelFormatBGRA8Unorm);
-  pDesc->setDepthAttachmentPixelFormat(MTL::PixelFormatDepth32Float);
-  pDesc->setVertexFunction(pVertexFn);
-  pDesc->setFragmentFunction(pFragmentFn);
-  pDesc->setVertexDescriptor(VertexDescriptor::getInstance().getDefaultLayout());
-  pDesc->setSupportIndirectCommandBuffers(true);
-  NS::Error * pError = nullptr;
-  _pPSO = _pDevice->newRenderPipelineState(pDesc, &pError);
-  if (!_pPSO) {
-	__builtin_printf("%s", pError->localizedDescription()->utf8String());
-  }
-  
-  pVertexFn->release();
-  pFragmentFn->release();
-  pDesc->release();
+  _pTilesPSO = Pipelines::newPSO(_pDevice, _pLib, NS::String::string("tileVertex", NS::UTF8StringEncoding), NS::String::string("tileFragment", NS::UTF8StringEncoding), false);
   
   // Make compute pipeline
   
-  _pTileVisibilityKernelFn = pLib->newFunction(NS::String::string("cullTilesAndEncodeCommands", NS::UTF8StringEncoding));
-  
-  _pComputePipelineState = _pDevice->newComputePipelineState(_pTileVisibilityKernelFn, &pError);
-  if (!_pComputePipelineState) {
-	__builtin_printf("%s", pError->localizedDescription()->utf8String());
-  }
+  const NS::String * const kernelFnName = NS::String::string("cullTilesAndEncodeCommands", NS::UTF8StringEncoding);
+  _pTileVisibilityKernelFn = _pLib->newFunction(kernelFnName);
+  _pTilesComputePSO = Pipelines::newComputePSO(_pDevice, _pLib, kernelFnName);
   
   // Make indirect command buffer
   
@@ -119,7 +102,10 @@ void Renderer::buildShaders() {
   pArgumentEncoder->setIndirectCommandBuffer(_pIndirectCommandBuffer, BufferIndices::ICBArgumentsBuffer);
   
   pArgumentEncoder->release();
-  pLib->release();
+}
+
+void Renderer::buildCritterShaders() {
+  _pCritterPSO = Pipelines::newPSO(_pDevice, _pLib, NS::String::string("critterVertex", NS::UTF8StringEncoding), NS::String::string("critterFragment", NS::UTF8StringEncoding), true);
 }
 
 void Renderer::buildDepthStencilState() {
@@ -130,12 +116,12 @@ void Renderer::buildDepthStencilState() {
   pDepthStencilDesc->release();
 }
 
-void Renderer::initializeModels() {
+void Renderer::initializeTextures() {
   TextureController & txController = TextureController::instance(_pDevice);
   txController.makeHeap();
   txController.moveTexturesToHeap(_pCommandQueue);
   
-  MTL::ArgumentEncoder * const pArgumentEncoder = _pTileVisibilityKernelFn->newArgumentEncoder(BufferIndices::ModelsBuffer);
+  MTL::ArgumentEncoder * const pArgumentEncoder = _pTileVisibilityKernelFn->newArgumentEncoder(BufferIndices::TextureBuffer);
   _pModelsBuffer = _pDevice->newBuffer(pArgumentEncoder->encodedLength(), MTL::ResourceStorageModeShared);
   pArgumentEncoder->setArgumentBuffer(_pModelsBuffer, 0);
   pArgumentEncoder->setTextures(txController.textures().data(), NS::Range(0, txController.textures().size()));
@@ -171,24 +157,24 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   _frame = (_frame + 1) % RenderingConstants::MaxBuffersInFlight;
   
   // Encode commands to determine visibility of tiles using a compute kernel
-  MTL::ComputeCommandEncoder * const pComputeEncoder = pCmdBuf->computeCommandEncoder();
-  pComputeEncoder->setLabel(NS::String::string("Tile Visibility Kernel", NS::UTF8StringEncoding));
-  pComputeEncoder->setComputePipelineState(_pComputePipelineState);
+  MTL::ComputeCommandEncoder * const pTileComputeEncoder = pCmdBuf->computeCommandEncoder();
+  pTileComputeEncoder->setLabel(NS::String::string("Tile Visibility Kernel", NS::UTF8StringEncoding));
+  pTileComputeEncoder->setComputePipelineState(_pTilesComputePSO);
 
-  for (const std::shared_ptr<const Model> & pModel : _pGameScene->models()) {
-	pModel->render(pComputeEncoder, _frame);
+  for (const std::shared_ptr<Model> & pModel : _pGameScene->models()) {
+	pModel->render(pTileComputeEncoder, _frame);
   }
-  pComputeEncoder->setBuffer(_pIcbArgumentBuffer, 0, BufferIndices::ICBBuffer);
-  pComputeEncoder->setBuffer(_pModelsBuffer, 0, BufferIndices::ModelsBuffer);
+  pTileComputeEncoder->setBuffer(_pIcbArgumentBuffer, 0, BufferIndices::ICBBuffer);
+  pTileComputeEncoder->setBuffer(_pModelsBuffer, 0, BufferIndices::TextureBuffer);
   // Call useResource on '_indirectCommandBuffer' which indicates to Metal that the kernel will
   // access '_indirectCommandBuffer'.  It is necessary because the app cannot directly set
   // '_indirectCommandBuffer' in 'computeEncoder', but, rather, must pass it to the kernel via
   // an argument buffer which indirectly contains '_indirectCommandBuffer'.
-  pComputeEncoder->useResource(_pIndirectCommandBuffer, MTL::ResourceUsageWrite);
-  pComputeEncoder->useHeap(TextureController::instance(_pDevice).heap());
-  const uint64_t threadExecutionWidth = _pComputePipelineState->threadExecutionWidth();
-  pComputeEncoder->dispatchThreads(MTL::Size(RenderingConstants::NumOfTilesPerSector, 1, 1), MTL::Size(threadExecutionWidth, 1, 1));
-  pComputeEncoder->endEncoding();
+  pTileComputeEncoder->useResource(_pIndirectCommandBuffer, MTL::ResourceUsageWrite);
+  pTileComputeEncoder->useHeap(TextureController::instance(_pDevice).heap());
+  const uint64_t threadExecutionWidth = _pTilesComputePSO->threadExecutionWidth();
+  pTileComputeEncoder->dispatchThreads(MTL::Size(RenderingConstants::NumOfTilesPerSector, 1, 1), MTL::Size(threadExecutionWidth, 1, 1));
+  pTileComputeEncoder->endEncoding();
   
   // Encode command to optimize the indirect command buffer after encoding
   MTL::BlitCommandEncoder * const pOptimizeBlitEncoder = pCmdBuf->blitCommandEncoder();
@@ -196,27 +182,42 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   pOptimizeBlitEncoder->optimizeIndirectCommandBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingConstants::NumOfTilesPerSector));
   pOptimizeBlitEncoder->endEncoding();
   
-  MTL::RenderPassDescriptor * pRpd = MTL::RenderPassDescriptor::alloc()->init();
-  pRpd->colorAttachments()->object(0)->setTexture(pDrawable->texture());
-  pRpd->colorAttachments()->object(0)->setLoadAction(MTL::LoadActionClear);
-  pRpd->colorAttachments()->object(0)->setClearColor(MTL::ClearColor::Make(0.0f, 0.0f, 1.0f, 1.0));
+  MTL::RenderPassDescriptor * pTileRpd = MTL::RenderPassDescriptor::alloc()->init();
+  pTileRpd->colorAttachments()->object(0)->setTexture(pDrawable->texture());
+  pTileRpd->colorAttachments()->object(0)->setLoadAction(MTL::LoadActionClear);
+  pTileRpd->colorAttachments()->object(0)->setClearColor(MTL::ClearColor::Make(0.0f, 0.0f, 1.0f, 1.0));
   
   MTL::RenderPassDepthAttachmentDescriptor * pRenderPassDepthAttachmentDesc = MTL::RenderPassDepthAttachmentDescriptor::alloc()->init();
   pRenderPassDepthAttachmentDesc->setTexture(pDepthTexture);
-  pRpd->setDepthAttachment(pRenderPassDepthAttachmentDesc);
+  pTileRpd->setDepthAttachment(pRenderPassDepthAttachmentDesc);
 
-  MTL::RenderCommandEncoder * const pEnc = pCmdBuf->renderCommandEncoder(pRpd);
-  pEnc->setRenderPipelineState(_pPSO);
-  pEnc->setDepthStencilState(_pDepthStencilState);
-//  pEnc->setTriangleFillMode(MTL::TriangleFillModeLines);
-  pEnc->executeCommandsInBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingConstants::NumOfTilesPerSector));
-  pEnc->endEncoding();
+  MTL::RenderCommandEncoder * const pTileRenderEncoder = pCmdBuf->renderCommandEncoder(pTileRpd);
+  pTileRenderEncoder->setLabel(NS::String::string("Tile Render Encoder", NS::UTF8StringEncoding));
+  pTileRenderEncoder->setRenderPipelineState(_pTilesPSO);
+  pTileRenderEncoder->setDepthStencilState(_pDepthStencilState);
+  pTileRenderEncoder->executeCommandsInBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingConstants::NumOfTilesPerSector));
+  pTileRenderEncoder->endEncoding();
+  
+  MTL::RenderPassDescriptor * pCritterRpd = MTL::RenderPassDescriptor::alloc()->init();
+  pCritterRpd->colorAttachments()->object(0)->setTexture(pDrawable->texture());
+  pCritterRpd->colorAttachments()->object(0)->setLoadAction(MTL::LoadActionLoad);
+  pCritterRpd->setDepthAttachment(pRenderPassDepthAttachmentDesc);
+  
+  MTL::RenderCommandEncoder * const pCritterRenderEncoder = pCmdBuf->renderCommandEncoder(pCritterRpd);
+  pCritterRenderEncoder->setLabel(NS::String::string("Critter Render Encoder", NS::UTF8StringEncoding));
+  pCritterRenderEncoder->setRenderPipelineState(_pCritterPSO);
+  pCritterRenderEncoder->setDepthStencilState(_pDepthStencilState);
+  pCritterRenderEncoder->setFragmentBuffer(_pModelsBuffer, 0, BufferIndices::TextureBuffer);
+  pCritterRenderEncoder->useHeap(TextureController::instance(_pDevice).heap());
+  _pGameScene->pCharacter()->render(pCritterRenderEncoder, 0);
+  pCritterRenderEncoder->endEncoding();
   
   pCmdBuf->presentDrawable(pDrawable);
   pCmdBuf->commit();
   
   pRenderPassDepthAttachmentDesc->release();
-  pRpd->release();
+  pTileRpd->release();
+  pCritterRpd->release();
 }
 
 void Renderer::drawableSizeWillChange(const float_t & drawableWidth, const float_t & drawableHeight) {

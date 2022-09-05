@@ -10,7 +10,7 @@
 
 #include "Uniforms.hpp"
 #include "Model.hpp"
-#include "Common/MemoryAlignment.hpp"
+#include "Common/Alignment.hpp"
 
 Model::Model(MTL::Device * const pDevice, const uint16_t maxBuffersInFlight)
 : _pDevice(pDevice),
@@ -19,12 +19,11 @@ Model::Model(MTL::Device * const pDevice, const uint16_t maxBuffersInFlight)
   _pVertexBuffer(nullptr),
   _pIndexBuffer(nullptr),
   _uniformsBuffers(std::vector<MTL::Buffer *>(maxBuffersInFlight)) {
-	const size_t uniformsSize = MemoryAlignment::roundUpToNextMultipleOf16(sizeof(Uniforms));
+	const size_t uniformsSize = Alignment::roundUpToNextMultipleOf16(sizeof(Uniforms));
 	for (size_t i = 0; i < maxBuffersInFlight; i++) {
 	  _uniformsBuffers[i] = pDevice->newBuffer(uniformsSize, MTL::ResourceStorageModeShared);
 	  NS::String * const pLabel = NS::String::string("Uniforms ", NS::UTF8StringEncoding)->stringByAppendingString(NS::String::string(std::to_string(i).c_str(), NS::UTF8StringEncoding));
 	  _uniformsBuffers[i]->setLabel(pLabel);
-	  pLabel->release();
 	}
 	
 	// This is to see meaningful names of buffers in debugger

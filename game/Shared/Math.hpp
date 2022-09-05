@@ -127,9 +127,10 @@ public:
 	ndc.z = .0f;
 	return ndc;
   }
+  
+  inline const glm::mat4x4 identity() const { return _identity; }
 
 private:
   Math();
   const glm::mat4x4 _identity;
-  inline const glm::mat4x4 identity() const { return _identity; }
 };
