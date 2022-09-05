@@ -34,9 +34,10 @@ MTL::RenderPipelineState * Pipelines::newPSO(MTL::Device * const pDevice, MTL::L
 	__builtin_printf("%s", pError->localizedDescription()->utf8String());
   }
   
-  pVertexFn->release();
-  pFragmentFn->release();
+  pError->release();
   pDesc->release();
+  pFragmentFn->release();
+  pVertexFn->release();
   
   return pPSO;
 }
@@ -48,6 +49,9 @@ MTL::ComputePipelineState * Pipelines::newComputePSO(MTL::Device * const pDevice
   if (!pPSO) {
 	__builtin_printf("%s", pError->localizedDescription()->utf8String());
   }
+  
+  pError->release();
+  pKernelFn->release();
   
   return pPSO;
 }
