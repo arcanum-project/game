@@ -48,7 +48,7 @@ fragment float4 critterFragment(VertexOut in [[stage_in]],
   // Get proper texture from heap
   const texture2d<half, access::sample> texture = material.baseColorTextures[textureIndex];
   // In order to make textures aligned to the center-ish of a mesh, we calculate uvs ourself
-  // Mesh is a square of 3x3 tiles, and we unwrap uvs to initially be a square aligned to the left-bottom corner of the texture
+  // Mesh is a square of 5x5 tiles, and we unwrap uvs to initially be a square aligned to the left-bottom corner of the texture
   // Side of this square will match either width or height of the texture, whichever is lowest - we do this to ensure that square spans entire side of the texture - again, that would be either width or height
   const uint max = texture.get_width() > texture.get_height() ? texture.get_height() : texture.get_width();
   // Number of vertices along the X axis of the mesh
