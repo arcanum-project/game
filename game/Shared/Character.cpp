@@ -22,7 +22,7 @@ Character::~Character() {
 }
 
 void Character::populateVertexData() {
-  const std::unique_ptr<const ImportedModelData> tile = ObjModelImporter().import("critter-5x5", "obj");
+  const std::unique_ptr<const ImportedModelData> tile = ObjModelImporter().import("character-3x3", "obj");
   setVertexData(tile->vertexData);
   setIndices(tile->indices);
   
@@ -33,6 +33,11 @@ void Character::populateVertexData() {
 void Character::loadTextures() {
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_04", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_03", "bmp");
-  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_05", "bmp");
+//  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_05", "bmp");
+  _textureIndex = TextureController::instance(pDevice()).loadTexture("hmfc2xaa_05", "bmp");
+//  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xna_25", "bmp");
+//  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xna_31", "bmp");
+//  _textureIndex = TextureController::instance(pDevice()).loadTexture("ghmstxaa_0", "bmp");
+//    _textureIndex = TextureController::instance(pDevice()).loadTexture("hgmv1xaa_05", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmbnxak_80", "bmp");
 }
