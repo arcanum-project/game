@@ -27,7 +27,7 @@ struct VertexOut {
   float3 normal;
 };
 
-vertex VertexOut critterVertex(
+vertex VertexOut characterVertex(
 							 VertexIn in [[stage_in]],
 							 constant Uniforms & uniforms [[buffer(BufferIndices::UniformsBuffer)]]
 							 )
@@ -41,7 +41,7 @@ vertex VertexOut critterVertex(
   return out;
 }
 
-fragment float4 critterFragment(VertexOut in [[stage_in]],
+fragment float4 characterFragment(VertexOut in [[stage_in]],
 								constant ShaderMaterial & material [[buffer(BufferIndices::TextureBuffer)]],
 								constant ushort & textureIndex [[buffer(19)]]) {
   constexpr sampler textureSampler(filter::linear, max_anisotropy(16));

@@ -105,7 +105,7 @@ void Renderer::buildTileShaders() {
 }
 
 void Renderer::buildCritterShaders() {
-  _pCritterPSO = Pipelines::newPSO(_pDevice, _pLib, NS::String::string("critterVertex", NS::UTF8StringEncoding), NS::String::string("critterFragment", NS::UTF8StringEncoding), true);
+  _pCritterPSO = Pipelines::newPSO(_pDevice, _pLib, NS::String::string("characterVertex", NS::UTF8StringEncoding), NS::String::string("characterFragment", NS::UTF8StringEncoding), true);
 }
 
 void Renderer::buildDepthStencilState() {
