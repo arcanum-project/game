@@ -79,14 +79,14 @@ fragment float4 critterFragment(VertexOut in [[stage_in]],
   // To achieve this, we need to move (translate) the center back to original position after scaling.
   const float translateFactor = max / 2 * (scaleFactor - 1);
   float4x4 translate = float4x4(1.0f);
+  const float aspectRatio = texture.get_width() > texture.get_height() ? (float) texture.get_width() / (float) texture.get_height() : (float) texture.get_height() / (float) texture.get_width();
   // Second summand = max / 6 - has nothing to do with translating the center back to original position. This summand's purpose is to more accurately align the texture to the center of the mesh.
-  translate[3][0] = -translateFactor - max / 6;
-  translate[3][1] = -translateFactor - max / 6;
+  translate[3][0] = aspectRatio >= 1.7 ? -translateFactor - max / 4 : -translateFactor - max / 6;
+  translate[3][1] = aspectRatio >= 1.7 ? -translateFactor + max / 4 : -translateFactor - max / 6;
   // Rotation is required to properly position the texture in the game world - i.e. to take into account the rotation of the game world itself
   float4x4 rotateY = float4x4(1.0f);
   const float angle = degreesToRadians(-45.0f);
   rotateY[0][0] = cos(angle);
-  const float aspectRatio = texture.get_width() > texture.get_height() ? (float) texture.get_width() / (float) texture.get_height() : (float) texture.get_height() / (float) texture.get_width();
   // Rotate the texture preserving its aspect ratio
   // From here: https://blender.stackexchange.com/questions/213318/how-to-rotate-uv-and-preserve-the-correct-aspect-ratio
   rotateY[0][1] = sin(angle) / aspectRatio;
