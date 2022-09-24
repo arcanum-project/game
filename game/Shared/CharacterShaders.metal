@@ -59,7 +59,7 @@ fragment float4 critterFragment(VertexOut in [[stage_in]],
   const short xMin = -5;
   const short zMax = 5;
   // Fragment shader receives coordinates of a pixel within a mesh. Below we identify 'index' of this coordinate.
-  // Index can be though of as relative position of a pixel on the mesh
+  // Index can be thought of as relative position of a pixel on the mesh
   const float pointIndexX = (in.originalPosition.x - xMin) / 2;
   const float pointIndexZ = (zMax - in.originalPosition.z) / 2;
   // Get u-coordinate from X index
@@ -76,9 +76,10 @@ fragment float4 critterFragment(VertexOut in [[stage_in]],
   scale[0][0] = scaleFactor;
   scale[1][1] = scaleFactor;
   // When we scale our UVs, the center of the UVs will be scaled proportionally, too. However we don't want that - we want the UV center (0.5; 0.5) to be in the same place where it was before any scaling
-  // To achieve this, we need to move (translate) the center back to original position after scaling
+  // To achieve this, we need to move (translate) the center back to original position after scaling.
   const float translateFactor = max / 2 * (scaleFactor - 1);
   float4x4 translate = float4x4(1.0f);
+  // Second summand = max / 6 - has nothing to do with translating the center back to original position. This summand's purpose is to more accurately align the texture to the center of the mesh.
   translate[3][0] = -translateFactor - max / 6;
   translate[3][1] = -translateFactor - max / 6;
   // Rotation is required to properly position the texture in the game world - i.e. to take into account the rotation of the game world itself
