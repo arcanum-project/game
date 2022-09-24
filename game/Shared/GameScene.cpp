@@ -18,7 +18,7 @@ GameScene::GameScene(MTL::Device * const pDevice)
   _pCharacter(std::make_shared<Character>(pDevice)),
   _models(std::vector<const std::shared_ptr<Model>> { _pTile }),
   _pCamera(std::make_unique<IsometricCamera>()) {
-	_pCamera->setScale(0.125f);
+	_pCamera->setScale(0.1f);
 	_pCamera->setPosition(glm::vec3(.0f, .0f, -50.0f));
 	// Make isometric projection via rotations. Based on this: https://structuralcalc.com/is-there-math-in-drawings/
 	_pCamera->setRotation(glm::vec3(glm::radians(35.26f), glm::radians(-135.0f), .0f));

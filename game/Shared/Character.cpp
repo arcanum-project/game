@@ -22,7 +22,7 @@ Character::~Character() {
 }
 
 void Character::populateVertexData() {
-  const std::unique_ptr<const ImportedModelData> tile = ObjModelImporter().import("character-3x3", "obj");
+  const std::unique_ptr<const ImportedModelData> tile = ObjModelImporter().import("character-5x5", "obj");
   setVertexData(tile->vertexData);
   setIndices(tile->indices);
   
