@@ -1363,6 +1363,9 @@
 		9F13D66328C5764100C11694 /* efmbnxak_64.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F13D61B28C5762800C11694 /* efmbnxak_64.bmp */; };
 		9F20632C28DEB20E000961F0 /* character-5x5.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F20632B28DEB1B1000961F0 /* character-5x5.obj */; };
 		9F2063C628DFBCAB000961F0 /* hmfc2xai_117.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F20636A28DFBC8B000961F0 /* hmfc2xai_117.bmp */; };
+		9F2063C728DFC582000961F0 /* hmfc2xai_00.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F2063A628DFBC8B000961F0 /* hmfc2xai_00.bmp */; };
+		9F2063C828DFC6D2000961F0 /* hmfc2xai_06.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F2063BB28DFBC8B000961F0 /* hmfc2xai_06.bmp */; };
+		9F2063C928E1133F000961F0 /* hmfc2xai_82.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F20636328DFBC8B000961F0 /* hmfc2xai_82.bmp */; };
 		9F3F67A8288DDBD60057DE5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67A7288DDBD60057DE5F /* AppDelegate.m */; };
 		9F3F67AB288DDBD60057DE5F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67AA288DDBD60057DE5F /* SceneDelegate.m */; };
 		9F3F67AE288DDBD60057DE5F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67AD288DDBD60057DE5F /* ViewController.m */; };
@@ -15401,6 +15404,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F13D62628C5764100C11694 /* efmbnxak_43.bmp in Resources */,
+				9F2063C928E1133F000961F0 /* hmfc2xai_82.bmp in Resources */,
+				9F2063C828DFC6D2000961F0 /* hmfc2xai_06.bmp in Resources */,
+				9F2063C728DFC582000961F0 /* hmfc2xai_00.bmp in Resources */,
 				9F2063C628DFBCAB000961F0 /* hmfc2xai_117.bmp in Resources */,
 				9F20632C28DEB20E000961F0 /* character-5x5.obj in Resources */,
 				9FA4B5CF28D7E89100778266 /* character-3x3.obj in Resources */,
@@ -15414,7 +15421,6 @@
 				9F13D62328C5764100C11694 /* efmbnxak_42.bmp in Resources */,
 				9F13D62428C5764100C11694 /* efmbnxak_81.bmp in Resources */,
 				9F13D62528C5764100C11694 /* efmbnxak_80.bmp in Resources */,
-				9F13D62628C5764100C11694 /* efmbnxak_43.bmp in Resources */,
 				9F13D62728C5764100C11694 /* efmbnxak_57.bmp in Resources */,
 				9F13D62828C5764100C11694 /* efmbnxak_53.bmp in Resources */,
 				9F13D62928C5764100C11694 /* efmbnxak_47.bmp in Resources */,

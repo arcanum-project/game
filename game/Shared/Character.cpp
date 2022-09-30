@@ -37,8 +37,10 @@ void Character::loadTextures() {
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("hmfc2xaa_05", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xna_25", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xna_31", "bmp");
-  _textureIndex = TextureController::instance(pDevice()).loadTexture("ghmstxaa_0", "bmp");
+//  _textureIndex = TextureController::instance(pDevice()).loadTexture("ghmstxaa_0", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("hmfc2xai_117", "bmp");
-//    _textureIndex = TextureController::instance(pDevice()).loadTexture("hgmv1xaa_05", "bmp");
+  _textureIndex = TextureController::instance(pDevice()).loadTexture("hmfc2xai_06", "bmp");
+//    _textureIndex = TextureController::instance(pDevice()).loadTexture("hgmv1xaa_06", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmbnxak_80", "bmp");
+//  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmbnxak_43", "bmp");
 }

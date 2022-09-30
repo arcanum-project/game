@@ -50,51 +50,66 @@ fragment float4 characterFragment(VertexOut in [[stage_in]],
   // In order to make textures aligned to the center-ish of a mesh, we calculate uvs ourself
   // Mesh is a square of 5x5 tiles, and we unwrap uvs to initially be a square aligned to the left-bottom corner of the texture
   // Side of this square will match either width or height of the texture, whichever is lowest - we do this to ensure that square spans entire side of the texture - again, that would be either width or height
-  const uint max = texture.get_width() > texture.get_height() ? texture.get_height() : texture.get_width();
+  const uint squareSide = texture.get_width() > texture.get_height() ? texture.get_height() : texture.get_width();
   // Number of vertices along the X axis of the mesh
-  const ushort numPointsPerRow = 6;
+  const ushort numPointsPerRow = 4;
   // Number of vertices along the Y axis of the mesh
-  const ushort numPointsPerColumn = 6;
+  const ushort numPointsPerColumn = 4;
   // This is from Blender internal coordinates directly. These coordinates define mesh dimensions
-  const short xMin = -5;
-  const short zMax = 5;
+  const short xMin = -3;
+  const short zMax = 3;
   // Fragment shader receives coordinates of a pixel within a mesh. Below we identify 'index' of this coordinate.
   // Index can be thought of as relative position of a pixel on the mesh
   const float pointIndexX = (in.originalPosition.x - xMin) / 2;
   const float pointIndexZ = (zMax - in.originalPosition.z) / 2;
   // Get u-coordinate from X index
-  const float u = max * (pointIndexX / (numPointsPerRow - 1));
+  const float u = squareSide * (pointIndexX / (numPointsPerRow - 1));
   // Get v-coordinate from Z index
-  const float v = max * (pointIndexZ / (numPointsPerColumn - 1));
+  const float v = squareSide * (pointIndexZ / (numPointsPerColumn - 1));
+  const float centerX = 16.0f;
+  const float centerY = 9.0f;
+  float4x4 translateCenter = float4x4(1.0f);
+  translateCenter[3][0] = centerX - squareSide / 2.0f;
+  translateCenter[3][1] = centerY - squareSide / 2.0f;
   // Next step is to scale unwrapped UVs to ensure that entire image is covered
-  const float newWidthOrHeight = texture.get_width() > texture.get_height() ? texture.get_width() : texture.get_height();
-  // scaleFactor = world scaling factor * uv scaling factor.
-  // uv scaling factor = (2 * newWidthOrHeight - max) / max. This actually scales UVs to cover entire image
-  // world scaling factor = 2.5f. This scales the texture to be of an appropriate size relative to the game world
-  const float scaleFactor = 2.5f * (2 * newWidthOrHeight - max) / max;
+  float newWidthOrHeight = texture.get_width() > texture.get_height() ? texture.get_width() : texture.get_height();
+  // world scaling factor is to scale the texture to be of an appropriate size relative to the game world
+  const float worldScaleFactor = 2.5f;
+  // uv scaling factor is to scale UVs to cover entire image
+  const float uvScalingFactor = (newWidthOrHeight - centerX) / (squareSide / 2);
+  const float scaleFactor = worldScaleFactor * uvScalingFactor;
   float4x4 scale = float4x4(1.0f);
   scale[0][0] = scaleFactor;
   scale[1][1] = scaleFactor;
   // When we scale our UVs, the center of the UVs will be scaled proportionally, too. However we don't want that - we want the UV center (0.5; 0.5) to be in the same place where it was before any scaling
   // To achieve this, we need to move (translate) the center back to original position after scaling.
-  const float translateFactor = max / 2 * (scaleFactor - 1);
+  const float translateFactorX = centerX * (scaleFactor - 1);
+  const float translateFactorY = centerY * (scaleFactor - 1);
   float4x4 translate = float4x4(1.0f);
-  const float aspectRatio = texture.get_width() > texture.get_height() ? (float) texture.get_width() / (float) texture.get_height() : (float) texture.get_height() / (float) texture.get_width();
   // translateFactor ensures that center is moved back to its original position before scaling.
-  // Second summands have nothing to do with translating the center back to original position - their purpose is to more accurately align the texture to the center of the mesh.
-  translate[3][0] = aspectRatio >= 1.7 ? -translateFactor - max / 4 : -translateFactor - max / 6;
-  translate[3][1] = aspectRatio >= 1.7 ? -translateFactor + max / 4 : -translateFactor - max / 6;
+  translate[3][0] = -translateFactorX;
+  translate[3][1] = -translateFactorY;
+  // Perform actual transformation
+  float4 adjustedUV = translate * scale * translateCenter * float4(u, v, .0f, 1.0f);
   // Rotation is required to properly position the texture in the game world - i.e. to take into account the rotation of the game world itself
   float4x4 rotateY = float4x4(1.0f);
   const float angle = degreesToRadians(-45.0f);
   rotateY[0][0] = cos(angle);
-  // Rotate the texture preserving its aspect ratio
-  // From here: https://blender.stackexchange.com/questions/213318/how-to-rotate-uv-and-preserve-the-correct-aspect-ratio
-  rotateY[0][1] = sin(angle) / aspectRatio;
+  // Rotate the texture around its desired center while preserving the texture's aspect ratio
+  // Based on: https://blender.stackexchange.com/questions/213318/how-to-rotate-uv-and-preserve-the-correct-aspect-ratio
+  const float aspectRatio = (float) texture.get_height() / (float) texture.get_width();
+  rotateY[0][1] = texture.get_width() > texture.get_height() ? sin(angle) : sin(angle) / aspectRatio;
   rotateY[1][0] = -sin(angle);
   rotateY[1][1] = cos(angle);
-  // Perform actual transformation
-  float4 adjustedUV = rotateY * translate * scale * float4(u, v, .0f, 1.0f);
+  // Since we need to rotate the texture around the point that is different from texture's origin (origin is top left corner), we need to translate the origin to the point of rotation
+  // From here: https://www.youtube.com/watch?v=nu2MR1RoFsA
+  float4x4 translateBeforeRotate = float4x4(1.0f);
+  translateBeforeRotate[3][0] = -centerX;
+  translateBeforeRotate[3][1] = -centerY;
+  float4x4 translateAfterRotate = float4x4(1.0f);
+  translateAfterRotate[3][0] = centerX;
+  translateAfterRotate[3][1] = centerY;
+  adjustedUV = translateAfterRotate * rotateY * translateBeforeRotate * adjustedUV;
   // Normalize uvs to be in (0, 1) range
   adjustedUV.x /= texture.get_width();
   adjustedUV.y /= texture.get_height();
