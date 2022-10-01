@@ -6,6 +6,7 @@
 //
 
 #include "TextureController.hpp"
+#include "ArtImporter.hpp"
 
 TextureController & TextureController::instance(MTL::Device * const pDevice) {
   static TextureController instance(pDevice);
@@ -27,21 +28,21 @@ TextureController::~TextureController() {
 }
 
 MTL::Texture * const TextureController::makeTexture(const char * imgName, const char * imgType) const {
-  const PixelData pPixelData = BMPImporter::import(imgName, imgType);
+  const PixelData pd = strcmp(imgName, "hmfc2xaa_05") == 0 ? ArtImporter::importFrame("hmfc2xaa", 6) : BMPImporter::import(imgName, imgType);
   
   MTL::TextureDescriptor * const pTextureDescriptor = MTL::TextureDescriptor::alloc()->init();
   pTextureDescriptor->setTextureType( MTL::TextureType2D );
   pTextureDescriptor->setPixelFormat(MTL::PixelFormatBGRA8Unorm);
-  pTextureDescriptor->setWidth(pPixelData.imgWidth);
-  pTextureDescriptor->setHeight(pPixelData.imgHeight);
+  pTextureDescriptor->setWidth(pd.imgWidth);
+  pTextureDescriptor->setHeight(pd.imgHeight);
   pTextureDescriptor->setStorageMode( MTL::StorageModeShared );
   pTextureDescriptor->setUsage( MTL::ResourceUsageSample | MTL::ResourceUsageRead );
   MTL::Texture * const pTexture = _pDevice->newTexture(pTextureDescriptor);
   
-  const MTL::Region region = MTL::Region(0, 0, 0, pPixelData.imgWidth, pPixelData.imgHeight, 1);
-  const uint32_t bytesPerRow = 4 * pPixelData.imgWidth;
+  const MTL::Region region = MTL::Region(0, 0, 0, pd.imgWidth, pd.imgHeight, 1);
+  const uint32_t bytesPerRow = 4 * pd.imgWidth;
   
-  pTexture->replaceRegion(region, 0, pPixelData.pixels.data(), bytesPerRow);
+  pTexture->replaceRegion(region, 0, pd.pixels.data(), bytesPerRow);
   
   pTexture->setLabel(NS::String::string(imgName, NS::UTF8StringEncoding));
   
