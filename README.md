@@ -21,6 +21,10 @@ To build the project, you must ensure that you have project dependencies in plac
 
 We are against game piracy, and therefore the original game assets are not included in this repository. In order to run the project, you must include them yourself after extracting them from the original game files. Below is the list of the assets currently required.
 
-- .art files for tiles. Add all tiles' .art files to `/opt/Arcanum Revitalized/tile` folder. **Important**: all files must be in lowercase. To achieve this, you can run a script from the most popular answer here: https://stackoverflow.com/questions/7787029/how-do-i-rename-all-files-to-lowercase
+- .art files for tiles. Add all tiles' .art files to `/opt/Arcanum Revitalized/tile` folder. **Important**: all file names must be in lowercase. To achieve this, you can run a script from the most popular answer here: https://stackoverflow.com/questions/7787029/how-do-i-rename-all-files-to-lowercase
 
 To run the project, you must connect the physical iOS device. iOS simulator cannot run it because of the rendering techniques used - simulator simply does not support them yet.
+
+#### Contributors
+
+- AxelStrem: provided a converter from .art to .bmp. Original project is here: https://github.com/AxelStrem/ArtConverter
