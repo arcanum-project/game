@@ -5,9 +5,12 @@
 //  Created by Dmitrii Belousov on 9/3/22.
 //
 
+#include <vector>
+
 #include "Character.hpp"
 #include "ObjModelImporter.hpp"
 #include "TextureController.hpp"
+#include "ArtImporter.hpp"
 
 Character::Character(MTL::Device * const pDevice)
 : Model(pDevice, 1),
@@ -30,7 +33,20 @@ void Character::populateVertexData() {
   setIndexBuffer(pDevice()->newBuffer(indices().data(), indices().size() * sizeof(uint16_t), MTL::ResourceStorageModeShared));
 }
 
+const Model::TextureData Character::makeTexturesFromArt(const char * name, const char * type) const {
+  TextureData td;
+  PixelData pd = ArtImporter::importArt(name, "art");
+  const std::vector<uint8_t> bgras = pd.bgraFrameFromPalette(7, 2);
+  const uint16_t textureStartIndex = TextureController::instance(pDevice()).loadTexture(name, pd.frames().at(7).imgHeight, pd.frames().at(7).imgWidth, bgras.data());
+  td.startIndex = textureStartIndex;
+  return td;
+}
+
 void Character::loadTextures() {
+//  const char* name = "ghmstxaa";
+  const char* name = "hmfc2xaa";
+  const TextureData td = makeTexturesFromArt(name, "art");
+  _textureIndex = td.startIndex;
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_04", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_03", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_05", "bmp");

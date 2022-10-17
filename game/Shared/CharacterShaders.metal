@@ -52,12 +52,12 @@ fragment float4 characterFragment(VertexOut in [[stage_in]],
   // Side of this square will match either width or height of the texture, whichever is lowest - we do this to ensure that square spans entire side of the texture - again, that would be either width or height
   const uint squareSide = texture.get_width() > texture.get_height() ? texture.get_height() : texture.get_width();
   // Number of vertices along the X axis of the mesh
-  const ushort numPointsPerRow = 4;
+  const ushort numPointsPerRow = 6;
   // Number of vertices along the Y axis of the mesh
-  const ushort numPointsPerColumn = 4;
+  const ushort numPointsPerColumn = 6;
   // This is from Blender internal coordinates directly. These coordinates define mesh dimensions
-  const short xMin = -3;
-  const short zMax = 3;
+  const short xMin = -5;
+  const short zMax = 5;
   // Fragment shader receives coordinates of a pixel within a mesh. Below we identify 'index' of this coordinate.
   // Index can be thought of as relative position of a pixel on the mesh
   const float pointIndexX = (in.originalPosition.x - xMin) / 2;
@@ -66,8 +66,8 @@ fragment float4 characterFragment(VertexOut in [[stage_in]],
   const float u = squareSide * (pointIndexX / (numPointsPerRow - 1));
   // Get v-coordinate from Z index
   const float v = squareSide * (pointIndexZ / (numPointsPerColumn - 1));
-  const float centerX = 16.0f;
-  const float centerY = 9.0f;
+  const float centerX = 13.0f;
+  const float centerY = 79.0f;
   float4x4 translateCenter = float4x4(1.0f);
   translateCenter[3][0] = centerX - squareSide / 2.0f;
   translateCenter[3][1] = centerY - squareSide / 2.0f;
@@ -93,7 +93,7 @@ fragment float4 characterFragment(VertexOut in [[stage_in]],
   float4 adjustedUV = translate * scale * translateCenter * float4(u, v, .0f, 1.0f);
   // Rotation is required to properly position the texture in the game world - i.e. to take into account the rotation of the game world itself
   float4x4 rotateY = float4x4(1.0f);
-  const float angle = degreesToRadians(-45.0f);
+  const float angle = degreesToRadians(135.0f);
   rotateY[0][0] = cos(angle);
   // Rotate the texture around its desired center while preserving the texture's aspect ratio
   // Based on: https://blender.stackexchange.com/questions/213318/how-to-rotate-uv-and-preserve-the-correct-aspect-ratio
@@ -113,8 +113,6 @@ fragment float4 characterFragment(VertexOut in [[stage_in]],
   // Normalize uvs to be in (0, 1) range
   adjustedUV.x /= texture.get_width();
   adjustedUV.y /= texture.get_height();
-  // Mirror texture across X axis. This is also required to properly position the texture in the world
-  adjustedUV.x = -adjustedUV.x + 1.0f;
   const bool isUVOutsideYBounds = adjustedUV.y > 1.0f || adjustedUV.y < 0.0f;
   const bool isUVOutsideXBounds = adjustedUV.x > 1.0f || adjustedUV.x < 0.0f;
   // Since our mesh is larger than actual texture, we need to make areas outside of texture transparent

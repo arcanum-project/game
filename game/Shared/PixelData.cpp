@@ -23,7 +23,7 @@ const std::vector<uint8_t> PixelData::bgraFrameFromPalette(const uint16_t& frame
   // Each pixel is an index into color table.
   // We now need to iterate over each such index and convert into actual BGRA color
   for (const uint8_t& pixelIndex : _frames.at(frameNum).pixels) {
-	const std::vector<uint8_t> palette = _palettes.at(paletteIndex);
+	const std::vector<uint8_t>& palette = _palettes.at(paletteIndex);
 	const uint8_t b = palette.at(pixelIndex * 4);
 	const uint8_t g = palette.at(pixelIndex * 4 + 1);
 	const uint8_t r = palette.at(pixelIndex * 4 + 2);

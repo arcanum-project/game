@@ -1,0 +1,88 @@
+{
+	"npcs": [
+		{
+			"tileInstanceId": 2984,
+			"textureName": "efmcdxaa",
+			"paletteIndex": 0,
+			"rotationIndex": 3
+		},
+		{
+			"tileInstanceId": 3987,
+			"textureName": "hmfcdxaa",
+			"paletteIndex": 0,
+			"rotationIndex": 3
+		},
+		{
+			"tileInstanceId": 1053,
+			"textureName": "hmfc2xaa",
+			"paletteIndex": 0,
+			"rotationIndex": 3
+		},
+		{
+			"tileInstanceId": 2207,
+			"textureName": "hmmrbxaa",
+			"paletteIndex": 2,
+			"rotationIndex": 7
+		},
+		{
+			"tileInstanceId": 3147,
+			"textureName": "hmfc2xaa",
+			"paletteIndex": 3,
+			"rotationIndex": 7
+		},
+		{
+			"tileInstanceId": 1678,
+			"textureName": "hmmcdxaa",
+			"paletteIndex": 1,
+			"rotationIndex": 5
+		},
+		{
+			"tileInstanceId": 917,
+			"textureName": "hgmv1xaa",
+			"paletteIndex": 0,
+			"rotationIndex": 3
+		},
+		{
+			"tileInstanceId": 2079,
+			"textureName": "ghmstxaa",
+			"paletteIndex": 0,
+			"rotationIndex": 2
+		},
+		{
+			"tileInstanceId": 2079,
+			"textureName": "ghmstxaa",
+			"paletteIndex": 0,
+			"rotationIndex": 5
+		},
+		{
+			"tileInstanceId": 596,
+			"textureName": "hmmcdxaa",
+			"paletteIndex": 0,
+			"rotationIndex": 3
+		},
+		{
+			"tileInstanceId": 2776,
+			"textureName": "hmfc2xaa",
+			"paletteIndex": 1,
+			"rotationIndex": 3
+		},
+		{
+			"tileInstanceId": 3427,
+			"textureName": "hmfc2xaa",
+			"paletteIndex": 3,
+			"rotationIndex": 3
+		},
+		{
+			"tileInstanceId": 668,
+			"textureName": "dfmcdxaa",
+			"paletteIndex": 0,
+			"rotationIndex": 3
+		},
+		{
+			"tileInstanceId": 2451,
+			"textureName": "ghmcdxaa",
+			"paletteIndex": 0,
+			"rotationIndex": 3
+		}
+	]
+}

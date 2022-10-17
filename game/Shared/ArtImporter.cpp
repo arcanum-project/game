@@ -25,8 +25,8 @@ const PixelData ArtImporter::importArt(const char * artName, const char * artTyp
 	  if (af.isInPalette(existingPalette)) af.palettes++;
 	}
 	for (ushort i = 0; i < af.palettes; ++i) {
-	  af.paletteData = std::vector<ColorTable>(af.palettes);
-	  file.read(reinterpret_cast<char*>(af.paletteData.data()), sizeof(ColorTable));
+	  af.paletteData.push_back(ColorTable());
+	  file.read(reinterpret_cast<char*>(&af.paletteData.back()), sizeof(ColorTable));
 	}
 	af.isAnimated = ((af.header.h0[0] & 0x1) == 0);
 	af.frames = af.isAnimated ? af.header.frameNum * 8 : af.header.frameNum;
