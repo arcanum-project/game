@@ -10,7 +10,10 @@
 
 #include <stdio.h>
 #include <vector>
+#include <utility>
+#include <fstream>
 
+#include "Frame.hpp"
 #include "PixelData.hpp"
 
 class ArtImporter {
@@ -48,16 +51,18 @@ class ArtImporter {
   
   class ArtFrame {
   public:
+	ArtFrame();
+	~ArtFrame();
 	ArtFrameHeader header;
 	std::vector<uint8_t> data;
-	std::vector<std::vector<uint8_t>> pixels;
+	std::vector<uint8_t> pixels;
 	uint32_t px;
 	uint32_t py;
 	inline void loadHeader(std::ifstream& file) {
 	  file.read(reinterpret_cast<char*>(&header), sizeof(header));
 	}
 	inline void load(std::ifstream& file) {
-	  data.reserve(header.size);
+	  data = std::vector<uint8_t>(header.size);
 	  file.read(reinterpret_cast<char*>(data.data()), header.size);
 	}
 	
@@ -82,10 +87,10 @@ class ArtImporter {
 	uint16_t frames;
 	std::vector<ArtFrame> frameData;
 	// Methods
-	inline const bool isInPalette(Color col) const { return (col.a | col.b | col.g | col.r) != 0; }
+	inline const bool isInPalette(const Color& col) const { return (col.a | col.b | col.g | col.r) != 0; }
   };
 public:
-  static const PixelData importFrame(const char * artName, uint32_t frameNum);
+  static const PixelData importArt(const char * artName, const char * artType);
 };
 
 #endif /* ArtImporter_hpp */

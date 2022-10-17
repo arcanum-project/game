@@ -34,7 +34,7 @@ void Character::loadTextures() {
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_04", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_03", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_05", "bmp");
-  _textureIndex = TextureController::instance(pDevice()).loadTexture("hmfc2xaa_05", "bmp");
+//  _textureIndex = TextureController::instance(pDevice()).loadTexture("hmfc2xaa_05", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xna_25", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xna_31", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("ghmstxaa_0", "bmp");

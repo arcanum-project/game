@@ -15,7 +15,8 @@
 GameScene::GameScene(MTL::Device * const pDevice)
 : _pDevice(pDevice),
   _pTile(std::make_shared<Tile>(pDevice, RenderingConstants::NumOfTilesPerSector, RenderingConstants::MaxBuffersInFlight)),
-  _pCharacter(std::make_shared<Character>(pDevice)),
+//  _pCharacter(std::make_shared<Character>(pDevice)),
+  _pCharacter(),
   _models(std::vector<const std::shared_ptr<Model>> { _pTile }),
   _pCamera(std::make_unique<IsometricCamera>()) {
 	_pCamera->setScale(0.1f);

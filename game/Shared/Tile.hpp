@@ -78,6 +78,9 @@ private:
   
   void populateVertexData() override;
   void loadTextures() override;
+  
+protected:
+  const TextureData makeTexturesFromArt(const char * name, const char * type) const override;
 };
 
 #endif /* Tile_hpp */

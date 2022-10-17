@@ -41,4 +41,11 @@ private:
   MTL::Buffer * _pVertexBuffer;
   MTL::Buffer * _pIndexBuffer;
   std::vector<MTL::Buffer *> _uniformsBuffers;
+  
+protected:
+  struct TextureData {
+	uint16_t startIndex;
+  };
+  
+  virtual const TextureData makeTexturesFromArt(const char * name, const char * type) const = 0;
 };

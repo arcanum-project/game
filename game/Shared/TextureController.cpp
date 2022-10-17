@@ -5,8 +5,9 @@
 //  Created by Dmitrii Belousov on 8/3/22.
 //
 
+#include <iostream>
+
 #include "TextureController.hpp"
-#include "ArtImporter.hpp"
 
 TextureController & TextureController::instance(MTL::Device * const pDevice) {
   static TextureController instance(pDevice);
@@ -27,24 +28,22 @@ TextureController::~TextureController() {
   }
 }
 
-MTL::Texture * const TextureController::makeTexture(const char * imgName, const char * imgType) const {
-  const PixelData pd = strcmp(imgName, "hmfc2xaa_05") == 0 ? ArtImporter::importFrame("hmfc2xaa", 6) : BMPImporter::import(imgName, imgType);
-  
+MTL::Texture * const TextureController::makeTexture(const char* name, const uint32_t& height, const uint32_t& width, const uint8_t* pixels) const {
   MTL::TextureDescriptor * const pTextureDescriptor = MTL::TextureDescriptor::alloc()->init();
   pTextureDescriptor->setTextureType( MTL::TextureType2D );
   pTextureDescriptor->setPixelFormat(MTL::PixelFormatBGRA8Unorm);
-  pTextureDescriptor->setWidth(pd.imgWidth);
-  pTextureDescriptor->setHeight(pd.imgHeight);
+  pTextureDescriptor->setWidth(width);
+  pTextureDescriptor->setHeight(height);
   pTextureDescriptor->setStorageMode( MTL::StorageModeShared );
   pTextureDescriptor->setUsage( MTL::ResourceUsageSample | MTL::ResourceUsageRead );
   MTL::Texture * const pTexture = _pDevice->newTexture(pTextureDescriptor);
   
-  const MTL::Region region = MTL::Region(0, 0, 0, pd.imgWidth, pd.imgHeight, 1);
-  const uint32_t bytesPerRow = 4 * pd.imgWidth;
+  const MTL::Region region = MTL::Region(0, 0, 0, width, height, 1);
+  const uint32_t bytesPerRow = 4 * width;
   
-  pTexture->replaceRegion(region, 0, pd.pixels.data(), bytesPerRow);
+  pTexture->replaceRegion(region, 0, pixels, bytesPerRow);
   
-  pTexture->setLabel(NS::String::string(imgName, NS::UTF8StringEncoding));
+  pTexture->setLabel(NS::String::string(name, NS::UTF8StringEncoding));
   
   pTextureDescriptor->release();
   
@@ -54,19 +53,29 @@ MTL::Texture * const TextureController::makeTexture(const char * imgName, const 
 /**
  Loads a texture and returns its index in texture indicies array.
  */
-const uint16_t TextureController::loadTexture(const char * imgName, const char * imgType) {
+const uint16_t TextureController::loadTexture(const char* name, const uint32_t& height, const uint32_t& width, const uint8_t* const pixels) {
   MTL::Texture * pTexture {nullptr};
-  const std::unordered_map<std::string, uint16_t>::const_iterator textureIndexIterator = _textureIndices.find(imgName);
+  pTexture = makeTexture(name, height, width, pixels);
+  const uint16_t textureIndex = _pTextures.size();
+  _textureIndices.insert(std::make_pair(name, textureIndex));
+  _pTextures.push_back(pTexture);
+  return textureIndex;
+}
+
+const uint16_t TextureController::textureIndexByName(const char * name) const {
+  const std::unordered_map<std::string, uint16_t>::const_iterator textureIndexIterator = _textureIndices.find(name);
   if (textureIndexIterator != _textureIndices.end()) {
-	std::cout << "Texture already loaded. Texture name: " << imgName << std::endl;
 	return textureIndexIterator->second;
-  } else {
-	pTexture = makeTexture(imgName, imgType);
-	const uint16_t textureIndex = _pTextures.size();
-	_textureIndices.insert(std::make_pair(imgName, textureIndex));
-	_pTextures.push_back(pTexture);
-	return textureIndex;
   }
+  throw std::runtime_error("Couldn't find texture index by name. Name: " + std::string(name));
+}
+
+const bool TextureController::textureExist(const char * name, const char * type) const {
+  const std::unordered_map<std::string, uint16_t>::const_iterator textureIndexIterator = _textureIndices.find(name);
+  if (textureIndexIterator != _textureIndices.end()) {
+	return true;
+  }
+  return false;
 }
 
 /**

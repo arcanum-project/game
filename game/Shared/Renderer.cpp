@@ -209,7 +209,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   pCritterRenderEncoder->setDepthStencilState(_pDepthStencilState);
   pCritterRenderEncoder->setFragmentBuffer(_pModelsBuffer, 0, BufferIndices::TextureBuffer);
   pCritterRenderEncoder->useHeap(TextureController::instance(_pDevice).heap());
-  _pGameScene->pCharacter()->render(pCritterRenderEncoder, 0);
+//  _pGameScene->pCharacter()->render(pCritterRenderEncoder, 0);
   pCritterRenderEncoder->endEncoding();
   
   pCmdBuf->presentDrawable(pDrawable);
