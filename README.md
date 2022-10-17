@@ -1,12 +1,12 @@
 This is a project to port the game to iOS and macOS devices.
 
-### Current progress
+## Current progress
 
 Rendering terrain of crash sector, demo video:
 
 [![Game running on iOS](https://img.youtube.com/vi/20a8qGrUdn8/hqdefault.jpg)](https://youtu.be/20a8qGrUdn8)
 
-### How to run locally
+## How to run locally
 
 Currently support only iOS devices.
 
@@ -25,6 +25,6 @@ We are against game piracy, and therefore the original game assets are not inclu
 
 To run the project, you must connect the physical iOS device. iOS simulator cannot run it because of the rendering techniques used - simulator simply does not support them yet.
 
-#### Contributors
+## Contributors
 
 - AxelStrem: provided a converter from .art to .bmp. Original project is here: https://github.com/AxelStrem/ArtConverter
