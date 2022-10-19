@@ -14,6 +14,7 @@
 #include "Model.hpp"
 #include "Common/Alignment.hpp"
 #include "Constants.h"
+#include "InputControllerBridge.h"
 
 class Character : public Model {
 public:
@@ -22,8 +23,6 @@ public:
   
   inline void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame) override {
 	Uniforms & uf = Uniforms::getInstance();
-	// Elevate model to avoid flickering due to collision with tiles
-	setPosition(glm::vec3(4.0f, .0f, 4.0f));
 	uf.setModelMatrix(modelMatrix());
 	MTL::Buffer * const pUniformsBuffer = uniformsBuffers().at(frame);
 	memcpy(pUniformsBuffer->contents(), & uf, Alignment::roundUpToNextMultipleOf16(sizeof(Uniforms)));
@@ -31,10 +30,19 @@ public:
 	pUniformsBuffer->didModifyRange(NS::Range(0, pUniformsBuffer->length()));
 #endif
 	
+	// Get touch coordinates in NDC
+	const float xCoord = xCoordinate();
+	const float yCoord = yCoordinate();
+	glm::vec3 xyNDC = glm::vec3();
+	if (xCoord != 0.0f || yCoord != 0.0f) {
+	  xyNDC = Math::getInstance().screenToNDC(xCoord, yCoord, uf.drawableWidth(), uf.drawableHeight());
+	}
+	
 	MTL::RenderCommandEncoder * const pRenderEncoder = reinterpret_cast<MTL::RenderCommandEncoder * const>(pCommandEncoder);
 	pRenderEncoder->setVertexBuffer(pUniformsBuffer, 0, BufferIndices::UniformsBuffer);
 	pRenderEncoder->setVertexBuffer(pVertexBuffer(), 0, BufferIndices::VertexBuffer);
 	pRenderEncoder->setVertexBuffer(pIndexBuffer(), 0, BufferIndices::IndexBuffer);
+	pRenderEncoder->setVertexBytes(& xyNDC, Alignment::roundUpToNextMultipleOf16(sizeof(glm::vec3)), 23);
 	pRenderEncoder->setFragmentBytes(& _textureIndex, sizeof(uint16_t), 19);
 	
 	pRenderEncoder->drawIndexedPrimitives(MTL::PrimitiveTypeTriangle, indices().size(), MTL::IndexTypeUInt16, pIndexBuffer(), 0);

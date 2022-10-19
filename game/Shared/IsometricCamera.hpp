@@ -27,7 +27,7 @@ public:
 	_drawableHeight = drawableHeight;
   }
   inline void update(const float_t & deltaTime) override {
-	updateInput(deltaTime);
+//	updateInput(deltaTime);
   }
 
 private:

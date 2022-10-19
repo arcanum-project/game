@@ -29,7 +29,8 @@ struct VertexOut {
 
 vertex VertexOut characterVertex(
 							 VertexIn in [[stage_in]],
-							 constant Uniforms & uniforms [[buffer(BufferIndices::UniformsBuffer)]]
+							 constant Uniforms & uniforms [[buffer(BufferIndices::UniformsBuffer)]],
+							 constant packed_float3 & xyNDC [[buffer(23)]]
 							 )
 {
   VertexOut out {
@@ -38,6 +39,9 @@ vertex VertexOut characterVertex(
 	.texture = in.texture,
 	.normal = in.normal
   };
+  // += is used because actual character position is != 0 after applying matrix transformations above
+  out.position.x += xyNDC.x * out.position.w;
+  out.position.y += xyNDC.y * out.position.w;
   return out;
 }
 
@@ -120,5 +124,7 @@ fragment float4 characterFragment(VertexOut in [[stage_in]],
 	return float4(0.0f, 0.0f, 0.0f, 0.0f);
   const half4 color = texture.sample(textureSampler, adjustedUV.xy);
   // Below is an ugly way to mask away blue texture background
-  return color.r < 0.16f && color.g < 0.16f && color.b > 0.3f ? float4(0.0f, 0.0f, 0.0f, 0.0f) : float4(color);
+  if (color.r < 0.16f && color.g < 0.16f && color.b > 0.3f)
+	discard_fragment();
+  return float4(color);
 }

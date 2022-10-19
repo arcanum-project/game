@@ -34,9 +34,13 @@ public:
 	MTL::ComputeCommandEncoder * const pComputeEncoder = reinterpret_cast<MTL::ComputeCommandEncoder * const>(pCommandEncoder);
 	MTL::Buffer * const pInstanceDataBuffer = _instanceDataBuffers.at(frame);
 	InstanceData * pInstanceData = reinterpret_cast<InstanceData *>(pInstanceDataBuffer->contents());
+	// Translate entire sector to ensure that camera - which located at (0, 0) - points at a center of a sector
+	// We want to look at (32, 32), because that's where the player's character pops up at the start of the game
+	const float_t baseRowOffset = -32.0f;
+	const float_t baseColumnOffset = -32.0f;
 	for (size_t i = 0; i < RenderingConstants::NumOfTilesPerSector; ++i) {
-	  const float_t rowOffset = (float_t) (i % (RenderingConstants::NumOfTilesPerSector / RenderingConstants::NumOfTilesPerRow));
-	  const float_t columnOffset = (float_t) (i / (RenderingConstants::NumOfTilesPerSector / RenderingConstants::NumOfTilesPerRow));
+	  const float_t rowOffset = baseRowOffset + (float_t) (i % (RenderingConstants::NumOfTilesPerSector / RenderingConstants::NumOfTilesPerRow));
+	  const float_t columnOffset = baseColumnOffset + (float_t) (i / (RenderingConstants::NumOfTilesPerSector / RenderingConstants::NumOfTilesPerRow));
 	  pInstanceData[i].instanceTransform = Math::getInstance().translation(rowOffset * 2.0f, 0.0f, columnOffset * 2.0f);
 	  const std::unordered_map<uint16_t, InstanceData>::const_iterator iterator = _instanceIdToData.find(i);
 	  if (iterator == _instanceIdToData.end())

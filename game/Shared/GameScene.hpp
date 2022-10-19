@@ -25,7 +25,10 @@ public:
   inline const std::vector<const std::shared_ptr<Model>> & models() { return _models; }
   inline const std::unique_ptr<Camera> & pCamera() { return _pCamera; }
   inline void update(const float_t & width, const float_t & height) { _pCamera->update(width, height); }
-  inline void update(const float_t & deltaTime) { _pCamera->update(deltaTime); }
+  inline void update(const float_t & deltaTime) {
+	_pCamera->update(deltaTime);
+	_pCharacter->setPosition(glm::vec3(.0f, .0f, .0f));
+  }
 
 private:
   MTL::Device * const _pDevice;
