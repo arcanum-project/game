@@ -67,7 +67,6 @@ private:
 	const glm::vec3 targetNDCCoords = m.screenToNDC(x, y, uf.drawableWidth(), uf.drawableHeight());
 	_ndcOffsetX = targetNDCCoords.x;
 	_ndcOffsetY = targetNDCCoords.y;
-	setCoordinates(_defaultCoordinateVal, _defaultCoordinateVal);
 	moveCameraInSameDirection(adjustedDeltaTime);
   }
 };
