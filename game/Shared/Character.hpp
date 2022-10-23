@@ -31,7 +31,7 @@ public:
 	const float yCoord = yCoordinate();
 	glm::vec3 xyNDC = glm::vec3();
 	if (xCoord != 0.0f || yCoord != 0.0f) {
-	  // Move character to where the player clicked / touched the screen
+	  // Move character in world space to where the player clicked / touched the screen
 	  // Based on: https://metalbyexample.com/picking-hit-testing/
 	  xyNDC = Math::getInstance().screenToNDC(xCoord, yCoord, uf.drawableWidth(), uf.drawableHeight());
 	  const glm::mat4x4 inverseProjectionMatrix = glm::inverse(uf.getProjectionMatrix());
