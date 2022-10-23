@@ -17,7 +17,6 @@ Character::Character(MTL::Device * const pDevice)
   _textureIndex() {
   populateVertexData();
   loadTextures();
-  setCoordinates(0.0f, 0.0f);
 }
 
 Character::~Character() {

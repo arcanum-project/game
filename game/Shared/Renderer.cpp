@@ -13,6 +13,7 @@
 #include "Constants.h"
 #include "TextureController.hpp"
 #include "Pipelines.hpp"
+#include "InputControllerBridge.h"
 
 #pragma region Renderer {
 
@@ -38,6 +39,8 @@ Renderer::Renderer(MTL::Device * const _pDevice)
 	buildCritterShaders();
 	buildDepthStencilState();
 	initializeTextures();
+	// Initialize touch / click coordinates
+	setCoordinates(.0f, .0f);
 }
 
 Renderer::~Renderer() {
@@ -214,6 +217,9 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   
   pCmdBuf->presentDrawable(pDrawable);
   pCmdBuf->commit();
+  
+  // Reset touch / click coordinates
+  setCoordinates(.0f, .0f);
   
   pRenderPassDepthAttachmentDesc->release();
   pTileRpd->release();
