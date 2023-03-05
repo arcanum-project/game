@@ -60,24 +60,7 @@ private:
 	return true;
   }
   
-  inline const float_t getNewCoordinate(const float_t currentCoordinate, const float_t targetCoordinate, const float_t speed)
-  {
-	if (std::abs(targetCoordinate - currentCoordinate) <= speed) return targetCoordinate;
-	float_t newCoordinateVal{};
-	if (currentCoordinate >= 0.f)
-	{
-	  if (targetCoordinate >= 0.f) newCoordinateVal = currentCoordinate < targetCoordinate ? currentCoordinate + speed : currentCoordinate - speed;
-	  else newCoordinateVal = newCoordinateVal = currentCoordinate - speed;
-	}
-	else
-	{
-	  if (targetCoordinate >= 0.f) newCoordinateVal = currentCoordinate + speed;
-	  else newCoordinateVal = currentCoordinate < targetCoordinate ? currentCoordinate + speed : currentCoordinate - speed;
-	}
-	return newCoordinateVal;
-  }
-  
-  inline const bool moveInNewDirection(glm::vec3 &outPosition, const glm::vec3& currentPositionWorld, const float_t speed, const float_t xScreen, const float_t yScreen) {
+  inline const bool moveInNewDirection(glm::vec3& outPosition, const glm::vec3& currentPositionWorld, const float_t speed, const float_t xScreen, const float_t yScreen) {
 	const Math& m = Math::getInstance();
 	const Uniforms& uf = Uniforms::getInstance();
 	const glm::vec4 newPositionWorld = m.screenToWorld(xScreen, yScreen, uf.drawableWidth(), uf.drawableHeight(), uf.getViewMatrix(), uf.getProjectionMatrix());
