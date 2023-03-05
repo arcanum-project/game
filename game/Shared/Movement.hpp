@@ -33,7 +33,8 @@ public:
 	  const glm::vec3 cmpCurrTarget = glm::equal(currentPositionWorld, std::move(glm::vec3(targetPositionWorld.x, targetPositionWorld.y, targetPositionWorld.z)));
 	  if (cmpCurrTarget.x && cmpCurrTarget.y && cmpCurrTarget.z) return false;
 	  return moveInSameDirection(outPositionWorld, currentPositionWorld, speed);
-	} else return moveInNewDirection(outPositionWorld, currentPositionWorld, speed, xScreen, yScreen);
+	}
+	else return moveInNewDirection(outPositionWorld, currentPositionWorld, speed, xScreen, yScreen);
   }
 
 private:
@@ -46,9 +47,16 @@ private:
   }
   
   inline const bool moveInSameDirection(glm::vec3 &outPosition, const glm::vec3& currentPositionWorld, const float_t speed) {
-	const float_t newX = getNewCoordinate(currentPositionWorld.x, targetPositionWorld.x, speed);
-	const float_t newZ = getNewCoordinate(currentPositionWorld.z, targetPositionWorld.z, speed);
-	outPosition = std::move(glm::vec3(newX, 0.f, newZ));
+	if (std::abs(targetPositionWorld.x - currentPositionWorld.x) <= speed && std::abs(targetPositionWorld.z - currentPositionWorld.z) <= speed)
+	{
+	  outPosition = glm::vec3(targetPositionWorld);
+	}
+	else
+	{
+	  // Based on: https://math.stackexchange.com/questions/3932112/move-a-point-along-a-vector-by-a-given-distance
+	  const glm::vec3 directionVector = glm::vec3(targetPositionWorld.x - currentPositionWorld.x, 0.f, targetPositionWorld.z - currentPositionWorld.z);
+	  outPosition = currentPositionWorld + speed * directionVector / glm::length(directionVector);
+	}
 	return true;
   }
   
