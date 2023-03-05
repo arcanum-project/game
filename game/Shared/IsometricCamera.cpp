@@ -9,7 +9,7 @@
 #include "Uniforms.hpp"
 
 IsometricCamera::IsometricCamera()
-: _near(0.1f),
+: _near(0.5f),
   _far(100.0f),
   _drawableWidth(Uniforms::getInstance().drawableWidth()),
   _drawableHeight(Uniforms::getInstance().drawableHeight()) {}

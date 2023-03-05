@@ -7,7 +7,7 @@
 
 #include <metal_stdlib>
 
-#include "Constants.h"
+#include "MetalConstants.h"
 #include "ShaderStructs.h"
 
 using namespace metal;

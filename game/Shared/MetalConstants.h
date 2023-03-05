@@ -25,10 +25,4 @@ typedef enum {
   ICBArgumentsBuffer = 17
 } BufferIndices;
 
-typedef enum {
-  MaxBuffersInFlight = 3,
-  NumOfTilesPerSector = 4096,
-  NumOfTilesPerRow = 64
-} RenderingConstants;
-
 #endif /* Constants_h */

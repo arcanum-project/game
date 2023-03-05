@@ -79,8 +79,8 @@ void Tile::loadTextures() {
 		instanceId = boost::lexical_cast<uint16_t>(arrItemIterator->second.data());
 	  } else if (key.compare("textureName") == 0) {
 		textureName = arrItemIterator->second.data();
-		const TextureData txData = makeTexturesFromArt(("tile/" + textureName).c_str(), "art");
-		data.textureIndex = txData.startIndex;
+		const uint16_t textureIndex = makeTexturesFromArt(("tile/" + textureName).c_str(), "art");
+		data.textureIndex = textureIndex;
 	  } else if (key.compare("shouldFlip") == 0) {
 		bool shouldFlip = boost::lexical_cast<bool>(arrItemIterator->second.data());
 		data.shouldFlip = shouldFlip;
@@ -91,19 +91,17 @@ void Tile::loadTextures() {
   }
 }
 
-const Model::TextureData Tile::makeTexturesFromArt(const char * name, const char * type) const {
-  TextureData td;
+const uint16_t Tile::makeTexturesFromArt(const char * name, const char * type) const {
   const TextureController& txController = TextureController::instance(pDevice());
   if (txController.textureExist(name, type)) {
 	std::cout << "Texture already loaded. Texture name: " << name << std::endl;
-	td.startIndex = txController.textureIndexByName(name);
-	return td;
+	const uint16_t textureIndex = txController.textureIndexByName(name);
+	return textureIndex;
   }
   PixelData pd = ArtImporter::importArt(name, type);
   // Tile art only has one frame
   // Tile art only uses first palette
   const std::vector<uint8_t> bgras = pd.bgraFrameFromPalette(0, 0);
-  const uint16_t textureStartIndex = TextureController::instance(pDevice()).loadTexture(name, pd.frames().at(0).imgHeight, pd.frames().at(0).imgWidth, bgras.data());
-  td.startIndex = textureStartIndex;
-  return td;
+  const uint16_t textureIndex = TextureController::instance(pDevice()).loadTexture(name, pd.frames().at(0).imgHeight, pd.frames().at(0).imgWidth, bgras.data());
+  return textureIndex;
 }

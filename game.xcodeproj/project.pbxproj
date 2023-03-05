@@ -246,6 +246,8 @@
 		9FA4B5C728D67E1000778266 /* efmv1xna_07.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9FA4B59D28D67DD400778266 /* efmv1xna_07.bmp */; };
 		9FA4B5C828D67E1000778266 /* efmv1xna_13.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9FA4B59E28D67DD400778266 /* efmv1xna_13.bmp */; };
 		9FA4B5CF28D7E89100778266 /* character-3x3.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9FA4B5CE28D7E88800778266 /* character-3x3.obj */; };
+		9FAD19A129AD4C230016C7FD /* Gameplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD19A029AD4BDC0016C7FD /* Gameplay.cpp */; };
+		9FAD19A329AD4FE00016C7FD /* GameSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD19A229AD4FE00016C7FD /* GameSettings.cpp */; };
 		9FB1A3D2289B7A42006E27A9 /* TextureController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */; };
 		9FD2BB3B2890F18100D3E983 /* TouchableMTKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */; };
 		9FEDB26328B1F05A00287DE9 /* 86570436012 in Resources */ = {isa = PBXBuildFile; fileRef = 9FEDB26228B1F00C00287DE9 /* 86570436012 */; };
@@ -279,7 +281,7 @@
 		9F13D5BC28C3D94500C11694 /* Character.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		9F13D5BD28C3D94500C11694 /* Character.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Character.hpp; sourceTree = "<group>"; };
 		9F13D5BF28C4025100C11694 /* InstanceData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InstanceData.hpp; sourceTree = "<group>"; };
-		9F13D5C028C40A8400C11694 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		9F13D5C028C40A8400C11694 /* MetalConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetalConstants.h; sourceTree = "<group>"; };
 		9F13D5C128C415F400C11694 /* Pipelines.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Pipelines.cpp; sourceTree = "<group>"; };
 		9F13D5C428C4162000C11694 /* Pipelines.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Pipelines.hpp; sourceTree = "<group>"; };
 		9F13D5C628C42E7E00C11694 /* CharacterShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = CharacterShaders.metal; sourceTree = "<group>"; };
@@ -554,6 +556,7 @@
 		9F831532286FED8500B6FCDF /* RendererDelegateAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RendererDelegateAdapter.h; sourceTree = "<group>"; };
 		9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexDescriptor.cpp; sourceTree = "<group>"; };
 		9F831543287142DC00B6FCDF /* VertexDescriptor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexDescriptor.hpp; sourceTree = "<group>"; };
+		9F91044D29A888F9000193D9 /* GameSettings.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameSettings.hpp; sourceTree = "<group>"; };
 		9FA4B47F28D4215D00778266 /* efmcdxaa_03.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = efmcdxaa_03.bmp; sourceTree = "<group>"; };
 		9FA4B48028D4215D00778266 /* efmcdxaa_02.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = efmcdxaa_02.bmp; sourceTree = "<group>"; };
 		9FA4B48128D4215D00778266 /* efmcdxaa_00.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = efmcdxaa_00.bmp; sourceTree = "<group>"; };
@@ -753,6 +756,9 @@
 		9FAB821328720AF9006D21B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.5.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		9FAB821528720AFF006D21B2 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.5.sdk/System/Library/Frameworks/Metal.framework; sourceTree = DEVELOPER_DIR; };
 		9FAB821728720B03006D21B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.5.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		9FAD199F29AD4AAD0016C7FD /* Gameplay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Gameplay.hpp; sourceTree = "<group>"; };
+		9FAD19A029AD4BDC0016C7FD /* Gameplay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Gameplay.cpp; sourceTree = "<group>"; };
+		9FAD19A229AD4FE00016C7FD /* GameSettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameSettings.cpp; sourceTree = "<group>"; };
 		9FB1A3CB28974055006E27A9 /* ResourceBundle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourceBundle.hpp; sourceTree = "<group>"; };
 		9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextureController.cpp; sourceTree = "<group>"; };
 		9FB1A3D1289B7A42006E27A9 /* TextureController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TextureController.hpp; sourceTree = "<group>"; };
@@ -1492,7 +1498,9 @@
 				9F3F67D8288E2FD90057DE5F /* Renderer.hpp */,
 				9F3F67D7288E2FD90057DE5F /* Renderer.cpp */,
 				9FD2BB37288F1D0E00D3E983 /* ShaderStructs.h */,
-				9F13D5C028C40A8400C11694 /* Constants.h */,
+				9F13D5C028C40A8400C11694 /* MetalConstants.h */,
+				9F91044D29A888F9000193D9 /* GameSettings.hpp */,
+				9FAD19A229AD4FE00016C7FD /* GameSettings.cpp */,
 				9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */,
 				9F831532286FED8500B6FCDF /* RendererDelegateAdapter.h */,
 				9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */,
@@ -1525,6 +1533,8 @@
 			children = (
 				9FB1A3CB28974055006E27A9 /* ResourceBundle.hpp */,
 				9FB1E3C628A6133F006E27A9 /* Alignment.hpp */,
+				9FAD199F29AD4AAD0016C7FD /* Gameplay.hpp */,
+				9FAD19A029AD4BDC0016C7FD /* Gameplay.cpp */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1813,6 +1823,7 @@
 				9F4D58152895AFB200FF18D4 /* Movement.cpp in Sources */,
 				9F3F67C4288DDC6D0057DE5F /* ObjModelImporter.cpp in Sources */,
 				9F3F67C1288DDC6D0057DE5F /* Uniforms.cpp in Sources */,
+				9FAD19A129AD4C230016C7FD /* Gameplay.cpp in Sources */,
 				9F3F67AE288DDBD60057DE5F /* ViewController.m in Sources */,
 				9F13D5BE28C3D94500C11694 /* Character.cpp in Sources */,
 				9FD2BB3B2890F18100D3E983 /* TouchableMTKView.m in Sources */,
@@ -1821,6 +1832,7 @@
 				9F3F67CB288DE2A30057DE5F /* Camera.cpp in Sources */,
 				9F82312728F913300043A71E /* PixelData.cpp in Sources */,
 				9F3F67C3288DDC6D0057DE5F /* Math.cpp in Sources */,
+				9FAD19A329AD4FE00016C7FD /* GameSettings.cpp in Sources */,
 				9F82310C28E75A2E0043A71E /* ArtImporter.cpp in Sources */,
 				9F13D5B428C2DBAF00C11694 /* Tile.cpp in Sources */,
 				9F3F67D9288E2FD90057DE5F /* Renderer.cpp in Sources */,

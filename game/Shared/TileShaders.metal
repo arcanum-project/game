@@ -8,7 +8,7 @@
 #include <metal_stdlib>
 #include <metal_matrix>
 
-#include "Constants.h"
+#include "MetalConstants.h"
 #include "ShaderStructs.h"
 
 using namespace metal;

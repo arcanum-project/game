@@ -6,7 +6,7 @@
 //
 
 #include "VertexDescriptor.hpp"
-#include "Constants.h"
+#include "MetalConstants.h"
 
 const VertexDescriptor & VertexDescriptor::getInstance()
 {

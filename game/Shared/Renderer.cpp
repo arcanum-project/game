@@ -10,7 +10,7 @@
 #define MTL_PRIVATE_IMPLEMENTATION
 
 #include "Renderer.hpp"
-#include "Constants.h"
+#include "MetalConstants.h"
 #include "TextureController.hpp"
 #include "Pipelines.hpp"
 #include "InputControllerBridge.h"
@@ -33,7 +33,7 @@ Renderer::Renderer(MTL::Device * const _pDevice)
   _angle(0.f),
   _pGameScene(new GameScene(_pDevice)),
   _frame(0u),
-  _semaphore(dispatch_semaphore_create(RenderingConstants::MaxBuffersInFlight)),
+  _semaphore(dispatch_semaphore_create(RenderingSettings::MaxBuffersInFlight)),
   _lastTimeSeconds(std::chrono::system_clock::now()) {
 	buildTileShaders();
 	buildCritterShaders();
@@ -90,7 +90,7 @@ void Renderer::buildTileShaders() {
   // Create indirect command buffer using private storage mode; since only the GPU will
   // write to and read from the indirect command buffer, the CPU never needs to access the
   // memory
-  _pIndirectCommandBuffer = _pDevice->newIndirectCommandBuffer(pIcbDescriptor, RenderingConstants::NumOfTilesPerSector, MTL::ResourceStorageModeShared);
+  _pIndirectCommandBuffer = _pDevice->newIndirectCommandBuffer(pIcbDescriptor, RenderingSettings::NumOfTilesPerSector, MTL::ResourceStorageModeShared);
   _pIndirectCommandBuffer->setLabel(NS::String::string("Scene ICB", NS::UTF8StringEncoding));
   
   pIcbDescriptor->release();
@@ -146,7 +146,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   // Encode command to reset the indirect command buffer
   MTL::BlitCommandEncoder * const pResetBlitEncoder = pCmdBuf->blitCommandEncoder();
   pResetBlitEncoder->setLabel(NS::String::string("Reset ICB Blit Encoder", NS::UTF8StringEncoding));
-  pResetBlitEncoder->resetCommandsInBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingConstants::NumOfTilesPerSector));
+  pResetBlitEncoder->resetCommandsInBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingSettings::NumOfTilesPerSector));
   pResetBlitEncoder->endEncoding();
   
   const std::chrono::time_point<std::chrono::system_clock> currentTimeSeconds = std::chrono::system_clock::now();
@@ -157,7 +157,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   Uniforms & uf = Uniforms::getInstance();
   uf.setViewMatrix(_pGameScene->pCamera()->viewMatrix());
   uf.setProjectionMatrix(_pGameScene->pCamera()->projectionMatrix());
-  _frame = (_frame + 1) % RenderingConstants::MaxBuffersInFlight;
+  _frame = (_frame + 1) % RenderingSettings::MaxBuffersInFlight;
   
   // Encode commands to determine visibility of tiles using a compute kernel
   MTL::ComputeCommandEncoder * const pTileComputeEncoder = pCmdBuf->computeCommandEncoder();
@@ -165,7 +165,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   pTileComputeEncoder->setComputePipelineState(_pTilesComputePSO);
 
   for (const std::shared_ptr<Model> & pModel : _pGameScene->models()) {
-	pModel->render(pTileComputeEncoder, _frame);
+	pModel->render(pTileComputeEncoder, _frame, deltaTime.count());
   }
   pTileComputeEncoder->setBuffer(_pIcbArgumentBuffer, 0, BufferIndices::ICBBuffer);
   pTileComputeEncoder->setBuffer(_pModelsBuffer, 0, BufferIndices::TextureBuffer);
@@ -176,13 +176,13 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   pTileComputeEncoder->useResource(_pIndirectCommandBuffer, MTL::ResourceUsageWrite);
   pTileComputeEncoder->useHeap(TextureController::instance(_pDevice).heap());
   const uint64_t threadExecutionWidth = _pTilesComputePSO->threadExecutionWidth();
-  pTileComputeEncoder->dispatchThreads(MTL::Size(RenderingConstants::NumOfTilesPerSector, 1, 1), MTL::Size(threadExecutionWidth, 1, 1));
+  pTileComputeEncoder->dispatchThreads(MTL::Size(RenderingSettings::NumOfTilesPerSector, 1, 1), MTL::Size(threadExecutionWidth, 1, 1));
   pTileComputeEncoder->endEncoding();
   
   // Encode command to optimize the indirect command buffer after encoding
   MTL::BlitCommandEncoder * const pOptimizeBlitEncoder = pCmdBuf->blitCommandEncoder();
   pOptimizeBlitEncoder->setLabel(NS::String::string("Optimize ICB Blit Encoder", NS::UTF8StringEncoding));
-  pOptimizeBlitEncoder->optimizeIndirectCommandBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingConstants::NumOfTilesPerSector));
+  pOptimizeBlitEncoder->optimizeIndirectCommandBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingSettings::NumOfTilesPerSector));
   pOptimizeBlitEncoder->endEncoding();
   
   MTL::RenderPassDescriptor * pTileRpd = MTL::RenderPassDescriptor::alloc()->init();
@@ -198,7 +198,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   pTileRenderEncoder->setLabel(NS::String::string("Tile Render Encoder", NS::UTF8StringEncoding));
   pTileRenderEncoder->setRenderPipelineState(_pTilesPSO);
   pTileRenderEncoder->setDepthStencilState(_pDepthStencilState);
-  pTileRenderEncoder->executeCommandsInBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingConstants::NumOfTilesPerSector));
+  pTileRenderEncoder->executeCommandsInBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingSettings::NumOfTilesPerSector));
   pTileRenderEncoder->endEncoding();
   
   MTL::RenderPassDescriptor * pCritterRpd = MTL::RenderPassDescriptor::alloc()->init();
@@ -212,7 +212,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   pCritterRenderEncoder->setDepthStencilState(_pDepthStencilState);
   pCritterRenderEncoder->setFragmentBuffer(_pModelsBuffer, 0, BufferIndices::TextureBuffer);
   pCritterRenderEncoder->useHeap(TextureController::instance(_pDevice).heap());
-  _pGameScene->pCharacter()->render(pCritterRenderEncoder, 0);
+  _pGameScene->pCharacter()->render(pCritterRenderEncoder, 0, deltaTime.count());
   pCritterRenderEncoder->endEncoding();
   
   pCmdBuf->presentDrawable(pDrawable);

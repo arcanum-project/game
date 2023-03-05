@@ -9,65 +9,72 @@
 #define Movement_h
 
 #include <cmath>
+#include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
+#include <utility>
 
 #include "InputControllerBridge.h"
-
 #include "Transformable.hpp"
 #include "Uniforms.hpp"
+#include "GameSettings.hpp"
 
-class Movement : virtual public Transformable {
+class Movement {
 public:
   Movement();
   virtual ~Movement() = 0;
   
-  inline void updateInput(const float_t & deltaTime) {
-	const float_t adjustedDeltaTime = deltaTime * 0.5f;
+  inline const bool move(glm::vec3& outPositionWorld, const float_t speed, const glm::vec3& currentPositionWorld) {
 	// Touch location coordinates
-	const float_t x = xCoordinate();
-	const float_t y = yCoordinate();
+	const float_t xScreen = xCoordinate();
+	const float_t yScreen = yCoordinate();
 	// Start moving if we actually clicked somewhere
-	if (x == _defaultCoordinateVal || y == _defaultCoordinateVal) {
-	  if (_ndcOffsetX != _defaultCoordinateVal || _ndcOffsetY != _defaultCoordinateVal)
-		moveCameraInSameDirection(adjustedDeltaTime);
-	} else {
-	  moveCameraInNewDirection(adjustedDeltaTime, x, y);
-	}
+	if (xScreen == _defaultCoordinateVal || yScreen == _defaultCoordinateVal) {
+	  if (!isTargetPositionSet()) return false;
+	  const glm::vec3 cmpCurrTarget = glm::equal(currentPositionWorld, std::move(glm::vec3(targetPositionWorld.x, targetPositionWorld.y, targetPositionWorld.z)));
+	  if (cmpCurrTarget.x && cmpCurrTarget.y && cmpCurrTarget.z) return false;
+	  return moveInSameDirection(outPositionWorld, currentPositionWorld, speed);
+	} else return moveInNewDirection(outPositionWorld, currentPositionWorld, speed, xScreen, yScreen);
   }
 
 private:
   const float_t _defaultCoordinateVal;
-  float_t _ndcOffsetX;
-  float_t _ndcOffsetY;
+  glm::vec4 targetPositionWorld;
   
-  inline void moveCameraInSameDirection(const float_t & adjustedDeltaTime) {
-	const float_t moveByX = moveBy(_ndcOffsetX, adjustedDeltaTime);
-	const float_t moveByY = moveBy(_ndcOffsetY, adjustedDeltaTime);
-	setPosition(position() + glm::vec3(moveByX, moveByY, .0f));
+  inline const bool isTargetPositionSet() const
+  {
+	return targetPositionWorld.x != 0.f || targetPositionWorld.y != 0.f || targetPositionWorld.z != 0.f || targetPositionWorld.w != 0.f;
   }
   
-  inline const float_t moveBy(float_t & coordinate, const float_t & adjustedDeltaTime) {
-	if (coordinate != _defaultCoordinateVal) {
-	  float_t moveBy = .0f;
-	  if (std::abs(coordinate) < adjustedDeltaTime) {
-		moveBy = coordinate;
-		coordinate = _defaultCoordinateVal;
-	  } else {
-		moveBy = coordinate < .0f ? -adjustedDeltaTime : adjustedDeltaTime;
-		coordinate = coordinate < .0f ? coordinate + adjustedDeltaTime : coordinate - adjustedDeltaTime;
-	  }
-	  return moveBy;
-	} else {
-	  return .0f;
+  inline const bool moveInSameDirection(glm::vec3 &outPosition, const glm::vec3& currentPositionWorld, const float_t speed) {
+	const float_t newX = getNewCoordinate(currentPositionWorld.x, targetPositionWorld.x, speed);
+	const float_t newZ = getNewCoordinate(currentPositionWorld.z, targetPositionWorld.z, speed);
+	outPosition = std::move(glm::vec3(newX, 0.f, newZ));
+	return true;
+  }
+  
+  inline const float_t getNewCoordinate(const float_t currentCoordinate, const float_t targetCoordinate, const float_t speed)
+  {
+	if (std::abs(targetCoordinate - currentCoordinate) <= speed) return targetCoordinate;
+	float_t newCoordinateVal{};
+	if (currentCoordinate >= 0.f)
+	{
+	  if (targetCoordinate >= 0.f) newCoordinateVal = currentCoordinate < targetCoordinate ? currentCoordinate + speed : currentCoordinate - speed;
+	  else newCoordinateVal = newCoordinateVal = currentCoordinate - speed;
 	}
+	else
+	{
+	  if (targetCoordinate >= 0.f) newCoordinateVal = currentCoordinate + speed;
+	  else newCoordinateVal = currentCoordinate < targetCoordinate ? currentCoordinate + speed : currentCoordinate - speed;
+	}
+	return newCoordinateVal;
   }
   
-  inline void moveCameraInNewDirection(const float_t & adjustedDeltaTime, const float_t & x, const float_t & y) {
-	const Math & m = Math::getInstance();
-	const Uniforms & uf = Uniforms::getInstance();
-	const glm::vec3 targetNDCCoords = m.screenToNDC(x, y, uf.drawableWidth(), uf.drawableHeight());
-	_ndcOffsetX = targetNDCCoords.x;
-	_ndcOffsetY = targetNDCCoords.y;
-	moveCameraInSameDirection(adjustedDeltaTime);
+  inline const bool moveInNewDirection(glm::vec3 &outPosition, const glm::vec3& currentPositionWorld, const float_t speed, const float_t xScreen, const float_t yScreen) {
+	const Math& m = Math::getInstance();
+	const Uniforms& uf = Uniforms::getInstance();
+	const glm::vec4 newPositionWorld = m.screenToWorld(xScreen, yScreen, uf.drawableWidth(), uf.drawableHeight(), uf.getViewMatrix(), uf.getProjectionMatrix());
+	targetPositionWorld = std::move(newPositionWorld);
+	return moveInSameDirection(outPosition, currentPositionWorld, speed);
   }
 };
 

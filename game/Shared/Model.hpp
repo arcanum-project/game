@@ -32,7 +32,7 @@ public:
   virtual void populateVertexData() = 0;
   virtual void loadTextures() = 0;
   
-  virtual void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame) = 0;
+  virtual void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame, const float_t deltaTime) = 0;
 
 private:
   MTL::Device * const _pDevice;
@@ -41,11 +41,4 @@ private:
   MTL::Buffer * _pVertexBuffer;
   MTL::Buffer * _pIndexBuffer;
   std::vector<MTL::Buffer *> _uniformsBuffers;
-  
-protected:
-  struct TextureData {
-	uint16_t startIndex;
-  };
-  
-  virtual const TextureData makeTexturesFromArt(const char * name, const char * type) const = 0;
 };

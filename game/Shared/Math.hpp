@@ -109,8 +109,20 @@ public:
 	// Based on: https://stackoverflow.com/questions/54827687/normalized-device-coordinate-metal-coming-from-opengl
 	glm::mat4x4 mat = _identity;
 	mat[0].x = drawableHeight / drawableWidth;
-	mat[2].z = 1.0f / (far - near);
-	mat[3].z = near / (near - far);
+	mat[2].z = (1 - near) / far;
+	mat[3].z = near;
+	return mat;
+  }
+  
+  inline glm::mat4x4 orthographic(const float left, const float right, const float top, const float bottom, const float near, const float far) const
+  {
+	glm::mat4x4 mat = _identity;
+	mat[0].x = 2.f / (right - left);
+	mat[1].y = 2.f / (top - bottom);
+	mat[2].z = (1 - near) / far;
+	mat[3].x = (left + right) / (left - right);
+	mat[3].y = (top + bottom) / (bottom - top);
+	mat[3].z = near;
 	return mat;
   }
   
@@ -126,6 +138,19 @@ public:
 	glm::vec3 ndc = glm::vec3(scaleMat * vec);
 	ndc.z = .0f;
 	return ndc;
+  }
+  
+  inline const glm::vec4 screenToWorld(const float_t x, const float_t y, const float_t screenWidth, const float_t screenHeight, const glm::mat4x4& viewMatrix, const glm::mat4x4& projectionMatrix) const
+  {
+	const glm::vec3 ndc = screenToNDC(x, y, screenWidth, screenHeight);
+	const glm::mat4x4 inverseProjectionMatrix = glm::inverse(std::move(projectionMatrix));
+	const glm::mat4x4 inverseViewMatrix = glm::inverse(std::move(viewMatrix));
+	glm::vec4 world = inverseViewMatrix * inverseProjectionMatrix * glm::vec4(std::move(ndc), 1.0f);
+	world.x = (world.x - world.y) / world.w;
+	world.z = (world.z - world.y) / world.w;
+	world.y = 0.f;
+	world.w = 1.f;
+	return world;
   }
   
   inline const glm::mat4x4 identity() const { return _identity; }

@@ -9,8 +9,7 @@
 
 Movement::Movement()
 : _defaultCoordinateVal(.0f),
-  _ndcOffsetX(_defaultCoordinateVal),
-  _ndcOffsetY(_defaultCoordinateVal)
+  targetPositionWorld()
 {}
 
 Movement::~Movement() {};

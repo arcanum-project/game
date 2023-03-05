@@ -9,12 +9,12 @@
 
 #include "Character.hpp"
 #include "ObjModelImporter.hpp"
-#include "TextureController.hpp"
 #include "ArtImporter.hpp"
 
 Character::Character(MTL::Device * const pDevice)
 : Model(pDevice, 1),
-  _textureIndex() {
+  _instanceData()
+{
   populateVertexData();
   loadTextures();
 }
@@ -33,20 +33,32 @@ void Character::populateVertexData() {
   setIndexBuffer(pDevice()->newBuffer(indices().data(), indices().size() * sizeof(uint16_t), MTL::ResourceStorageModeShared));
 }
 
-const Model::TextureData Character::makeTexturesFromArt(const char * name, const char * type) const {
-  TextureData td;
+void Character::makeTexturesFromArt(const char * name, const char * type) {
   PixelData pd = ArtImporter::importArt(name, "art");
-  const std::vector<uint8_t> bgras = pd.bgraFrameFromPalette(7, 2);
-  const uint16_t textureStartIndex = TextureController::instance(pDevice()).loadTexture(name, pd.frames().at(7).imgHeight, pd.frames().at(7).imgWidth, bgras.data());
-  td.startIndex = textureStartIndex;
-  return td;
+//  const uint8_t defaultFrameIndex = 3;
+  const uint8_t defaultPaletteIndex = 2;
+  bool isTextureIndexSet {false};
+  for (ushort i = 0; i < pd.frames().size(); ++i) {
+	const std::vector<uint8_t> bgras = pd.bgraFrameFromPalette(i, defaultPaletteIndex);
+	const uint16_t txIndex = TextureController::instance(pDevice()).loadTexture(name, pd.frames().at(i).imgHeight, pd.frames().at(i).imgWidth, bgras.data());
+	_instanceData.artName = name;
+	_instanceData.frameIndex = i;
+	_instanceData.paletteIndex = defaultPaletteIndex;
+	// We do this to ensure that we have an index of the first frame.
+	// Since frames are stored contiguously, with start frame and offset we can get any frame we need.
+	if (!isTextureIndexSet) {
+	  _instanceData.baseTextureIndex = txIndex;
+	  _instanceData.currentTextureIndex = _instanceData.baseTextureIndex;
+	  isTextureIndexSet = true;
+	}
+	_instanceData.pixelData = pd;
+  }
 }
 
 void Character::loadTextures() {
 //  const char* name = "ghmstxaa";
   const char* name = "hmfc2xaa";
-  const TextureData td = makeTexturesFromArt(name, "art");
-  _textureIndex = td.startIndex;
+  makeTexturesFromArt(name, "art");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_04", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_03", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_05", "bmp");
