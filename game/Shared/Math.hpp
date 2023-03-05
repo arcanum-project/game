@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "glm/vec2.hpp"
 #include "glm/mat4x4.hpp"
 #include "glm/vec4.hpp"
 #include "glm/trigonometric.hpp"
@@ -130,27 +131,32 @@ public:
    Convert X, Y coordinates from screen space to NDC space.
    Based on: https://stackoverflow.com/questions/54827687/normalized-device-coordinate-metal-coming-from-opengl
    */
-  inline const glm::vec3 screenToNDC(const float_t & x, const float_t & y, const float_t & screenWidth, const float_t & screenHeight) const {
+  inline const glm::vec2 screenToNDC(const float_t & x, const float_t & y, const float_t & screenWidth, const float_t & screenHeight) const {
 	glm::vec4 vec = glm::vec4(x, y, .0f, 1.0f);
 	const float_t scaleX = 2.0f / screenWidth;
 	const float_t scaleY = -2.0f / screenHeight;
 	const glm::mat4x4 scaleMat = glm::mat4x4({ scaleX, .0f, .0f, .0f }, { .0f, scaleY, .0f, .0f }, { .0f, .0f, .0f, .0f }, { -1.0f, 1.0f, .0f, .0f });
 	glm::vec3 ndc = glm::vec3(scaleMat * vec);
-	ndc.z = .0f;
-	return ndc;
+	return std::move(glm::vec2(ndc.x, ndc.y));
   }
   
   inline const glm::vec4 screenToWorld(const float_t x, const float_t y, const float_t screenWidth, const float_t screenHeight, const glm::mat4x4& viewMatrix, const glm::mat4x4& projectionMatrix) const
   {
-	const glm::vec3 ndc = screenToNDC(x, y, screenWidth, screenHeight);
+	const glm::vec2 ndc = screenToNDC(x, y, screenWidth, screenHeight);
 	const glm::mat4x4 inverseProjectionMatrix = glm::inverse(std::move(projectionMatrix));
 	const glm::mat4x4 inverseViewMatrix = glm::inverse(std::move(viewMatrix));
-	glm::vec4 world = inverseViewMatrix * inverseProjectionMatrix * glm::vec4(std::move(ndc), 1.0f);
+	glm::vec4 world = inverseViewMatrix * inverseProjectionMatrix * glm::vec4(std::move(ndc), 0.f, 1.0f);
 	world.x = (world.x - world.y) / world.w;
 	world.z = (world.z - world.y) / world.w;
 	world.y = 0.f;
 	world.w = 1.f;
 	return world;
+  }
+  
+  inline glm::vec2 worldToNDC(const glm::vec4& worldPosition, const glm::mat4x4& viewMatrix, const glm::mat4x4& projectionMatrix) const
+  {
+	glm::vec4 ndc = projectionMatrix * viewMatrix * worldPosition;
+	return std::move(glm::vec2(ndc.x / ndc.w, ndc.y / ndc.w));
   }
   
   inline const glm::mat4x4 identity() const { return _identity; }
