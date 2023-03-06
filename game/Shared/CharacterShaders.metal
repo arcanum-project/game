@@ -43,8 +43,9 @@ vertex VertexOut characterVertex(
 
 fragment float4 characterFragment(VertexOut in [[stage_in]],
 								constant ShaderMaterial & material [[buffer(BufferIndices::TextureBuffer)]],
-								constant uint32_t* renderingMetadata [[buffer(19)]]) {
-  constexpr sampler textureSampler(filter::linear, max_anisotropy(16));
+								constant uint32_t* renderingMetadata [[buffer(BufferIndices::RenderingMetadataBuffer)]])
+{
+  constexpr sampler textureSampler(filter::linear);
   // Get proper texture from heap
   const texture2d<half, access::sample> texture = material.baseColorTextures[renderingMetadata[0]];
   // In order to make textures aligned to the center-ish of a mesh, we calculate uvs ourself
