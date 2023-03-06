@@ -77,6 +77,7 @@ void Character::loadTextures() {
   const char* name = "hmfc2xaa";
   makeTexturesFromArt(name, "art");
   makeTexturesFromArt("hmfc2xab", "art");
+//  makeTexturesFromArt("efmbnxab", "art");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_04", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_03", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_05", "bmp");

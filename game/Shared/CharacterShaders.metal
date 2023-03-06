@@ -67,8 +67,10 @@ fragment float4 characterFragment(VertexOut in [[stage_in]],
   const float u = squareSide * (pointIndexX / (numPointsPerRow - 1));
   // Get v-coordinate from Z index
   const float v = squareSide * (pointIndexZ / (numPointsPerColumn - 1));
-  const float centerX = renderingMetadata[1];
-  const float centerY = renderingMetadata[2];
+//  const float centerX = renderingMetadata[1];
+//  const float centerY = renderingMetadata[2];
+  const float centerX = 13.f;
+  const float centerY = 79.f;
   float4x4 translateCenter = float4x4(1.0f);
   translateCenter[3][0] = centerX - squareSide / 2.0f;
   translateCenter[3][1] = centerY - squareSide / 2.0f;

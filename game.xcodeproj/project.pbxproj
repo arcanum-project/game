@@ -134,6 +134,7 @@
 		9F4D58122895AD5400FF18D4 /* InputControllerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */; };
 		9F4D58152895AFB200FF18D4 /* Movement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58142895AFB200FF18D4 /* Movement.cpp */; };
 		9F762F1D29B57AB30073D7B9 /* hmfc2xab.art in Resources */ = {isa = PBXBuildFile; fileRef = 9F762F1C29B57A920073D7B9 /* hmfc2xab.art */; };
+		9F762F1F29B5B3050073D7B9 /* efmbnxab.art in Resources */ = {isa = PBXBuildFile; fileRef = 9F762F1E29B5B2F70073D7B9 /* efmbnxab.art */; };
 		9F82310C28E75A2E0043A71E /* ArtImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82310A28E758970043A71E /* ArtImporter.cpp */; };
 		9F82310F28E75EAE0043A71E /* hmfc2xaa.art in Resources */ = {isa = PBXBuildFile; fileRef = 9F82310E28E75EA20043A71E /* hmfc2xaa.art */; };
 		9F82312728F913300043A71E /* PixelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82312528F912AD0043A71E /* PixelData.cpp */; };
@@ -542,6 +543,7 @@
 		9F4D58162895D3FF00FF18D4 /* InputControllerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputControllerBridge.h; sourceTree = "<group>"; };
 		9F6A3DEE287E70A400F09F1C /* VertexData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexData.hpp; sourceTree = "<group>"; };
 		9F762F1C29B57A920073D7B9 /* hmfc2xab.art */ = {isa = PBXFileReference; lastKnownFileType = file; path = hmfc2xab.art; sourceTree = "<group>"; };
+		9F762F1E29B5B2F70073D7B9 /* efmbnxab.art */ = {isa = PBXFileReference; lastKnownFileType = file; path = efmbnxab.art; sourceTree = "<group>"; };
 		9F82310A28E758970043A71E /* ArtImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ArtImporter.cpp; sourceTree = "<group>"; };
 		9F82310B28E758970043A71E /* ArtImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ArtImporter.hpp; sourceTree = "<group>"; };
 		9F82310E28E75EA20043A71E /* hmfc2xaa.art */ = {isa = PBXFileReference; lastKnownFileType = file; path = hmfc2xaa.art; sourceTree = "<group>"; };
@@ -1136,6 +1138,7 @@
 		9F82310D28E75EA20043A71E /* art */ = {
 			isa = PBXGroup;
 			children = (
+				9F762F1E29B5B2F70073D7B9 /* efmbnxab.art */,
 				9F762F1C29B57A920073D7B9 /* hmfc2xab.art */,
 				9F82310E28E75EA20043A71E /* hmfc2xaa.art */,
 			);
@@ -1612,6 +1615,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F762F1F29B5B3050073D7B9 /* efmbnxab.art in Resources */,
 				9F762F1D29B57AB30073D7B9 /* hmfc2xab.art in Resources */,
 				9F82313528FD04320043A71E /* 86570436012-npcs in Resources */,
 				9F82313128FBAB6D0043A71E /* new-tile-flipped.obj in Resources */,

@@ -32,15 +32,17 @@ public:
   
   inline void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame, const float_t deltaTime) override {
 	static uint32_t frameCounter{_instanceData.walkTexturePixelData.getKeyFrame()};
+	static unsigned char currentDirectionIndex{0};
+	static uint32_t currentTextureGroupStartIndex{_instanceData.walkTextureStartIndex};
 	Uniforms & uf = Uniforms::getInstance();
 	const glm::vec3 defaultPosition = Gameplay::getWorldTranslationFromTilePosition(GameplaySettings::CharacterStartRow, GameplaySettings::CharacterStartColumn) * glm::vec4(0.f, 0.f, 0.f, 1.f);
+	static PositionWorld newPositionWorld;
 	if (position().x == 0.f && position().y == 0.f && position().z == 0.f)
 	{
 	  setPosition(defaultPosition);
 	}
 	else
 	{
-	  static PositionWorld newPositionWorld;
 	  if(move(newPositionWorld, deltaTime * GameplaySettings::CharacterMovementSpeed, position(), true))
 		setPosition(std::move(newPositionWorld.position));
 	}
@@ -52,13 +54,20 @@ public:
 #endif
 	
 	const Frame& currentFrame = _instanceData.walkTexturePixelData.frames().at(renderingMetadata.currentTextureIndex - _instanceData.walkTextureStartIndex);
+	if (currentDirectionIndex != newPositionWorld.directionIndex)
+	{
+	  currentDirectionIndex = newPositionWorld.directionIndex;
+	  currentTextureGroupStartIndex = _instanceData.walkTextureStartIndex + currentDirectionIndex * _instanceData.walkTexturePixelData.getFrameNum();
+	  renderingMetadata.currentTextureIndex = currentTextureGroupStartIndex - 1;
+	  frameCounter = _instanceData.walkTexturePixelData.getKeyFrame();
+	}
 	const bool bShowNextAnimationFrame = frameCounter == _instanceData.walkTexturePixelData.getKeyFrame() ? true : false;
 	renderingMetadata.currentTextureIndex = bShowNextAnimationFrame ? renderingMetadata.currentTextureIndex + 1 : renderingMetadata.currentTextureIndex;
 	frameCounter = frameCounter == _instanceData.walkTexturePixelData.getKeyFrame() ? 1 : frameCounter + 1;
-	if (renderingMetadata.currentTextureIndex - _instanceData.walkTextureStartIndex >= _instanceData.walkTexturePixelData.getFrameNum())
-	  renderingMetadata.currentTextureIndex = _instanceData.walkTextureStartIndex;
-	renderingMetadata.currentFrameCenterX = currentFrame.cx + currentFrame.dx;
-	renderingMetadata.currentFrameCenterY = currentFrame.cy + currentFrame.dy;
+	if (renderingMetadata.currentTextureIndex - currentTextureGroupStartIndex >= _instanceData.walkTexturePixelData.getFrameNum())
+	  renderingMetadata.currentTextureIndex = currentTextureGroupStartIndex;
+	renderingMetadata.currentFrameCenterX = RenderingSettings::bApplyTextureCenterOffset ? currentFrame.cx + currentFrame.dx : currentFrame.cx;
+	renderingMetadata.currentFrameCenterY = RenderingSettings::bApplyTextureCenterOffset ? currentFrame.cy + currentFrame.dy : currentFrame.cy;
 	
 	MTL::RenderCommandEncoder * const pRenderEncoder = reinterpret_cast<MTL::RenderCommandEncoder * const>(pCommandEncoder);
 	pRenderEncoder->setVertexBuffer(pUniformsBuffer, 0, BufferIndices::UniformsBuffer);

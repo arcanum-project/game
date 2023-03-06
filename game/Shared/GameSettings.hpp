@@ -17,4 +17,5 @@ namespace RenderingSettings
   extern const unsigned char NumOfTilesPerRow;
   extern const float TileLength;
   extern const float DirectionEpsilonNDC;
+  extern const bool bApplyTextureCenterOffset;
 };
