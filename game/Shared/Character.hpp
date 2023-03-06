@@ -31,6 +31,7 @@ public:
   ~Character();
   
   inline void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame, const float_t deltaTime) override {
+	static uint32_t frameCounter{_instanceData.walkTexturePixelData.getKeyFrame()};
 	Uniforms & uf = Uniforms::getInstance();
 	const glm::vec3 defaultPosition = Gameplay::getWorldTranslationFromTilePosition(GameplaySettings::CharacterStartRow, GameplaySettings::CharacterStartColumn) * glm::vec4(0.f, 0.f, 0.f, 1.f);
 	if (position().x == 0.f && position().y == 0.f && position().z == 0.f)
@@ -51,11 +52,13 @@ public:
 #endif
 	
 	const Frame& currentFrame = _instanceData.walkTexturePixelData.frames().at(renderingMetadata.currentTextureIndex - _instanceData.walkTextureStartIndex);
-	renderingMetadata.currentTextureIndex += 1;
-	if (renderingMetadata.currentTextureIndex - _instanceData.walkTextureStartIndex > _instanceData.walkTexturePixelData.getKeyFrame())
+	const bool bShowNextAnimationFrame = frameCounter == _instanceData.walkTexturePixelData.getKeyFrame() ? true : false;
+	renderingMetadata.currentTextureIndex = bShowNextAnimationFrame ? renderingMetadata.currentTextureIndex + 1 : renderingMetadata.currentTextureIndex;
+	frameCounter = frameCounter == _instanceData.walkTexturePixelData.getKeyFrame() ? 1 : frameCounter + 1;
+	if (renderingMetadata.currentTextureIndex - _instanceData.walkTextureStartIndex >= _instanceData.walkTexturePixelData.getFrameNum())
 	  renderingMetadata.currentTextureIndex = _instanceData.walkTextureStartIndex;
-	renderingMetadata.currentFrameCenterX = currentFrame.cx;
-	renderingMetadata.currentFrameCenterY = currentFrame.cy;
+	renderingMetadata.currentFrameCenterX = currentFrame.cx + currentFrame.dx;
+	renderingMetadata.currentFrameCenterY = currentFrame.cy + currentFrame.dy;
 	
 	MTL::RenderCommandEncoder * const pRenderEncoder = reinterpret_cast<MTL::RenderCommandEncoder * const>(pCommandEncoder);
 	pRenderEncoder->setVertexBuffer(pUniformsBuffer, 0, BufferIndices::UniformsBuffer);

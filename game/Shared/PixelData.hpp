@@ -19,6 +19,8 @@ public:
   inline std::vector<Frame>& frames() { return _frames; }
   inline uint32_t getKeyFrame() { return _keyFrame; }
   inline void setKeyFrame(const uint32_t keyFrame) { _keyFrame = keyFrame; }
+  inline uint32_t getFrameNum() { return _frameNum; }
+  inline void setFrameNum(const uint32_t frameNum) { _frameNum = frameNum; }
   
   PixelData();
   ~PixelData();
@@ -31,8 +33,10 @@ public:
 private:
   std::vector<std::vector<uint8_t>> _palettes;
   std::vector<Frame> _frames;
-  // Number of frames in a full animation cycle for a single movement direction. It is zero based, i.e. first frame = 0
+  // Animation speed i.e. how many frames should pass before showing next frame
   uint32_t _keyFrame;
+  // Number of frames in a full animation cycle for a single movement direction.
+  uint32_t _frameNum;
 };
 
 #endif /* PixelData_hpp */

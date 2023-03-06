@@ -10,7 +10,8 @@
 PixelData::PixelData()
 : _palettes(std::vector<std::vector<uint8_t>>()),
   _frames(std::vector<Frame>()),
-  _keyFrame()
+  _keyFrame(),
+  _frameNum()
 {};
 
 PixelData::~PixelData(){};

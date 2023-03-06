@@ -20,6 +20,7 @@ const PixelData ArtImporter::importArt(const char * artName, const char * artTyp
 	ArtFile af;
 	file.read(reinterpret_cast<char*>(&af.header), sizeof(af.header));
 	pd.setKeyFrame(af.header.keyFrame);
+	pd.setFrameNum(af.header.frameNum);
 	// Get total number of palettes from header
 	af.palettes = 0;
 	for (const Color& existingPalette : af.header.existingPalettes) {
