@@ -40,9 +40,9 @@ public:
 	}
 	else
 	{
-	  glm::vec3 newPositionWorld{};
-	  if(move(newPositionWorld, deltaTime * GameplaySettings::CharacterMovementSpeed, position()))
-		setPosition(std::move(newPositionWorld));
+	  static PositionWorld newPositionWorld;
+	  if(move(newPositionWorld, deltaTime * GameplaySettings::CharacterMovementSpeed, position(), true))
+		setPosition(std::move(newPositionWorld.position));
 	}
 	uf.setModelMatrix(modelMatrix());
 	MTL::Buffer * const pUniformsBuffer = uniformsBuffers().at(frame);

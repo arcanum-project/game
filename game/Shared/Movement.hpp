@@ -5,25 +5,25 @@
 //  Created by Dmitrii Belousov on 7/30/22.
 //
 
-#ifndef Movement_h
-#define Movement_h
-
-#include <cmath>
-#include <glm/vec3.hpp>
-#include <glm/vec4.hpp>
-#include <utility>
+#pragma once
 
 #include "InputControllerBridge.h"
 #include "Transformable.hpp"
 #include "Uniforms.hpp"
 #include "GameSettings.hpp"
 
+struct PositionWorld
+{
+  glm::vec3 position;
+  unsigned char directionIndex;
+};
+
 class Movement {
 public:
   Movement();
   virtual ~Movement() = 0;
   
-  bool move(glm::vec3& outPositionWorld, const float_t speed, const glm::vec3& currentPositionWorld);
+  bool move(PositionWorld& outPositionWorld, const float_t speed, const glm::vec3& currentPositionWorld, const bool bCalculateDirection = false);
 
 private:
   const float_t _defaultCoordinateVal;
@@ -34,9 +34,9 @@ private:
 	return targetPositionWorld.x != 0.f || targetPositionWorld.y != 0.f || targetPositionWorld.z != 0.f || targetPositionWorld.w != 0.f;
   }
   
-  bool moveInSameDirection(glm::vec3 &outPosition, const glm::vec3& currentPositionWorld, const float_t speed) const;
+  bool moveInSameDirection(PositionWorld& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed, const bool bCalculateDirection) const;
   
-  bool moveInNewDirection(glm::vec3& outPosition, const glm::vec3& currentPositionWorld, const float_t speed, const float_t xScreen, const float_t yScreen);
+  bool moveInNewDirection(PositionWorld& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed, const float_t xScreen, const float_t yScreen, const bool bCalculateDirection);
+  
+  unsigned char calculateDirectionIndex(const glm::vec3& directionVectorWorld) const;
 };
-
-#endif /* Movement_h */

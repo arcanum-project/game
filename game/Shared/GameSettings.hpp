@@ -16,4 +16,5 @@ namespace RenderingSettings
   extern const unsigned short NumOfTilesPerSector;
   extern const unsigned char NumOfTilesPerRow;
   extern const float TileLength;
+  extern const float DirectionEpsilonNDC;
 };

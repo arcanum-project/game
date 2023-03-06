@@ -16,4 +16,5 @@ namespace RenderingSettings
   const unsigned short NumOfTilesPerSector = 4096;
   const unsigned char NumOfTilesPerRow = 64;
   const float TileLength = 2.f;
+  const float DirectionEpsilonNDC = 0.5f;
 };

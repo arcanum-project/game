@@ -153,10 +153,12 @@ public:
 	return world;
   }
   
-  inline glm::vec2 worldToNDC(const glm::vec4& worldPosition, const glm::mat4x4& viewMatrix, const glm::mat4x4& projectionMatrix) const
+  inline glm::vec2 worldToNDC(const glm::vec4& worldCoordinate, const glm::mat4x4& viewMatrix, const glm::mat4x4& projectionMatrix) const
   {
-	glm::vec4 ndc = projectionMatrix * viewMatrix * worldPosition;
-	return std::move(glm::vec2(ndc.x / ndc.w, ndc.y / ndc.w));
+	glm::vec4 ndc = projectionMatrix * viewMatrix * worldCoordinate;
+	ndc.x = ndc.w == 0.f ? ndc.x : ndc.x / ndc.w;
+	ndc.y = ndc.w == 0.f ? ndc.y : ndc.y / ndc.w;
+	return std::move(glm::vec2(ndc));
   }
   
   inline const glm::mat4x4 identity() const { return _identity; }
