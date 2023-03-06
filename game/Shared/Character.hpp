@@ -32,7 +32,6 @@ public:
   
   inline void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame, const float_t deltaTime) override {
 	Uniforms & uf = Uniforms::getInstance();
-	_instanceData.currentTextureIndex = _instanceData.walkTextureStartIndex + 1;
 	const glm::vec3 defaultPosition = Gameplay::getWorldTranslationFromTilePosition(GameplaySettings::CharacterStartRow, GameplaySettings::CharacterStartColumn) * glm::vec4(0.f, 0.f, 0.f, 1.f);
 	if (position().x == 0.f && position().y == 0.f && position().z == 0.f)
 	{
@@ -51,8 +50,10 @@ public:
 	pUniformsBuffer->didModifyRange(NS::Range(0, pUniformsBuffer->length()));
 #endif
 	
-	const Frame& currentFrame = _instanceData.walkTexturePixelData.frames().at(_instanceData.currentTextureIndex - _instanceData.walkTextureStartIndex);
-	renderingMetadata.currentTextureIndex = _instanceData.currentTextureIndex;
+	const Frame& currentFrame = _instanceData.walkTexturePixelData.frames().at(renderingMetadata.currentTextureIndex - _instanceData.walkTextureStartIndex);
+	renderingMetadata.currentTextureIndex += 1;
+	if (renderingMetadata.currentTextureIndex - _instanceData.walkTextureStartIndex > _instanceData.walkTexturePixelData.getKeyFrame())
+	  renderingMetadata.currentTextureIndex = _instanceData.walkTextureStartIndex;
 	renderingMetadata.currentFrameCenterX = currentFrame.cx;
 	renderingMetadata.currentFrameCenterY = currentFrame.cy;
 	
@@ -75,7 +76,6 @@ private:
 	PixelData standTexturePixelData;
 	uint16_t walkTextureStartIndex;
 	PixelData walkTexturePixelData;
-	uint16_t currentTextureIndex;
   };
   
   // Subset of loaded assets data to be passed to GPU to render the current frame

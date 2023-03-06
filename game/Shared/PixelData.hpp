@@ -17,6 +17,8 @@ class PixelData {
 public:
   inline std::vector<std::vector<uint8_t>>& palettes() { return _palettes; }
   inline std::vector<Frame>& frames() { return _frames; }
+  inline uint32_t getKeyFrame() { return _keyFrame; }
+  inline void setKeyFrame(const uint32_t keyFrame) { _keyFrame = keyFrame; }
   
   PixelData();
   ~PixelData();
@@ -29,6 +31,8 @@ public:
 private:
   std::vector<std::vector<uint8_t>> _palettes;
   std::vector<Frame> _frames;
+  // Number of frames in a full animation cycle for a single movement direction. It is zero based, i.e. first frame = 0
+  uint32_t _keyFrame;
 };
 
 #endif /* PixelData_hpp */

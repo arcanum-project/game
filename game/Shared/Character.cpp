@@ -68,8 +68,8 @@ void Character::makeTexturesFromArt(const char * name, const char * type) {
 		  break;
 	  }
 	}
-	_instanceData.currentTextureIndex = _instanceData.standTextureStartIndex;
   }
+  renderingMetadata.currentTextureIndex = _instanceData.walkTextureStartIndex;
 }
 
 void Character::loadTextures() {
