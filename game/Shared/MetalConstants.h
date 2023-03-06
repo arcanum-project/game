@@ -22,7 +22,8 @@ typedef enum {
   TextureBuffer = 5,
   UniformsBuffer = 11,
   ICBBuffer = 16,
-  ICBArgumentsBuffer = 17
+  ICBArgumentsBuffer = 17,
+  RenderingMetadataBuffer = 19
 } BufferIndices;
 
 #endif /* Constants_h */

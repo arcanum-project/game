@@ -43,10 +43,10 @@ vertex VertexOut characterVertex(
 
 fragment float4 characterFragment(VertexOut in [[stage_in]],
 								constant ShaderMaterial & material [[buffer(BufferIndices::TextureBuffer)]],
-								constant ushort & textureIndex [[buffer(19)]]) {
+								constant uint32_t* renderingMetadata [[buffer(19)]]) {
   constexpr sampler textureSampler(filter::linear, max_anisotropy(16));
   // Get proper texture from heap
-  const texture2d<half, access::sample> texture = material.baseColorTextures[textureIndex];
+  const texture2d<half, access::sample> texture = material.baseColorTextures[renderingMetadata[0]];
   // In order to make textures aligned to the center-ish of a mesh, we calculate uvs ourself
   // Mesh is a square of 5x5 tiles, and we unwrap uvs to initially be a square aligned to the left-bottom corner of the texture
   // Side of this square will match either width or height of the texture, whichever is lowest - we do this to ensure that square spans entire side of the texture - again, that would be either width or height
@@ -66,8 +66,8 @@ fragment float4 characterFragment(VertexOut in [[stage_in]],
   const float u = squareSide * (pointIndexX / (numPointsPerRow - 1));
   // Get v-coordinate from Z index
   const float v = squareSide * (pointIndexZ / (numPointsPerColumn - 1));
-  const float centerX = 13.0f;
-  const float centerY = 79.0f;
+  const float centerX = renderingMetadata[1];
+  const float centerY = renderingMetadata[2];
   float4x4 translateCenter = float4x4(1.0f);
   translateCenter[3][0] = centerX - squareSide / 2.0f;
   translateCenter[3][1] = centerY - squareSide / 2.0f;

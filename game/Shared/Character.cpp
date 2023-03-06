@@ -13,7 +13,8 @@
 
 Character::Character(MTL::Device * const pDevice)
 : Model(pDevice, 1),
-  _instanceData()
+  _instanceData(),
+  renderingMetadata()
 {
   populateVertexData();
   loadTextures();
@@ -47,11 +48,27 @@ void Character::makeTexturesFromArt(const char * name, const char * type) {
 	// We do this to ensure that we have an index of the first frame.
 	// Since frames are stored contiguously, with start frame and offset we can get any frame we need.
 	if (!isTextureIndexSet) {
-	  _instanceData.baseTextureIndex = txIndex;
-	  _instanceData.currentTextureIndex = _instanceData.baseTextureIndex;
-	  isTextureIndexSet = true;
+	  // Get pointer to last char in name - it will define what type of animation this texture is for
+	  while (*name++ != '\0')
+		;
+	  // Have to do it, because after while loop name points at the next char after '\0'
+	  name -= 2;
+	  switch (*name) {
+		case 'a':
+		  _instanceData.standTextureStartIndex = txIndex;
+		  _instanceData.standTexturePixelData = pd;
+		  isTextureIndexSet = true;
+		  break;
+		case 'b':
+		  _instanceData.walkTextureStartIndex = txIndex;
+		  _instanceData.walkTexturePixelData = pd;
+		  isTextureIndexSet = true;
+		  break;
+		default:
+		  break;
+	  }
 	}
-	_instanceData.pixelData = pd;
+	_instanceData.currentTextureIndex = _instanceData.standTextureStartIndex;
   }
 }
 
@@ -59,6 +76,7 @@ void Character::loadTextures() {
 //  const char* name = "ghmstxaa";
   const char* name = "hmfc2xaa";
   makeTexturesFromArt(name, "art");
+  makeTexturesFromArt("hmfc2xab", "art");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_04", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_03", "bmp");
 //  _textureIndex = TextureController::instance(pDevice()).loadTexture("efmv1xaa_05", "bmp");
