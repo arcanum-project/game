@@ -1894,6 +1894,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H2VL2PJ39X;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					$PROJECT_DIR/include/glm,
+					$PROJECT_DIR/include/boost/1.79.0,
+					"$PROJECT_DIR/include/metal-cpp",
+				);
 				INFOPLIST_FILE = "${PROJECT_NAME}/${TARGET_NAME}/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1925,6 +1930,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H2VL2PJ39X;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					$PROJECT_DIR/include/glm,
+					$PROJECT_DIR/include/boost/1.79.0,
+					"$PROJECT_DIR/include/metal-cpp",
+				);
 				INFOPLIST_FILE = "${PROJECT_NAME}/${TARGET_NAME}/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
