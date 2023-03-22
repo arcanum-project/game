@@ -10,11 +10,12 @@ Rendering terrain of crash sector and a player's moving character, demo video:
 
 - Clone this repository
 - Open this project in XCode
-- Connect your physical iOS device and select it as a target device in XCode
+- Connect your physical iOS device and select it as a target device in XCode.
 
 <img width="641" alt="xcode-ios-target-device" src="https://user-images.githubusercontent.com/48682076/227014531-24c6db20-d85e-4dee-a79b-14703374b713.png">
 
-- Build and run the project
+- Build and run the project.
+- The app will fail to launch and that is expected. You will also need to explicitly trust the developer in the settings of your device. Simply follow the instructions on your device screen.
 
 Currently we support only iOS devices. iOS simulator cannot run it because we are using indirect command buffers on GPU - and simulator simply does not support them.
 
