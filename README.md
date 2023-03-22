@@ -4,7 +4,7 @@ This is a project to port the game to iOS and macOS devices.
 
 Rendering terrain of crash sector and a player's moving character, demo video:
 
-[![Game running on iOS](https://img.youtube.com/vi/zyBsQ3fYTZQ/hqdefault.jpg)](https://youtu.be/zyBsQ3fYTZQ)
+[![Game running on iOS](https://img.youtube.com/vi/qmdx32MjVnY/hqdefault.jpg)](https://youtu.be/qmdx32MjVnY)
 
 ## How to run locally
 
