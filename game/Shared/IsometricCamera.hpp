@@ -8,13 +8,11 @@
 #ifndef IsometricCamera_hpp
 #define IsometricCamera_hpp
 
-#include <stdio.h>
-
 #include "Camera.hpp"
 #include "Math.hpp"
-#include "Movement.hpp"
+#include "Movable.hpp"
 
-class IsometricCamera : public Camera, public Movement {
+class IsometricCamera : public Camera, public Movable {
 public:
   IsometricCamera();
   

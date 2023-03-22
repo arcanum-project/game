@@ -131,10 +131,10 @@
 		9F3F67D9288E2FD90057DE5F /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D7288E2FD90057DE5F /* Renderer.cpp */; };
 		9F3F67DB288E308F0057DE5F /* TileShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67DA288E308F0057DE5F /* TileShaders.metal */; };
 		9F4D58122895AD5400FF18D4 /* InputControllerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */; };
-		9F4D58152895AFB200FF18D4 /* Movement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58142895AFB200FF18D4 /* Movement.cpp */; };
+		9F4D58152895AFB200FF18D4 /* Movable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58142895AFB200FF18D4 /* Movable.cpp */; };
 		9F762F1D29B57AB30073D7B9 /* hmfc2xab.art in Resources */ = {isa = PBXBuildFile; fileRef = 9F762F1C29B57A920073D7B9 /* hmfc2xab.art */; };
 		9F762F1F29B5B3050073D7B9 /* efmbnxab.art in Resources */ = {isa = PBXBuildFile; fileRef = 9F762F1E29B5B2F70073D7B9 /* efmbnxab.art */; };
-		9F762F2129BFC5D70073D7B9 /* SpriteShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F762F2029BFC5D70073D7B9 /* SpriteShaders.metal */; };
+		9F762F2129BFC5D70073D7B9 /* MovableSpriteShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F762F2029BFC5D70073D7B9 /* MovableSpriteShaders.metal */; };
 		9F762F2629C6850C0073D7B9 /* hmmrbxab.art in Resources */ = {isa = PBXBuildFile; fileRef = 9F762F2529C684FE0073D7B9 /* hmmrbxab.art */; };
 		9F82310C28E75A2E0043A71E /* ArtImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82310A28E758970043A71E /* ArtImporter.cpp */; };
 		9F82310F28E75EAE0043A71E /* hmfc2xaa.art in Resources */ = {isa = PBXBuildFile; fileRef = 9F82310E28E75EA20043A71E /* hmfc2xaa.art */; };
@@ -538,13 +538,13 @@
 		9F3F67DA288E308F0057DE5F /* TileShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = TileShaders.metal; sourceTree = "<group>"; };
 		9F4D58102895AC6100FF18D4 /* InputControllerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputControllerAdapter.h; sourceTree = "<group>"; };
 		9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = InputControllerAdapter.mm; sourceTree = "<group>"; };
-		9F4D58132895AF8000FF18D4 /* Movement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Movement.hpp; sourceTree = "<group>"; };
-		9F4D58142895AFB200FF18D4 /* Movement.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Movement.cpp; sourceTree = "<group>"; };
+		9F4D58132895AF8000FF18D4 /* Movable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Movable.hpp; sourceTree = "<group>"; };
+		9F4D58142895AFB200FF18D4 /* Movable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Movable.cpp; sourceTree = "<group>"; };
 		9F4D58162895D3FF00FF18D4 /* InputControllerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputControllerBridge.h; sourceTree = "<group>"; };
 		9F6A3DEE287E70A400F09F1C /* VertexData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexData.hpp; sourceTree = "<group>"; };
 		9F762F1C29B57A920073D7B9 /* hmfc2xab.art */ = {isa = PBXFileReference; lastKnownFileType = file; path = hmfc2xab.art; sourceTree = "<group>"; };
 		9F762F1E29B5B2F70073D7B9 /* efmbnxab.art */ = {isa = PBXFileReference; lastKnownFileType = file; path = efmbnxab.art; sourceTree = "<group>"; };
-		9F762F2029BFC5D70073D7B9 /* SpriteShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = SpriteShaders.metal; sourceTree = "<group>"; };
+		9F762F2029BFC5D70073D7B9 /* MovableSpriteShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MovableSpriteShaders.metal; sourceTree = "<group>"; };
 		9F762F2529C684FE0073D7B9 /* hmmrbxab.art */ = {isa = PBXFileReference; lastKnownFileType = file; path = hmmrbxab.art; sourceTree = "<group>"; };
 		9F82310A28E758970043A71E /* ArtImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ArtImporter.cpp; sourceTree = "<group>"; };
 		9F82310B28E758970043A71E /* ArtImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ArtImporter.hpp; sourceTree = "<group>"; };
@@ -853,7 +853,7 @@
 			isa = PBXGroup;
 			children = (
 				9F3F67DA288E308F0057DE5F /* TileShaders.metal */,
-				9F762F2029BFC5D70073D7B9 /* SpriteShaders.metal */,
+				9F762F2029BFC5D70073D7B9 /* MovableSpriteShaders.metal */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -1529,8 +1529,8 @@
 				9F4D58162895D3FF00FF18D4 /* InputControllerBridge.h */,
 				9F4D58102895AC6100FF18D4 /* InputControllerAdapter.h */,
 				9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */,
-				9F4D58132895AF8000FF18D4 /* Movement.hpp */,
-				9F4D58142895AFB200FF18D4 /* Movement.cpp */,
+				9F4D58132895AF8000FF18D4 /* Movable.hpp */,
+				9F4D58142895AFB200FF18D4 /* Movable.cpp */,
 				9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */,
 				9FB1A3D1289B7A42006E27A9 /* TextureController.hpp */,
 			);
@@ -1832,8 +1832,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F4D58122895AD5400FF18D4 /* InputControllerAdapter.mm in Sources */,
-				9F4D58152895AFB200FF18D4 /* Movement.cpp in Sources */,
-				9F762F2129BFC5D70073D7B9 /* SpriteShaders.metal in Sources */,
+				9F4D58152895AFB200FF18D4 /* Movable.cpp in Sources */,
+				9F762F2129BFC5D70073D7B9 /* MovableSpriteShaders.metal in Sources */,
 				9F3F67C4288DDC6D0057DE5F /* ObjModelImporter.cpp in Sources */,
 				9F3F67C1288DDC6D0057DE5F /* Uniforms.cpp in Sources */,
 				9FAD19A129AD4C230016C7FD /* Gameplay.cpp in Sources */,

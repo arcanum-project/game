@@ -1,6 +1,5 @@
 //
-//  Movement.h
-//  moving-isometric-camera
+//  Movable.h
 //
 //  Created by Dmitrii Belousov on 7/30/22.
 //
@@ -12,10 +11,10 @@
 #include "Uniforms.hpp"
 #include "GameSettings.h"
 
-class Movement {
+class Movable {
 public:
-  Movement();
-  virtual ~Movement() = 0;
+  Movable();
+  virtual ~Movable() = 0;
   
   bool move(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed);
   unsigned char getDirectionIndex(const glm::vec3& currentPositionWorld) const;

@@ -22,10 +22,10 @@
 #include "InputControllerBridge.h"
 #include "PixelData.hpp"
 #include "TextureController.hpp"
-#include "Movement.hpp"
+#include "Movable.hpp"
 #include "Common/Gameplay.hpp"
 
-class Character : public Model, public Movement {
+class Character : public Model, public Movable {
 public:
   Character(MTL::Device * const pDevice);
   ~Character();

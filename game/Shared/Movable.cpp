@@ -11,17 +11,17 @@
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
 
-#include "Movement.hpp"
+#include "Movable.hpp"
 #include "GameSettings.h"
 
-Movement::Movement()
+Movable::Movable()
 : _defaultCoordinateVal(.0f),
   targetPositionWorld()
 {}
 
-Movement::~Movement() {};
+Movable::~Movable() {};
 
-bool Movement::move(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed) {
+bool Movable::move(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed) {
   // Touch location coordinates
   const float_t xScreen = xCoordinate();
   const float_t yScreen = yCoordinate();
@@ -35,7 +35,7 @@ bool Movement::move(glm::vec3& outPositionWorld, const glm::vec3& currentPositio
   else return moveInNewDirection(outPositionWorld, currentPositionWorld, speed, xScreen, yScreen);
 }
 
-bool Movement::moveInSameDirection(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed) const {
+bool Movable::moveInSameDirection(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed) const {
   if (std::abs(targetPositionWorld.x - currentPositionWorld.x) <= speed && std::abs(targetPositionWorld.z - currentPositionWorld.z) <= speed)
   {
 	outPositionWorld = glm::vec3(targetPositionWorld);
@@ -48,7 +48,7 @@ bool Movement::moveInSameDirection(glm::vec3& outPositionWorld, const glm::vec3&
   return true;
 }
 
-bool Movement::moveInNewDirection(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed, const float_t xScreen, const float_t yScreen) {
+bool Movable::moveInNewDirection(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed, const float_t xScreen, const float_t yScreen) {
   const Math& m = Math::getInstance();
   const Uniforms& uf = Uniforms::getInstance();
   const glm::vec4 newPositionWorld = m.screenToWorld(xScreen, yScreen, uf.drawableWidth(), uf.drawableHeight(), uf.getViewMatrix(), uf.getProjectionMatrix());
@@ -56,7 +56,7 @@ bool Movement::moveInNewDirection(glm::vec3& outPositionWorld, const glm::vec3& 
   return moveInSameDirection(outPositionWorld, currentPositionWorld, speed);
 }
 
-unsigned char Movement::getDirectionIndex(const glm::vec3& currentPositionWorld) const
+unsigned char Movable::getDirectionIndex(const glm::vec3& currentPositionWorld) const
 {
   const Math& m = Math::getInstance();
   const Uniforms& uf = Uniforms::getInstance();
