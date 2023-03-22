@@ -9,6 +9,7 @@ Rendering terrain of crash sector and a player's moving character, demo video:
 ## How to run locally
 
 - Clone this repository
+- Provide required game assets. See Game Assets section [below](#game-assets) for instructions.
 - Open this project in XCode
 - Connect your physical iOS device and select it as a target device in XCode.
 
