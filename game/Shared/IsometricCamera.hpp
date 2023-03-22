@@ -31,6 +31,9 @@ public:
 	_drawableHeight = drawableHeight;
   }
   inline void update(const float_t & deltaTime) override {
+	glm::vec3 outPositionWorld;
+	if (move(outPositionWorld, position(), deltaTime * GameplaySettings::CameraMovementSpeed))
+	  setPosition(outPositionWorld);
   }
 
 private:
