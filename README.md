@@ -8,13 +8,13 @@ Rendering terrain of crash sector and a player's moving character, demo video:
 
 ## How to run locally
 
-- Provide required game assets. See `Game Assets` section [below](#game-assets) for instructions.
 - Clone this repository
 - Open this project in XCode
 - Connect your physical iOS device and select it as a target device in XCode.
 
 <img width="641" alt="xcode-ios-target-device" src="https://user-images.githubusercontent.com/48682076/227014531-24c6db20-d85e-4dee-a79b-14703374b713.png">
 
+- Provide required game assets. See `Game Assets` section [below](#game-assets) for instructions.
 - Build and run the project.
 - The app will fail to launch and that is expected. You will also need to explicitly trust the developer in the settings of your device. Simply follow the instructions on your device screen.
 
