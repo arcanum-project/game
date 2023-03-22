@@ -13,7 +13,7 @@
 #include "Tile.hpp"
 #include "IsometricCamera.hpp"
 #include "Common/Gameplay.hpp"
-#include "GameSettings.hpp"
+#include "GameSettings.h"
 
 GameScene::GameScene(MTL::Device * const pDevice)
 : _pDevice(pDevice),
@@ -21,7 +21,7 @@ GameScene::GameScene(MTL::Device * const pDevice)
   _pCharacter(std::make_shared<Character>(pDevice)),
   _models(std::vector<const std::shared_ptr<Model>> { _pTile }),
   _pCamera(std::make_unique<IsometricCamera>()) {
-	_pCamera->setScale(10.f);
+	_pCamera->setScale(RenderingSettings::WorldScalar);
 	const glm::mat4x4 cameraPos = Gameplay::getWorldTranslationFromTilePosition(GameplaySettings::CharacterStartRow, GameplaySettings::CharacterStartColumn);
 	_pCamera->setPosition(std::move(glm::vec3(cameraPos[3].x, cameraPos[3].y, cameraPos[3].z)));
 	// Make isometric projection via rotations. Based on this: https://structuralcalc.com/is-there-math-in-drawings/

@@ -43,10 +43,10 @@ class ArtImporter {
 	uint32_t width;
 	uint32_t height;
 	uint32_t size;
-	uint cx;
-	uint cy;
-	uint dx;
-	uint dy;
+	int cx;
+	int cy;
+	int dx;
+	int dy;
   };
   
   class ArtFrame {

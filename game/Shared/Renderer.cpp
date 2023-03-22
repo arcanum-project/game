@@ -36,7 +36,7 @@ Renderer::Renderer(MTL::Device * const _pDevice)
   _semaphore(dispatch_semaphore_create(RenderingSettings::MaxBuffersInFlight)),
   _lastTimeSeconds(std::chrono::system_clock::now()) {
 	buildTileShaders();
-	buildCritterShaders();
+	buildCharacterShaders();
 	buildDepthStencilState();
 	initializeTextures();
 	// Initialize touch / click coordinates
@@ -107,8 +107,8 @@ void Renderer::buildTileShaders() {
   pArgumentEncoder->release();
 }
 
-void Renderer::buildCritterShaders() {
-  _pCritterPSO = Pipelines::newPSO(_pDevice, _pLib, NS::String::string("characterVertex", NS::UTF8StringEncoding), NS::String::string("characterFragment", NS::UTF8StringEncoding), true);
+void Renderer::buildCharacterShaders() {
+  _pCritterPSO = Pipelines::newPSO(_pDevice, _pLib, NS::String::string("spriteVS", NS::UTF8StringEncoding), NS::String::string("spriteFS", NS::UTF8StringEncoding), true);
 }
 
 void Renderer::buildDepthStencilState() {
@@ -201,19 +201,19 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   pTileRenderEncoder->executeCommandsInBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingSettings::NumOfTilesPerSector));
   pTileRenderEncoder->endEncoding();
   
-  MTL::RenderPassDescriptor * pCritterRpd = MTL::RenderPassDescriptor::alloc()->init();
-  pCritterRpd->colorAttachments()->object(0)->setTexture(pDrawable->texture());
-  pCritterRpd->colorAttachments()->object(0)->setLoadAction(MTL::LoadActionLoad);
-  pCritterRpd->setDepthAttachment(pRenderPassDepthAttachmentDesc);
+  MTL::RenderPassDescriptor * pCharacterRpd = MTL::RenderPassDescriptor::alloc()->init();
+  pCharacterRpd->colorAttachments()->object(0)->setTexture(pDrawable->texture());
+  pCharacterRpd->colorAttachments()->object(0)->setLoadAction(MTL::LoadActionLoad);
+  pCharacterRpd->setDepthAttachment(pRenderPassDepthAttachmentDesc);
   
-  MTL::RenderCommandEncoder * const pCritterRenderEncoder = pCmdBuf->renderCommandEncoder(pCritterRpd);
-  pCritterRenderEncoder->setLabel(NS::String::string("Critter Render Encoder", NS::UTF8StringEncoding));
-  pCritterRenderEncoder->setRenderPipelineState(_pCritterPSO);
-  pCritterRenderEncoder->setDepthStencilState(_pDepthStencilState);
-  pCritterRenderEncoder->setFragmentBuffer(_pModelsBuffer, 0, BufferIndices::TextureBuffer);
-  pCritterRenderEncoder->useHeap(TextureController::instance(_pDevice).heap());
-  _pGameScene->pCharacter()->render(pCritterRenderEncoder, 0, deltaTime.count());
-  pCritterRenderEncoder->endEncoding();
+  MTL::RenderCommandEncoder * const pCharacterRenderEncoder = pCmdBuf->renderCommandEncoder(pCharacterRpd);
+  pCharacterRenderEncoder->setLabel(NS::String::string("Character Render Encoder", NS::UTF8StringEncoding));
+  pCharacterRenderEncoder->setRenderPipelineState(_pCritterPSO);
+  pCharacterRenderEncoder->setDepthStencilState(_pDepthStencilState);
+  pCharacterRenderEncoder->setFragmentBuffer(_pModelsBuffer, 0, BufferIndices::TextureBuffer);
+  pCharacterRenderEncoder->useHeap(TextureController::instance(_pDevice).heap());
+  _pGameScene->pCharacter()->render(pCharacterRenderEncoder, 0, deltaTime.count());
+  pCharacterRenderEncoder->endEncoding();
   
   pCmdBuf->presentDrawable(pDrawable);
   pCmdBuf->commit();
@@ -223,7 +223,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   
   pRenderPassDepthAttachmentDesc->release();
   pTileRpd->release();
-  pCritterRpd->release();
+  pCharacterRpd->release();
 }
 
 void Renderer::drawableSizeWillChange(const float_t & drawableWidth, const float_t & drawableHeight) {

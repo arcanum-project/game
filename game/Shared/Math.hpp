@@ -161,6 +161,14 @@ public:
 	return std::move(glm::vec2(ndc));
   }
   
+  inline glm::vec2 worldToScreen(const glm::vec4& worldCoordinate, const glm::mat4x4& viewMatrix, const glm::mat4x4& projectionMatrix, const float_t screenWidth, const float_t screenHeight) const
+  {
+	const glm::vec4 clip = projectionMatrix * viewMatrix * worldCoordinate;
+	const float_t viewportX = (((clip.x / clip.w) + 1) / 2) * screenWidth;
+	const float_t viewportY = (((-clip.y / clip.w) + 1) / 2) * screenHeight;
+	return glm::vec2(viewportX, viewportY);
+  }
+  
   inline const glm::mat4x4 identity() const { return _identity; }
 
 private:

@@ -16,10 +16,10 @@ struct Frame {
   uint32_t imgWidth;
   uint32_t imgHeight;
   std::vector<uint8_t> pixels;
-  uint32_t cx;
-  uint32_t cy;
-  uint32_t dx;
-  uint32_t dy;
+  int cx;
+  int cy;
+  int dx;
+  int dy;
 };
 
 #endif /* Frame_h */

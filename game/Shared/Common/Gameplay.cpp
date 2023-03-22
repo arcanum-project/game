@@ -4,7 +4,7 @@
 
 #include "Gameplay.hpp"
 #include "Math.hpp"
-#include "GameSettings.hpp"
+#include "GameSettings.h"
 
 glm::mat4x4 Gameplay::getWorldTranslationFromTilePosition(const uint16_t row, const uint16_t column)
 {

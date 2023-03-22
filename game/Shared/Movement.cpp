@@ -12,7 +12,7 @@
 #include <glm/vec4.hpp>
 
 #include "Movement.hpp"
-#include "GameSettings.hpp"
+#include "GameSettings.h"
 
 Movement::Movement()
 : _defaultCoordinateVal(.0f),
@@ -21,7 +21,7 @@ Movement::Movement()
 
 Movement::~Movement() {};
 
-bool Movement::move(PositionWorld& outPositionWorld, const float_t speed, const glm::vec3& currentPositionWorld, const bool bCalculateDirection) {
+bool Movement::move(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed) {
   // Touch location coordinates
   const float_t xScreen = xCoordinate();
   const float_t yScreen = yCoordinate();
@@ -30,39 +30,38 @@ bool Movement::move(PositionWorld& outPositionWorld, const float_t speed, const 
 	if (!isTargetPositionSet()) return false;
 	const glm::vec3 cmpCurrTarget = glm::equal(currentPositionWorld, std::move(glm::vec3(targetPositionWorld.x, targetPositionWorld.y, targetPositionWorld.z)));
 	if (cmpCurrTarget.x && cmpCurrTarget.y && cmpCurrTarget.z) return false;
-	return moveInSameDirection(outPositionWorld, currentPositionWorld, speed, bCalculateDirection);
+	return moveInSameDirection(outPositionWorld, currentPositionWorld, speed);
   }
-  else return moveInNewDirection(outPositionWorld, currentPositionWorld, speed, xScreen, yScreen, bCalculateDirection);
+  else return moveInNewDirection(outPositionWorld, currentPositionWorld, speed, xScreen, yScreen);
 }
 
-bool Movement::moveInSameDirection(PositionWorld& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed, const bool bCalculateDirection) const {
+bool Movement::moveInSameDirection(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed) const {
   if (std::abs(targetPositionWorld.x - currentPositionWorld.x) <= speed && std::abs(targetPositionWorld.z - currentPositionWorld.z) <= speed)
   {
-	outPositionWorld.position = glm::vec3(targetPositionWorld);
+	outPositionWorld = glm::vec3(targetPositionWorld);
   }
   else
   {
-	// Based on: https://math.stackexchange.com/questions/3932112/move-a-point-along-a-vector-by-a-given-distance
-	const glm::vec3 directionVectorWorld = glm::vec3(targetPositionWorld.x - currentPositionWorld.x, 0.f, targetPositionWorld.z - currentPositionWorld.z);
-	outPositionWorld.position = currentPositionWorld + speed * directionVectorWorld / glm::length(directionVectorWorld);
-	if (bCalculateDirection) outPositionWorld.directionIndex = calculateDirectionIndex(directionVectorWorld);
+	glm::vec3 directionVectorWorld = getDirectionVectorWorld(currentPositionWorld);
+	outPositionWorld = currentPositionWorld + speed * directionVectorWorld / glm::length(directionVectorWorld);
   }
   return true;
 }
 
-bool Movement::moveInNewDirection(PositionWorld& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed, const float_t xScreen, const float_t yScreen, const bool bCalculateDirection) {
+bool Movement::moveInNewDirection(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed, const float_t xScreen, const float_t yScreen) {
   const Math& m = Math::getInstance();
   const Uniforms& uf = Uniforms::getInstance();
   const glm::vec4 newPositionWorld = m.screenToWorld(xScreen, yScreen, uf.drawableWidth(), uf.drawableHeight(), uf.getViewMatrix(), uf.getProjectionMatrix());
   targetPositionWorld = std::move(newPositionWorld);
-  return moveInSameDirection(outPositionWorld, currentPositionWorld, speed, bCalculateDirection);
+  return moveInSameDirection(outPositionWorld, currentPositionWorld, speed);
 }
 
-unsigned char Movement::calculateDirectionIndex(const glm::vec3& directionVectorWorld) const
+unsigned char Movement::getDirectionIndex(const glm::vec3& currentPositionWorld) const
 {
   const Math& m = Math::getInstance();
   const Uniforms& uf = Uniforms::getInstance();
-  const glm::vec2 directionVectorNDC = m.worldToNDC(std::move(glm::vec4(directionVectorWorld, 0.f)), uf.getViewMatrix(), uf.getProjectionMatrix());
+  glm::vec3 directionvectorWorld = getDirectionVectorWorld(currentPositionWorld);
+  const glm::vec2 directionVectorNDC = m.worldToNDC(std::move(glm::vec4(directionvectorWorld, 0.f)), uf.getViewMatrix(), uf.getProjectionMatrix());
   
   if (directionVectorNDC.x > RenderingSettings::DirectionEpsilonNDC)
   {

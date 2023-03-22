@@ -17,7 +17,7 @@
 #include "Uniforms.hpp"
 #include "Model.hpp"
 #include "VertexData.hpp"
-#include "GameSettings.hpp"
+#include "GameSettings.h"
 #include "MetalConstants.h"
 #include "Common/Alignment.hpp"
 #include "InstanceData.hpp"

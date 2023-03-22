@@ -48,7 +48,7 @@ private:
   std::chrono::time_point<std::chrono::system_clock> _lastTimeSeconds;
 	
   void buildTileShaders();
-  void buildCritterShaders();
+  void buildCharacterShaders();
   void buildDepthStencilState();
   void initializeTextures();
 };

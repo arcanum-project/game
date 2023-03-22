@@ -9,7 +9,7 @@
 #include <metal_matrix>
 
 #include "MetalConstants.h"
-#include "ShaderStructs.h"
+#include "ShaderCommons.h"
 
 using namespace metal;
   
