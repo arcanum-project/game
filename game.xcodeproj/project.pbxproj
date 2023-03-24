@@ -253,6 +253,7 @@
 		9FAD19A329AD4FE00016C7FD /* GameSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD19A229AD4FE00016C7FD /* GameSettings.cpp */; };
 		9FB1A3D2289B7A42006E27A9 /* TextureController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */; };
 		9FD2BB3B2890F18100D3E983 /* TouchableMTKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */; };
+		9FE17E3829CD5E04000FE4C0 /* SpriteRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE17E3629CD5E04000FE4C0 /* SpriteRenderPass.cpp */; };
 		9FEDB26328B1F05A00287DE9 /* 86570436012 in Resources */ = {isa = PBXBuildFile; fileRef = 9FEDB26228B1F00C00287DE9 /* 86570436012 */; };
 /* End PBXBuildFile section */
 
@@ -771,6 +772,8 @@
 		9FB1E3C628A6133F006E27A9 /* Alignment.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Alignment.hpp; sourceTree = "<group>"; };
 		9FD2BB37288F1D0E00D3E983 /* ShaderCommons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderCommons.h; sourceTree = "<group>"; };
 		9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchableMTKView.m; sourceTree = "<group>"; };
+		9FE17E3629CD5E04000FE4C0 /* SpriteRenderPass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteRenderPass.cpp; sourceTree = "<group>"; };
+		9FE17E3729CD5E04000FE4C0 /* SpriteRenderPass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteRenderPass.h; sourceTree = "<group>"; };
 		9FEDB26228B1F00C00287DE9 /* 86570436012 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 86570436012; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1497,21 +1500,14 @@
 		9FABA029286C06FE00B5630A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				9FE17E3529CD5D88000FE4C0 /* Renderer */,
 				9F13D5C528C42E6100C11694 /* Shaders */,
 				9F13D5B828C2E07F00C11694 /* ModelImporter */,
 				9F82312828F913600043A71E /* ArtImporter */,
 				9F13D5B728C2E06800C11694 /* Models */,
 				9FB1A3CA28973FFB006E27A9 /* Common */,
-				9F13D5C428C4162000C11694 /* Pipelines.hpp */,
-				9F13D5C128C415F400C11694 /* Pipelines.cpp */,
-				9F3F67D8288E2FD90057DE5F /* Renderer.hpp */,
-				9F3F67D7288E2FD90057DE5F /* Renderer.cpp */,
-				9FD2BB37288F1D0E00D3E983 /* ShaderCommons.h */,
-				9F13D5C028C40A8400C11694 /* MetalConstants.h */,
 				9F91044D29A888F9000193D9 /* GameSettings.h */,
 				9FAD19A229AD4FE00016C7FD /* GameSettings.cpp */,
-				9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */,
-				9F831532286FED8500B6FCDF /* RendererDelegateAdapter.h */,
 				9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */,
 				9F831543287142DC00B6FCDF /* VertexDescriptor.hpp */,
 				9F12D1502872447F006306F6 /* Uniforms.hpp */,
@@ -1546,6 +1542,23 @@
 				9FAD19A029AD4BDC0016C7FD /* Gameplay.cpp */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		9FE17E3529CD5D88000FE4C0 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				9FD2BB37288F1D0E00D3E983 /* ShaderCommons.h */,
+				9F13D5C028C40A8400C11694 /* MetalConstants.h */,
+				9F831530286FEC4200B6FCDF /* RendererDelegateAdapter.mm */,
+				9F831532286FED8500B6FCDF /* RendererDelegateAdapter.h */,
+				9F13D5C428C4162000C11694 /* Pipelines.hpp */,
+				9F13D5C128C415F400C11694 /* Pipelines.cpp */,
+				9F3F67D8288E2FD90057DE5F /* Renderer.hpp */,
+				9F3F67D7288E2FD90057DE5F /* Renderer.cpp */,
+				9FE17E3629CD5E04000FE4C0 /* SpriteRenderPass.cpp */,
+				9FE17E3729CD5E04000FE4C0 /* SpriteRenderPass.h */,
+			);
+			name = Renderer;
 			sourceTree = "<group>";
 		};
 		9FED99D928B01F5900287DE9 /* Sectors */ = {
@@ -1858,6 +1871,7 @@
 				9F3F67C0288DDC570057DE5F /* RendererDelegateAdapter.mm in Sources */,
 				9F3F67C5288DDC6D0057DE5F /* Transformable.cpp in Sources */,
 				9F3F67AB288DDBD60057DE5F /* SceneDelegate.m in Sources */,
+				9FE17E3829CD5E04000FE4C0 /* SpriteRenderPass.cpp in Sources */,
 				9F13D5C328C415F400C11694 /* Pipelines.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

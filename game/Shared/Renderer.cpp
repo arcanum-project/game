@@ -34,16 +34,21 @@ Renderer::Renderer(MTL::Device * const _pDevice)
   _pGameScene(new GameScene(_pDevice)),
   _frame(0u),
   _semaphore(dispatch_semaphore_create(RenderingSettings::MaxBuffersInFlight)),
-  _lastTimeSeconds(std::chrono::system_clock::now()) {
+  _lastTimeSeconds(std::chrono::system_clock::now()),
+  spriteRenderPass(nullptr)
+{
 	buildTileShaders();
 	buildCharacterShaders();
 	buildDepthStencilState();
 	initializeTextures();
 	// Initialize touch / click coordinates
 	setCoordinates(.0f, .0f);
+  
+  spriteRenderPass = new SpriteRenderPass(this->_pDevice, _pLib, _pModelsBuffer);
 }
 
 Renderer::~Renderer() {
+  delete spriteRenderPass;
   delete _pGameScene;
   _pModelsBuffer->release();
   _pTileVisibilityKernelFn->release();
@@ -133,7 +138,7 @@ void Renderer::initializeTextures() {
   pArgumentEncoder->release();
 }
 
-void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::Texture * const pDepthTexture) {
+void Renderer::drawFrame(CA::MetalDrawable* pDrawable, MTL::Texture* pDepthTexture) {
   // We are reusing same buffers for passing tile instances data to GPU. Therefore we must lock to ensure that buffers are only used when GPU is done with them.
   // Check this article for more: https://crimild.wordpress.com/2016/05/19/praise-the-metal-part-1-rendering-a-single-frame/
   dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
@@ -201,19 +206,7 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   pTileRenderEncoder->executeCommandsInBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingSettings::NumOfTilesPerSector));
   pTileRenderEncoder->endEncoding();
   
-  MTL::RenderPassDescriptor * pCharacterRpd = MTL::RenderPassDescriptor::alloc()->init();
-  pCharacterRpd->colorAttachments()->object(0)->setTexture(pDrawable->texture());
-  pCharacterRpd->colorAttachments()->object(0)->setLoadAction(MTL::LoadActionLoad);
-  pCharacterRpd->setDepthAttachment(pRenderPassDepthAttachmentDesc);
-  
-  MTL::RenderCommandEncoder * const pCharacterRenderEncoder = pCmdBuf->renderCommandEncoder(pCharacterRpd);
-  pCharacterRenderEncoder->setLabel(NS::String::string("Character Render Encoder", NS::UTF8StringEncoding));
-  pCharacterRenderEncoder->setRenderPipelineState(_pCritterPSO);
-  pCharacterRenderEncoder->setDepthStencilState(_pDepthStencilState);
-  pCharacterRenderEncoder->setFragmentBuffer(_pModelsBuffer, 0, BufferIndices::TextureBuffer);
-  pCharacterRenderEncoder->useHeap(TextureController::instance(_pDevice).heap());
-  _pGameScene->pCharacter()->render(pCharacterRenderEncoder, 0, deltaTime.count());
-  pCharacterRenderEncoder->endEncoding();
+  spriteRenderPass->draw(pCmdBuf, pDrawable, pDepthTexture, _pGameScene, deltaTime.count());
   
   pCmdBuf->presentDrawable(pDrawable);
   pCmdBuf->commit();
@@ -223,7 +216,6 @@ void Renderer::drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::T
   
   pRenderPassDepthAttachmentDesc->release();
   pTileRpd->release();
-  pCharacterRpd->release();
 }
 
 void Renderer::drawableSizeWillChange(const float_t & drawableWidth, const float_t & drawableHeight) {

@@ -28,7 +28,7 @@
 }
 
 - (void)drawInMTKView:(nonnull MTKView *)view {
-  _pRenderer->drawFrame((__bridge CA::MetalDrawable const *)view.currentDrawable, (__bridge MTL::Texture const *)view.depthStencilTexture);
+  _pRenderer->drawFrame((__bridge CA::MetalDrawable*)view.currentDrawable, (__bridge MTL::Texture*)view.depthStencilTexture);
 }
 
 - (void)mtkView:(nonnull MTKView *)view drawableSizeWillChange:(CGSize)size {

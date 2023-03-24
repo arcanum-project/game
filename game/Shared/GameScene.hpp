@@ -21,7 +21,8 @@
 class GameScene {
 public:
   GameScene(MTL::Device * const pDevice);
-  inline const std::shared_ptr<Character> pCharacter() const { return _pCharacter; }
+  ~GameScene();
+  inline const std::vector<Model*>& getSprites() const { return sprites; }
   inline const std::vector<const std::shared_ptr<Model>> & models() { return _models; }
   inline const std::unique_ptr<Camera> & pCamera() { return _pCamera; }
   inline void update(const float_t & width, const float_t & height) { _pCamera->update(width, height); }
@@ -32,7 +33,7 @@ public:
 private:
   MTL::Device * const _pDevice;
   const std::shared_ptr<Tile> _pTile;
-  const std::shared_ptr<Character> _pCharacter;
+  std::vector<Model*> sprites;
   const std::vector<const std::shared_ptr<Model>> _models;
   const std::unique_ptr<Camera> _pCamera;
   

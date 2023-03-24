@@ -20,13 +20,14 @@
 #include "Transformable.hpp"
 #include "GameScene.hpp"
 #include "ObjModelImporter.hpp"
+#include "SpriteRenderPass.h"
 
 class Renderer
 {
 public:
   Renderer(MTL::Device * const _pDevice);
   ~Renderer();
-  void drawFrame(const CA::MetalDrawable * const pDrawable, const MTL::Texture * const pDepthTexture);
+  void drawFrame(CA::MetalDrawable* pDrawable, MTL::Texture* pDepthTexture);
   void drawableSizeWillChange(const float_t & drawableWidth, const float_t & drawableHeight);
 
 private:
@@ -46,6 +47,7 @@ private:
   uint16_t _frame;
   dispatch_semaphore_t _semaphore;
   std::chrono::time_point<std::chrono::system_clock> _lastTimeSeconds;
+  SpriteRenderPass* spriteRenderPass;
 	
   void buildTileShaders();
   void buildCharacterShaders();
