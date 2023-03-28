@@ -6,6 +6,7 @@
 #include <QuartzCore/CAMetalDrawable.hpp>
 
 #include "GameScene.hpp"
+#include "SpriteInstanceData.h"
 
 class SpriteRenderPass
 {
@@ -21,4 +22,17 @@ private:
   MTL::RenderPipelineState* pipelineState;
   MTL::Buffer* textureBuffer;
   MTL::DepthStencilState* depthStencilState;
+  
+  // Subset of loaded assets data to be passed to GPU to render the current frame
+  struct RenderingMetadata
+  {
+	uint32_t currentTextureIndex;
+	int32_t currentFrameCenterX;
+	int32_t currentFrameCenterY;
+	uint32_t currentTextureWidth;
+	uint32_t currentTextureHeight;
+  };
+  RenderingMetadata renderingMetadata;
+  
+  void createUniformsBuffer();
 };

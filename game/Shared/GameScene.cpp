@@ -18,13 +18,13 @@
 GameScene::GameScene(MTL::Device * const pDevice)
 : _pDevice(pDevice),
   _pTile(std::make_shared<Tile>(pDevice, RenderingSettings::NumOfTilesPerSector, RenderingSettings::MaxBuffersInFlight)),
-  sprites(std::vector<Model*>()),
+  sprites(std::vector<Sprite*>()),
   _models(std::vector<const std::shared_ptr<Model>> { _pTile }),
   _pCamera(std::make_unique<IsometricCamera>())
 {
   // Dynamic memory allocation is bad, because slow. To avoud that, always allocate just enough memory.
   sprites.reserve(1);
-  sprites.push_back(new Character(_pDevice));
+  sprites.push_back(new Sprite(_pDevice));
   
   _pCamera->setScale(RenderingSettings::WorldScalar);
   const glm::mat4x4 cameraPos = Gameplay::getWorldTranslationFromTilePosition(GameplaySettings::CharacterStartRow, GameplaySettings::CharacterStartColumn);
@@ -35,6 +35,6 @@ GameScene::GameScene(MTL::Device * const pDevice)
 
 GameScene::~GameScene()
 {
-  for (Model* sprite : sprites)
+  for (Sprite* sprite : sprites)
 	delete sprite;
 }
