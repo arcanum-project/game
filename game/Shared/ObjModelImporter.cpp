@@ -51,7 +51,7 @@ const std::unique_ptr<const ImportedModelData> ObjModelImporter::import(const ch
 	  }
 	  file.close();
 	}
-  } catch (std::system_error & e) {
+  } catch (std::system_error& e) {
 	if (file.is_open())
 	  file.close();
 	std::cerr << e.code().message() << std::endl;

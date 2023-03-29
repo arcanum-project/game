@@ -29,7 +29,7 @@ MTL::RenderPipelineState * Pipelines::newPSO(MTL::Device * const pDevice, MTL::L
   pDesc->setVertexDescriptor(VertexDescriptor::getInstance().getDefaultLayout());
   pDesc->setSupportIndirectCommandBuffers(true);
   NS::Error * pError = nullptr;
-  MTL::RenderPipelineState * pPSO = pDevice->newRenderPipelineState(pDesc, & pError);
+  MTL::RenderPipelineState* pPSO = pDevice->newRenderPipelineState(pDesc, &pError);
   if (!pPSO) {
 	__builtin_printf("%s", pError->localizedDescription()->utf8String());
   }
@@ -45,7 +45,7 @@ MTL::RenderPipelineState * Pipelines::newPSO(MTL::Device * const pDevice, MTL::L
 MTL::ComputePipelineState * Pipelines::newComputePSO(MTL::Device * const pDevice, MTL::Library * const pLib, const NS::String * const fnName) {
   MTL::Function * pKernelFn = pLib->newFunction(fnName);
   NS::Error * pError = nullptr;
-  MTL::ComputePipelineState * pPSO = pDevice->newComputePipelineState(pKernelFn, & pError);
+  MTL::ComputePipelineState* pPSO = pDevice->newComputePipelineState(pKernelFn, &pError);
   if (!pPSO) {
 	__builtin_printf("%s", pError->localizedDescription()->utf8String());
   }

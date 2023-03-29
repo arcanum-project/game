@@ -26,7 +26,7 @@ public:
 
 private:
   // Based on: https://stackoverflow.com/questions/14265581/parse-split-a-string-in-c-using-string-delimiter-standard-c
-  inline void processNonFace(std::string & line, std::vector<glm::vec3> & vertices, std::vector<glm::vec2> & textures, std::vector<glm::vec3> & normals, bool isTexture, bool isVertex) const {
+  inline void processNonFace(std::string& line, std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& textures, std::vector<glm::vec3>& normals, bool isTexture, bool isVertex) const {
 	const std::string delimiter = " ";
 	// We need this to read last piece of the data in the string.
 	// We parse the string by finding delimiter and reading the data before it.
@@ -54,7 +54,7 @@ private:
 	  normals.push_back(vector);
   }
 
-  inline void processFace(std::string & line, std::vector<VertexData> & vertexData, std::vector<uint16_t> & indices, std::unordered_map<std::string, uint16_t> & vertexToIndex, std::vector<glm::vec3> & vertices, std::vector<glm::vec2> & textures, std::vector<glm::vec3> & normals) const {
+  inline void processFace(std::string& line, std::vector<VertexData>& vertexData, std::vector<uint16_t>& indices, std::unordered_map<std::string, uint16_t>& vertexToIndex, std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& textures, std::vector<glm::vec3>& normals) const {
 	// Delimiter between vertices inside the face
 	const std::string faceDelimiter = " ";
 	line.append(faceDelimiter);
@@ -73,7 +73,7 @@ private:
 	}
   }
 
-  inline void processFaceVertex(std::string & line, std::vector<VertexData> & vertexData, std::vector<uint16_t> & indices, std::unordered_map<std::string, uint16_t> & vertexToIndex, std::vector<glm::vec3> & vertices, std::vector<glm::vec2> & textures, std::vector<glm::vec3> & normals) const {
+  inline void processFaceVertex(std::string& line, std::vector<VertexData>& vertexData, std::vector<uint16_t>& indices, std::unordered_map<std::string, uint16_t>& vertexToIndex, std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& textures, std::vector<glm::vec3>& normals) const {
 	VertexData vd = VertexData();
 	uint16_t vertexIndex = 0;
 	std::string vertexToIndexKey = line;

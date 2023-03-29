@@ -44,10 +44,10 @@ const PixelData ArtImporter::importArt(const char * artName, const char * artTyp
 	
 	// Make pixel data - public representation of imported art file
 	// Add palettes
-	for (const ColorTable & ct : af.paletteData) {
+	for (const ColorTable& ct : af.paletteData) {
 	  std::vector<uint8_t> p = std::vector<uint8_t>();
 	  p.reserve(1024);
-	  for (const Color & c : ct.colors) {
+	  for (const Color& c : ct.colors) {
 		/*
 		 We intend to use this BMP as a Metal texture - and Metal requires all textures to be formatted with a specific MTLPixelFormat value. The pixel format describes the layout of pixel data in the texture. We will use the MTLPixelFormatBGRA8Unorm pixel format, which uses 32 bits per pixel, arranged into 8 bits per component, in blue, green, red, and alpha order.
 		 From here: https://developer.apple.com/documentation/metal/textures/creating_and_sampling_textures?language=objc
@@ -61,7 +61,7 @@ const PixelData ArtImporter::importArt(const char * artName, const char * artTyp
 	  pd.palettes().push_back(p);
 	}
 	// Add frames
-	for (const ArtFrame & artf : af.frameData) {
+	for (const ArtFrame& artf : af.frameData) {
 	  Frame f;
 	  f.imgWidth = artf.header.width;
 	  f.imgHeight = artf.header.height;
@@ -72,7 +72,7 @@ const PixelData ArtImporter::importArt(const char * artName, const char * artTyp
 	  f.dy = artf.header.dy;
 	  pd.frames().push_back(f);
 	}
-  } catch (std::system_error & e) {
+  } catch (std::system_error& e) {
 	if (file.is_open())
 	  file.close();
 	std::cerr << e.code().message() << std::endl;

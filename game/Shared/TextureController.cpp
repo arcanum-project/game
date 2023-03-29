@@ -9,7 +9,7 @@
 
 #include "TextureController.hpp"
 
-TextureController & TextureController::instance(MTL::Device * const pDevice) {
+TextureController& TextureController::instance(MTL::Device * const pDevice) {
   static TextureController instance(pDevice);
   return instance;
 }

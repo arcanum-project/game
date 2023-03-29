@@ -14,11 +14,11 @@ class VertexDescriptor
 {
   public:
 	//  constructors
-	static const VertexDescriptor & getInstance();
+	static const VertexDescriptor& getInstance();
 	// Tell compielr not to generate default copy constructors
 	// From here: https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
-	VertexDescriptor(VertexDescriptor const &) = delete;
-	void operator=(VertexDescriptor const &) = delete;
+	VertexDescriptor(VertexDescriptor const&) = delete;
+	void operator=(VertexDescriptor const&) = delete;
 	
 	inline const MTL::VertexDescriptor * const getDefaultLayout() const { return _default; }
   

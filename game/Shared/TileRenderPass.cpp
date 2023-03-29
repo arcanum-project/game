@@ -43,7 +43,6 @@ TileRenderPass::TileRenderPass(MTL::Device* device, MTL::Library* library, MTL::
 	instanceDataBuffers[i] = device->newBuffer(instanceDataSize, MTL::ResourceStorageModeShared);
 	NS::String* label = NS::String::string("InstanceData ", NS::UTF8StringEncoding)->stringByAppendingString(NS::String::string(std::to_string(i).c_str(), NS::UTF8StringEncoding));
 	instanceDataBuffers[i]->setLabel(label);
-	label->release();
   }
   
   const size_t uniformsSize = Alignment::roundUpToNextMultipleOf16(sizeof(Uniforms));
@@ -51,7 +50,6 @@ TileRenderPass::TileRenderPass(MTL::Device* device, MTL::Library* library, MTL::
 	uniformsBuffers[i] = device->newBuffer(uniformsSize, MTL::ResourceStorageModeShared);
 	NS::String* label = NS::String::string("Uniforms ", NS::UTF8StringEncoding)->stringByAppendingString(NS::String::string(std::to_string(i).c_str(), NS::UTF8StringEncoding));
 	uniformsBuffers[i]->setLabel(label);
-	label->release();
   }
 	
   buildVertexBuffers(scene);
@@ -130,7 +128,6 @@ void TileRenderPass::buildPipelineStates(MTL::Library* library)
   NS::String* kernelFnName = NS::String::string("cullTilesAndEncodeCommands", NS::UTF8StringEncoding);
   tileVisibilityKernelFn = library->newFunction(kernelFnName);
   computePipelineState = Pipelines::newComputePSO(device, library, kernelFnName);
-  kernelFnName->release();
 }
 
 void TileRenderPass::buildVertexBuffers(GameScene* scene)

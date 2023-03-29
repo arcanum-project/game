@@ -14,8 +14,6 @@
 #include "TextureController.hpp"
 #include "Pipelines.hpp"
 
-#pragma region Renderer {
-
 Renderer::Renderer(MTL::Device* device)
 : device(device->retain()),
   commandQueue(device->newCommandQueue()),
@@ -100,10 +98,8 @@ void Renderer::drawFrame(CA::MetalDrawable* drawable, MTL::Texture* depthTexture
 }
 
 void Renderer::drawableSizeWillChange(const float_t drawableWidth, const float_t drawableHeight) {
-  Uniforms & uf = Uniforms::getInstance();
+  Uniforms& uf = Uniforms::getInstance();
   uf.setDrawableWidth(drawableWidth);
   uf.setDrawableHeight(drawableHeight);
   gameScene->update(uf.drawableWidth(), uf.drawableHeight());
 }
-
-#pragma endregion Renderer }

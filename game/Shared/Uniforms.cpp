@@ -7,7 +7,7 @@
 
 #include "Uniforms.hpp"
 
-Uniforms & Uniforms::getInstance()
+Uniforms& Uniforms::getInstance()
 {
   static Uniforms pInstance;
   return pInstance;

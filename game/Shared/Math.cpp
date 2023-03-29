@@ -7,7 +7,7 @@
 
 #include "Math.hpp"
 
-const Math & Math::getInstance()
+const Math& Math::getInstance()
 {
   static Math pInstance;
   return pInstance;

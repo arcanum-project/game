@@ -10,9 +10,9 @@
 
 class TextureController {
 public:
-  static TextureController & instance(MTL::Device * const pDevice);
-  TextureController(TextureController const &) = delete;
-  void operator=(TextureController const &) = delete;
+  static TextureController& instance(MTL::Device * const pDevice);
+  TextureController(TextureController const&) = delete;
+  void operator=(TextureController const&) = delete;
   
   inline std::vector<MTL::Texture *> textures() const { return _pTextures; };
   inline MTL::Heap * const heap() const { return _pHeap; }

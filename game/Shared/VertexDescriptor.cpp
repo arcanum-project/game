@@ -8,7 +8,7 @@
 #include "VertexDescriptor.hpp"
 #include "MetalConstants.h"
 
-const VertexDescriptor & VertexDescriptor::getInstance()
+const VertexDescriptor& VertexDescriptor::getInstance()
 {
   static VertexDescriptor pInstance;
   return pInstance;

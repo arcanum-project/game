@@ -39,13 +39,13 @@ typedef struct {
 } InstanceData;
   
 kernel void cullTilesAndEncodeCommands(uint tileIndex [[thread_position_in_grid]],
-									   constant Uniforms & uniforms [[buffer(BufferIndices::UniformsBuffer)]],
-									   device const void * vertices [[buffer(BufferIndices::VertexBuffer)]],
-									   device const void * flippedVertices [[buffer(BufferIndices::FlippedVertexBuffer)]],
-									   device const ushort * indices [[buffer(BufferIndices::IndexBuffer)]],
-									   device const InstanceData * instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
-									   device const ICBContainer * pIcbContainer [[buffer(BufferIndices::ICBBuffer)]],
-									   constant ShaderMaterial & material [[buffer(BufferIndices::TextureBuffer)]]
+									   constant Uniforms& uniforms [[buffer(BufferIndices::UniformsBuffer)]],
+									   device const void* vertices [[buffer(BufferIndices::VertexBuffer)]],
+									   device const void* flippedVertices [[buffer(BufferIndices::FlippedVertexBuffer)]],
+									   device const ushort* indices [[buffer(BufferIndices::IndexBuffer)]],
+									   device const InstanceData* instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
+									   device const ICBContainer* pIcbContainer [[buffer(BufferIndices::ICBBuffer)]],
+									   constant ShaderMaterial& material [[buffer(BufferIndices::TextureBuffer)]]
 									   ) {
   const float4 tileCenter = instanceData[tileIndex].instanceTransform[3];
   const float4 projectedTileCenterPosition = uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * tileCenter;
@@ -83,8 +83,8 @@ kernel void cullTilesAndEncodeCommands(uint tileIndex [[thread_position_in_grid]
 
 vertex VertexOut tileVertex(
 							 VertexIn in [[stage_in]],
-							 constant Uniforms & uniforms [[buffer(BufferIndices::UniformsBuffer)]],
-							 device const InstanceData * instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
+							 constant Uniforms& uniforms [[buffer(BufferIndices::UniformsBuffer)]],
+							 device const InstanceData* instanceData [[buffer(BufferIndices::InstanceDataBuffer)]],
 							 uint instanceId [[base_instance]]
 							 )
 {
@@ -98,7 +98,7 @@ vertex VertexOut tileVertex(
 }
 
 fragment float4 tileFragment(VertexOut in [[stage_in]],
-							  constant ShaderMaterial & material [[buffer(BufferIndices::TextureBuffer)]]
+							  constant ShaderMaterial& material [[buffer(BufferIndices::TextureBuffer)]]
 							  ) {
   constexpr sampler textureSampler(filter::linear, max_anisotropy(16));
 

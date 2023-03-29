@@ -21,9 +21,9 @@ public:
   ~GameScene();
   inline Tile* getTile() const { return tile; }
   inline const std::vector<Sprite*>& getSprites() const { return sprites; }
-  inline const std::unique_ptr<Camera> & pCamera() { return _pCamera; }
-  inline void update(const float_t & width, const float_t & height) { _pCamera->update(width, height); }
-  inline void update(const float_t & deltaTime) {
+  inline const std::unique_ptr<Camera>& pCamera() { return _pCamera; }
+  inline void update(const float_t width, const float_t height) { _pCamera->update(width, height); }
+  inline void update(const float_t deltaTime) {
 	_pCamera->update(deltaTime);
   }
 
