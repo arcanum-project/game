@@ -132,6 +132,7 @@
 		9F3F67DB288E308F0057DE5F /* TileShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67DA288E308F0057DE5F /* TileShaders.metal */; };
 		9F4D58122895AD5400FF18D4 /* InputControllerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */; };
 		9F4D58152895AFB200FF18D4 /* Movable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58142895AFB200FF18D4 /* Movable.cpp */; };
+		9F684CDF29D3F5D6002A0FF6 /* TileRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F684CDD29D3F5D6002A0FF6 /* TileRenderPass.cpp */; };
 		9F762F1D29B57AB30073D7B9 /* hmfc2xab.art in Resources */ = {isa = PBXBuildFile; fileRef = 9F762F1C29B57A920073D7B9 /* hmfc2xab.art */; };
 		9F762F1F29B5B3050073D7B9 /* efmbnxab.art in Resources */ = {isa = PBXBuildFile; fileRef = 9F762F1E29B5B2F70073D7B9 /* efmbnxab.art */; };
 		9F762F2129BFC5D70073D7B9 /* MovableSpriteShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F762F2029BFC5D70073D7B9 /* MovableSpriteShaders.metal */; };
@@ -284,7 +285,7 @@
 		9F13D5B328C2DBAF00C11694 /* Tile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tile.hpp; sourceTree = "<group>"; };
 		9F13D5BC28C3D94500C11694 /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9F13D5BD28C3D94500C11694 /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
-		9F13D5BF28C4025100C11694 /* InstanceData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InstanceData.hpp; sourceTree = "<group>"; };
+		9F13D5BF28C4025100C11694 /* TileInstanceData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TileInstanceData.hpp; sourceTree = "<group>"; };
 		9F13D5C028C40A8400C11694 /* MetalConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetalConstants.h; sourceTree = "<group>"; };
 		9F13D5C128C415F400C11694 /* Pipelines.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Pipelines.cpp; sourceTree = "<group>"; };
 		9F13D5C428C4162000C11694 /* Pipelines.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Pipelines.hpp; sourceTree = "<group>"; };
@@ -543,6 +544,8 @@
 		9F4D58142895AFB200FF18D4 /* Movable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Movable.cpp; sourceTree = "<group>"; };
 		9F4D58162895D3FF00FF18D4 /* InputControllerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputControllerBridge.h; sourceTree = "<group>"; };
 		9F684CDC29D2A321002A0FF6 /* SpriteInstanceData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteInstanceData.h; sourceTree = "<group>"; };
+		9F684CDD29D3F5D6002A0FF6 /* TileRenderPass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TileRenderPass.cpp; sourceTree = "<group>"; };
+		9F684CDE29D3F5D6002A0FF6 /* TileRenderPass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileRenderPass.h; sourceTree = "<group>"; };
 		9F6A3DEE287E70A400F09F1C /* VertexData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexData.hpp; sourceTree = "<group>"; };
 		9F762F1C29B57A920073D7B9 /* hmfc2xab.art */ = {isa = PBXFileReference; lastKnownFileType = file; path = hmfc2xab.art; sourceTree = "<group>"; };
 		9F762F1E29B5B2F70073D7B9 /* efmbnxab.art */ = {isa = PBXFileReference; lastKnownFileType = file; path = efmbnxab.art; sourceTree = "<group>"; };
@@ -835,9 +838,9 @@
 				9F12D1F7287B6975006306F6 /* Model.hpp */,
 				9F13D5B328C2DBAF00C11694 /* Tile.hpp */,
 				9F13D5B228C2DBAF00C11694 /* Tile.cpp */,
+				9F13D5BF28C4025100C11694 /* TileInstanceData.hpp */,
 				9F13D5BC28C3D94500C11694 /* Sprite.cpp */,
 				9F13D5BD28C3D94500C11694 /* Sprite.hpp */,
-				9F13D5BF28C4025100C11694 /* InstanceData.hpp */,
 				9F684CDC29D2A321002A0FF6 /* SpriteInstanceData.h */,
 			);
 			name = Models;
@@ -1559,6 +1562,8 @@
 				9F3F67D7288E2FD90057DE5F /* Renderer.cpp */,
 				9FE17E3629CD5E04000FE4C0 /* SpriteRenderPass.cpp */,
 				9FE17E3729CD5E04000FE4C0 /* SpriteRenderPass.h */,
+				9F684CDD29D3F5D6002A0FF6 /* TileRenderPass.cpp */,
+				9F684CDE29D3F5D6002A0FF6 /* TileRenderPass.h */,
 			);
 			name = Renderer;
 			sourceTree = "<group>";
@@ -1872,6 +1877,7 @@
 				9F3F67D3288E05480057DE5F /* IsometricCamera.cpp in Sources */,
 				9F3F67C0288DDC570057DE5F /* RendererDelegateAdapter.mm in Sources */,
 				9F3F67C5288DDC6D0057DE5F /* Transformable.cpp in Sources */,
+				9F684CDF29D3F5D6002A0FF6 /* TileRenderPass.cpp in Sources */,
 				9F3F67AB288DDBD60057DE5F /* SceneDelegate.m in Sources */,
 				9FE17E3829CD5E04000FE4C0 /* SpriteRenderPass.cpp in Sources */,
 				9F13D5C328C415F400C11694 /* Pipelines.cpp in Sources */,

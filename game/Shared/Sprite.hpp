@@ -16,7 +16,7 @@ public:
   
   inline const SpriteInstanceData& getInstanceData() const { return instanceData; }
   
-  inline void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame, float_t deltaTime) override {
+  inline void update(float_t deltaTime) override {
 	// Increasing delta time speeds up animation to match the original game
 	deltaTime = deltaTime * 2;
 	static float_t timeAtCurrentSprite{0.f};

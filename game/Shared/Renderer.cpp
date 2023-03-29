@@ -17,204 +17,93 @@
 
 #pragma region Renderer {
 
-Renderer::Renderer(MTL::Device * const _pDevice)
-: _pDevice(_pDevice->retain()),
-  _pCommandQueue(_pDevice->newCommandQueue()),
-  _pLib(_pDevice->newDefaultLibrary()),
-  _pTilesPSO(nullptr),
-  _pDepthStencilState(nullptr),
-  _pTilesComputePSO(nullptr),
-  _pIndirectCommandBuffer(nullptr),
-  // Argument buffer containing the indirect command buffer encoded in the kernel
-  _pIcbArgumentBuffer(nullptr),
-  _pTileVisibilityKernelFn(nullptr),
-  _pModelsBuffer(nullptr),
-  _pGameScene(new GameScene(_pDevice)),
-  _frame(0),
-  _semaphore(dispatch_semaphore_create(RenderingSettings::MaxBuffersInFlight)),
-  _lastTimeSeconds(std::chrono::system_clock::now()),
+Renderer::Renderer(MTL::Device* device)
+: device(device->retain()),
+  commandQueue(device->newCommandQueue()),
+  library(device->newDefaultLibrary()),
+  materialBuffer(nullptr),
+  gameScene(new GameScene(device)),
+  frame(0),
+  semaphore(dispatch_semaphore_create(RenderingSettings::MaxBuffersInFlight)),
+  lastTimeSeconds(std::chrono::system_clock::now()),
+  tileRenderPass(nullptr),
   spriteRenderPass(nullptr)
 {
-	buildTileShaders();
-	buildDepthStencilState();
 	initializeTextures();
 	// Initialize touch / click coordinates
 	setCoordinates(.0f, .0f);
   
-  spriteRenderPass = new SpriteRenderPass(this->_pDevice, _pLib, _pModelsBuffer);
+  tileRenderPass = new TileRenderPass(this->device, library, materialBuffer, RenderingSettings::NumOfTilesPerSector, RenderingSettings::MaxBuffersInFlight, gameScene);
+  spriteRenderPass = new SpriteRenderPass(this->device, library, materialBuffer);
 }
 
 Renderer::~Renderer() {
+  delete tileRenderPass;
   delete spriteRenderPass;
-  delete _pGameScene;
-  _pModelsBuffer->release();
-  _pTileVisibilityKernelFn->release();
-  _pIcbArgumentBuffer->release();
-  _pIndirectCommandBuffer->release();
-  _pTilesComputePSO->release();
-  _pDepthStencilState->release();
-  _pTilesPSO->release();
-  _pLib->release();
-  _pCommandQueue->release();
-  _pDevice->release();
-}
-
-void Renderer::buildTileShaders() {
-  // Make tiles render pipeline
-  
-  _pTilesPSO = Pipelines::newPSO(_pDevice, _pLib, NS::String::string("tileVertex", NS::UTF8StringEncoding), NS::String::string("tileFragment", NS::UTF8StringEncoding), false);
-  
-  // Make compute pipeline
-  
-  const NS::String * const kernelFnName = NS::String::string("cullTilesAndEncodeCommands", NS::UTF8StringEncoding);
-  _pTileVisibilityKernelFn = _pLib->newFunction(kernelFnName);
-  _pTilesComputePSO = Pipelines::newComputePSO(_pDevice, _pLib, kernelFnName);
-  
-  // Make indirect command buffer
-  
-  MTL::IndirectCommandBufferDescriptor * const pIcbDescriptor = MTL::IndirectCommandBufferDescriptor::alloc()->init();
-  pIcbDescriptor->setCommandTypes(MTL::IndirectCommandTypeDrawIndexed);
-  // Indicate that buffers will be set for each command in the indirect command buffer.
-  pIcbDescriptor->setInheritBuffers(false);
-  // Indicate that a maximum of 3 buffers will be set for each command.
-  pIcbDescriptor->setMaxVertexBufferBindCount(25);
-  pIcbDescriptor->setMaxFragmentBufferBindCount(25);
-#if defined TARGET_MACOS || defined(__IPHONE_13_0)
-  // Indicate that the render pipeline state object will be set in the render command encoder
-  // (not by the indirect command buffer).
-  // On iOS, this property only exists on iOS 13 and later.  Earlier versions of iOS did not
-  // support settings pipelinestate within an indirect command buffer, so indirect command
-  // buffers always inherited the pipeline state.
-  pIcbDescriptor->setInheritPipelineState(true);
-#endif
-  
-  // Create indirect command buffer using private storage mode; since only the GPU will
-  // write to and read from the indirect command buffer, the CPU never needs to access the
-  // memory
-  _pIndirectCommandBuffer = _pDevice->newIndirectCommandBuffer(pIcbDescriptor, RenderingSettings::NumOfTilesPerSector, MTL::ResourceStorageModeShared);
-  _pIndirectCommandBuffer->setLabel(NS::String::string("Scene ICB", NS::UTF8StringEncoding));
-  
-  pIcbDescriptor->release();
-  
-  // Make ICB Argument buffer
-  // Argument buffer containing the indirect command buffer encoded in the kernel
-  
-  MTL::ArgumentEncoder * const pArgumentEncoder = _pTileVisibilityKernelFn->newArgumentEncoder(BufferIndices::ICBBuffer);
-  _pIcbArgumentBuffer = _pDevice->newBuffer(pArgumentEncoder->encodedLength(), MTL::ResourceStorageModeShared);
-  _pIcbArgumentBuffer->setLabel(NS::String::string("ICB Argument Buffer", NS::UTF8StringEncoding));
-  pArgumentEncoder->setArgumentBuffer(_pIcbArgumentBuffer, 0);
-  pArgumentEncoder->setIndirectCommandBuffer(_pIndirectCommandBuffer, BufferIndices::ICBArgumentsBuffer);
-  
-  pArgumentEncoder->release();
-}
-
-void Renderer::buildDepthStencilState() {
-  MTL::DepthStencilDescriptor * pDepthStencilDesc = MTL::DepthStencilDescriptor::alloc()->init();
-  pDepthStencilDesc->setDepthCompareFunction(MTL::CompareFunctionLess);
-  pDepthStencilDesc->setDepthWriteEnabled(true);
-  _pDepthStencilState = _pDevice->newDepthStencilState(pDepthStencilDesc);
-  pDepthStencilDesc->release();
+  delete gameScene;
+  materialBuffer->release();
+  library->release();
+  commandQueue->release();
+  device->release();
 }
 
 void Renderer::initializeTextures() {
-  TextureController & txController = TextureController::instance(_pDevice);
+  TextureController & txController = TextureController::instance(device);
   txController.makeHeap();
-  txController.moveTexturesToHeap(_pCommandQueue);
+  txController.moveTexturesToHeap(commandQueue);
   
-  MTL::ArgumentEncoder * const pArgumentEncoder = _pTileVisibilityKernelFn->newArgumentEncoder(BufferIndices::TextureBuffer);
-  _pModelsBuffer = _pDevice->newBuffer(pArgumentEncoder->encodedLength(), MTL::ResourceStorageModeShared);
-  pArgumentEncoder->setArgumentBuffer(_pModelsBuffer, 0);
-  pArgumentEncoder->setTextures(txController.textures().data(), NS::Range(0, txController.textures().size()));
-  pArgumentEncoder->setTexture(txController.textures().at(0), 0);
+  NS::Error* error = nullptr;
+  MTL::FunctionConstantValues* fnConstantValues = MTL::FunctionConstantValues::alloc()->init();
+  MTL::Function* spriteFragmentFn = library->newFunction(NS::String::string("spriteFS", NS::UTF8StringEncoding), fnConstantValues, &error);
+  fnConstantValues->release();
+  if (!spriteFragmentFn)
+	__builtin_printf("Error creating fragment function. Error: %s", error->localizedDescription()->utf8String());
+  error->release();
   
-  pArgumentEncoder->release();
+  MTL::ArgumentEncoder* argumentEncoder = spriteFragmentFn->newArgumentEncoder(BufferIndices::TextureBuffer);
+  materialBuffer = device->newBuffer(argumentEncoder->encodedLength(), MTL::ResourceStorageModeShared);
+  argumentEncoder->setArgumentBuffer(materialBuffer, 0);
+  argumentEncoder->setTextures(txController.textures().data(), NS::Range(0, txController.textures().size()));
+  argumentEncoder->setTexture(txController.textures().at(0), 0);
+  
+  argumentEncoder->release();
 }
 
-void Renderer::drawFrame(CA::MetalDrawable* pDrawable, MTL::Texture* pDepthTexture) {
+void Renderer::drawFrame(CA::MetalDrawable* drawable, MTL::Texture* depthTexture) {
   // We are reusing same buffers for passing tile instances data to GPU. Therefore we must lock to ensure that buffers are only used when GPU is done with them.
   // Check this article for more: https://crimild.wordpress.com/2016/05/19/praise-the-metal-part-1-rendering-a-single-frame/
-  dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
+  dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
   
-  MTL::CommandBuffer * pCmdBuf = _pCommandQueue->commandBuffer();
-  pCmdBuf->addCompletedHandler(^void(MTL::CommandBuffer * pCmdBuf) {
-	dispatch_semaphore_signal(this->_semaphore);
+  MTL::CommandBuffer* commandBuffer = commandQueue->commandBuffer();
+  commandBuffer->addCompletedHandler(^void(MTL::CommandBuffer* commandBuffer) {
+	dispatch_semaphore_signal(this->semaphore);
   });
   
-  // Encode command to reset the indirect command buffer
-  MTL::BlitCommandEncoder * const pResetBlitEncoder = pCmdBuf->blitCommandEncoder();
-  pResetBlitEncoder->setLabel(NS::String::string("Reset ICB Blit Encoder", NS::UTF8StringEncoding));
-  pResetBlitEncoder->resetCommandsInBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingSettings::NumOfTilesPerSector));
-  pResetBlitEncoder->endEncoding();
-  
   const std::chrono::time_point<std::chrono::system_clock> currentTimeSeconds = std::chrono::system_clock::now();
-  const std::chrono::duration<float_t> deltaTime = currentTimeSeconds - _lastTimeSeconds;
-  _lastTimeSeconds = currentTimeSeconds;
-  _pGameScene->update(deltaTime.count());
+  const std::chrono::duration<float_t> deltaTime = currentTimeSeconds - lastTimeSeconds;
+  lastTimeSeconds = currentTimeSeconds;
+  gameScene->update(deltaTime.count());
   
-  Uniforms & uf = Uniforms::getInstance();
-  uf.setViewMatrix(_pGameScene->pCamera()->viewMatrix());
-  uf.setProjectionMatrix(_pGameScene->pCamera()->projectionMatrix());
-  _frame = (_frame + 1) % RenderingSettings::MaxBuffersInFlight;
+  Uniforms& uf = Uniforms::getInstance();
+  uf.setViewMatrix(gameScene->pCamera()->viewMatrix());
+  uf.setProjectionMatrix(gameScene->pCamera()->projectionMatrix());
+  frame = (frame + 1) % RenderingSettings::MaxBuffersInFlight;
   
-  // Encode commands to determine visibility of tiles using a compute kernel
-  MTL::ComputeCommandEncoder * const pTileComputeEncoder = pCmdBuf->computeCommandEncoder();
-  pTileComputeEncoder->setLabel(NS::String::string("Tile Visibility Kernel", NS::UTF8StringEncoding));
-  pTileComputeEncoder->setComputePipelineState(_pTilesComputePSO);
-
-  for (const std::shared_ptr<Model> & pModel : _pGameScene->models()) {
-	pModel->render(pTileComputeEncoder, _frame, deltaTime.count());
-  }
-  pTileComputeEncoder->setBuffer(_pIcbArgumentBuffer, 0, BufferIndices::ICBBuffer);
-  pTileComputeEncoder->setBuffer(_pModelsBuffer, 0, BufferIndices::TextureBuffer);
-  // Call useResource on '_indirectCommandBuffer' which indicates to Metal that the kernel will
-  // access '_indirectCommandBuffer'.  It is necessary because the app cannot directly set
-  // '_indirectCommandBuffer' in 'computeEncoder', but, rather, must pass it to the kernel via
-  // an argument buffer which indirectly contains '_indirectCommandBuffer'.
-  pTileComputeEncoder->useResource(_pIndirectCommandBuffer, MTL::ResourceUsageWrite);
-  pTileComputeEncoder->useHeap(TextureController::instance(_pDevice).heap());
-  const uint64_t threadExecutionWidth = _pTilesComputePSO->threadExecutionWidth();
-  pTileComputeEncoder->dispatchThreads(MTL::Size(RenderingSettings::NumOfTilesPerSector, 1, 1), MTL::Size(threadExecutionWidth, 1, 1));
-  pTileComputeEncoder->endEncoding();
+  tileRenderPass->draw(commandBuffer, drawable, depthTexture, gameScene, deltaTime.count(), frame);
+  spriteRenderPass->draw(commandBuffer, drawable, depthTexture, gameScene, deltaTime.count());
   
-  // Encode command to optimize the indirect command buffer after encoding
-  MTL::BlitCommandEncoder * const pOptimizeBlitEncoder = pCmdBuf->blitCommandEncoder();
-  pOptimizeBlitEncoder->setLabel(NS::String::string("Optimize ICB Blit Encoder", NS::UTF8StringEncoding));
-  pOptimizeBlitEncoder->optimizeIndirectCommandBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingSettings::NumOfTilesPerSector));
-  pOptimizeBlitEncoder->endEncoding();
-  
-  MTL::RenderPassDescriptor * pTileRpd = MTL::RenderPassDescriptor::alloc()->init();
-  pTileRpd->colorAttachments()->object(0)->setTexture(pDrawable->texture());
-  pTileRpd->colorAttachments()->object(0)->setLoadAction(MTL::LoadActionClear);
-  pTileRpd->colorAttachments()->object(0)->setClearColor(MTL::ClearColor::Make(0.0f, 0.0f, 1.0f, 1.0));
-  
-  MTL::RenderPassDepthAttachmentDescriptor * pRenderPassDepthAttachmentDesc = MTL::RenderPassDepthAttachmentDescriptor::alloc()->init();
-  pRenderPassDepthAttachmentDesc->setTexture(pDepthTexture);
-  pTileRpd->setDepthAttachment(pRenderPassDepthAttachmentDesc);
-
-  MTL::RenderCommandEncoder * const pTileRenderEncoder = pCmdBuf->renderCommandEncoder(pTileRpd);
-  pTileRenderEncoder->setLabel(NS::String::string("Tile Render Encoder", NS::UTF8StringEncoding));
-  pTileRenderEncoder->setRenderPipelineState(_pTilesPSO);
-  pTileRenderEncoder->setDepthStencilState(_pDepthStencilState);
-  pTileRenderEncoder->executeCommandsInBuffer(_pIndirectCommandBuffer, NS::Range(0, RenderingSettings::NumOfTilesPerSector));
-  pTileRenderEncoder->endEncoding();
-  
-  spriteRenderPass->draw(pCmdBuf, pDrawable, pDepthTexture, _pGameScene, deltaTime.count());
-  
-  pCmdBuf->presentDrawable(pDrawable);
-  pCmdBuf->commit();
+  commandBuffer->presentDrawable(drawable);
+  commandBuffer->commit();
   
   // Reset touch / click coordinates
   setCoordinates(.0f, .0f);
-  
-  pRenderPassDepthAttachmentDesc->release();
-  pTileRpd->release();
 }
 
-void Renderer::drawableSizeWillChange(const float_t & drawableWidth, const float_t & drawableHeight) {
+void Renderer::drawableSizeWillChange(const float_t drawableWidth, const float_t drawableHeight) {
   Uniforms & uf = Uniforms::getInstance();
   uf.setDrawableWidth(drawableWidth);
   uf.setDrawableHeight(drawableHeight);
-  _pGameScene->update(uf.drawableWidth(), uf.drawableHeight());
+  gameScene->update(uf.drawableWidth(), uf.drawableHeight());
 }
 
 #pragma endregion Renderer }

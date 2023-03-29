@@ -20,7 +20,7 @@
 #include "GameSettings.h"
 #include "MetalConstants.h"
 #include "Common/Alignment.hpp"
-#include "InstanceData.hpp"
+#include "TileInstanceData.hpp"
 
 class Tile : public Model
 {
@@ -28,58 +28,17 @@ public:
   Tile(MTL::Device * const pDevice, const uint16_t instanceCount, const uint16_t maxBuffersInFlight);
   ~Tile();
   
-  inline const MTL::Buffer * const pFlippedVertexBuffer() const { return _pFlippedVertexBuffer; }
-  inline const std::vector<MTL::Buffer *> instanceDataBuffers() const { return _instanceDataBuffers; }
+  inline const std::unordered_map<uint16_t, TileInstanceData>& getInstanceIdToData() const { return _instanceIdToData; }
+  inline const std::vector<VertexData>& getFlippedVertexData() const { return _flippedVertexData; }
   
-  inline void render(MTL::CommandEncoder * const pCommandEncoder, const uint16_t & frame, const float_t deltaTime) override {
-	MTL::ComputeCommandEncoder * const pComputeEncoder = reinterpret_cast<MTL::ComputeCommandEncoder * const>(pCommandEncoder);
-	MTL::Buffer * const pInstanceDataBuffer = _instanceDataBuffers.at(frame);
-	InstanceData * pInstanceData = reinterpret_cast<InstanceData *>(pInstanceDataBuffer->contents());
-	// Translate entire sector to ensure that camera - which located at (0, 0) - points at a center of a sector
-	// We want to look at (32, 32), because that's where the player's character pops up at the start of the game
-	const float_t baseRowOffset = .0f;
-	const float_t baseColumnOffset = .0f;
-	for (size_t i = 0; i < RenderingSettings::NumOfTilesPerSector; ++i) {
-	  const float_t rowOffset = baseRowOffset + (float_t) (i % (RenderingSettings::NumOfTilesPerSector / RenderingSettings::NumOfTilesPerRow));
-	  const float_t columnOffset = baseColumnOffset + (float_t) (i / (RenderingSettings::NumOfTilesPerSector / RenderingSettings::NumOfTilesPerRow));
-	  pInstanceData[i].instanceTransform = Math::getInstance().translation(rowOffset * 2.0f, 0.0f, columnOffset * 2.0f);
-	  const std::unordered_map<uint16_t, InstanceData>::const_iterator iterator = _instanceIdToData.find(i);
-	  if (iterator == _instanceIdToData.end())
-		throw std::runtime_error("Texture index not found for instanceId. instanceId = " + std::to_string(i));
-	  pInstanceData[i].textureIndex = iterator->second.textureIndex;
-	  pInstanceData[i].shouldFlip = iterator->second.shouldFlip;
-	}
-#if defined(TARGET_OSX)
-	pInstanceDataBuffer->didModifyRange(NS::Range::Make(0, pInstanceDataBuffer->length()));
-#endif
-	
-	Uniforms & uf = Uniforms::getInstance();
-	uf.setModelMatrix(modelMatrix());
-	MTL::Buffer * const pUniformsBuffer = uniformsBuffers().at(frame);
-	memcpy(pUniformsBuffer->contents(), & uf, Alignment::roundUpToNextMultipleOf16(sizeof(Uniforms)));
-#if defined(TARGET_OSX)
-	pUniformsBuffer->didModifyRange(NS::Range(0, pUniformsBuffer->length()));
-#endif
-	
-	pComputeEncoder->setBuffer(pUniformsBuffer, 0, BufferIndices::UniformsBuffer);
-	pComputeEncoder->setBuffer(pVertexBuffer(), 0, BufferIndices::VertexBuffer);
-	pComputeEncoder->setBuffer(pFlippedVertexBuffer(), 0, BufferIndices::FlippedVertexBuffer);
-	pComputeEncoder->setBuffer(pIndexBuffer(), 0, BufferIndices::IndexBuffer);
-	pComputeEncoder->setBuffer(pInstanceDataBuffer, 0, BufferIndices::InstanceDataBuffer);
-	
-	pComputeEncoder->useResource(pUniformsBuffer, MTL::ResourceUsageRead);
-	pComputeEncoder->useResource(pVertexBuffer(), MTL::ResourceUsageRead);
-	pComputeEncoder->useResource(pFlippedVertexBuffer(), MTL::ResourceUsageRead);
-	pComputeEncoder->useResource(pIndexBuffer(), MTL::ResourceUsageRead);
-	pComputeEncoder->useResource(pInstanceDataBuffer, MTL::ResourceUsageRead);
+  inline void update(float_t deltaTime) override
+  {
   }
 
 private:
   std::vector<VertexData> _flippedVertexData;
   const uint16_t _instanceCount;
-  MTL::Buffer * _pFlippedVertexBuffer;
-  std::vector<MTL::Buffer *> _instanceDataBuffers;
-  std::unordered_map<uint16_t, InstanceData> _instanceIdToData;
+  std::unordered_map<uint16_t, TileInstanceData> _instanceIdToData;
   
   void populateVertexData() override;
   void loadTextures() override;

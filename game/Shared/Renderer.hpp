@@ -20,35 +20,29 @@
 #include "Transformable.hpp"
 #include "GameScene.hpp"
 #include "ObjModelImporter.hpp"
+#include "TileRenderPass.h"
 #include "SpriteRenderPass.h"
 
 class Renderer
 {
 public:
-  Renderer(MTL::Device * const _pDevice);
+  Renderer(MTL::Device* device);
   ~Renderer();
-  void drawFrame(CA::MetalDrawable* pDrawable, MTL::Texture* pDepthTexture);
-  void drawableSizeWillChange(const float_t & drawableWidth, const float_t & drawableHeight);
+  void drawFrame(CA::MetalDrawable* drawable, MTL::Texture* depthTexture);
+  void drawableSizeWillChange(const float_t drawableWidth, const float_t drawableHeight);
 
 private:
-  MTL::Device * const _pDevice;
-  MTL::CommandQueue * const _pCommandQueue;
-  MTL::Library * const _pLib;
-  MTL::RenderPipelineState * _pTilesPSO;
-  MTL::DepthStencilState * _pDepthStencilState;
-  MTL::ComputePipelineState * _pTilesComputePSO;
-  MTL::IndirectCommandBuffer * _pIndirectCommandBuffer;
-  MTL::Buffer * _pIcbArgumentBuffer;
-  MTL::Function * _pTileVisibilityKernelFn;
-  MTL::Buffer * _pModelsBuffer;
-  GameScene * const _pGameScene;
-  uint16_t _frame;
-  dispatch_semaphore_t _semaphore;
-  std::chrono::time_point<std::chrono::system_clock> _lastTimeSeconds;
+  MTL::Device* device;
+  MTL::CommandQueue* commandQueue;
+  MTL::Library* library;
+  MTL::Buffer* materialBuffer;
+  GameScene* gameScene;
+  uint16_t frame;
+  dispatch_semaphore_t semaphore;
+  std::chrono::time_point<std::chrono::system_clock> lastTimeSeconds;
+  TileRenderPass* tileRenderPass;
   SpriteRenderPass* spriteRenderPass;
-	
-  void buildTileShaders();
-  void buildDepthStencilState();
+  
   void initializeTextures();
 };
 

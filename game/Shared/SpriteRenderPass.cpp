@@ -50,9 +50,7 @@ void SpriteRenderPass::draw(MTL::CommandBuffer* commandBuffer, CA::MetalDrawable
   renderEncoder->useHeap(TextureController::instance(device).heap());
   for (Sprite* sprite : scene->getSprites())
   {
-	// TODO rename method from render() to update()
-	// TODO only pass deltaTime there
-	sprite->render(renderEncoder, 0, deltaTime);
+	sprite->update(deltaTime);
 	
 	renderingMetadata.currentTextureIndex = sprite->getInstanceData().currentTextureIndex;
 	renderingMetadata.currentFrameCenterX = sprite->getInstanceData().currentFrameCenterX;

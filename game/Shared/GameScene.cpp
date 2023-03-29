@@ -17,9 +17,8 @@
 
 GameScene::GameScene(MTL::Device * const pDevice)
 : _pDevice(pDevice),
-  _pTile(std::make_shared<Tile>(pDevice, RenderingSettings::NumOfTilesPerSector, RenderingSettings::MaxBuffersInFlight)),
+  tile(new Tile(pDevice, RenderingSettings::NumOfTilesPerSector, RenderingSettings::MaxBuffersInFlight)),
   sprites(std::vector<Sprite*>()),
-  _models(std::vector<const std::shared_ptr<Model>> { _pTile }),
   _pCamera(std::make_unique<IsometricCamera>())
 {
   // Dynamic memory allocation is bad, because slow. To avoud that, always allocate just enough memory.
@@ -35,6 +34,7 @@ GameScene::GameScene(MTL::Device * const pDevice)
 
 GameScene::~GameScene()
 {
+  delete tile;
   for (Sprite* sprite : sprites)
 	delete sprite;
 }
