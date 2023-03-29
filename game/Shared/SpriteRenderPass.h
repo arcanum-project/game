@@ -33,6 +33,4 @@ private:
 	uint32_t currentTextureHeight;
   };
   RenderingMetadata renderingMetadata;
-  
-  void createUniformsBuffer();
 };
