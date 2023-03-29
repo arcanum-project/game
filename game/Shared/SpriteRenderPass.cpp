@@ -3,11 +3,13 @@
 #include "SpriteRenderPass.h"
 #include "Pipelines.hpp"
 #include "TextureController.hpp"
+#include "MetalConstants.h"
+#include "Common/Alignment.hpp"
 
-SpriteRenderPass::SpriteRenderPass(MTL::Device* device, MTL::Library* library, MTL::Buffer* textureBuffer)
+SpriteRenderPass::SpriteRenderPass(MTL::Device* device, MTL::Library* library, MTL::Buffer* const& materialBuffer)
 : device(device),
   pipelineState(nullptr),
-  textureBuffer(textureBuffer),
+  materialBuffer(materialBuffer),
   depthStencilState(nullptr),
   renderingMetadata()
 {
@@ -46,7 +48,7 @@ void SpriteRenderPass::draw(MTL::CommandBuffer* commandBuffer, CA::MetalDrawable
   renderEncoder->setLabel(NS::String::string("Sprite Render Encoder", NS::UTF8StringEncoding));
   renderEncoder->setRenderPipelineState(pipelineState);
   renderEncoder->setDepthStencilState(depthStencilState);
-  renderEncoder->setFragmentBuffer(textureBuffer, 0, BufferIndices::TextureBuffer);
+  renderEncoder->setFragmentBuffer(materialBuffer, 0, BufferIndices::TextureBuffer);
   renderEncoder->useHeap(TextureController::instance(device).heap());
   for (Sprite* sprite : scene->getSprites())
   {

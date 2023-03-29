@@ -17,13 +17,13 @@
 
 GameScene::GameScene(MTL::Device * const pDevice)
 : _pDevice(pDevice),
-  tile(new Tile(pDevice, RenderingSettings::NumOfTilesPerSector, RenderingSettings::MaxBuffersInFlight)),
+  tile(new Tile(RenderingSettings::NumOfTilesPerSector, RenderingSettings::MaxBuffersInFlight)),
   sprites(std::vector<Sprite*>()),
   _pCamera(std::make_unique<IsometricCamera>())
 {
   // Dynamic memory allocation is bad, because slow. To avoud that, always allocate just enough memory.
   sprites.reserve(1);
-  sprites.push_back(new Sprite());
+  sprites.push_back(new Sprite(_pDevice));
   
   _pCamera->setScale(RenderingSettings::WorldScalar);
   const glm::mat4x4 cameraPos = Gameplay::getWorldTranslationFromTilePosition(GameplaySettings::CharacterStartRow, GameplaySettings::CharacterStartColumn);

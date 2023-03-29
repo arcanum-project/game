@@ -14,8 +14,6 @@ PixelData::PixelData()
   _frameNum()
 {};
 
-PixelData::~PixelData(){};
-
 /**
  Return array of BGRA-formatted colors for a specific frame of a specific palette.
  */

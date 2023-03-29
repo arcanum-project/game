@@ -124,7 +124,6 @@
 		9F3F67C3288DDC6D0057DE5F /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1522872472C006306F6 /* Math.cpp */; };
 		9F3F67C4288DDC6D0057DE5F /* ObjModelImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */; };
 		9F3F67C5288DDC6D0057DE5F /* Transformable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1B9287A2C1E006306F6 /* Transformable.cpp */; };
-		9F3F67C6288DDC6D0057DE5F /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1F6287B6975006306F6 /* Model.cpp */; };
 		9F3F67CB288DE2A30057DE5F /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67CA288DE2A30057DE5F /* Camera.cpp */; };
 		9F3F67CE288DE3290057DE5F /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67CC288DE3290057DE5F /* GameScene.cpp */; };
 		9F3F67D3288E05480057DE5F /* IsometricCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D2288E05480057DE5F /* IsometricCamera.cpp */; };
@@ -266,8 +265,6 @@
 		9F12D1B9287A2C1E006306F6 /* Transformable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Transformable.cpp; sourceTree = "<group>"; };
 		9F12D1BA287A2C1E006306F6 /* Transformable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Transformable.hpp; sourceTree = "<group>"; };
 		9F12D1F1287B677D006306F6 /* ModelImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ModelImporter.hpp; sourceTree = "<group>"; };
-		9F12D1F6287B6975006306F6 /* Model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
-		9F12D1F7287B6975006306F6 /* Model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
 		9F12D1F9287B6F41006306F6 /* ObjModelImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjModelImporter.hpp; sourceTree = "<group>"; };
 		9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjModelImporter.cpp; sourceTree = "<group>"; };
 		9F13D59828BC31C700C11694 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -834,8 +831,6 @@
 		9F13D5B728C2E06800C11694 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9F12D1F6287B6975006306F6 /* Model.cpp */,
-				9F12D1F7287B6975006306F6 /* Model.hpp */,
 				9F13D5B328C2DBAF00C11694 /* Tile.hpp */,
 				9F13D5B228C2DBAF00C11694 /* Tile.cpp */,
 				9F13D5BF28C4025100C11694 /* TileInstanceData.hpp */,
@@ -1872,7 +1867,6 @@
 				9F3F67CE288DE3290057DE5F /* GameScene.cpp in Sources */,
 				9F3F67DB288E308F0057DE5F /* TileShaders.metal in Sources */,
 				9F3F67A8288DDBD60057DE5F /* AppDelegate.m in Sources */,
-				9F3F67C6288DDC6D0057DE5F /* Model.cpp in Sources */,
 				9F3F67B9288DDBD70057DE5F /* main.m in Sources */,
 				9F3F67D3288E05480057DE5F /* IsometricCamera.cpp in Sources */,
 				9F3F67C0288DDC570057DE5F /* RendererDelegateAdapter.mm in Sources */,

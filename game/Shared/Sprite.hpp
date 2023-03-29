@@ -3,15 +3,15 @@
 
 #pragma once
 
-#include "Model.hpp"
-#include "TextureController.hpp"
+#include <Metal/MTLDevice.hpp>
+
+#include "Transformable.hpp"
 #include "Movable.hpp"
-#include "Common/Gameplay.hpp"
 #include "SpriteInstanceData.h"
 
 class Sprite : public Transformable, public Movable {
 public:
-  Sprite();
+  Sprite(MTL::Device* device);
   ~Sprite() = default;
   
   inline const SpriteInstanceData& getInstanceData() const { return instanceData; }
@@ -20,6 +20,7 @@ public:
   
 private:
   SpriteInstanceData instanceData;
+  MTL::Device* device;
   
   void loadTextures();
   void makeTexturesFromArt(const char * name, const char * type);

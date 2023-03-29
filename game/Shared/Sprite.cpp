@@ -10,9 +10,12 @@
 #include "Sprite.hpp"
 #include "ObjModelImporter.hpp"
 #include "ArtImporter.hpp"
+#include "TextureController.hpp"
+#include "Gameplay.hpp"
 
-Sprite::Sprite()
-: instanceData()
+Sprite::Sprite(MTL::Device* device)
+: instanceData(),
+  device(device)
 {
   loadTextures();
 }
@@ -26,7 +29,7 @@ void Sprite::makeTexturesFromArt(const char * name, const char * type) {
 	const std::vector<uint8_t> bgras = pd.bgraFrameFromPalette(i, defaultPaletteIndex);
 	// Can pass nullptr because at this moment TextureController has already been initialized
 	// Using nullptr as a hack to avoid keeping a reference to MTL::Device
-	TextureController& txController = TextureController::instance(nullptr);
+	TextureController& txController = TextureController::instance(device);
 	const uint16_t txIndex = txController.loadTexture(name, pd.frames().at(i).imgHeight, pd.frames().at(i).imgWidth, bgras.data());
 	instanceData.artName = name;
 	instanceData.frameIndex = i;

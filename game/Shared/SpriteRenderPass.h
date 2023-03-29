@@ -3,6 +3,7 @@
 #pragma once
 
 #include <Metal/MTLRenderPipeline.hpp>
+#include <Metal/MTLCommandBuffer.hpp>
 #include <QuartzCore/CAMetalDrawable.hpp>
 
 #include "GameScene.hpp"
@@ -11,7 +12,7 @@
 class SpriteRenderPass
 {
 public:
-  SpriteRenderPass(MTL::Device* device, MTL::Library* library, MTL::Buffer* textureBuffer);
+  SpriteRenderPass(MTL::Device* device, MTL::Library* library, MTL::Buffer* const& materialBuffer);
   ~SpriteRenderPass();
   
   void buildDepthStencilState();
@@ -20,7 +21,8 @@ public:
 private:
   MTL::Device* device;
   MTL::RenderPipelineState* pipelineState;
-  MTL::Buffer* textureBuffer;
+  // Has to be pointer reference, because actual pointer will be reassigned after constructor of this class is called
+  MTL::Buffer* const& materialBuffer;
   MTL::DepthStencilState* depthStencilState;
   
   // Subset of loaded assets data to be passed to GPU to render the current frame

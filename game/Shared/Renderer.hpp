@@ -1,27 +1,17 @@
-//
-//  Renderer.hpp
-//  moving-isometric-camera
-//
 //  Created by Dmitrii Belousov on 7/24/22.
 //
 
-#ifndef Renderer_hpp
-#define Renderer_hpp
+#pragma once
 
-#include "Metal/Metal.hpp"
+#include <Metal/MTLDevice.hpp>
+#include <Metal/MTLTexture.hpp>
 #include <QuartzCore/CAMetalDrawable.hpp>
-#include <array>
-#include "glm/vec3.hpp"
 #include <chrono>
 
-#include "VertexDescriptor.hpp"
-#include "Uniforms.hpp"
-#include "Math.hpp"
-#include "Transformable.hpp"
 #include "GameScene.hpp"
-#include "ObjModelImporter.hpp"
 #include "TileRenderPass.h"
 #include "SpriteRenderPass.h"
+#include "TextureController.hpp"
 
 class Renderer
 {
@@ -45,5 +35,3 @@ private:
   
   void initializeTextures();
 };
-
-#endif /* Renderer_hpp */

@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <glm/mat4x4.hpp>
+
 struct TileInstanceData {
   glm::mat4x4 instanceTransform;
   uint16_t textureIndex;

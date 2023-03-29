@@ -23,7 +23,7 @@ public:
   inline void setFrameNum(const uint32_t frameNum) { _frameNum = frameNum; }
   
   PixelData();
-  ~PixelData();
+  ~PixelData() = default;
   
   /**
    Return array of BGRA-formatted colors for a specific frame of a specific palette.
@@ -33,7 +33,7 @@ public:
 private:
   std::vector<std::vector<uint8_t>> _palettes;
   std::vector<Frame> _frames;
-  // Animation speed i.e. how many frames should pass before showing next frame
+  // Purpose in unclear
   uint32_t _keyFrame;
   // Number of frames in a full animation cycle for a single movement direction.
   uint32_t _frameNum;

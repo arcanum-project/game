@@ -13,7 +13,6 @@
 #include "MetalConstants.h"
 #include "TextureController.hpp"
 #include "Pipelines.hpp"
-#include "InputControllerBridge.h"
 
 #pragma region Renderer {
 
@@ -29,12 +28,13 @@ Renderer::Renderer(MTL::Device* device)
   tileRenderPass(nullptr),
   spriteRenderPass(nullptr)
 {
-	initializeTextures();
 	// Initialize touch / click coordinates
 	setCoordinates(.0f, .0f);
   
   tileRenderPass = new TileRenderPass(this->device, library, materialBuffer, RenderingSettings::NumOfTilesPerSector, RenderingSettings::MaxBuffersInFlight, gameScene);
   spriteRenderPass = new SpriteRenderPass(this->device, library, materialBuffer);
+  
+  initializeTextures();
 }
 
 Renderer::~Renderer() {
@@ -48,7 +48,7 @@ Renderer::~Renderer() {
 }
 
 void Renderer::initializeTextures() {
-  TextureController & txController = TextureController::instance(device);
+  TextureController& txController = TextureController::instance(device);
   txController.makeHeap();
   txController.moveTexturesToHeap(commandQueue);
   
