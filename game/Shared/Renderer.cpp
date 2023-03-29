@@ -22,7 +22,6 @@ Renderer::Renderer(MTL::Device * const _pDevice)
   _pCommandQueue(_pDevice->newCommandQueue()),
   _pLib(_pDevice->newDefaultLibrary()),
   _pTilesPSO(nullptr),
-  _pCritterPSO(nullptr),
   _pDepthStencilState(nullptr),
   _pTilesComputePSO(nullptr),
   _pIndirectCommandBuffer(nullptr),
@@ -30,15 +29,13 @@ Renderer::Renderer(MTL::Device * const _pDevice)
   _pIcbArgumentBuffer(nullptr),
   _pTileVisibilityKernelFn(nullptr),
   _pModelsBuffer(nullptr),
-  _angle(0.f),
   _pGameScene(new GameScene(_pDevice)),
-  _frame(0u),
+  _frame(0),
   _semaphore(dispatch_semaphore_create(RenderingSettings::MaxBuffersInFlight)),
   _lastTimeSeconds(std::chrono::system_clock::now()),
   spriteRenderPass(nullptr)
 {
 	buildTileShaders();
-	buildCharacterShaders();
 	buildDepthStencilState();
 	initializeTextures();
 	// Initialize touch / click coordinates
@@ -56,7 +53,6 @@ Renderer::~Renderer() {
   _pIndirectCommandBuffer->release();
   _pTilesComputePSO->release();
   _pDepthStencilState->release();
-  _pCritterPSO->release();
   _pTilesPSO->release();
   _pLib->release();
   _pCommandQueue->release();
@@ -110,10 +106,6 @@ void Renderer::buildTileShaders() {
   pArgumentEncoder->setIndirectCommandBuffer(_pIndirectCommandBuffer, BufferIndices::ICBArgumentsBuffer);
   
   pArgumentEncoder->release();
-}
-
-void Renderer::buildCharacterShaders() {
-  _pCritterPSO = Pipelines::newPSO(_pDevice, _pLib, NS::String::string("spriteVS", NS::UTF8StringEncoding), NS::String::string("spriteFS", NS::UTF8StringEncoding), true);
 }
 
 void Renderer::buildDepthStencilState() {

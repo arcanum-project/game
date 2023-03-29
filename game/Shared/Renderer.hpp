@@ -35,14 +35,12 @@ private:
   MTL::CommandQueue * const _pCommandQueue;
   MTL::Library * const _pLib;
   MTL::RenderPipelineState * _pTilesPSO;
-  MTL::RenderPipelineState * _pCritterPSO;
   MTL::DepthStencilState * _pDepthStencilState;
   MTL::ComputePipelineState * _pTilesComputePSO;
   MTL::IndirectCommandBuffer * _pIndirectCommandBuffer;
   MTL::Buffer * _pIcbArgumentBuffer;
   MTL::Function * _pTileVisibilityKernelFn;
   MTL::Buffer * _pModelsBuffer;
-  float_t _angle;
   GameScene * const _pGameScene;
   uint16_t _frame;
   dispatch_semaphore_t _semaphore;
@@ -50,7 +48,6 @@ private:
   SpriteRenderPass* spriteRenderPass;
 	
   void buildTileShaders();
-  void buildCharacterShaders();
   void buildDepthStencilState();
   void initializeTextures();
 };
