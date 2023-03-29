@@ -1532,8 +1532,6 @@
 				9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */,
 				9F4D58132895AF8000FF18D4 /* Movable.hpp */,
 				9F4D58142895AFB200FF18D4 /* Movable.cpp */,
-				9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */,
-				9FB1A3D1289B7A42006E27A9 /* TextureController.hpp */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1564,6 +1562,8 @@
 				9FE17E3729CD5E04000FE4C0 /* SpriteRenderPass.h */,
 				9F684CDD29D3F5D6002A0FF6 /* TileRenderPass.cpp */,
 				9F684CDE29D3F5D6002A0FF6 /* TileRenderPass.h */,
+				9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */,
+				9FB1A3D1289B7A42006E27A9 /* TextureController.hpp */,
 			);
 			name = Renderer;
 			sourceTree = "<group>";

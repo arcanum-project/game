@@ -1,12 +1,7 @@
-//
-//  TextureController.hpp
-//  moving-isometric-camera
-//
 //  Created by Dmitrii Belousov on 8/3/22.
 //
 
-#ifndef TextureController_hpp
-#define TextureController_hpp
+#pragma once
 
 #include "Metal/Metal.hpp"
 #include <vector>
@@ -38,5 +33,3 @@ private:
   std::unordered_map<std::string, uint16_t> _textureIndices;
   MTL::Heap * _pHeap;
 };
-
-#endif /* TextureController_hpp */

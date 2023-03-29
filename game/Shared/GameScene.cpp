@@ -23,7 +23,7 @@ GameScene::GameScene(MTL::Device * const pDevice)
 {
   // Dynamic memory allocation is bad, because slow. To avoud that, always allocate just enough memory.
   sprites.reserve(1);
-  sprites.push_back(new Sprite(_pDevice));
+  sprites.push_back(new Sprite());
   
   _pCamera->setScale(RenderingSettings::WorldScalar);
   const glm::mat4x4 cameraPos = Gameplay::getWorldTranslationFromTilePosition(GameplaySettings::CharacterStartRow, GameplaySettings::CharacterStartColumn);
