@@ -54,11 +54,7 @@ void SpriteRenderPass::makeTexturesFromArt(const char* name, const char* type)
 	// Since frames are stored contiguously, with start frame and offset we can get any frame we need.
 	if (!isTextureIndexSet) {
 	  // Get pointer to last char in name - it will define what type of animation this texture is for
-	  while (*name++ != '\0')
-		;
-	  // Have to do it, because after while loop name points at the next char after '\0'
-	  name -= 2;
-	  switch (*name) {
+	  switch (*(name + strlen(name) - 1)) {
 		case 'a':
 		  textureData.standTextureStartIndex = txIndex;
 		  textureData.standTexturePixelData = pd;
