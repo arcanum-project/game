@@ -102,6 +102,7 @@ void SpriteRenderPass::updateSpriteTexture(float_t deltaTime, Sprite* sprite)
 {
   // Increasing delta time speeds up animation to match the original game
   deltaTime *= 2;
+  sprite->setTimeAtCurrentTexture(sprite->getTimeAtCurrentTexture() + deltaTime);
   static uint32_t currentTextureGroupStartIndex{textureData.walkTextureStartIndex};
   
   const uint8_t newDirectionIndex = sprite->getDirectionIndex(sprite->position());
@@ -110,18 +111,22 @@ void SpriteRenderPass::updateSpriteTexture(float_t deltaTime, Sprite* sprite)
 	sprite->setCurrentDirectionIndex(newDirectionIndex);
 	currentTextureGroupStartIndex = textureData.walkTextureStartIndex + sprite->getCurrentDirectionIndex() * textureData.walkTexturePixelData->getFrameNum();
 	renderingMetadata.currentTextureIndex = currentTextureGroupStartIndex;
-	sprite->setTimeAtCurrentTexture(deltaTime);
+	sprite->setTimeAtCurrentTexture(0.f);
   }
-  // For how long we draw the same frame is calculated based on target FPS (60)
-  const float_t spriteLifetime = ((float_t) (textureData.walkTexturePixelData->getKeyFrame() + 1)) / 60;
-  
-  const bool bShowNextAnimationFrame = (sprite->getTimeAtCurrentTexture() + deltaTime) > spriteLifetime ? true : false;
-  renderingMetadata.currentTextureIndex = bShowNextAnimationFrame ? renderingMetadata.currentTextureIndex + 1 : renderingMetadata.currentTextureIndex;
-  
-  if (bShowNextAnimationFrame) sprite->setTimeAtCurrentTexture(sprite->getTimeAtCurrentTexture() + deltaTime - spriteLifetime);
-  else sprite->setTimeAtCurrentTexture(sprite->getTimeAtCurrentTexture() + deltaTime);
-  
-  if (renderingMetadata.currentTextureIndex - currentTextureGroupStartIndex == textureData.walkTexturePixelData->getFrameNum()) renderingMetadata.currentTextureIndex = currentTextureGroupStartIndex;
+  else
+  {
+	// For how long we draw the same frame is calculated based on target FPS (60)
+	const float_t spriteLifetime = ((float_t) (textureData.walkTexturePixelData->getKeyFrame() + 1)) / 60;
+	
+	const bool bShowNextAnimationFrame = sprite->getTimeAtCurrentTexture() > spriteLifetime ? true : false;
+	if (bShowNextAnimationFrame)
+	{
+	  renderingMetadata.currentTextureIndex = renderingMetadata.currentTextureIndex + 1;
+	  sprite->setTimeAtCurrentTexture(sprite->getTimeAtCurrentTexture() - spriteLifetime);
+	}
+	
+	if (renderingMetadata.currentTextureIndex - currentTextureGroupStartIndex == textureData.walkTexturePixelData->getFrameNum()) renderingMetadata.currentTextureIndex = currentTextureGroupStartIndex;
+  }
   
   const Frame& newFrame = textureData.walkTexturePixelData->frames().at(renderingMetadata.currentTextureIndex - textureData.walkTextureStartIndex);
   renderingMetadata.currentFrameCenterX = newFrame.cx;
