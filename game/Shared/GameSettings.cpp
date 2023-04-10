@@ -4,7 +4,7 @@
 
 namespace GameplaySettings
 {
-  float CharacterWalkingSpeed = 3.f;
+  float CharacterWalkingSpeed = 6.f;
   float CameraMovementSpeed = 6.f;
   unsigned char CharacterStartRow = 30;
   unsigned char CharacterStartColumn = 32;

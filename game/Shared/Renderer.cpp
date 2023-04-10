@@ -19,7 +19,7 @@ Renderer::Renderer(MTL::Device* device)
   commandQueue(device->newCommandQueue()),
   library(device->newDefaultLibrary()),
   materialBuffer(nullptr),
-  gameScene(new GameScene(device)),
+  gameScene(new GameScene()),
   frame(0),
   semaphore(dispatch_semaphore_create(RenderingSettings::MaxBuffersInFlight)),
   lastTimeSeconds(std::chrono::system_clock::now()),

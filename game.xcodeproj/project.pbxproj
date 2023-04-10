@@ -280,7 +280,7 @@
 		9F13D5B128C2B0E100C11694 /* efmv1xaa.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = efmv1xaa.ini; sourceTree = "<group>"; };
 		9F13D5B228C2DBAF00C11694 /* Tile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tile.cpp; sourceTree = "<group>"; };
 		9F13D5B328C2DBAF00C11694 /* Tile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tile.hpp; sourceTree = "<group>"; };
-		9F13D5BC28C3D94500C11694 /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
+		9F13D5BC28C3D94500C11694 /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; wrapsLines = 0; };
 		9F13D5BD28C3D94500C11694 /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
 		9F13D5BF28C4025100C11694 /* TileInstanceData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TileInstanceData.hpp; sourceTree = "<group>"; };
 		9F13D5C028C40A8400C11694 /* MetalConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetalConstants.h; sourceTree = "<group>"; };
@@ -540,7 +540,7 @@
 		9F4D58132895AF8000FF18D4 /* Movable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Movable.hpp; sourceTree = "<group>"; };
 		9F4D58142895AFB200FF18D4 /* Movable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Movable.cpp; sourceTree = "<group>"; };
 		9F4D58162895D3FF00FF18D4 /* InputControllerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputControllerBridge.h; sourceTree = "<group>"; };
-		9F684CDC29D2A321002A0FF6 /* SpriteInstanceData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteInstanceData.h; sourceTree = "<group>"; };
+		9F684CDC29D2A321002A0FF6 /* SpriteTextureData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteTextureData.h; sourceTree = "<group>"; };
 		9F684CDD29D3F5D6002A0FF6 /* TileRenderPass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TileRenderPass.cpp; sourceTree = "<group>"; };
 		9F684CDE29D3F5D6002A0FF6 /* TileRenderPass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileRenderPass.h; sourceTree = "<group>"; };
 		9F6A3DEE287E70A400F09F1C /* VertexData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexData.hpp; sourceTree = "<group>"; };
@@ -836,7 +836,7 @@
 				9F13D5BF28C4025100C11694 /* TileInstanceData.hpp */,
 				9F13D5BC28C3D94500C11694 /* Sprite.cpp */,
 				9F13D5BD28C3D94500C11694 /* Sprite.hpp */,
-				9F684CDC29D2A321002A0FF6 /* SpriteInstanceData.h */,
+				9F684CDC29D2A321002A0FF6 /* SpriteTextureData.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";

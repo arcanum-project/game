@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <vector>
 #include <memory>
-#include <Metal/MTLDevice.hpp>
 
 #include "Tile.hpp"
 #include "Sprite.hpp"
@@ -17,7 +16,7 @@
 
 class GameScene {
 public:
-  GameScene(MTL::Device * const pDevice);
+  GameScene();
   ~GameScene();
   inline Tile* getTile() const { return tile; }
   inline const std::vector<Sprite*>& getSprites() const { return sprites; }
@@ -28,7 +27,6 @@ public:
   }
 
 private:
-  MTL::Device* const _pDevice;
   Tile* tile;
   std::vector<Sprite*> sprites;
   const std::unique_ptr<Camera> _pCamera;
