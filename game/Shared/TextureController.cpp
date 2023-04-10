@@ -28,7 +28,7 @@ TextureController::~TextureController() {
   }
 }
 
-MTL::Texture * const TextureController::makeTexture(const char* name, const uint32_t& height, const uint32_t& width, const uint8_t* pixels) const {
+MTL::Texture * const TextureController::makeTexture(const char* name, const uint32_t& height, const uint32_t& width, const uint8_t* const pixels) const {
   MTL::TextureDescriptor * const pTextureDescriptor = MTL::TextureDescriptor::alloc()->init();
   pTextureDescriptor->setTextureType( MTL::TextureType2D );
   pTextureDescriptor->setPixelFormat(MTL::PixelFormatBGRA8Unorm);

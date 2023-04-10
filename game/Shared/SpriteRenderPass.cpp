@@ -36,46 +36,28 @@ void SpriteRenderPass::buildDepthStencilState()
   depthStencilDesc->release();
 }
 
-void SpriteRenderPass::makeTexturesFromArt(const char* name, const char* type)
+void SpriteRenderPass::makeTexturesFromArt(const char* name, const char* type, PixelData* const pixelDataOut, uint16_t& textureStartIndexOut)
 {
-  PixelData pd = ArtImporter::importArt(name, "art");
+  ArtImporter::importArt(pixelDataOut, name, "art");
   const uint8_t defaultPaletteIndex = 2;
-  bool isTextureIndexSet {false};
-  for (ushort i = 0; i < pd.frames().size(); ++i) {
-	const std::vector<uint8_t> bgras = pd.bgraFrameFromPalette(i, defaultPaletteIndex);
-	// Can pass nullptr because at this moment TextureController has already been initialized
-	// Using nullptr as a hack to avoid keeping a reference to MTL::Device
+  bool isTextureIndexSet = false;
+  for (ushort i = 0; i < pixelDataOut->frames().size(); ++i)
+  {
+	const std::vector<uint8_t> bgras = pixelDataOut->bgraFrameFromPalette(i, defaultPaletteIndex);
 	TextureController& txController = TextureController::instance(device);
-	const uint16_t txIndex = txController.loadTexture(name, pd.frames().at(i).imgHeight, pd.frames().at(i).imgWidth, bgras.data());
+	const uint16_t txIndex = txController.loadTexture(name, pixelDataOut->frames().at(i).imgHeight, pixelDataOut->frames().at(i).imgWidth, bgras.data());
 	textureData.artName = name;
 	textureData.frameIndex = i;
 	textureData.paletteIndex = defaultPaletteIndex;
-	// We do this to ensure that we have an index of the first frame.
-	// Since frames are stored contiguously, with start frame and offset we can get any frame we need.
-	if (!isTextureIndexSet) {
-	  // Get pointer to last char in name - it will define what type of animation this texture is for
-	  switch (*(name + strlen(name) - 1)) {
-		case 'a':
-		  textureData.standTextureStartIndex = txIndex;
-		  textureData.standTexturePixelData = pd;
-		  isTextureIndexSet = true;
-		  break;
-		case 'b':
-		  textureData.walkTextureStartIndex = txIndex;
-		  textureData.walkTexturePixelData = pd;
-		  isTextureIndexSet = true;
-		  break;
-		default:
-		  break;
-	  }
-	}
+	textureStartIndexOut = isTextureIndexSet ? textureStartIndexOut : txIndex;
+	isTextureIndexSet = true;
   }
   renderingMetadata.currentTextureIndex = textureData.walkTextureStartIndex;
 }
 
 void SpriteRenderPass::loadTextures()
 {
-  makeTexturesFromArt("hmfc2xab", "art");
+  makeTexturesFromArt("hmfc2xab", "art", textureData.walkTexturePixelData, textureData.walkTextureStartIndex);
 }
 
 
@@ -126,12 +108,12 @@ void SpriteRenderPass::updateSpriteTexture(float_t deltaTime, Sprite* sprite)
   if (sprite->getCurrentDirectionIndex() != newDirectionIndex)
   {
 	sprite->setCurrentDirectionIndex(newDirectionIndex);
-	currentTextureGroupStartIndex = textureData.walkTextureStartIndex + sprite->getCurrentDirectionIndex() * textureData.walkTexturePixelData.getFrameNum();
+	currentTextureGroupStartIndex = textureData.walkTextureStartIndex + sprite->getCurrentDirectionIndex() * textureData.walkTexturePixelData->getFrameNum();
 	renderingMetadata.currentTextureIndex = currentTextureGroupStartIndex;
 	sprite->setTimeAtCurrentTexture(deltaTime);
   }
-  // For how long we draw the same frame is calculated based on target FPS (60.f)
-  const float_t spriteLifetime = (textureData.walkTexturePixelData.getKeyFrame() + 1) / 60.f;
+  // For how long we draw the same frame is calculated based on target FPS (60)
+  const float_t spriteLifetime = ((float_t) (textureData.walkTexturePixelData->getKeyFrame() + 1)) / 60;
   
   const bool bShowNextAnimationFrame = (sprite->getTimeAtCurrentTexture() + deltaTime) > spriteLifetime ? true : false;
   renderingMetadata.currentTextureIndex = bShowNextAnimationFrame ? renderingMetadata.currentTextureIndex + 1 : renderingMetadata.currentTextureIndex;
@@ -139,9 +121,9 @@ void SpriteRenderPass::updateSpriteTexture(float_t deltaTime, Sprite* sprite)
   if (bShowNextAnimationFrame) sprite->setTimeAtCurrentTexture(sprite->getTimeAtCurrentTexture() + deltaTime - spriteLifetime);
   else sprite->setTimeAtCurrentTexture(sprite->getTimeAtCurrentTexture() + deltaTime);
   
-  if (renderingMetadata.currentTextureIndex - currentTextureGroupStartIndex == textureData.walkTexturePixelData.getFrameNum()) renderingMetadata.currentTextureIndex = currentTextureGroupStartIndex;
+  if (renderingMetadata.currentTextureIndex - currentTextureGroupStartIndex == textureData.walkTexturePixelData->getFrameNum()) renderingMetadata.currentTextureIndex = currentTextureGroupStartIndex;
   
-  const Frame& newFrame = textureData.walkTexturePixelData.frames().at(renderingMetadata.currentTextureIndex - textureData.walkTextureStartIndex);
+  const Frame& newFrame = textureData.walkTexturePixelData->frames().at(renderingMetadata.currentTextureIndex - textureData.walkTextureStartIndex);
   renderingMetadata.currentFrameCenterX = newFrame.cx;
   renderingMetadata.currentFrameCenterY = newFrame.cy;
   renderingMetadata.currentTextureWidth = newFrame.imgWidth;

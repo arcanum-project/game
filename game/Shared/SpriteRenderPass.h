@@ -20,7 +20,7 @@ public:
   void buildDepthStencilState();
   
   void loadTextures();
-  void makeTexturesFromArt(const char * name, const char * type);
+  void makeTexturesFromArt(const char* name, const char* type, PixelData* const pixelDataOut, uint16_t& textureStartIndexOut);
   
   void draw(MTL::CommandBuffer* commandBuffer, CA::MetalDrawable* drawable, MTL::Texture* depthTexture, GameScene* scene, float_t deltaTime);
   

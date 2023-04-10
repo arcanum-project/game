@@ -90,7 +90,7 @@ class ArtImporter {
 	inline const bool isInPalette(const Color& col) const { return (col.a | col.b | col.g | col.r) != 0; }
   };
 public:
-  static const PixelData importArt(const char * artName, const char * artType);
+  static void importArt(PixelData* const pixelDataOut, const char * artName, const char * artType);
 };
 
 #endif /* ArtImporter_hpp */

@@ -25,7 +25,7 @@ public:
 private:
   TextureController(MTL::Device * const pDevice);
   ~TextureController();
-  MTL::Texture * const makeTexture(const char* name, const uint32_t& height, const uint32_t& width, const uint8_t* pixels) const;
+  MTL::Texture * const makeTexture(const char* name, const uint32_t& height, const uint32_t& width, const uint8_t* const pixels) const;
   MTL::TextureDescriptor * const newDescriptorFromTexture(MTL::Texture * const pTexture, const MTL::StorageMode storageMode) const;
   
   MTL::Device * const _pDevice;

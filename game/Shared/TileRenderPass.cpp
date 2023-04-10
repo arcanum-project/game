@@ -111,7 +111,8 @@ const uint16_t TileRenderPass::makeTexturesFromArt(const char * name, const char
 	const uint16_t textureIndex = txController.textureIndexByName(name);
 	return textureIndex;
   }
-  PixelData pd = ArtImporter::importArt(name, type);
+  PixelData pd;
+  ArtImporter::importArt(&pd, name, type);
   // Tile art only has one frame
   // Tile art only uses first palette
   const std::vector<uint8_t> bgras = pd.bgraFrameFromPalette(0, 0);

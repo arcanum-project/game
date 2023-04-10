@@ -12,15 +12,14 @@
 #include "Common/ResourceBundle.hpp"
 
 // Based on: https://github.com/AxelStrem/ArtConverter
-const PixelData ArtImporter::importArt(const char * artName, const char * artType) {
-  PixelData pd = PixelData();
+void ArtImporter::importArt(PixelData* const pixelDataOut, const char* artName, const char* artType) {
   std::ifstream file;
   try {
 	file.open(ResourceBundle::absolutePath(artName, "art"));
 	ArtFile af;
 	file.read(reinterpret_cast<char*>(&af.header), sizeof(af.header));
-	pd.setKeyFrame(af.header.keyFrame);
-	pd.setFrameNum(af.header.frameNum);
+	pixelDataOut->setKeyFrame(af.header.keyFrame);
+	pixelDataOut->setFrameNum(af.header.frameNum);
 	// Get total number of palettes from header
 	af.palettes = 0;
 	for (const Color& existingPalette : af.header.existingPalettes) {
@@ -58,7 +57,7 @@ const PixelData ArtImporter::importArt(const char * artName, const char * artTyp
 		// To comply with MTLPixelFormatBGRA8Unorm, we will set fourth byte in each palette to 255 to indicate fully opaque pixel.
 		p.push_back(0xFF);
 	  }
-	  pd.palettes().push_back(p);
+	  pixelDataOut->palettes().push_back(p);
 	}
 	// Add frames
 	for (const ArtFrame& artf : af.frameData) {
@@ -70,7 +69,7 @@ const PixelData ArtImporter::importArt(const char * artName, const char * artTyp
 	  f.cy = artf.header.cy;
 	  f.dx = artf.header.dx;
 	  f.dy = artf.header.dy;
-	  pd.frames().push_back(f);
+	  pixelDataOut->frames().push_back(f);
 	}
   } catch (std::system_error& e) {
 	if (file.is_open())
@@ -78,7 +77,6 @@ const PixelData ArtImporter::importArt(const char * artName, const char * artTyp
 	std::cerr << e.code().message() << std::endl;
 	throw;
   }
-  return pd;
 }
 
 ArtImporter::ArtFrame::ArtFrame()
