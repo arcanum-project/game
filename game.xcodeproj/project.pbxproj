@@ -833,10 +833,8 @@
 			children = (
 				9F13D5B328C2DBAF00C11694 /* Tile.hpp */,
 				9F13D5B228C2DBAF00C11694 /* Tile.cpp */,
-				9F13D5BF28C4025100C11694 /* TileInstanceData.hpp */,
 				9F13D5BC28C3D94500C11694 /* Sprite.cpp */,
 				9F13D5BD28C3D94500C11694 /* Sprite.hpp */,
-				9F684CDC29D2A321002A0FF6 /* SpriteTextureData.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1559,6 +1557,8 @@
 				9F684CDE29D3F5D6002A0FF6 /* TileRenderPass.h */,
 				9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */,
 				9FB1A3D1289B7A42006E27A9 /* TextureController.hpp */,
+				9F13D5BF28C4025100C11694 /* TileInstanceData.hpp */,
+				9F684CDC29D2A321002A0FF6 /* SpriteTextureData.h */,
 			);
 			name = Renderer;
 			sourceTree = "<group>";
