@@ -15,15 +15,6 @@
 int main(int argc, char * argv[]) {
   SDL_SetHint(SDL_HINT_RENDER_DRIVER, "metal");
   if (SDL_Init(SDL_INIT_VIDEO) < 0) SDL_Log("SDL could not be initialized: %s\n", SDL_GetError());
-  else SDL_Log("SDL video system is ready to go!\n");
-  
-  int screen = 0;
-  int modes = SDL_GetNumDisplayModes(screen);
-  for (int i = 0; i < modes; i++) {
-	  SDL_DisplayMode mode;
-	  SDL_GetDisplayMode(screen, i, &mode);
-	  printf("%dx%d\n", mode.w, mode.h);
-  }
   
   // This will determine max window height and wight for the current device
   SDL_DisplayMode displayMode;
