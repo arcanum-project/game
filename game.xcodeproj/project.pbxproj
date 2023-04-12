@@ -109,10 +109,6 @@
 		9F2063C828DFC6D2000961F0 /* hmfc2xai_06.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F2063BB28DFBC8B000961F0 /* hmfc2xai_06.bmp */; };
 		9F2063C928E1133F000961F0 /* hmfc2xai_82.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9F20636328DFBC8B000961F0 /* hmfc2xai_82.bmp */; };
 		9F3AC96E29E5FAAB00D85BD3 /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3AC96229E5F95500D85BD3 /* libSDL2.a */; };
-		9F3F67A8288DDBD60057DE5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67A7288DDBD60057DE5F /* AppDelegate.m */; };
-		9F3F67AB288DDBD60057DE5F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67AA288DDBD60057DE5F /* SceneDelegate.m */; };
-		9F3F67AE288DDBD60057DE5F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67AD288DDBD60057DE5F /* ViewController.m */; };
-		9F3F67B1288DDBD60057DE5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67AF288DDBD60057DE5F /* Main.storyboard */; };
 		9F3F67B3288DDBD70057DE5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67B2288DDBD70057DE5F /* Assets.xcassets */; };
 		9F3F67B6288DDBD70057DE5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3F67B4288DDBD70057DE5F /* LaunchScreen.storyboard */; };
 		9F3F67B9288DDBD70057DE5F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67B8288DDBD70057DE5F /* main.cpp */; };
@@ -250,7 +246,6 @@
 		9FAD19A129AD4C230016C7FD /* Gameplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD19A029AD4BDC0016C7FD /* Gameplay.cpp */; };
 		9FAD19A329AD4FE00016C7FD /* GameSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD19A229AD4FE00016C7FD /* GameSettings.cpp */; };
 		9FB1A3D2289B7A42006E27A9 /* TextureController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */; };
-		9FD2BB3B2890F18100D3E983 /* TouchableMTKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */; };
 		9FE17E3829CD5E04000FE4C0 /* SpriteRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE17E3629CD5E04000FE4C0 /* SpriteRenderPass.cpp */; };
 		9FEDB26328B1F05A00287DE9 /* 86570436012 in Resources */ = {isa = PBXBuildFile; fileRef = 9FEDB26228B1F00C00287DE9 /* 86570436012 */; };
 /* End PBXBuildFile section */
@@ -595,13 +590,6 @@
 		9F3AC92329E5E56500D85BD3 /* config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = config.xcconfig; sourceTree = "<group>"; };
 		9F3AC94929E5F95500D85BD3 /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = "include/sdl2/SDL-release-2.26.5/Xcode/SDL/SDL.xcodeproj"; sourceTree = "<group>"; };
 		9F3F67A4288DDBD60057DE5F /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F3F67A6288DDBD60057DE5F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9F3F67A7288DDBD60057DE5F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9F3F67A9288DDBD60057DE5F /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		9F3F67AA288DDBD60057DE5F /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		9F3F67AC288DDBD60057DE5F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9F3F67AD288DDBD60057DE5F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9F3F67B0288DDBD60057DE5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F3F67B2288DDBD70057DE5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F3F67B5288DDBD70057DE5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F3F67B7288DDBD70057DE5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -849,7 +837,6 @@
 		9FB1A3D1289B7A42006E27A9 /* TextureController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TextureController.hpp; sourceTree = "<group>"; };
 		9FB1E3C628A6133F006E27A9 /* Alignment.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Alignment.hpp; sourceTree = "<group>"; };
 		9FD2BB37288F1D0E00D3E983 /* ShaderCommons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderCommons.h; sourceTree = "<group>"; };
-		9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchableMTKView.m; sourceTree = "<group>"; };
 		9FE17E3629CD5E04000FE4C0 /* SpriteRenderPass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteRenderPass.cpp; sourceTree = "<group>"; };
 		9FE17E3729CD5E04000FE4C0 /* SpriteRenderPass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteRenderPass.h; sourceTree = "<group>"; };
 		9FEDB26228B1F00C00287DE9 /* 86570436012 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 86570436012; sourceTree = "<group>"; };
@@ -1195,14 +1182,6 @@
 			isa = PBXGroup;
 			children = (
 				9F3F67D4288E28F40057DE5F /* Resources */,
-				9F3F67A6288DDBD60057DE5F /* AppDelegate.h */,
-				9F3F67A7288DDBD60057DE5F /* AppDelegate.m */,
-				9F3F67A9288DDBD60057DE5F /* SceneDelegate.h */,
-				9F3F67AA288DDBD60057DE5F /* SceneDelegate.m */,
-				9F3F67AC288DDBD60057DE5F /* ViewController.h */,
-				9F3F67AD288DDBD60057DE5F /* ViewController.m */,
-				9FD2BB3A2890F18100D3E983 /* TouchableMTKView.m */,
-				9F3F67AF288DDBD60057DE5F /* Main.storyboard */,
 				9F3F67B2288DDBD70057DE5F /* Assets.xcassets */,
 				9F3F67B4288DDBD70057DE5F /* LaunchScreen.storyboard */,
 				9F3F67B7288DDBD70057DE5F /* Info.plist */,
@@ -2005,7 +1984,6 @@
 				9FEDB26328B1F05A00287DE9 /* 86570436012 in Resources */,
 				9F3F67B6288DDBD70057DE5F /* LaunchScreen.storyboard in Resources */,
 				9F3F67B3288DDBD70057DE5F /* Assets.xcassets in Resources */,
-				9F3F67B1288DDBD60057DE5F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2022,9 +2000,7 @@
 				9F3F67C4288DDC6D0057DE5F /* ObjModelImporter.cpp in Sources */,
 				9F3F67C1288DDC6D0057DE5F /* Uniforms.cpp in Sources */,
 				9FAD19A129AD4C230016C7FD /* Gameplay.cpp in Sources */,
-				9F3F67AE288DDBD60057DE5F /* ViewController.m in Sources */,
 				9F13D5BE28C3D94500C11694 /* Sprite.cpp in Sources */,
-				9FD2BB3B2890F18100D3E983 /* TouchableMTKView.m in Sources */,
 				9FB1A3D2289B7A42006E27A9 /* TextureController.cpp in Sources */,
 				9F3F67C2288DDC6D0057DE5F /* VertexDescriptor.cpp in Sources */,
 				9F3F67CB288DE2A30057DE5F /* Camera.cpp in Sources */,
@@ -2036,13 +2012,11 @@
 				9F3F67D9288E2FD90057DE5F /* Renderer.cpp in Sources */,
 				9F3F67CE288DE3290057DE5F /* GameScene.cpp in Sources */,
 				9F3F67DB288E308F0057DE5F /* TileShaders.metal in Sources */,
-				9F3F67A8288DDBD60057DE5F /* AppDelegate.m in Sources */,
 				9F3F67B9288DDBD70057DE5F /* main.cpp in Sources */,
 				9F3F67D3288E05480057DE5F /* IsometricCamera.cpp in Sources */,
 				9F3F67C0288DDC570057DE5F /* RendererDelegateAdapter.mm in Sources */,
 				9F3F67C5288DDC6D0057DE5F /* Transformable.cpp in Sources */,
 				9F684CDF29D3F5D6002A0FF6 /* TileRenderPass.cpp in Sources */,
-				9F3F67AB288DDBD60057DE5F /* SceneDelegate.m in Sources */,
 				9FE17E3829CD5E04000FE4C0 /* SpriteRenderPass.cpp in Sources */,
 				9F13D5C328C415F400C11694 /* Pipelines.cpp in Sources */,
 			);
@@ -2051,14 +2025,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9F3F67AF288DDBD60057DE5F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9F3F67B0288DDBD60057DE5F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9F3F67B4288DDBD70057DE5F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2089,7 +2055,7 @@
 				INFOPLIST_FILE = "${PROJECT_NAME}/${TARGET_NAME}/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeLeft;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationLandscapeLeft;
@@ -2127,7 +2093,7 @@
 				INFOPLIST_FILE = "${PROJECT_NAME}/${TARGET_NAME}/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeLeft;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationLandscapeLeft;
