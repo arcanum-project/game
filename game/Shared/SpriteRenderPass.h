@@ -4,6 +4,7 @@
 
 #include <Metal/MTLRenderPipeline.hpp>
 #include <Metal/MTLCommandBuffer.hpp>
+#include <Metal/MTLLibrary.hpp>
 #include <QuartzCore/CAMetalDrawable.hpp>
 
 #include "GameScene.hpp"
