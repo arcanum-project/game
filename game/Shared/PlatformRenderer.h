@@ -3,7 +3,7 @@
 #pragma once
 
 // Set this to 1 to always use OpenGL/OpenGLES
-#define DEBUG_FORCE_OPENGL 0
+#define DEBUG_FORCE_OPENGL 1
 
 #if DEBUG_FORCE_OPENGL || !defined(__APPLE__)
 #	include "GLRenderer.h"

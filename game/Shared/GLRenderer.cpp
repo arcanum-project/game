@@ -2,12 +2,12 @@
 
 #if __APPLE__
 #	include <TargetConditionals.h>
-  #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-  #define GLES_SILENCE_DEPRECATION
-  #	include <SDL_opengles2.h>
-  #else
-  #	include <SDL_opengl.h>
-  #endif
+#	if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#		define GLES_SILENCE_DEPRECATION
+#		include <SDL_opengles2.h>
+#	else
+#		include <SDL_opengl.h>
+#	endif
 #elif __ANDROID__
 #	include <SDL_opengles2.h>
 #else
@@ -47,5 +47,5 @@ void GLRenderer::drawFrame()
   glClearColor(tan(time), sin(time), cos(time), 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
   SDL_GL_SwapWindow(window);
-  time += 0.01;
+  time += 0.001;
 }
