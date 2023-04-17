@@ -3,9 +3,10 @@
 
 #pragma once
 
+#include <SDL.h>
 #include <Metal/MTLDevice.hpp>
 #include <Metal/MTLTexture.hpp>
-#include <QuartzCore/CAMetalDrawable.hpp>
+#include <QuartzCore/CAMetalLayer.hpp>
 #include <chrono>
 
 #include "GameScene.hpp"
@@ -16,15 +17,19 @@
 class Renderer
 {
 public:
-  Renderer(MTL::Device* device);
+  Renderer(SDL_Window* window);
   ~Renderer();
-  void drawFrame(CA::MetalDrawable* drawable, MTL::Texture* depthTexture);
+  void drawFrame();
   void drawableSizeWillChange(const float_t drawableWidth, const float_t drawableHeight);
 
 private:
+  SDL_Window* window;
+  SDL_Renderer* sdlRenderer;
+  CA::MetalLayer* layer;
   MTL::Device* device;
   MTL::CommandQueue* commandQueue;
   MTL::Library* library;
+  MTL::Texture* depthTexture;
   MTL::Buffer* materialBuffer;
   GameScene* gameScene;
   uint16_t frame;
@@ -33,5 +38,7 @@ private:
   TileRenderPass* tileRenderPass;
   SpriteRenderPass* spriteRenderPass;
   
+  SDL_Renderer* createSDLRenderer();
   void initializeTextures();
+  void createDepthTexture(float_t drawableWidth, float_t drawableHeight);
 };

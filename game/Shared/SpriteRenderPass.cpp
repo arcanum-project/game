@@ -81,8 +81,6 @@ void SpriteRenderPass::draw(MTL::CommandBuffer* commandBuffer, CA::MetalDrawable
   renderEncoder->useHeap(TextureController::instance(device).heap());
   for (Sprite* sprite : scene->getSprites())
   {
-	sprite->update(deltaTime);
-	
 	updateSpriteTexture(deltaTime, sprite);
 	
 	Uniforms& uf = Uniforms::getInstance();

@@ -200,8 +200,6 @@ void TileRenderPass::draw(MTL::CommandBuffer* commandBuffer, CA::MetalDrawable* 
   computeEncoder->setLabel(NS::String::string("Tile Visibility Kernel", NS::UTF8StringEncoding));
   computeEncoder->setComputePipelineState(computePipelineState);
   
-  scene->getTile()->update(deltaTime);
-  
   // Since we are using instanced rendering, we have to use triple-buffering for instance data buffers to avoid race conditions between CPU and GPU
   MTL::Buffer* instanceDataBuffer = instanceDataBuffers.at(frame);
   TileInstanceData* instanceData = reinterpret_cast<TileInstanceData*>(instanceDataBuffer->contents());

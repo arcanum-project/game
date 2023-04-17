@@ -14,10 +14,14 @@
 #include "TextureController.hpp"
 #include "Pipelines.hpp"
 
-Renderer::Renderer(MTL::Device* device)
-: device(device->retain()),
+Renderer::Renderer(SDL_Window* window)
+: window(window),
+  sdlRenderer(createSDLRenderer()),
+  layer((CA::MetalLayer*)SDL_RenderGetMetalLayer(sdlRenderer)),
+  device(layer->device()),
   commandQueue(device->newCommandQueue()),
   library(device->newDefaultLibrary()),
+  depthTexture(nullptr),
   materialBuffer(nullptr),
   gameScene(new GameScene()),
   frame(0),
@@ -26,8 +30,14 @@ Renderer::Renderer(MTL::Device* device)
   tileRenderPass(nullptr),
   spriteRenderPass(nullptr)
 {
-	// Initialize touch / click coordinates
-	setCoordinates(.0f, .0f);
+  // Initialize touch / click coordinates
+  setCoordinates(.0f, .0f);
+  
+  int drawableWidth, drawableHeight;
+  SDL_Metal_GetDrawableSize(window, &drawableWidth, &drawableHeight);
+  createDepthTexture(drawableWidth, drawableHeight);
+  // Necessary to initialize uniforms
+  drawableSizeWillChange(drawableWidth, drawableHeight);
   
   tileRenderPass = new TileRenderPass(this->device, library, materialBuffer, RenderingSettings::NumOfTilesPerSector, RenderingSettings::MaxBuffersInFlight, gameScene);
   spriteRenderPass = new SpriteRenderPass(this->device, library, materialBuffer);
@@ -42,7 +52,24 @@ Renderer::~Renderer() {
   materialBuffer->release();
   library->release();
   commandQueue->release();
-  device->release();
+  depthTexture->release();
+  SDL_DestroyRenderer(sdlRenderer);
+}
+
+SDL_Renderer* Renderer::createSDLRenderer()
+{
+  SDL_SetHint(SDL_HINT_RENDER_DRIVER, "metal");
+  return SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+}
+
+void Renderer::createDepthTexture(float_t drawableWidth, float_t drawableHeight)
+{
+  MTL::TextureDescriptor* depthTextureDescriptor = MTL::TextureDescriptor::texture2DDescriptor(MTL::PixelFormatDepth32Float, drawableWidth, drawableHeight, false);
+  depthTextureDescriptor->setStorageMode(MTL::StorageModePrivate);
+  depthTextureDescriptor->setUsage(MTL::TextureUsageRenderTarget);
+  depthTexture = device->newTexture(depthTextureDescriptor);
+  depthTextureDescriptor->release();
+  depthTexture->setLabel(NS::String::string("DepthTexture", NS::UTF8StringEncoding));
 }
 
 void Renderer::initializeTextures() {
@@ -67,8 +94,9 @@ void Renderer::initializeTextures() {
   argumentEncoder->release();
 }
 
-void Renderer::drawFrame(CA::MetalDrawable* drawable, MTL::Texture* depthTexture) {
-  // We are reusing same buffers for passing tile instances data to GPU. Therefore we must lock to ensure that buffers are only used when GPU is done with them.
+void Renderer::drawFrame()
+{
+  // We are reusing same command buffers for sending commands to GPU. Therefore we must lock to ensure that buffers are only used when GPU is done with them.
   // Check this article for more: https://crimild.wordpress.com/2016/05/19/praise-the-metal-part-1-rendering-a-single-frame/
   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
   
@@ -80,18 +108,25 @@ void Renderer::drawFrame(CA::MetalDrawable* drawable, MTL::Texture* depthTexture
   const std::chrono::time_point<std::chrono::system_clock> currentTimeSeconds = std::chrono::system_clock::now();
   const std::chrono::duration<float_t> deltaTime = currentTimeSeconds - lastTimeSeconds;
   lastTimeSeconds = currentTimeSeconds;
+  // Updating scene before drawing follows Metal performance best practice: to delay acquisition of next drawable for as long as possible
   gameScene->update(deltaTime.count());
   
   Uniforms& uf = Uniforms::getInstance();
   uf.setViewMatrix(gameScene->pCamera()->viewMatrix());
   uf.setProjectionMatrix(gameScene->pCamera()->projectionMatrix());
+  
+  NS::AutoreleasePool* pool = NS::AutoreleasePool::alloc()->init();
+  
+  CA::MetalDrawable* nextDrawable = layer->nextDrawable();
+  
   frame = (frame + 1) % RenderingSettings::MaxBuffersInFlight;
+  tileRenderPass->draw(commandBuffer, nextDrawable, depthTexture, gameScene, deltaTime.count(), frame);
+  spriteRenderPass->draw(commandBuffer, nextDrawable, depthTexture, gameScene, deltaTime.count());
   
-  tileRenderPass->draw(commandBuffer, drawable, depthTexture, gameScene, deltaTime.count(), frame);
-  spriteRenderPass->draw(commandBuffer, drawable, depthTexture, gameScene, deltaTime.count());
-  
-  commandBuffer->presentDrawable(drawable);
+  commandBuffer->presentDrawable(nextDrawable);
   commandBuffer->commit();
+  
+  pool->release();
   
   // Reset touch / click coordinates
   setCoordinates(.0f, .0f);

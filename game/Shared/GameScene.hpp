@@ -22,8 +22,14 @@ public:
   inline const std::vector<Sprite*>& getSprites() const { return sprites; }
   inline const std::unique_ptr<Camera>& pCamera() { return _pCamera; }
   inline void update(const float_t width, const float_t height) { _pCamera->update(width, height); }
-  inline void update(const float_t deltaTime) {
+  inline void update(const float_t deltaTime)
+  {
 	_pCamera->update(deltaTime);
+	tile->update(deltaTime);
+	for (Sprite* sprite : sprites)
+	{
+	  sprite->update(deltaTime);
+	}
   }
 
 private:
