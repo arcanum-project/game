@@ -122,7 +122,6 @@
 		9F3F67D3288E05480057DE5F /* IsometricCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D2288E05480057DE5F /* IsometricCamera.cpp */; };
 		9F3F67D9288E2FD90057DE5F /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D7288E2FD90057DE5F /* Renderer.cpp */; };
 		9F3F67DB288E308F0057DE5F /* TileShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67DA288E308F0057DE5F /* TileShaders.metal */; };
-		9F4D58122895AD5400FF18D4 /* InputControllerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */; };
 		9F4D58152895AFB200FF18D4 /* Movable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58142895AFB200FF18D4 /* Movable.cpp */; };
 		9F684CDF29D3F5D6002A0FF6 /* TileRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F684CDD29D3F5D6002A0FF6 /* TileRenderPass.cpp */; };
 		9F762F1D29B57AB30073D7B9 /* hmfc2xab.art in Resources */ = {isa = PBXBuildFile; fileRef = 9F762F1C29B57A920073D7B9 /* hmfc2xab.art */; };
@@ -137,6 +136,7 @@
 		9F82313128FBAB6D0043A71E /* new-tile-flipped.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9F82313028FBAB670043A71E /* new-tile-flipped.obj */; };
 		9F82313528FD04320043A71E /* 86570436012-npcs in Resources */ = {isa = PBXBuildFile; fileRef = 9F82313428FD041D0043A71E /* 86570436012-npcs */; };
 		9F8FF24A29ECECE900119857 /* SDLConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF24829ECECE900119857 /* SDLConfiguration.cpp */; };
+		9F8FF26A29EDD7DD00119857 /* InputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF26929EDD7DD00119857 /* InputController.cpp */; };
 		9FA4B52628D425D500778266 /* ghmstxaa_0.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9FA4B51C28D422E800778266 /* ghmstxaa_0.bmp */; };
 		9FA4B52728D425D500778266 /* hmfc2xaa_06.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9FA4B51E28D422E800778266 /* hmfc2xaa_06.bmp */; };
 		9FA4B52828D425D500778266 /* hmfc2xaa_07.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9FA4B51F28D422E800778266 /* hmfc2xaa_07.bmp */; };
@@ -603,11 +603,8 @@
 		9F3F67D7288E2FD90057DE5F /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		9F3F67D8288E2FD90057DE5F /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
 		9F3F67DA288E308F0057DE5F /* TileShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = TileShaders.metal; sourceTree = "<group>"; };
-		9F4D58102895AC6100FF18D4 /* InputControllerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputControllerAdapter.h; sourceTree = "<group>"; };
-		9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = InputControllerAdapter.mm; sourceTree = "<group>"; };
 		9F4D58132895AF8000FF18D4 /* Movable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Movable.hpp; sourceTree = "<group>"; };
 		9F4D58142895AFB200FF18D4 /* Movable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Movable.cpp; sourceTree = "<group>"; };
-		9F4D58162895D3FF00FF18D4 /* InputControllerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputControllerBridge.h; sourceTree = "<group>"; };
 		9F684CDC29D2A321002A0FF6 /* SpriteTextureData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteTextureData.h; sourceTree = "<group>"; };
 		9F684CDD29D3F5D6002A0FF6 /* TileRenderPass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TileRenderPass.cpp; sourceTree = "<group>"; };
 		9F684CDE29D3F5D6002A0FF6 /* TileRenderPass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileRenderPass.h; sourceTree = "<group>"; };
@@ -633,6 +630,8 @@
 		9F8FF24829ECECE900119857 /* SDLConfiguration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SDLConfiguration.cpp; sourceTree = "<group>"; };
 		9F8FF24929ECECE900119857 /* SDLConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLConfiguration.h; sourceTree = "<group>"; };
 		9F8FF25929ED049A00119857 /* PlatformRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlatformRenderer.h; sourceTree = "<group>"; };
+		9F8FF25C29EDD54900119857 /* InputController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputController.h; sourceTree = "<group>"; };
+		9F8FF26929EDD7DD00119857 /* InputController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InputController.cpp; sourceTree = "<group>"; };
 		9F91044D29A888F9000193D9 /* GameSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
 		9FA4B47F28D4215D00778266 /* efmcdxaa_03.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = efmcdxaa_03.bmp; sourceTree = "<group>"; };
 		9FA4B48028D4215D00778266 /* efmcdxaa_02.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = efmcdxaa_02.bmp; sourceTree = "<group>"; };
@@ -1587,11 +1586,10 @@
 				9F3F67CD288DE3290057DE5F /* GameScene.hpp */,
 				9F3F67D0288DE46B0057DE5F /* IsometricCamera.hpp */,
 				9F3F67D2288E05480057DE5F /* IsometricCamera.cpp */,
-				9F4D58162895D3FF00FF18D4 /* InputControllerBridge.h */,
-				9F4D58102895AC6100FF18D4 /* InputControllerAdapter.h */,
-				9F4D58112895AD5400FF18D4 /* InputControllerAdapter.mm */,
 				9F4D58132895AF8000FF18D4 /* Movable.hpp */,
 				9F4D58142895AFB200FF18D4 /* Movable.cpp */,
+				9F8FF25C29EDD54900119857 /* InputController.h */,
+				9F8FF26929EDD7DD00119857 /* InputController.cpp */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1996,7 +1994,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F4D58122895AD5400FF18D4 /* InputControllerAdapter.mm in Sources */,
 				9F4D58152895AFB200FF18D4 /* Movable.cpp in Sources */,
 				9F762F2129BFC5D70073D7B9 /* MovableSpriteShaders.metal in Sources */,
 				9F3F67C4288DDC6D0057DE5F /* ObjModelImporter.cpp in Sources */,
@@ -2004,6 +2001,7 @@
 				9FAD19A129AD4C230016C7FD /* Gameplay.cpp in Sources */,
 				9F13D5BE28C3D94500C11694 /* Sprite.cpp in Sources */,
 				9FB1A3D2289B7A42006E27A9 /* TextureController.cpp in Sources */,
+				9F8FF26A29EDD7DD00119857 /* InputController.cpp in Sources */,
 				9F3F67C2288DDC6D0057DE5F /* VertexDescriptor.cpp in Sources */,
 				9F3F67CB288DE2A30057DE5F /* Camera.cpp in Sources */,
 				9F82312728F913300043A71E /* PixelData.cpp in Sources */,

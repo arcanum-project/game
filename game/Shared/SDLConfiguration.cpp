@@ -1,6 +1,7 @@
 //
 
 #include "SDLConfiguration.h"
+#include "InputController.h"
 
 void SDLConfiguration::initialize()
 {
@@ -29,6 +30,9 @@ SDLConfiguration::SDLConfiguration()
 	{
 	  switch (event.type)
 	  {
+		case SDL_FINGERDOWN:
+		  InputController::getInstance().setCoordinates(event.tfinger.x, event.tfinger.y);
+		  break;
 		case SDL_QUIT:
 		  gameIsRunning= false;
 		  break;
@@ -38,6 +42,8 @@ SDLConfiguration::SDLConfiguration()
 	}
 	
 	platformRenderer->drawFrame();
+	
+	InputController::getInstance().setCoordinates(0.f, 0.f);
   }
 }
 

@@ -140,12 +140,16 @@ public:
 	return std::move(glm::vec2(ndc.x, ndc.y));
   }
   
-  inline const glm::vec4 screenToWorld(const float_t x, const float_t y, const float_t screenWidth, const float_t screenHeight, const glm::mat4x4& viewMatrix, const glm::mat4x4& projectionMatrix) const
+  /**
+   Convert normalized screen coordinates (0..1) to world coordinates
+   */
+  inline const glm::vec4 normalizedScreenToWorld(const float_t x, const float_t y, const glm::mat4x4& viewMatrix, const glm::mat4x4& projectionMatrix) const
   {
-	const glm::vec2 ndc = screenToNDC(x, y, screenWidth, screenHeight);
+	const float xNDC = x * 2 - 1;
+	const float yNDC = y * (-2) + 1;
 	const glm::mat4x4 inverseProjectionMatrix = glm::inverse(std::move(projectionMatrix));
 	const glm::mat4x4 inverseViewMatrix = glm::inverse(std::move(viewMatrix));
-	glm::vec4 world = inverseViewMatrix * inverseProjectionMatrix * glm::vec4(std::move(ndc), 0.f, 1.0f);
+	glm::vec4 world = inverseViewMatrix * inverseProjectionMatrix * glm::vec4(xNDC, yNDC, 0.f, 1.0f);
 	world.x = (world.x - world.y) / world.w;
 	world.z = (world.z - world.y) / world.w;
 	world.y = 0.f;

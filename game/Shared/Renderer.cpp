@@ -30,9 +30,6 @@ Renderer::Renderer(SDL_Window* window)
   tileRenderPass(nullptr),
   spriteRenderPass(nullptr)
 {
-  // Initialize touch / click coordinates
-  setCoordinates(.0f, .0f);
-  
   int drawableWidth, drawableHeight;
   SDL_Metal_GetDrawableSize(window, &drawableWidth, &drawableHeight);
   createDepthTexture(drawableWidth, drawableHeight);
@@ -127,9 +124,6 @@ void Renderer::drawFrame()
   commandBuffer->commit();
   
   pool->release();
-  
-  // Reset touch / click coordinates
-  setCoordinates(.0f, .0f);
 }
 
 void Renderer::drawableSizeWillChange(const float_t drawableWidth, const float_t drawableHeight) {

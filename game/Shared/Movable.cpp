@@ -11,6 +11,7 @@
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
 
+#include "InputController.h"
 #include "Movable.hpp"
 #include "GameSettings.h"
 
@@ -23,16 +24,16 @@ Movable::~Movable() {};
 
 bool Movable::move(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed) {
   // Touch location coordinates
-  const float_t xScreen = xCoordinate();
-  const float_t yScreen = yCoordinate();
+  const float_t xNormalizedScreen = InputController::getInstance().getXCoordinate();
+  const float_t yNormalizedScreen = InputController::getInstance().getYCoordinate();
   // Start moving if we actually clicked somewhere
-  if (xScreen == _defaultCoordinateVal || yScreen == _defaultCoordinateVal) {
+  if (xNormalizedScreen == _defaultCoordinateVal || yNormalizedScreen == _defaultCoordinateVal) {
 	if (!isTargetPositionSet()) return false;
 	const glm::vec3 cmpCurrTarget = glm::equal(currentPositionWorld, std::move(glm::vec3(targetPositionWorld.x, targetPositionWorld.y, targetPositionWorld.z)));
 	if (cmpCurrTarget.x && cmpCurrTarget.y && cmpCurrTarget.z) return false;
 	return moveInSameDirection(outPositionWorld, currentPositionWorld, speed);
   }
-  else return moveInNewDirection(outPositionWorld, currentPositionWorld, speed, xScreen, yScreen);
+  else return moveInNewDirection(outPositionWorld, currentPositionWorld, speed, xNormalizedScreen, yNormalizedScreen);
 }
 
 bool Movable::moveInSameDirection(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed) const {
@@ -48,10 +49,10 @@ bool Movable::moveInSameDirection(glm::vec3& outPositionWorld, const glm::vec3& 
   return true;
 }
 
-bool Movable::moveInNewDirection(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed, const float_t xScreen, const float_t yScreen) {
+bool Movable::moveInNewDirection(glm::vec3& outPositionWorld, const glm::vec3& currentPositionWorld, const float_t speed, const float_t xNormalizedScreen, const float_t yNormalizedScreen) {
   const Math& m = Math::getInstance();
   const Uniforms& uf = Uniforms::getInstance();
-  const glm::vec4 newPositionWorld = m.screenToWorld(xScreen, yScreen, uf.drawableWidth(), uf.drawableHeight(), uf.getViewMatrix(), uf.getProjectionMatrix());
+  const glm::vec4 newPositionWorld = m.normalizedScreenToWorld(xNormalizedScreen, yNormalizedScreen, uf.getViewMatrix(), uf.getProjectionMatrix());
   targetPositionWorld = std::move(newPositionWorld);
   return moveInSameDirection(outPositionWorld, currentPositionWorld, speed);
 }
