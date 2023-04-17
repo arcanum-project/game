@@ -10,7 +10,7 @@ class SDLConfiguration
 {
 public:
   //  constructors
-  static const SDLConfiguration& initialize();
+  static void initialize();
   SDLConfiguration(SDLConfiguration const&) = delete;
   void operator=(SDLConfiguration const&) = delete;
   

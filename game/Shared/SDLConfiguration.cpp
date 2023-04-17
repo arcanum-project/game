@@ -2,10 +2,9 @@
 
 #include "SDLConfiguration.h"
 
-const SDLConfiguration& SDLConfiguration::initialize()
+void SDLConfiguration::initialize()
 {
   static SDLConfiguration instance;
-  return instance;
 }
 
 SDLConfiguration::SDLConfiguration()
