@@ -96,6 +96,8 @@ void Renderer::initializeTextures() {
 
 void Renderer::drawFrame()
 {
+  NS::AutoreleasePool* pool = NS::AutoreleasePool::alloc()->init();
+  
   // We are reusing same command buffers for sending commands to GPU. Therefore we must lock to ensure that buffers are only used when GPU is done with them.
   // Check this article for more: https://crimild.wordpress.com/2016/05/19/praise-the-metal-part-1-rendering-a-single-frame/
   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
@@ -114,8 +116,6 @@ void Renderer::drawFrame()
   Uniforms& uf = Uniforms::getInstance();
   uf.setViewMatrix(gameScene->pCamera()->viewMatrix());
   uf.setProjectionMatrix(gameScene->pCamera()->projectionMatrix());
-  
-  NS::AutoreleasePool* pool = NS::AutoreleasePool::alloc()->init();
   
   CA::MetalDrawable* nextDrawable = layer->nextDrawable();
   
