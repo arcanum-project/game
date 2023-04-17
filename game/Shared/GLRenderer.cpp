@@ -43,7 +43,9 @@ GLRenderer::~GLRenderer()
 
 void GLRenderer::drawFrame()
 {
-  glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
+  static float time = 0.f;
+  glClearColor(tan(time), sin(time), cos(time), 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
   SDL_GL_SwapWindow(window);
+  time += 0.01;
 }
