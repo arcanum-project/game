@@ -9,10 +9,15 @@
 class SDLConfiguration
 {
 public:
+  //  constructors
+  static const SDLConfiguration& initialize();
+  SDLConfiguration(SDLConfiguration const&) = delete;
+  void operator=(SDLConfiguration const&) = delete;
+  
+private:
   SDLConfiguration();
   ~SDLConfiguration();
-
-private:
+  
   SDL_Window* window;
   PlatformRenderer* platformRenderer;
 };

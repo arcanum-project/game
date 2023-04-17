@@ -2,6 +2,12 @@
 
 #include "SDLConfiguration.h"
 
+const SDLConfiguration& SDLConfiguration::initialize()
+{
+  static SDLConfiguration instance;
+  return instance;
+}
+
 SDLConfiguration::SDLConfiguration()
 : window(nullptr),
   platformRenderer(nullptr)

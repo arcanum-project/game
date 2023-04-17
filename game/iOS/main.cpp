@@ -9,6 +9,6 @@
 
 int main(int argc, char * argv[])
 {
-  SDLConfiguration sdlConfiguration;
+  SDLConfiguration::initialize();
   return 0;
 }
