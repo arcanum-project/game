@@ -137,6 +137,69 @@
 		9F82313528FD04320043A71E /* 86570436012-npcs in Resources */ = {isa = PBXBuildFile; fileRef = 9F82313428FD041D0043A71E /* 86570436012-npcs */; };
 		9F8FF24A29ECECE900119857 /* SDLConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF24829ECECE900119857 /* SDLConfiguration.cpp */; };
 		9F8FF26A29EDD7DD00119857 /* InputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF26929EDD7DD00119857 /* InputController.cpp */; };
+		9F8FF26E29EDEB1F00119857 /* GLRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF26C29EDEB1F00119857 /* GLRenderer.cpp */; };
+		9F8FF28729EDF39700119857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F8FF28629EDF39700119857 /* Assets.xcassets */; };
+		9F8FF28A29EDF39700119857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8FF28829EDF39700119857 /* Main.storyboard */; };
+		9F8FF28C29EDF39700119857 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF28B29EDF39700119857 /* main.cpp */; };
+		9F8FF29129EDF4BA00119857 /* SDLConfiguration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF24829ECECE900119857 /* SDLConfiguration.cpp */; };
+		9F8FF29229EDF4E200119857 /* SDLConfiguration.h in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF24929ECECE900119857 /* SDLConfiguration.h */; };
+		9F8FF29329EDF4E200119857 /* PlatformRenderer.h in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF25929ED049A00119857 /* PlatformRenderer.h */; };
+		9F8FF29429EDF4E200119857 /* GLRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF26C29EDEB1F00119857 /* GLRenderer.cpp */; };
+		9F8FF29529EDF4E200119857 /* GLRenderer.h in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF26D29EDEB1F00119857 /* GLRenderer.h */; };
+		9F8FF29629EDF4E200119857 /* ShaderCommons.h in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2BB37288F1D0E00D3E983 /* ShaderCommons.h */; };
+		9F8FF29729EDF4E200119857 /* MetalConstants.h in Sources */ = {isa = PBXBuildFile; fileRef = 9F13D5C028C40A8400C11694 /* MetalConstants.h */; };
+		9F8FF29829EDF4E200119857 /* Pipelines.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F13D5C428C4162000C11694 /* Pipelines.hpp */; };
+		9F8FF29929EDF4E200119857 /* Pipelines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F13D5C128C415F400C11694 /* Pipelines.cpp */; };
+		9F8FF29A29EDF4E200119857 /* Renderer.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D8288E2FD90057DE5F /* Renderer.hpp */; };
+		9F8FF29B29EDF4E200119857 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D7288E2FD90057DE5F /* Renderer.cpp */; };
+		9F8FF29C29EDF4E200119857 /* SpriteRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE17E3629CD5E04000FE4C0 /* SpriteRenderPass.cpp */; };
+		9F8FF29D29EDF4E200119857 /* SpriteRenderPass.h in Sources */ = {isa = PBXBuildFile; fileRef = 9FE17E3729CD5E04000FE4C0 /* SpriteRenderPass.h */; };
+		9F8FF29E29EDF4E200119857 /* TileRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F684CDD29D3F5D6002A0FF6 /* TileRenderPass.cpp */; };
+		9F8FF29F29EDF4E200119857 /* TileRenderPass.h in Sources */ = {isa = PBXBuildFile; fileRef = 9F684CDE29D3F5D6002A0FF6 /* TileRenderPass.h */; };
+		9F8FF2A029EDF4E200119857 /* TextureController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1A3D0289B7A42006E27A9 /* TextureController.cpp */; };
+		9F8FF2A129EDF4E200119857 /* TextureController.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1A3D1289B7A42006E27A9 /* TextureController.hpp */; };
+		9F8FF2A229EDF4E200119857 /* TileInstanceData.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F13D5BF28C4025100C11694 /* TileInstanceData.hpp */; };
+		9F8FF2A329EDF4E200119857 /* SpriteTextureData.h in Sources */ = {isa = PBXBuildFile; fileRef = 9F684CDC29D2A321002A0FF6 /* SpriteTextureData.h */; };
+		9F8FF2A429EDF4E200119857 /* TileShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67DA288E308F0057DE5F /* TileShaders.metal */; };
+		9F8FF2A529EDF4E200119857 /* MovableSpriteShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9F762F2029BFC5D70073D7B9 /* MovableSpriteShaders.metal */; };
+		9F8FF2A629EDF4E200119857 /* ModelImporter.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1F1287B677D006306F6 /* ModelImporter.hpp */; };
+		9F8FF2A729EDF4E200119857 /* ObjModelImporter.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1F9287B6F41006306F6 /* ObjModelImporter.hpp */; };
+		9F8FF2A829EDF4E200119857 /* ObjModelImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D207287BCA93006306F6 /* ObjModelImporter.cpp */; };
+		9F8FF2A929EDF4E200119857 /* VertexData.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A3DEE287E70A400F09F1C /* VertexData.hpp */; };
+		9F8FF2AA29EDF4E200119857 /* ArtImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82310A28E758970043A71E /* ArtImporter.cpp */; };
+		9F8FF2AB29EDF4E200119857 /* ArtImporter.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82310B28E758970043A71E /* ArtImporter.hpp */; };
+		9F8FF2AC29EDF4E200119857 /* Frame.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82312428F9127A0043A71E /* Frame.hpp */; };
+		9F8FF2AD29EDF4E200119857 /* PixelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82312528F912AD0043A71E /* PixelData.cpp */; };
+		9F8FF2AE29EDF4E200119857 /* PixelData.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82312628F912AD0043A71E /* PixelData.hpp */; };
+		9F8FF2AF29EDF4E200119857 /* Tile.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F13D5B328C2DBAF00C11694 /* Tile.hpp */; };
+		9F8FF2B029EDF4E200119857 /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F13D5B228C2DBAF00C11694 /* Tile.cpp */; };
+		9F8FF2B129EDF4E200119857 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F13D5BC28C3D94500C11694 /* Sprite.cpp */; };
+		9F8FF2B229EDF4E200119857 /* Sprite.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F13D5BD28C3D94500C11694 /* Sprite.hpp */; };
+		9F8FF2B329EDF4E200119857 /* ResourceBundle.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1A3CB28974055006E27A9 /* ResourceBundle.hpp */; };
+		9F8FF2B429EDF4E200119857 /* Alignment.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1E3C628A6133F006E27A9 /* Alignment.hpp */; };
+		9F8FF2B529EDF4E200119857 /* Gameplay.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD199F29AD4AAD0016C7FD /* Gameplay.hpp */; };
+		9F8FF2B629EDF4E200119857 /* Gameplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD19A029AD4BDC0016C7FD /* Gameplay.cpp */; };
+		9F8FF2B729EDF4E200119857 /* GameSettings.h in Sources */ = {isa = PBXBuildFile; fileRef = 9F91044D29A888F9000193D9 /* GameSettings.h */; };
+		9F8FF2B829EDF4E200119857 /* GameSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD19A229AD4FE00016C7FD /* GameSettings.cpp */; };
+		9F8FF2B929EDF4E200119857 /* VertexDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831542287142DC00B6FCDF /* VertexDescriptor.cpp */; };
+		9F8FF2BA29EDF4E200119857 /* VertexDescriptor.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F831543287142DC00B6FCDF /* VertexDescriptor.hpp */; };
+		9F8FF2BB29EDF4E200119857 /* Uniforms.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1502872447F006306F6 /* Uniforms.hpp */; };
+		9F8FF2BC29EDF4E200119857 /* Uniforms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D157287257C8006306F6 /* Uniforms.cpp */; };
+		9F8FF2BD29EDF4E200119857 /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1522872472C006306F6 /* Math.cpp */; };
+		9F8FF2BE29EDF4E200119857 /* Math.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1532872472C006306F6 /* Math.hpp */; };
+		9F8FF2BF29EDF4E200119857 /* Transformable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1B9287A2C1E006306F6 /* Transformable.cpp */; };
+		9F8FF2C029EDF4E200119857 /* Transformable.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F12D1BA287A2C1E006306F6 /* Transformable.hpp */; };
+		9F8FF2C129EDF4E200119857 /* Camera.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67C8288DDD4B0057DE5F /* Camera.hpp */; };
+		9F8FF2C229EDF4E200119857 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67CA288DE2A30057DE5F /* Camera.cpp */; };
+		9F8FF2C329EDF4E200119857 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67CC288DE3290057DE5F /* GameScene.cpp */; };
+		9F8FF2C429EDF4E200119857 /* GameScene.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67CD288DE3290057DE5F /* GameScene.hpp */; };
+		9F8FF2C529EDF4E200119857 /* IsometricCamera.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D0288DE46B0057DE5F /* IsometricCamera.hpp */; };
+		9F8FF2C629EDF4E200119857 /* IsometricCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F67D2288E05480057DE5F /* IsometricCamera.cpp */; };
+		9F8FF2C729EDF4E200119857 /* Movable.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58132895AF8000FF18D4 /* Movable.hpp */; };
+		9F8FF2C829EDF4E200119857 /* Movable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D58142895AFB200FF18D4 /* Movable.cpp */; };
+		9F8FF2C929EDF4E200119857 /* InputController.h in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF25C29EDD54900119857 /* InputController.h */; };
+		9F8FF2CA29EDF4E200119857 /* InputController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8FF26929EDD7DD00119857 /* InputController.cpp */; };
+		9F8FF2CC29EDF4F800119857 /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3AC96029E5F95500D85BD3 /* libSDL2.a */; };
 		9FA4B52628D425D500778266 /* ghmstxaa_0.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9FA4B51C28D422E800778266 /* ghmstxaa_0.bmp */; };
 		9FA4B52728D425D500778266 /* hmfc2xaa_06.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9FA4B51E28D422E800778266 /* hmfc2xaa_06.bmp */; };
 		9FA4B52828D425D500778266 /* hmfc2xaa_07.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9FA4B51F28D422E800778266 /* hmfc2xaa_07.bmp */; };
@@ -632,6 +695,13 @@
 		9F8FF25929ED049A00119857 /* PlatformRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlatformRenderer.h; sourceTree = "<group>"; };
 		9F8FF25C29EDD54900119857 /* InputController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputController.h; sourceTree = "<group>"; };
 		9F8FF26929EDD7DD00119857 /* InputController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InputController.cpp; sourceTree = "<group>"; };
+		9F8FF26C29EDEB1F00119857 /* GLRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLRenderer.cpp; sourceTree = "<group>"; };
+		9F8FF26D29EDEB1F00119857 /* GLRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLRenderer.h; sourceTree = "<group>"; };
+		9F8FF27E29EDF39700119857 /* macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F8FF28629EDF39700119857 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F8FF28929EDF39700119857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9F8FF28B29EDF39700119857 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9F8FF28D29EDF39700119857 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		9F91044D29A888F9000193D9 /* GameSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
 		9FA4B47F28D4215D00778266 /* efmcdxaa_03.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = efmcdxaa_03.bmp; sourceTree = "<group>"; };
 		9FA4B48028D4215D00778266 /* efmcdxaa_02.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = efmcdxaa_02.bmp; sourceTree = "<group>"; };
@@ -848,6 +918,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F3AC96E29E5FAAB00D85BD3 /* libSDL2.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F8FF27B29EDF39700119857 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F8FF2CC29EDF4F800119857 /* libSDL2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1233,6 +1311,24 @@
 			name = ArtImporter;
 			sourceTree = "<group>";
 		};
+		9F8FF27F29EDF39700119857 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				9F8FF28629EDF39700119857 /* Assets.xcassets */,
+				9F8FF28829EDF39700119857 /* Main.storyboard */,
+				9F8FF28B29EDF39700119857 /* main.cpp */,
+				9F8FF28D29EDF39700119857 /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		9F8FF2CB29EDF4F800119857 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9FA4B47E28D4215D00778266 /* efmcdxaa */ = {
 			isa = PBXGroup;
 			children = (
@@ -1538,6 +1634,7 @@
 				9F13D59828BC31C700C11694 /* LICENSE */,
 				9FABA015286C064300B5630A /* game */,
 				9FABA014286C064300B5630A /* Products */,
+				9F8FF2CB29EDF4F800119857 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1545,6 +1642,7 @@
 			isa = PBXGroup;
 			children = (
 				9F3F67A4288DDBD60057DE5F /* iOS.app */,
+				9F8FF27E29EDF39700119857 /* macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1552,6 +1650,7 @@
 		9FABA015286C064300B5630A /* game */ = {
 			isa = PBXGroup;
 			children = (
+				9F8FF27F29EDF39700119857 /* macOS */,
 				9F3F67A5288DDBD60057DE5F /* iOS */,
 				9FABA029286C06FE00B5630A /* Shared */,
 			);
@@ -1564,6 +1663,8 @@
 				9F8FF24829ECECE900119857 /* SDLConfiguration.cpp */,
 				9F8FF24929ECECE900119857 /* SDLConfiguration.h */,
 				9F8FF25929ED049A00119857 /* PlatformRenderer.h */,
+				9F8FF26C29EDEB1F00119857 /* GLRenderer.cpp */,
+				9F8FF26D29EDEB1F00119857 /* GLRenderer.h */,
 				9FE17E3529CD5D88000FE4C0 /* Renderer */,
 				9F13D5C528C42E6100C11694 /* Shaders */,
 				9F13D5B828C2E07F00C11694 /* ModelImporter */,
@@ -1655,6 +1756,23 @@
 			productReference = 9F3F67A4288DDBD60057DE5F /* iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9F8FF27D29EDF39700119857 /* macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F8FF28E29EDF39700119857 /* Build configuration list for PBXNativeTarget "macOS" */;
+			buildPhases = (
+				9F8FF27A29EDF39700119857 /* Sources */,
+				9F8FF27B29EDF39700119857 /* Frameworks */,
+				9F8FF27C29EDF39700119857 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = macOS;
+			productName = macOS;
+			productReference = 9F8FF27E29EDF39700119857 /* macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1669,6 +1787,9 @@
 					};
 					9F831523286FC83500B6FCDF = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					9F8FF27D29EDF39700119857 = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
@@ -1693,6 +1814,7 @@
 			targets = (
 				9F831523286FC83500B6FCDF /* game */,
 				9F3F67A3288DDBD60057DE5F /* iOS */,
+				9F8FF27D29EDF39700119857 /* macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1987,6 +2109,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9F8FF27C29EDF39700119857 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F8FF28729EDF39700119857 /* Assets.xcassets in Resources */,
+				9F8FF28A29EDF39700119857 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2011,6 +2142,7 @@
 				9F8FF24A29ECECE900119857 /* SDLConfiguration.cpp in Sources */,
 				9F13D5B428C2DBAF00C11694 /* Tile.cpp in Sources */,
 				9F3F67D9288E2FD90057DE5F /* Renderer.cpp in Sources */,
+				9F8FF26E29EDEB1F00119857 /* GLRenderer.cpp in Sources */,
 				9F3F67CE288DE3290057DE5F /* GameScene.cpp in Sources */,
 				9F3F67DB288E308F0057DE5F /* TileShaders.metal in Sources */,
 				9F3F67B9288DDBD70057DE5F /* main.cpp in Sources */,
@@ -2019,6 +2151,72 @@
 				9F684CDF29D3F5D6002A0FF6 /* TileRenderPass.cpp in Sources */,
 				9FE17E3829CD5E04000FE4C0 /* SpriteRenderPass.cpp in Sources */,
 				9F13D5C328C415F400C11694 /* Pipelines.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F8FF27A29EDF39700119857 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F8FF29229EDF4E200119857 /* SDLConfiguration.h in Sources */,
+				9F8FF29329EDF4E200119857 /* PlatformRenderer.h in Sources */,
+				9F8FF29429EDF4E200119857 /* GLRenderer.cpp in Sources */,
+				9F8FF29529EDF4E200119857 /* GLRenderer.h in Sources */,
+				9F8FF29629EDF4E200119857 /* ShaderCommons.h in Sources */,
+				9F8FF29729EDF4E200119857 /* MetalConstants.h in Sources */,
+				9F8FF29829EDF4E200119857 /* Pipelines.hpp in Sources */,
+				9F8FF29929EDF4E200119857 /* Pipelines.cpp in Sources */,
+				9F8FF29A29EDF4E200119857 /* Renderer.hpp in Sources */,
+				9F8FF29B29EDF4E200119857 /* Renderer.cpp in Sources */,
+				9F8FF29C29EDF4E200119857 /* SpriteRenderPass.cpp in Sources */,
+				9F8FF29D29EDF4E200119857 /* SpriteRenderPass.h in Sources */,
+				9F8FF29E29EDF4E200119857 /* TileRenderPass.cpp in Sources */,
+				9F8FF29F29EDF4E200119857 /* TileRenderPass.h in Sources */,
+				9F8FF2A029EDF4E200119857 /* TextureController.cpp in Sources */,
+				9F8FF2A129EDF4E200119857 /* TextureController.hpp in Sources */,
+				9F8FF2A229EDF4E200119857 /* TileInstanceData.hpp in Sources */,
+				9F8FF2A329EDF4E200119857 /* SpriteTextureData.h in Sources */,
+				9F8FF2A429EDF4E200119857 /* TileShaders.metal in Sources */,
+				9F8FF2A529EDF4E200119857 /* MovableSpriteShaders.metal in Sources */,
+				9F8FF2A629EDF4E200119857 /* ModelImporter.hpp in Sources */,
+				9F8FF2A729EDF4E200119857 /* ObjModelImporter.hpp in Sources */,
+				9F8FF2A829EDF4E200119857 /* ObjModelImporter.cpp in Sources */,
+				9F8FF2A929EDF4E200119857 /* VertexData.hpp in Sources */,
+				9F8FF2AA29EDF4E200119857 /* ArtImporter.cpp in Sources */,
+				9F8FF2AB29EDF4E200119857 /* ArtImporter.hpp in Sources */,
+				9F8FF2AC29EDF4E200119857 /* Frame.hpp in Sources */,
+				9F8FF2AD29EDF4E200119857 /* PixelData.cpp in Sources */,
+				9F8FF2AE29EDF4E200119857 /* PixelData.hpp in Sources */,
+				9F8FF2AF29EDF4E200119857 /* Tile.hpp in Sources */,
+				9F8FF2B029EDF4E200119857 /* Tile.cpp in Sources */,
+				9F8FF2B129EDF4E200119857 /* Sprite.cpp in Sources */,
+				9F8FF2B229EDF4E200119857 /* Sprite.hpp in Sources */,
+				9F8FF2B329EDF4E200119857 /* ResourceBundle.hpp in Sources */,
+				9F8FF2B429EDF4E200119857 /* Alignment.hpp in Sources */,
+				9F8FF2B529EDF4E200119857 /* Gameplay.hpp in Sources */,
+				9F8FF2B629EDF4E200119857 /* Gameplay.cpp in Sources */,
+				9F8FF2B729EDF4E200119857 /* GameSettings.h in Sources */,
+				9F8FF2B829EDF4E200119857 /* GameSettings.cpp in Sources */,
+				9F8FF2B929EDF4E200119857 /* VertexDescriptor.cpp in Sources */,
+				9F8FF2BA29EDF4E200119857 /* VertexDescriptor.hpp in Sources */,
+				9F8FF2BB29EDF4E200119857 /* Uniforms.hpp in Sources */,
+				9F8FF2BC29EDF4E200119857 /* Uniforms.cpp in Sources */,
+				9F8FF2BD29EDF4E200119857 /* Math.cpp in Sources */,
+				9F8FF2BE29EDF4E200119857 /* Math.hpp in Sources */,
+				9F8FF2BF29EDF4E200119857 /* Transformable.cpp in Sources */,
+				9F8FF2C029EDF4E200119857 /* Transformable.hpp in Sources */,
+				9F8FF2C129EDF4E200119857 /* Camera.hpp in Sources */,
+				9F8FF2C229EDF4E200119857 /* Camera.cpp in Sources */,
+				9F8FF2C329EDF4E200119857 /* GameScene.cpp in Sources */,
+				9F8FF2C429EDF4E200119857 /* GameScene.hpp in Sources */,
+				9F8FF2C529EDF4E200119857 /* IsometricCamera.hpp in Sources */,
+				9F8FF2C629EDF4E200119857 /* IsometricCamera.cpp in Sources */,
+				9F8FF2C729EDF4E200119857 /* Movable.hpp in Sources */,
+				9F8FF2C829EDF4E200119857 /* Movable.cpp in Sources */,
+				9F8FF2C929EDF4E200119857 /* InputController.h in Sources */,
+				9F8FF2CA29EDF4E200119857 /* InputController.cpp in Sources */,
+				9F8FF29129EDF4BA00119857 /* SDLConfiguration.cpp in Sources */,
+				9F8FF28C29EDF39700119857 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2031,6 +2229,14 @@
 				9F3F67B5288DDBD70057DE5F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9F8FF28829EDF39700119857 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F8FF28929EDF39700119857 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2069,6 +2275,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.${TARGET_NAME}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2107,6 +2316,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "dbelousov.${TARGET_NAME}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2130,6 +2342,62 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = H2VL2PJ39X;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9F8FF28F29EDF39700119857 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = game/macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H2VL2PJ39X;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dimatheprogrammer.macOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		9F8FF29029EDF39700119857 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = game/macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H2VL2PJ39X;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dimatheprogrammer.macOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
@@ -2281,6 +2549,15 @@
 			buildConfigurations = (
 				9F831525286FC83500B6FCDF /* Debug */,
 				9F831526286FC83500B6FCDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F8FF28E29EDF39700119857 /* Build configuration list for PBXNativeTarget "macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F8FF28F29EDF39700119857 /* Debug */,
+				9F8FF29029EDF39700119857 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

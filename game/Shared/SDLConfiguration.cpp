@@ -18,7 +18,7 @@ SDLConfiguration::SDLConfiguration()
   SDL_DisplayMode displayMode;
   SDL_GetCurrentDisplayMode(0, &displayMode);
   
-  window = SDL_CreateWindow("Arcanum", 0, 0, displayMode.w, displayMode.h, 0);
+  window = SDL_CreateWindow("Arcanum", 0, 0, displayMode.w, displayMode.h, SDL_WINDOW_RESIZABLE);
   
   platformRenderer = new PlatformRenderer(window);
   
